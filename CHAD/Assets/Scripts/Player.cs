@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Vector3 movement;
-    public float speed = 4f;
+    public float speed = 5f;
     BoxCollider2D coll;
 
     // Start is called before the first frame update
