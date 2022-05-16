@@ -265,10 +265,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a43ea056026a4863a3c1ef0ff3b9677, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f87ee12996f574488afb69603a72d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 701439678}
+  radialBound: 2
+  cameraSpeedMultiplier: 0.9
+  mouseBiasAmount: 0.5
+  maxMouseBiasDist: 3
 --- !u!1 &701439678
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +286,7 @@ GameObject:
   - component: {fileID: 701439679}
   - component: {fileID: 701439682}
   - component: {fileID: 701439683}
+  - component: {fileID: 701439684}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -415,6 +420,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4375}
   m_EdgeRadius: 0
+--- !u!50 &701439684
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701439678}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &715708669
 GameObject:
   m_ObjectHideFlags: 0

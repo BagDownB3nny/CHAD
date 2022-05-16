@@ -19,11 +19,11 @@ public class Player : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        movement = movement.normalized * speed;
+        movement.Normalize();
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
+        rb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
     }
 }

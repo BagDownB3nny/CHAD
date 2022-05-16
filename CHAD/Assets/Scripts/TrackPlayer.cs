@@ -8,6 +8,8 @@ public class TrackPlayer : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float speed = 1f;
     private Rigidbody2D enemy;
+    private Vector2 direction;
+    private float heading;
 
     void Start()
     {
@@ -15,16 +17,18 @@ public class TrackPlayer : MonoBehaviour
     }
 
     void Update(){
-        Vector3 direction = player.position - this.transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
+        direction = player.position - this.transform.position;
         direction.Normalize();
-        face(angle);
-        track((Vector2) direction);
+        heading = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    }
+
+    private void FixedUpdate() {
+        face(heading);
+        track(direction);
     }
    
-    void face(float angle) {
-        if (angle >= -90 && angle < 89) {
+    void face(float heading) {
+        if (heading >= -90 && heading < 89) {
             this.gameObject.transform.localScale = new Vector3(1, 1, 1);
         } else {
             this.gameObject.transform.localScale = new Vector3(-1, 1, 1);
@@ -32,6 +36,6 @@ public class TrackPlayer : MonoBehaviour
     }
 
     void track(Vector2 direction){
-        enemy.MovePosition((Vector2) transform.position + (direction * speed * Time.deltaTime));
+        enemy.MovePosition((Vector2) this.transform.position + (direction * speed * Time.deltaTime));
     }
 }
