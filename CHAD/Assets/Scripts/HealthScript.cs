@@ -22,7 +22,7 @@ public class HealthScript : MonoBehaviour
         }
 
         if (hp <= 0) {
-            
+            bullet.GetComponent<EnemyProjectile>().UpdateOriginTargetStatus(false);
             Die();
         }
     }
@@ -32,8 +32,7 @@ public class HealthScript : MonoBehaviour
         if (deathEffect != null) {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
-
-        bullet.GetComponent<EnemyProjectile>().UpdateOriginTargetStatus(false);
+        
         Camera.main.GetComponent<CameraMotor>().DeclarePlayerDead();
         Destroy(gameObject);
     }
