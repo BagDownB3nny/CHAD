@@ -9,16 +9,9 @@ public class HealthScript : MonoBehaviour
     public GameObject deathEffect;
     public GameObject damageEffect;
 
-    // Start is called before the first frame update
     void Start()
     {
         hp = startHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TakeDamage(float damage, GameObject bullet) {
@@ -29,18 +22,19 @@ public class HealthScript : MonoBehaviour
         }
 
         if (hp <= 0) {
-            bullet.GetComponent<EnemyProjectile>().UpdateOriginTargetStatus(false);
+            
             Die();
         }
     }
 
+    //instantiate deathEffect, update camera and targeting enemy of death
     private void Die() {
         if (deathEffect != null) {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
 
+        bullet.GetComponent<EnemyProjectile>().UpdateOriginTargetStatus(false);
         Camera.main.GetComponent<CameraMotor>().DeclarePlayerDead();
-
         Destroy(gameObject);
     }
 }
