@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMotor : MonoBehaviour
 {
     public GameObject player;
+    private bool playerDead = false;
 
     //float boundX = 3.0f;
     //float boundY = 1.5f;
@@ -32,27 +33,33 @@ public class CameraMotor : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!playerDead) {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //update camera speed based on player speed
-        cameraSpeed = playerScript.speed * cameraSpeedMultiplier;
+            //update camera speed based on player speed
+            cameraSpeed = playerScript.speed * cameraSpeedMultiplier;
 
-        float distance = Vector3.Distance(player.transform.position, transform.position);
+            float distance = Vector3.Distance(player.transform.position, transform.position);
 
-        //move cam to player if out of bounds
-        if (distance > radialBound) {
-            Vector3 desiredCamPos = 
-                new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, desiredCamPos, cameraSpeed * Time.deltaTime);
+            //move cam to player if out of bounds
+            if (distance > radialBound) {
+                Vector3 desiredCamPos = 
+                    new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, desiredCamPos, cameraSpeed * Time.deltaTime);
+            }
+
+            float camToPlayerDist = Vector3.Distance(player.transform.position, transform.position);
+
+            //bias cam to mouse position
+            if (!(camToPlayerDist > maxMouseBiasDist)) {
+                Vector3 biasedCamPos = 
+                    new Vector3(mousePos.x, mousePos.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, biasedCamPos, mouseBiasAmount * Time.deltaTime);
+            }
         }
+    }
 
-        float camToPlayerDist = Vector3.Distance(player.transform.position, transform.position);
-
-        //bias cam to mouse position
-        if (!(camToPlayerDist > maxMouseBiasDist)) {
-            Vector3 biasedCamPos = 
-                new Vector3(mousePos.x, mousePos.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, biasedCamPos, mouseBiasAmount * Time.deltaTime);
-        }
+    public void DeclarePlayerDead() {
+        playerDead = true;
     }
 }

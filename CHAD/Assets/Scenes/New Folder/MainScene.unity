@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 701439680}
   - component: {fileID: 701439679}
   - component: {fileID: 701439682}
+  - component: {fileID: 701439685}
   - component: {fileID: 701439683}
   - component: {fileID: 701439684}
   m_Layer: 0
@@ -441,6 +442,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &701439685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701439678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f4f904ad3ff244b885264a5bea20a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 100
+  deathEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
 --- !u!1 &715708669
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcab45ee30234a4d9dee971f74d4168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 701439681}
+  projectile: {fileID: 4348536902379984181, guid: b1a07ba14c53ea7489b9ebc9de4518ba, type: 3}
+  shotInterval: 1
   speed: 1
 --- !u!50 &715708674
 Rigidbody2D:
