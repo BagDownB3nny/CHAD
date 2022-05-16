@@ -68,18 +68,14 @@ public class MaskedGuy : Enemy
     }
 
     void shoot() {
-        //if (hasTarget) {
-            if (timeToNextShot <= 0) {
-                GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
-                bullet.GetComponent<EnemyProjectile>().SetOrigin(gameObject);
-                timeToNextShot = shotInterval;
-            } else {
-                timeToNextShot -= Time.deltaTime;
-            }
-        //}
+        if (timeToNextShot <= 0) {
+            GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
+            bullet.GetComponent<EnemyProjectile>().SetOrigin(gameObject);
+            timeToNextShot = shotInterval;
+        } else {
+            timeToNextShot -= Time.deltaTime;
+        }
     }
-        
-    
 
     public override void UpdateTargetStatus(bool targetStatus) {
         hasTarget = targetStatus;
