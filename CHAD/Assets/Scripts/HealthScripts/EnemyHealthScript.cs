@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthScript : MonoBehaviour
+public class EnemyHealthScript : HealthScript
 {
+    // Start is called before the first frame update
     public float startHealth;
     private float hp;
     public GameObject deathEffect;
@@ -14,7 +15,7 @@ public class HealthScript : MonoBehaviour
         hp = startHealth;
     }
 
-    public void TakeDamage(float damage, GameObject bullet) {
+    public override void TakeDamage(float damage, GameObject bullet) {
         hp -= damage;
         Debug.Log(hp);
         if (damageEffect != null) {
@@ -22,18 +23,15 @@ public class HealthScript : MonoBehaviour
         }
 
         if (hp <= 0) {
-            bullet.GetComponent<EnemyProjectile>().UpdateOriginTargetStatus(false);
             Die();
         }
     }
 
     //instantiate deathEffect, update camera and targeting enemy of death
-    private void Die() {
+    public override void Die() {
         if (deathEffect != null) {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
-        
-        Camera.main.GetComponent<CameraMotor>().DeclarePlayerDead();
         Destroy(gameObject);
     }
 }

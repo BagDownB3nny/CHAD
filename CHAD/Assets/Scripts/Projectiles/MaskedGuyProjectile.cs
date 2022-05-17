@@ -10,6 +10,7 @@ public class MaskedGuyProjectile : EnemyProjectile
     public float damage;
     //the GameObject that produced this Projectile
     private GameObject origin;
+    private float rotationOffset = -90;
 
 
     //gets the target from the origin and calculates targetLocation
@@ -17,6 +18,11 @@ public class MaskedGuyProjectile : EnemyProjectile
     {
         target = origin.GetComponent<Enemy>().GetTarget();
         targetLocation = (Vector2) target.transform.position;
+
+        Vector3 direction = (Vector3) targetLocation - transform.position;
+        direction.Normalize();
+        float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation + rotationOffset);
     }
 
     //move to targetLocation and destroy if reached
@@ -41,10 +47,9 @@ public class MaskedGuyProjectile : EnemyProjectile
     }
 
     //deals damage to collided player
-    void DealDamage(GameObject player) {
-        if (player.GetComponent<HealthScript>() != null) {
-            player.GetComponent<HealthScript>().TakeDamage(damage, gameObject);
-
+    void DealDamage(GameObject target) {
+        if (target.GetComponent<HealthScript>() != null) {
+            target.GetComponent<HealthScript>().TakeDamage(damage, gameObject);
         }
     }
 
