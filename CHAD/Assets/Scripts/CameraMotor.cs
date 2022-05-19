@@ -14,7 +14,7 @@ public class CameraMotor : MonoBehaviour
     [SerializeField] private float cameraSpeedMultiplier = 0.9f;
     [SerializeField] private float mouseBiasAmount = 0.5f;
     [SerializeField] private float maxMouseBiasDist = 3f;
-    private Player playerScript;
+    private PlayerStatsManager playerScript;
     private float cameraSpeed;
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class CameraMotor : MonoBehaviour
     {
         //get access to player script
         GameObject player = GameObject.Find("Player");
-        playerScript = player.GetComponent<Player>();
+        playerScript = player.GetComponent<PlayerStatsManager>();
 
         //center camera to player
         transform.position = player.transform.position;
