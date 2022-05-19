@@ -102,7 +102,7 @@ MonoBehaviour:
   range: 10
   targetType: Enemy
   accuracy: 5
-  shotInterval: 0.2
+  shotInterval: 0.1
   gunRotationOffset: 0
   projectileRotationOffset: -90
   projectile: {fileID: 1965739902269245036, guid: 8b52709c127454b48986032394f77bc6, type: 3}
@@ -110,5 +110,6 @@ MonoBehaviour:
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   directionRotation: 0
   timeToNextShot: 0
+  holder: {fileID: 0}
   holderAttack: 0
   holderArmourPenetration: 0

@@ -5,25 +5,32 @@ using UnityEngine;
 public class RangedEnemyMovement : EnemyMovement
 {
     //scripts needed
+    EnemyStatsManager statsManagerScript;
     EnemyWeaponManager weaponManagerScript;
 
     [Header("Movement Parameters")]
     public float speed;
     public GameObject target;
     private Vector3 targetSize;
-    public Rigidbody2D enemy;
+    public Rigidbody2D enemyRb;
     private Vector3 directionVector;
     private float directionRotation;
 
     private void Awake() {
+        //get the statsmanager and ask for the movement stats
+        statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
+        statsManagerScript.UpdateMovementStats();
+        Debug.Log("ENEMY: transferred movement stats from stats manager to movement");
+
         weaponManagerScript = gameObject.GetComponent<EnemyWeaponManager>();
+        Debug.Log("ENEMY: set reference to weapon manager script in movement");
     }
 
     void Start()
     {
         FindTarget();
         targetSize = target.GetComponent<SpriteRenderer>().bounds.size;
-        enemy = gameObject.GetComponent<Rigidbody2D>();
+        enemyRb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate() {
@@ -40,7 +47,7 @@ public class RangedEnemyMovement : EnemyMovement
         directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
 
         Face();
-        enemy.MovePosition((Vector2) transform.position + ((Vector2) directionVector * speed * Time.deltaTime));
+        enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * speed * Time.deltaTime));
     }
 
     //flips the sprite to face the target

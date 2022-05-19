@@ -23,16 +23,7 @@ public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
         movementScript = gameObject.GetComponent<EnemyMovement>();
         weaponManagerScript = gameObject.GetComponent<EnemyWeaponManager>();
         deathScript = gameObject.GetComponent<Death>();
-    }
-
-    private void Start() {
-        //UpdateMovementStats();
-        //UpdateAttackStats();
-    }
-
-    private void Update() {
-        UpdateMovementStats();
-        UpdateAttackStats();
+        Debug.Log("ENEMY: set reference to other scripts in stats manager");
     }
 
     public void UpdateMovementStats() {

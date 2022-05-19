@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
 {
+    //scripts needed
+    ProjectileStatsManager statsManagerScript;
+
     [Header("Projectile Parameters")]
     public float speed;
     public float range;
@@ -12,13 +15,18 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     public Vector3 directionVector;
     public float rotationOffset = -90;
     
+    private void Awake() {
+        statsManagerScript = gameObject.GetComponent<ProjectileStatsManager>();
+        statsManagerScript.UpdateMovementStats();
+    }
+
     void Start()
     {
         Face();
     }
 
     //move to targetLocation and destroy if reached
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
