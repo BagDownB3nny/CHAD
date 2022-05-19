@@ -40,7 +40,7 @@ public abstract class EnemyRangedWeapon : RangedWeapon
         bulletDirectionVector = Quaternion.AngleAxis(rand, Vector3.back) * directionVector;
     }
 
-    public void SetAttackStats(GameObject _target, GameObject _holder, float _attack, float armourPenetration) {
+    public void SetAttackStats(GameObject _holder, float _attack, float armourPenetration) {
         holder = _holder;
         holderAttack = _attack;
         holderArmourPenetration = armourPenetration;

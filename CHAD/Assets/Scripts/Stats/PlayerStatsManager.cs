@@ -26,11 +26,6 @@ public class PlayerStatsManager : MonoBehaviour, CharacterStatsManager
         deathScipt = gameObject.GetComponent<Death>();
     }
 
-    private void Start() {
-        UpdateMovementStats();
-        UpdateAttackStats();
-    }
-
     public void UpdateMovementStats() {
         movementScript.SetMovementStats(speed);    
     }

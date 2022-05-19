@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //scripts needed
+    PlayerStatsManager statsManagerScript;
+    PlayerWeaponsManager weaponManagerScript;
+
     Vector2 movement;
     public float speed;
-    Rigidbody2D rb;
+    Rigidbody2D playerRb;
+
+     private void Awake() {
+        //get the statsmanager and ask for the movement stats
+        statsManagerScript = gameObject.GetComponent<PlayerStatsManager>();
+        statsManagerScript.UpdateMovementStats();
+        Debug.Log("PLAYER: transferred movement stats from stats manager to movement");
+
+        weaponManagerScript = gameObject.GetComponent<PlayerWeaponsManager>();
+        Debug.Log("PLAYER: set reference to weapon manager script in movement");
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -24,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
+        playerRb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
     }
 
     public void SetMovementStats(float _speed) {

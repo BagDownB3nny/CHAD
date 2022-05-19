@@ -18,7 +18,7 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     }
 
     //move to targetLocation and destroy if reached
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }

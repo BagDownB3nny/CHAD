@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerWeaponsManager : MonoBehaviour
 {
     //scripts needed
-    PlayerStatsManager playerStatsScript;
+    PlayerStatsManager statsManagerScript;
+    PlayerRangedWeapon weaponScript;
 
     [Header("Holder Attack Stats")]
     public float attack;
@@ -15,6 +16,13 @@ public class PlayerWeaponsManager : MonoBehaviour
     public GameObject defaultWeapon;
     public GameObject currentWeapon;
     public List<GameObject> weaponInventory = new List<GameObject>(8);
+
+    private void Awake() {
+        statsManagerScript = gameObject.GetComponent<PlayerStatsManager>();
+        statsManagerScript.UpdateAttackStats();
+        Debug.Log("PLAYER: transferred attack stats from stats manager to weapon manager");
+
+    }
 
     void Start()
     {
@@ -32,6 +40,9 @@ public class PlayerWeaponsManager : MonoBehaviour
             Debug.Log("weapon discarded");
         }      
         currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
+        Debug.Log("Instantiated Player Weapon");
+        weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
+        Debug.Log("PLAYER: weaponscript reference created");
         UpdateWeaponAttackStats();
 
         Debug.Log("equipped" + gunIndex);
@@ -49,7 +60,10 @@ public class PlayerWeaponsManager : MonoBehaviour
     public void SetAttackStats(float _attack, float _armourPenetration) {
         attack = _attack;
         armourPenetration = _armourPenetration;
-        UpdateWeaponAttackStats();
+        //only relay the updates to the weapon script if there is a weapon
+        if (currentWeapon != null) {
+            UpdateWeaponAttackStats();
+        }
     }
 
     public void UpdateWeaponAttackStats() {
