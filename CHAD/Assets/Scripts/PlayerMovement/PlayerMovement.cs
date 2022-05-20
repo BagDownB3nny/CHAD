@@ -33,12 +33,34 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        movement.Normalize();
+        //movement.Normalize();
     }
 
     private void FixedUpdate()
     {
-        playerRb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        bool[] _input = new bool[4];
+        if (movement.y > 0)
+        {
+            _input[0] = true;
+        }
+        if (movement.x < 0)
+        {
+            _input[1] = true;
+        }
+        if (movement.y < 0)
+        {
+            _input[2] = true;
+        }
+        if (movement.x > 0)
+        {
+            _input[3] = true;
+        }
+        ClientSend.SPAM();
+        ClientSend.PlayerMovement(_input);
+        Debug.Log("TRYING TO FKING SPAM");
+        //playerRb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
     }
 
     public void SetMovementStats(float _speed) {

@@ -10,13 +10,16 @@ public class StartMenuController : MonoBehaviour
     public string singleplayerScreen;
     public string mulitplayerScreen;
     public string settingsScreen;
+    public string mainScene;
+    public GameObject canvas;
 
     public void LoadSingleplayer() {
         SceneManager.LoadScene(singleplayerScreen);
     }
 
     public void LoadMultiplayer() {
-        SceneManager.LoadScene(mulitplayerScreen);
+        SceneManager.LoadScene(mainScene);
+        Client.instance.ConnectToServer();
     }
 
     public void LoadSettings() {
