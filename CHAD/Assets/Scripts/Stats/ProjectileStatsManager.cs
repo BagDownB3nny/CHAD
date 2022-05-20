@@ -29,7 +29,7 @@ public class ProjectileStatsManager : MonoBehaviour
     public GameObject origin;
     public Vector3 originLocationVector;
     public Vector3 directionVector;
-    public float rotationOffset = -90;
+    public float rotationOffset;
 
     public void UpdateMovementStats() {
         movementScript.SetStats(speed, range, origin, originLocationVector, directionVector, rotationOffset);    

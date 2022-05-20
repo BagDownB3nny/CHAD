@@ -4,5 +4,14 @@ using UnityEngine;
 
 public abstract class MeleeWeapon : Weapon
 {
-    //void SetStats(float _holderAttack, float _holderArmourPenetration);
+    [Header("Weapon Parameters")]
+    public float damage;
+    public string targetType;
+    public float attackInterval;
+    public float weaponRotationOffset = 0;
+    public GameObject defaultDamageDealer;
+
+    protected float timeToNextAttack;
+
+    
 }

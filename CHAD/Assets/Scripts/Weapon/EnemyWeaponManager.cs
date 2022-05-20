@@ -2,8 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeaponManager : MonoBehaviour
+public abstract class EnemyWeaponManager : MonoBehaviour
 {
+    //scripts needed
+    EnemyStatsManager statsManagerScript;
+
+    [Header("Holder Attack Stats")]
+    public float attack;
+    public float armourPenetration;
+
+    [Header("Enemy Weapon Parameters")]
+    public GameObject defaultWeapon;
+    public GameObject currentWeapon;
+
+    private void Awake() {
+        statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
+        statsManagerScript.UpdateAttackStats();
+        Debug.Log("transferred attack stats from stats manager to weapon manager");
+    }
+
+    void Start()
+    {
+        Debug.Log("equipping enemy weapon");
+        EquipWeapon();
+    }
+
+    public abstract void EquipWeapon();
+
+    public void SetAttackStats(float _attack, float _armourPenetration) {
+        attack = _attack;
+        armourPenetration = _armourPenetration;
+        //only relay the updates to the weapon script if there is a weapon
+        if (currentWeapon != null) {
+            UpdateWeaponAttackStats();
+        }
+    }
+
+    public abstract void UpdateWeaponAttackStats();
+
+    /*
     //scripts needed
     EnemyStatsManager statsManagerScript;
     EnemyRangedWeapon weaponScript;
@@ -57,4 +94,5 @@ public class EnemyWeaponManager : MonoBehaviour
     public void UpdateWeaponAttackStats() {
         weaponScript.SetAttackStats(gameObject, attack, armourPenetration);
     }
+    */
 }

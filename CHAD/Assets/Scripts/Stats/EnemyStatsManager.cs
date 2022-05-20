@@ -56,7 +56,6 @@ public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
         if (damageEffect != null) {
             Instantiate(damageEffect, transform.position, Quaternion.identity);
         }
-        
 
         if (hp < 0) {
             deathScript.Die();
