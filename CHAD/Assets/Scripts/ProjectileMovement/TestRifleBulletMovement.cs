@@ -32,7 +32,7 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void Move() {
-        gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2) directionVector * speed;
+        gameObject.GetComponent<Rigidbody2D>().velocity = ((Vector2) directionVector).normalized * speed;
 
         //destroy this object if exceeded range
         float distanceTravelled = (transform.position - originLocationVector).magnitude;

@@ -24,6 +24,6 @@ public abstract class RangedWeapon : Weapon
     public void BulletDirection() {
         float _accuracy = 10 - accuracy;
         float rand = Random.Range(-_accuracy, _accuracy);
-        bulletDirectionVector = Quaternion.AngleAxis(rand, Vector3.back) * directionVector;
+        bulletDirectionVector = (Quaternion.AngleAxis(rand, Vector3.back) * directionVector).normalized;
     }
 }
