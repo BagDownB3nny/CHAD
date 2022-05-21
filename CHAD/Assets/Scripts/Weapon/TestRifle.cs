@@ -20,7 +20,8 @@ public class TestRifle : PlayerRangedWeapon
         if (timeToNextShot <= 0) {
             GameObject shot = Instantiate(projectile, transform.position, Quaternion.Euler(0f, 0f, directionRotation + projectileRotationOffset));
             shot.GetComponent<ProjectileStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration, speed, 
-                    damage, range, targetType, gameObject, transform.position, bulletDirectionVector, projectileRotationOffset);
+                    damage, range, targetType, gameObject, transform.position, bulletDirectionVector, projectileRotationOffset);    
+            
             timeToNextShot = shotInterval;
         } else {
             timeToNextShot -= Time.deltaTime;
