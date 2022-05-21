@@ -42,8 +42,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 _position = (Vector2)this.transform.position + movement * speed * Time.deltaTime;
         Debug.Log(movement);
         playerRb.MovePosition(_position);
-        
-        //ServerSend.PlayerPosition(1, _position);
+        ServerSend.PlayerPosition(1, _position);
     }
     public void SetMovementStats(float _speed) {
         speed = _speed;

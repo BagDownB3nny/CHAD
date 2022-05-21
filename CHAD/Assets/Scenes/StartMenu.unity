@@ -168,6 +168,7 @@ MonoBehaviour:
   ip: 127.0.0.1
   port: 26950
   myId: 0
+  player: {fileID: 8048562091491450911, guid: 3adf5a1f85660400ba10fa5e4f686b05, type: 3}
 --- !u!4 &27597571
 Transform:
   m_ObjectHideFlags: 0

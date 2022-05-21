@@ -59,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
         }
         ClientSend.SPAM();
         ClientSend.PlayerMovement(_input);
-        Debug.Log("TRYING TO FKING SPAM");
         //playerRb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
     }
 

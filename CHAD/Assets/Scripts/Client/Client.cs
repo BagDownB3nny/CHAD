@@ -15,6 +15,7 @@ public class Client : MonoBehaviour
     public int myId = 0;
     public TCP tcp;
     public UDP udp;
+    public GameObject player;
 
     private delegate void PacketHandler(Packet _packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
@@ -251,7 +252,10 @@ public class Client : MonoBehaviour
         packetHandlers = new Dictionary<int, PacketHandler>()
         {
             { (int)ServerPackets.welcome, ClientHandle.Welcome },
+            {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition }
         };
         Debug.Log("Initialized packets.");
     }
+
+
 }

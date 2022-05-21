@@ -134,9 +134,15 @@ public void Write(Vector3 position)
     Write(position.y);
     Write(position.z);
 }
-/// <summary>Adds an array of bytes to the packet.</summary>
-/// <param name="_value">The byte array to add.</param>
-public void Write(byte[] _value)
+
+public void Write(Vector2 position)
+{
+    Write(position.x);
+    Write(position.y);
+}
+    /// <summary>Adds an array of bytes to the packet.</summary>
+    /// <param name="_value">The byte array to add.</param>
+    public void Write(byte[] _value)
 {
     buffer.AddRange(_value);
 }
@@ -201,7 +207,13 @@ public byte ReadByte(bool _moveReadPos = true)
     }
 }
 
-public Vector3 ReadVector3(bool _moveReadPos = true)
+public Vector2 ReadVector2(bool _moveReadPos = true)
+{
+    return new Vector2(ReadFloat(_moveReadPos),
+        ReadFloat(_moveReadPos));
+}
+
+    public Vector3 ReadVector3(bool _moveReadPos = true)
 {
     return new Vector3(ReadFloat(_moveReadPos),
         ReadFloat(_moveReadPos), ReadFloat(_moveReadPos));

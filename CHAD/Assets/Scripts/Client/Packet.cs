@@ -1,8 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Numerics;
-
+using UnityEngine;
 
 /// <summary>Sent from server to client.</summary>
 public enum ServerPackets
@@ -122,17 +122,23 @@ public class Packet : IDisposable
 
     public void Write(Quaternion _rotation)
     {
-        Write(_rotation.W);
-        Write(_rotation.X);
-        Write(_rotation.Y);
-        Write(_rotation.Z);
+        Write(_rotation.w);
+        Write(_rotation.x);
+        Write(_rotation.y);
+        Write(_rotation.z);
     }
 
     public void Write(Vector3 position)
     {
-        Write(position.X);
-        Write(position.Y);
-        Write(position.Z);
+        Write(position.x);
+        Write(position.y);
+        Write(position.z);
+    }
+
+    public void Write(Vector2 position)
+    {
+        Write(position.x);
+        Write(position.y);
     }
     /// <summary>Adds an array of bytes to the packet.</summary>
     /// <param name="_value">The byte array to add.</param>
@@ -199,6 +205,12 @@ public class Packet : IDisposable
         {
             throw new Exception("Could not read value of type 'byte'!");
         }
+    }
+
+    public Vector2 ReadVector2(bool _moveReadPos = true)
+    {
+        return new Vector2(ReadFloat(_moveReadPos),
+            ReadFloat(_moveReadPos));
     }
 
     public Vector3 ReadVector3(bool _moveReadPos = true)

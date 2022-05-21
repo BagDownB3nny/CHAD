@@ -84,7 +84,7 @@ public class ServerSend
         }
     }
 
-    public static void PlayerPosition(int _toClient, Vector3 _position)
+    public static void PlayerPosition(int _toClient, Vector2 _position)
     {
         using (Packet _packet = new Packet((int)ServerPackets.playerPosition))
         {

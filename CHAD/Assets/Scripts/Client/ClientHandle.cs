@@ -13,8 +13,17 @@ public class ClientHandle : MonoBehaviour
         Debug.Log($"Message from server: {_msg}");
         Client.instance.myId = _id;
 
-        ClientSend.WelcomeReceived();
+        ClientSend.SPAM();
         Client.instance.udp.Connect(
             ((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
+    }
+
+    public static void PlayerPosition(Packet _packet)
+    {
+        Vector2 position = _packet.ReadVector2();
+        if (Client.instance.player != null)
+        {
+            Client.instance.player.transform.position = position;
+        }
     }
 }
