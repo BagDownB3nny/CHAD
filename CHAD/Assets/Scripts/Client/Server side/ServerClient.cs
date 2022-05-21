@@ -6,23 +6,23 @@ using System.Net.Sockets;
 using UnityEngine;
 
 
-public class Client
+public class ServerClient
 {
     public static int dataBufferSize = 4096;
 
     public int id;
-    public TCP tcp;
-    public UDP udp;
+    public ServerTCP tcp;
+    public ServerUDP udp;
     public GameObject player;
 
-    public Client(int _clientId)
+    public ServerClient(int _clientId)
     {
         id = _clientId;
-        tcp = new TCP(id);
-        udp = new UDP(id);
+        tcp = new ServerTCP(id);
+        udp = new ServerUDP(id);
     }
 
-    public class TCP
+    public class ServerTCP
     {
         public TcpClient socket;
 
@@ -31,7 +31,7 @@ public class Client
         private Packet receivedData;
         private byte[] receiveBuffer;
 
-        public TCP(int _id)
+        public ServerTCP(int _id)
         {
             id = _id;
         }
@@ -142,13 +142,13 @@ public class Client
         }
     }
 
-    public class UDP
+    public class ServerUDP
     {
         public IPEndPoint endPoint;
 
         private int id;
 
-        public UDP(int _id)
+        public ServerUDP(int _id)
         {
             id = _id;
         }
@@ -180,25 +180,28 @@ public class Client
         }
     }
 
-    public void SendIntoGame(string _playerName)
+    public void SendIntoGame(int _characterType, Vector2 position)
     {
-        player = NetworkManager.instance.InitializePlayer(id);
 
-        foreach (Client _client in Server.clients.Values)
+        GameManager.instance.SpawnPlayer(id, _characterType, position);
+        player = GameManager.instance.players[id];
+        foreach (ServerClient _client in Server.serverClients.Values)
+        {
+            if (_client.player != null)
+            {
+                ServerSend.SpawnPlayer(id, _client.id, GameManager.instance.players[_client.id], 0);
+                //TODO: 0 to be replaced with character type from player script
+            }
+        }
+        foreach (ServerClient _client in Server.serverClients.Values)
         {
             if (_client.player != null)
             {
                 if (_client.id != id)
                 {
-                    ServerSend.SpawnPlayer(id, _client.player);
+                    ServerSend.SpawnPlayer(_client.id, id, player, 0);
+                    //TODO: 0 to be replaced with character type from player script
                 }
-            }
-        }
-        foreach (Client _client in Server.clients.Values)
-        {
-            if (_client.player != null)
-            {
-                ServerSend.SpawnPlayer(_client.id, player);
             }
         }
     }
@@ -224,7 +227,7 @@ public class Client
         }
         if (player != null)
         {
-            player.GetComponent<PlayerMovement>().movement = movement.normalized;
+            //player.GetComponent<PlayerMovement>().movement = movement.normalized;
         }
 
     }

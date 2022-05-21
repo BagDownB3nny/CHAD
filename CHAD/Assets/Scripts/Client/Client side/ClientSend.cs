@@ -7,21 +7,21 @@ public class ClientSend : MonoBehaviour
     public static void SendTCPData(Packet _packet)
     {
         _packet.WriteLength();
-        Client.instance.tcp.SendData(_packet);
+        PlayerClient.instance.tcp.SendData(_packet);
     }
 
     public static void SendUDPData(Packet _packet)
     {
         _packet.WriteLength();
-        Client.instance.udp.SendData(_packet);
+        PlayerClient.instance.udp.SendData(_packet);
     }
 
     public static void WelcomeReceived()
     {
         using (Packet _packet = new Packet((int)ClientPackets.welcomeReceived))
         {
-            _packet.Write(Client.instance.myId);
-            _packet.Write($"Player {Client.instance.myId}");
+            _packet.Write(PlayerClient.instance.myId);
+            _packet.Write($"Player {PlayerClient.instance.myId}");
             //_packet.Write(UI_Manager.instance.usernameField.text);
 
             SendTCPData(_packet);
@@ -45,6 +45,16 @@ public class ClientSend : MonoBehaviour
         using (Packet _packet = new Packet((int)ClientPackets.SPAM))
         {
             _packet.Write("SPAM");
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void SpawnPlayer(int _characterType, Vector2 position)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.spawnPlayer))
+        {
+            _packet.Write(_characterType);
+            _packet.Write(position);
             SendTCPData(_packet);
         }
     }

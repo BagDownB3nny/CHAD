@@ -5,16 +5,16 @@ using System.Net;
 using System.Net.Sockets;
 using System;
 
-public class Client : MonoBehaviour
+public class PlayerClient : MonoBehaviour
 {
-    public static Client instance;
+    public static PlayerClient instance;
     public static int dataBufferSize = 4096;
 
     public string ip = "127.0.0.1";
     public int port = 26950;
     public int myId = 0;
-    public TCP tcp;
-    public UDP udp;
+    public ClientTCP tcp;
+    public ClientUDP udp;
     public GameObject player;
 
     private delegate void PacketHandler(Packet _packet);
@@ -36,8 +36,8 @@ public class Client : MonoBehaviour
 
     private void Start()
     {
-        tcp = new TCP();
-        udp = new UDP();
+        tcp = new ClientTCP();
+        udp = new ClientUDP();
     }
 
     public void ConnectToServer()
@@ -47,7 +47,7 @@ public class Client : MonoBehaviour
         tcp.Connect();
     }
 
-    public class TCP
+    public class ClientTCP
     {
         public TcpClient socket;
 
@@ -167,12 +167,12 @@ public class Client : MonoBehaviour
         }
     }
 
-    public class UDP
+    public class ClientUDP
     {
         public UdpClient socket;
         public IPEndPoint endPoint;
 
-        public UDP()
+        public ClientUDP()
         {
             endPoint = new IPEndPoint(IPAddress.Parse(instance.ip), instance.port);
         }
@@ -252,7 +252,8 @@ public class Client : MonoBehaviour
         packetHandlers = new Dictionary<int, PacketHandler>()
         {
             { (int)ServerPackets.welcome, ClientHandle.Welcome },
-            {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition }
+            {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition},
+            {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer}
         };
         Debug.Log("Initialized packets.");
     }

@@ -18,8 +18,7 @@ public class StartMenuController : MonoBehaviour
     }
 
     public void LoadMultiplayer() {
-        SceneManager.LoadScene(mainScene);
-        Client.instance.ConnectToServer();
+        SceneManager.LoadScene(mulitplayerScreen);
     }
 
     public void LoadSettings() {
