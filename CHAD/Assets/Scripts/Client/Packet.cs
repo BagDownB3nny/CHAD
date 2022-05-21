@@ -113,12 +113,22 @@ public class Packet : IDisposable
     }
     #endregion
 
+
     #region Write Data
     /// <summary>Adds a byte to the packet.</summary>
     /// <param name="_value">The byte to add.</param>
+
     public void Write(byte _value)
     {
         buffer.Add(_value);
+    }
+
+    public void Write(params object[] _data)
+    {
+        foreach (object i in _data)
+        {
+            Write(i);
+        }
     }
 
     public void Write(Quaternion _rotation)
