@@ -120,7 +120,8 @@ public class Server
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
                 //{(int)ClientPackets.SPAM, ServerHandle.SPAM},
                 {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer},
-                {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer}
+                {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer},
+                {(int)ClientPackets.sendGunRotation, ServerHandle.ReceiveGunRotation}
 
             };
     }

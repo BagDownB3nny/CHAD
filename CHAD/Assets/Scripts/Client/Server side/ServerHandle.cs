@@ -49,4 +49,11 @@ public class ServerHandle
         Server.serverClients[_fromClient].SendIntoGame(characterType, position);
     }
 
+    public static void ReceiveGunRotation(int _fromClient, Packet _packet)
+    {
+        Quaternion rotation = _packet.ReadQuaternion();
+        Server.serverClients[_fromClient].player.GetComponent<PlayerStatsManager>().
+            weaponsManagerScipt.currentWeapon.GetComponent<PlayerRangedWeapon>().ReceiveGunRotation(rotation);
+    }
+
 }

@@ -20,6 +20,7 @@ public enum ClientPackets
     movePlayer = 2,
     //SPAM = 3,
     spawnPlayer = 4,
+    sendGunRotation = 5,
 }
 
 public class Packet : IDisposable
