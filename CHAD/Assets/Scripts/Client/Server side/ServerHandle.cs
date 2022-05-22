@@ -21,19 +21,13 @@ public class ServerHandle
 
     public static void MovePlayer(int _fromClient, Packet _packet)
     {
-        Debug.Log($"Movement received from Client{_fromClient}");
         bool[] _input = new bool[4];
         for (int i = 0; i < _input.Length; i++)
         {
             _input[i] = _packet.ReadBool();
         }
-        Vector2 _movement = new Vector3(0, 0, 0);
-        if (_input[0]) { _movement.y += 1; }
-        if (_input[1]) { _movement.x -= 1; }
-        if (_input[2]) { _movement.y -= 1; }
-        if (_input[3]) { _movement.x += 1; }
-        _movement.Normalize();
-        Vector2 _position = GameManager.instance.players[_fromClient].GetComponent<PlayerMovement>().MovePlayer(_movement);
+        
+        Vector2 _position = GameManager.instance.players[_fromClient].GetComponent<PlayerMovement>().MovePlayer(_input);
         ServerSend.MovePlayer(_fromClient, _position);
     }
 

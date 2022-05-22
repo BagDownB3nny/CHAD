@@ -56,30 +56,4 @@ public class GameManager : MonoBehaviour
     }
 #endregion
 
-#region Player Movement
-    public void MovePlayer(bool[] _inputs) {
-        MovePlayer(placeholderInt, _inputs);
-    }
-    
-    public void MovePlayer(int id, bool[] _inputs, bool receiving = false)
-    {
-        if (NetworkManager.instance.gameType == GameType.Client)
-        {
-            if (receiving)
-            {
-                //TODO: move the player
-            } else
-            {
-                //TODO: client send the movement
-                //ClientSend.SpawnPlayer(characterType, position);
-            }
-        }
-        if (NetworkManager.instance.gameType == GameType.Server)
-        {
-            //TODO: move the player on server side
-            
-        }
-    }
-#endregion
-
 }

@@ -30,7 +30,6 @@ public class ClientHandle : MonoBehaviour
     {
         int _affectedPlayerId = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        GameManager.instance.players[_affectedPlayerId].GetComponent<PlayerMovement>().transform.position = _position;
-        Debug.Log($"Moved client player {_affectedPlayerId}");
+        GameManager.instance.players[_affectedPlayerId].GetComponent<PlayerMovement>().ReceiveMovement(_position);
     }
 }

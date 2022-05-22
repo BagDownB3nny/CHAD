@@ -9,17 +9,17 @@ public enum ServerPackets
 {
     welcome = 1,
     spawnPlayer = 2,
-    movePlayer = 3,
-    playerRotation = 4,
+    movePlayer = 3
 }
 
 /// <summary>Sent from client to server.</summary>
 public enum ClientPackets
 {
     welcomeReceived = 1,
-    movePlayer = 2,
+    spawnPlayer = 2,
+    movePlayer = 3
     //SPAM = 3,
-    spawnPlayer = 4,
+    
 }
 
 public class Packet : IDisposable
