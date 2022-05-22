@@ -74,23 +74,24 @@ public class ServerSend
         }
     }
 
-    public static void SpawnPlayer(int _toClient, int playerIdToSend, GameObject _player, int characterType)
+    public static void SpawnPlayer(int _toClient, int _affectedPlayerId, GameObject _player, int characterType)
     {
         using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
         {
-            _packet.Write(playerIdToSend);
+            _packet.Write(_affectedPlayerId);
             _packet.Write(_player.transform.position);
             _packet.Write(characterType);
             SendTCPData(_toClient, _packet);
         }
     }
 
-    public static void PlayerPosition(int _toClient, Vector2 _position)
+    public static void MovePlayer(int _affectedPlayerId, Vector2 _position)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.playerPosition))
+        using (Packet _packet = new Packet((int)ServerPackets.movePlayer))
         {
+            _packet.Write(_affectedPlayerId);
             _packet.Write(_position);
-            SendUDPData(_toClient, _packet);
+            SendUDPDataToAll(_packet);
         }
     }
 }

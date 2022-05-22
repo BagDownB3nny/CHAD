@@ -19,22 +19,29 @@ public class ServerHandle
         Debug.Log("Welcome received!");
     }
 
-    public static void PlayerMovement(int _fromClient, Packet _packet)
+    public static void MovePlayer(int _fromClient, Packet _packet)
     {
-        Debug.Log("Movement received");
-        bool[] _inputs = new bool[4];
-        for (int i = 0; i < _inputs.Length; i++)
+        Debug.Log($"Movement received from Client{_fromClient}");
+        bool[] _input = new bool[4];
+        for (int i = 0; i < _input.Length; i++)
         {
-            _inputs[i] = _packet.ReadBool();
+            _input[i] = _packet.ReadBool();
         }
-        Server.serverClients[_fromClient].PlayerMovement(_inputs);
-
+        Vector2 _movement = new Vector3(0, 0, 0);
+        if (_input[0]) { _movement.y += 1; }
+        if (_input[1]) { _movement.x -= 1; }
+        if (_input[2]) { _movement.y -= 1; }
+        if (_input[3]) { _movement.x += 1; }
+        _movement.Normalize();
+        Vector2 _position = GameManager.instance.players[_fromClient].GetComponent<PlayerMovement>().MovePlayer(_movement);
+        ServerSend.MovePlayer(_fromClient, _position);
     }
 
+    /*
     public static void SPAM(int _fromClient, Packet _packet)
     {
         Debug.Log(_packet.ReadString());
-    }
+    }*/
 
     public static void SpawnPlayer(int _fromClient, Packet _packet) {
         int characterType = _packet.ReadInt();

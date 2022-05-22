@@ -28,9 +28,9 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    public static void PlayerMovement(bool[] _input)
+    public static void MovePlayer(bool[] _input)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.playerMovement))
+        using (Packet _packet = new Packet((int)ClientPackets.movePlayer))
         {
             for (int i = 0; i < _input.Length; i++)
             {
@@ -40,6 +40,7 @@ public class ClientSend : MonoBehaviour
         }
     }
 
+    /*
     public static void SPAM()
     {
         using (Packet _packet = new Packet((int)ClientPackets.SPAM))
@@ -47,7 +48,7 @@ public class ClientSend : MonoBehaviour
             _packet.Write("SPAM");
             SendTCPData(_packet);
         }
-    }
+    }*/
 
     public static void SpawnPlayer(int _characterType, Vector2 position)
     {

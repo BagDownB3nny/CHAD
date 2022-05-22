@@ -64,7 +64,7 @@ public class Server
                 if (serverClients[_clientId].udp.endPoint.ToString() ==
                     _clientEndPoint.ToString())
                 {
-                    Debug.Log(_clientId);
+                    //Debug.Log(_clientId);
                     serverClients[_clientId].udp.HandleData(_packet);
                 }
 
@@ -118,9 +118,9 @@ public class Server
         packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
-                {(int)ClientPackets.playerMovement, ServerHandle.PlayerMovement},
-                {(int)ClientPackets.SPAM, ServerHandle.SPAM},
-                {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer}
+                //{(int)ClientPackets.SPAM, ServerHandle.SPAM},
+                {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer},
+                {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer}
 
             };
     }

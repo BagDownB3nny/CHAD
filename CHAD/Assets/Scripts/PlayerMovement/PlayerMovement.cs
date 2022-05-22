@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     PlayerStatsManager statsManagerScript;
     PlayerWeaponsManager weaponManagerScript;
 
-    Vector2 movement;
     public float speed;
     Rigidbody2D playerRb;
 
@@ -29,37 +28,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        //movement.Normalize();
-    }
-
-    private void FixedUpdate()
-    {
+        Vector2 movement;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         bool[] _input = new bool[4];
-        if (movement.y > 0)
-        {
-            _input[0] = true;
-        }
-        if (movement.x < 0)
-        {
-            _input[1] = true;
-        }
-        if (movement.y < 0)
-        {
-            _input[2] = true;
-        }
-        if (movement.x > 0)
-        {
-            _input[3] = true;
-        }
-        ClientSend.SPAM();
-        ClientSend.PlayerMovement(_input);
-        //playerRb.MovePosition((Vector2) this.transform.position + movement * speed * Time.deltaTime);
+        if (movement.y > 0) {_input[0] = true;}
+        if (movement.x < 0) {_input[1] = true;}
+        if (movement.y < 0) {_input[2] = true;}
+        if (movement.x > 0) {_input[3] = true;}
+
+        ClientSend.MovePlayer(_input);
+    }
+
+    public Vector2 MovePlayer(Vector2 _movement) {
+        playerRb.MovePosition((Vector2) transform.position + _movement * speed * Time.deltaTime);
+        Debug.Log("moved server player");
+        return (Vector2) transform.position;
     }
 
     public void SetMovementStats(float _speed) {

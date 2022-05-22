@@ -127,7 +127,7 @@ MonoBehaviour:
   weaponsManagerScipt: {fileID: 0}
   hp: 100
   attack: 1
-  speed: 3
+  speed: 10
   armour: 0
   armourPenetration: 0
   armourEffectiveness: 0
