@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
 #endregion
 
+=======
+>>>>>>> fb352e443d04cbd3d1c5459925eacfd2e39cf62d
 }

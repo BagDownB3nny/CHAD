@@ -6,7 +6,10 @@ public class TestRifle : PlayerRangedWeapon
 {
     void Update()
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb352e443d04cbd3d1c5459925eacfd2e39cf62d
         FiringDirection();
         PointAtMouse();
         if (Input.GetMouseButton(0)){
