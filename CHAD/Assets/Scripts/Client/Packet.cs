@@ -17,14 +17,9 @@ public enum ClientPackets
 {
     welcomeReceived = 1,
     spawnPlayer = 2,
-    movePlayer = 3
-    //SPAM = 3,
-<<<<<<< HEAD
-    spawnPlayer = 4,
+    movePlayer = 3,
+    //SPAM = 3
     sendGunRotation = 5,
-=======
-    
->>>>>>> fb352e443d04cbd3d1c5459925eacfd2e39cf62d
 }
 
 public class Packet : IDisposable
@@ -138,10 +133,10 @@ public class Packet : IDisposable
 
     public void Write(Quaternion _rotation)
     {
-        Write(_rotation.w);
         Write(_rotation.x);
         Write(_rotation.y);
         Write(_rotation.z);
+        Write(_rotation.w);
     }
 
     public void Write(Vector3 position)
