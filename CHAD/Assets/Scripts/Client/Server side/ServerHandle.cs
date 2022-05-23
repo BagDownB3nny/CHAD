@@ -51,7 +51,6 @@ public class ServerHandle
     }
 
     public static void Attack(int _fromClient, Packet _packet) {
-        Debug.Log("ServerHandle receives attack");
         PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
         float directionRotation = _packet.ReadFloat();
         GameManager.instance.PlayerAttack(_fromClient, gunType, directionRotation);
