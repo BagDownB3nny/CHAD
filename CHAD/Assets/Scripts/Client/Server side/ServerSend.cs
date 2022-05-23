@@ -117,4 +117,13 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void MoveEnemy(int _enemyRefId, Vector2 _position) {
+        using (Packet _packet = new Packet((int)ServerPackets.moveEnemy))
+        {
+            _packet.Write(_enemyRefId);
+            _packet.Write(_position);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

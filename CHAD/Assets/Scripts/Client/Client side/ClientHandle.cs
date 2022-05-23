@@ -47,4 +47,10 @@ public class ClientHandle : MonoBehaviour
         Vector2 position = _packet.ReadVector2();
         GameManager.instance.ReceiveSpawnEnemy(enemyRefId, enemyId, position);
     }
+
+    public static void MoveEnemy(Packet _packet) {
+        int enemyRefId = _packet.ReadInt();
+        Vector2 position = _packet.ReadVector2();
+        GameManager.instance.enemies[enemyRefId].transform.position = position;
+    }
 }

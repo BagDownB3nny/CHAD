@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy(GameObject _enemy, int _id, Vector2 _position) {
         enemies.Add(enemyRefId, _enemy);
+        _enemy.GetComponent<EnemyStatsManager>().enemyRefId = enemyRefId;
         ServerSend.SpawnEnemy(enemyRefId, _id, _position);
         enemyRefId++;
     }
@@ -106,7 +107,17 @@ public class GameManager : MonoBehaviour
     public void ReceiveSpawnEnemy(int _enemyRefId, int _enemyId, Vector2 _position) {
         //might want to shift the actual instantiation to anotehr script?
         Debug.Log("client spawning enemy");
-        enemies.Add(_enemyRefId, Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity));
+        GameObject enemySpawned = Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity);
+        enemySpawned.GetComponent<EnemyStatsManager>().enemyRefId = _enemyRefId;
+        enemies.Add(_enemyRefId, enemySpawned);
+    }
+
+#endregion
+
+#region MoveEnemy
+
+    public void MoveEnemy(int _enemyRefId, Vector2 _position) {
+        enemies[_enemyRefId].transform.position = _position;
     }
 
 #endregion
