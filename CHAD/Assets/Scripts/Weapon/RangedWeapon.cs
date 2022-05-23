@@ -17,13 +17,16 @@ public abstract class RangedWeapon : Weapon
 
     [Header("Projectile Shooting Parameters")]
     public Vector3 directionVector;
-    public Vector3 bulletDirectionVector;
     public float directionRotation;
+    public Vector3 bulletDirectionVector;
+    public float bulletDirectionRotation;
+    
     public float timeToNextShot;
 
     public void BulletDirection() {
         float _accuracy = 10 - accuracy;
         float rand = Random.Range(-_accuracy, _accuracy);
         bulletDirectionVector = (Quaternion.AngleAxis(rand, Vector3.back) * directionVector).normalized;
+        bulletDirectionRotation = Mathf.Atan2(bulletDirectionVector.y, bulletDirectionVector.x) * Mathf.Rad2Deg;
     }
 }

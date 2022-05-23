@@ -9,7 +9,8 @@ public enum ServerPackets
 {
     welcome = 1,
     spawnPlayer = 2,
-    movePlayer = 3
+    movePlayer = 3,
+    playerAttack = 4
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -18,6 +19,8 @@ public enum ClientPackets
     welcomeReceived = 1,
     spawnPlayer = 2,
     movePlayer = 3,
+
+    sendAttack = 4,
     //SPAM = 3
     sendGunRotation = 5,
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerWeaponsManager : MonoBehaviour
 {
     //scripts needed
-    PlayerStatsManager statsManagerScript;
-    PlayerRangedWeapon weaponScript;
+    public PlayerStatsManager statsManagerScript;
+    public PlayerRangedWeapon weaponScript;
 
     [Header("Holder Attack Stats")]
     public float attack;
@@ -21,14 +21,13 @@ public class PlayerWeaponsManager : MonoBehaviour
         statsManagerScript = gameObject.GetComponent<PlayerStatsManager>();
         statsManagerScript.UpdateAttackStats();
         Debug.Log("PLAYER: transferred attack stats from stats manager to weapon manager");
-
+        
     }
-
+    
     void Start()
     {
         //AddGun(defaultGun);
         weaponInventory.Add(defaultWeapon);
-        Debug.Log("equipping gun");
         EquipGun(0);
     }
 
@@ -37,15 +36,11 @@ public class PlayerWeaponsManager : MonoBehaviour
         //if currently holding a gun, discard it first
         if (currentWeapon != null) {
             currentWeapon.GetComponent<PlayerRangedWeapon>().Discard();
-            Debug.Log("weapon discarded");
         }      
         currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
-        Debug.Log("Instantiated Player Weapon");
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
-        Debug.Log("PLAYER: weaponscript reference created");
+        weaponScript.myId = statsManagerScript.myId;
         UpdateWeaponAttackStats();
-
-        Debug.Log("equipped" + gunIndex);
     }
 
     //adds gun to empty slot

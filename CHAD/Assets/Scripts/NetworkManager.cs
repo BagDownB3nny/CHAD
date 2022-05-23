@@ -8,29 +8,22 @@ public enum GameType {
     Server
 }
 
-public class NetworkManager : MonoBehaviour
+public static class NetworkManager
 {
 
-    public GameType gameType;
+    public static GameType gameType;
 
-    public static NetworkManager instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-
-        }
-        else if (instance != this)
-        {
-            Destroy(this);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void SetGameType(GameType _gameType)
+    public static void SetGameType(GameType _gameType)
     {
         gameType = _gameType;
+    }
+
+    public static bool IsMine(int id)
+    {
+        if (NetworkManager.gameType == GameType.Client && PlayerClient.instance.myId == id)
+        {
+            return true;
+        }
+        return false;
     }
 }

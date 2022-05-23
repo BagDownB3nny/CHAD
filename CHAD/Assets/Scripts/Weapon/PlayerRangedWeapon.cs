@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class PlayerRangedWeapon : RangedWeapon
 {
+
+    public PlayerWeapons myWeapon;
+    public int myId;
+
     //points this gameObject at the mouse
     public void PointAtMouse() {
         transform.rotation = Quaternion.Euler(0f, 0f, directionRotation + gunRotationOffset);
@@ -41,6 +45,12 @@ public abstract class PlayerRangedWeapon : RangedWeapon
             gameObject.transform.localScale = new Vector3(1, -1, 1);
         }
     }
+
+    public abstract void SendAttack();
+    public abstract object[] Attack(PlayerWeapons _gunType, float _directionRotation);
+    public abstract GameObject ReceiveAttack(PlayerWeapons _gunType, float _bulletDirectionRotation);
+
+    
 
     //public void SetFiringDirection(Vector3 _direction)
     //{

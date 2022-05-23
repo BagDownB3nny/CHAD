@@ -10,8 +10,6 @@ public abstract class Weapon : MonoBehaviour
     public float holderAttack;
     public float holderArmourPenetration;
 
-    public abstract void Attack();
-
     public void SetAttackStats(GameObject _holder, float _attack, float armourPenetration) {
         holder = _holder;
         holderAttack = _attack;

@@ -28,7 +28,6 @@ public class PlayerClient : MonoBehaviour
         }
         else if (instance != this)
         {
-            Debug.Log("Instance already exists, destroying object!");
             Destroy(this);
         }
         DontDestroyOnLoad(gameObject);
@@ -110,7 +109,6 @@ public class PlayerClient : MonoBehaviour
 
                 byte[] _data = new byte[_byteLength];
                 Array.Copy(receiveBuffer, _data, _byteLength);
-                Debug.Log("4");
                 receivedData.Reset(HandleData(_data));
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             }
@@ -239,7 +237,6 @@ public class PlayerClient : MonoBehaviour
             {
                 using (Packet _packet = new Packet(_data))
                 {
-                    Debug.Log("UDP packet received");
                     int _packetId = _packet.ReadInt();
                     packetHandlers[_packetId](_packet);
                 }
@@ -253,9 +250,9 @@ public class PlayerClient : MonoBehaviour
         {
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer},
-            {(int)ServerPackets.movePlayer, ClientHandle.MovePlayer}
+            {(int)ServerPackets.movePlayer, ClientHandle.MovePlayer},
+            {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack}
         };
-        Debug.Log("Initialized packets.");
     }
 
 

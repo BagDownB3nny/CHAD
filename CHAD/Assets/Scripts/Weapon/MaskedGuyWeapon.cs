@@ -14,7 +14,7 @@ public class MaskedGuyWeapon : EnemyRangedWeapon
     }
 
     //instantiates an EnemyProjectile towards the current player position
-    public override void Attack() {
+    public void Attack() {
         if (timeToNextShot <= 0) {
             GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity);
             shot.GetComponent<ProjectileStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration, speed, 

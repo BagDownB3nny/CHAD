@@ -14,7 +14,7 @@ public class WhiteDudeWeapon : EnemyMeleeWeapon
         Attack();
     }
 
-    public override void Attack() {
+    public void Attack() {
         if (timeToNextAttack <= 0 && currentDamageDealer == null) {
             currentDamageDealer = Instantiate(defaultDamageDealer, transform.position, Quaternion.identity, transform);
             currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration,

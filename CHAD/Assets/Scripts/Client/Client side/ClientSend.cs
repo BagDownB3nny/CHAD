@@ -68,4 +68,12 @@ public class ClientSend : MonoBehaviour
             SendUDPData(_packet);
         }
     }
+
+    public static void SendAttack(PlayerWeapons _gunType, float _directionRotation) {
+        using (Packet _packet = new Packet((int)ClientPackets.sendAttack)) {
+            _packet.Write((int)_gunType);
+            _packet.Write(_directionRotation);
+            SendTCPData(_packet);
+        }
+    }
 }

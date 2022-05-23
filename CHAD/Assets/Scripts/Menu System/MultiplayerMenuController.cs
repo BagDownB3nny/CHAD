@@ -13,13 +13,13 @@ public class MultiplayerMenuController : MonoBehaviour
 
     public void LoadHostRoom() {
         SceneManager.LoadScene(hostRoomScreen);
-        NetworkManager.instance.SetGameType(GameType.Server);
+        NetworkManager.SetGameType(GameType.Server);
         Server.Start(4, 26950);
     }
 
     public void LoadJoinRoom() {
         SceneManager.LoadScene(joinRoomScreen);
-        NetworkManager.instance.SetGameType(GameType.Client);
+        NetworkManager.SetGameType(GameType.Client);
         PlayerClient.instance.ConnectToServer();
     }
 

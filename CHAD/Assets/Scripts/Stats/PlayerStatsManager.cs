@@ -20,6 +20,9 @@ public class PlayerStatsManager : MonoBehaviour, CharacterStatsManager
     public float proficiency;
     public GameObject damageEffect;
 
+    [Header("Network Id")]
+    public int myId;
+
     private void Awake() {
         movementScript = gameObject.GetComponent<PlayerMovement>();
         weaponsManagerScipt = gameObject.GetComponent<PlayerWeaponsManager>();
@@ -64,5 +67,5 @@ public class PlayerStatsManager : MonoBehaviour, CharacterStatsManager
         if (hp < 0) {
             deathScipt.Die();
         }
-    } 
+    }
 }

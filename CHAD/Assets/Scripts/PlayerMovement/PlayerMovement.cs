@@ -15,10 +15,8 @@ public class PlayerMovement : MonoBehaviour
         //get the statsmanager and ask for the movement stats
         statsManagerScript = gameObject.GetComponent<PlayerStatsManager>();
         statsManagerScript.UpdateMovementStats();
-        Debug.Log("PLAYER: transferred movement stats from stats manager to movement");
 
         weaponManagerScript = gameObject.GetComponent<PlayerWeaponsManager>();
-        Debug.Log("PLAYER: set reference to weapon manager script in movement");
     }
 
     // Start is called before the first frame update
@@ -30,7 +28,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SendMovement();
+        if (NetworkManager.IsMine(statsManagerScript.myId))
+        {
+            SendMovement();
+        }
     }
 
     //client sends the input to server

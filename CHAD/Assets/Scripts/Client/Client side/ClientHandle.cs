@@ -32,4 +32,11 @@ public class ClientHandle : MonoBehaviour
         Vector2 _position = _packet.ReadVector2();
         GameManager.instance.players[_affectedPlayerId].GetComponent<PlayerMovement>().ReceiveMovement(_position);
     }
+
+    public static void PlayerAttack(Packet _packet) {
+        int _affectedPlayerId = _packet.ReadInt();
+        PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
+        float bulletDirectionRotation = _packet.ReadFloat();
+        GameManager.instance.ReceivePlayerAttack(_affectedPlayerId, gunType, bulletDirectionRotation);
+    }
 }
