@@ -41,8 +41,9 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void SpawnEnemy(Packet _packet) {
+        int enemyRefId = _packet.ReadInt();
         int enemyId = _packet.ReadInt();
         Vector2 position = _packet.ReadVector2();
-        GameManager.instance.ReceiveSpawnEnemy(enemyId, position);
+        GameManager.instance.ReceiveSpawnEnemy(enemyRefId, enemyId, position);
     }
 }
