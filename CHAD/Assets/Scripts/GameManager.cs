@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public List<GameObject> playerPrefabs;
-    public Dictionary<int, GameObject> players;
     public List<GameObject> enemyPrefabs;
-    public List<GameObject> enemies;
-    public Dictionary<int, GameObject> projectiles;
-    private int placeholderInt = -1;
 
-    public int projectileId {get; private set;}
+    public Dictionary<int, GameObject> players;
+    public Dictionary<int, GameObject> enemies;
+    public Dictionary<int, GameObject> projectiles;
+
+    public int enemyRefId {get; private set;} = 0;
+
+    public int projectileId {get; private set;} = 0;
 
     private void Awake()
     {
@@ -31,11 +33,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             players = new Dictionary<int, GameObject>();
-            enemies = new List<GameObject>();
             projectiles = new Dictionary<int, GameObject>();
-
-            projectileId = 0;
-
+            enemies = new Dictionary<int, GameObject>();
         }
         else if (instance != this)
         {
@@ -99,14 +98,15 @@ public class GameManager : MonoBehaviour
 #region SpawnEnemy
 
     public void SpawnEnemy(GameObject _enemy, int _id, Vector2 _position) {
-        enemies.Add(_enemy);
-        ServerSend.SpawnEnemy(_id, _position);
+        enemies.Add(enemyRefId, _enemy);
+        ServerSend.SpawnEnemy(enemyRefId, _id, _position);
+        enemyRefId++;
     }
 
-    public void ReceiveSpawnEnemy(int _enemyId, Vector2 _position) {
+    public void ReceiveSpawnEnemy(int _enemyRefId, int _enemyId, Vector2 _position) {
         //might want to shift the actual instantiation to anotehr script?
         Debug.Log("client spawning enemy");
-        enemies.Add(Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity));
+        enemies.Add(_enemyRefId, Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity));
     }
 
 #endregion
