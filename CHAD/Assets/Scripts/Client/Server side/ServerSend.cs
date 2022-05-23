@@ -95,11 +95,13 @@ public class ServerSend
         }
     }
 
-    public static void PlayerAttack(int _affectedPlayerId, PlayerWeapons gunType, float directionRotation) {
+    public static void PlayerAttack(int _affectedPlayerId, int _projectileId, 
+        PlayerWeapons gunType, float directionRotation) {
         using (Packet _packet = new Packet((int)ServerPackets.playerAttack))
         {
             Debug.Log("Server sends attack");
             _packet.Write(_affectedPlayerId);
+            _packet.Write(_projectileId);
             _packet.Write((int) gunType);
             _packet.Write(directionRotation);
             SendTCPDataToAll(_packet);

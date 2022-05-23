@@ -35,8 +35,9 @@ public class ClientHandle : MonoBehaviour
 
     public static void PlayerAttack(Packet _packet) {
         int _affectedPlayerId = _packet.ReadInt();
+        int _projectileRefId = _packet.ReadInt();
         PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
         float bulletDirectionRotation = _packet.ReadFloat();
-        GameManager.instance.ReceivePlayerAttack(_affectedPlayerId, gunType, bulletDirectionRotation);
+        GameManager.instance.ReceivePlayerAttack(_affectedPlayerId, _projectileRefId, gunType, bulletDirectionRotation);
     }
 }

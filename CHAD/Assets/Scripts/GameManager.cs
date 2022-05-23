@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playerPrefabs;
     public Dictionary<int, GameObject> players;
     public List<GameObject> enemies;
-    public List<GameObject> projectiles;
+    public Dictionary<int, GameObject> projectiles;
     private int placeholderInt = -1;
+
+    public int projectileId {get; private set;}
 
     private void Awake()
     {
@@ -24,7 +26,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             players = new Dictionary<int, GameObject>();
             enemies = new List<GameObject>();
-            projectiles = new List<GameObject>();
+            projectiles = new Dictionary<int, GameObject>();
+
+            projectileId = 0;
 
         }
         else if (instance != this)
@@ -71,15 +75,16 @@ public class GameManager : MonoBehaviour
             .Attack(gunType, directionRotation);
         
         if (bulletInfo != null) {
-            projectiles.Add((GameObject) bulletInfo[0]);
-            ServerSend.PlayerAttack(playerId, gunType, (float) bulletInfo[1]);
+            projectiles.Add(projectileId, (GameObject) bulletInfo[0]);
+            ServerSend.PlayerAttack(playerId, projectileId, gunType, (float) bulletInfo[1]);
+            projectileId++;
         }
     }
 
-    public void ReceivePlayerAttack(int playerId, PlayerWeapons gunType, float bulletDirectionRotation) {
+    public void ReceivePlayerAttack(int playerId, int projectileRefId, PlayerWeapons gunType, float bulletDirectionRotation) {
         Debug.Log("Client GameManager receives attack");
         GameObject bullet = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
             .ReceiveAttack(gunType, bulletDirectionRotation);
-        projectiles.Add(bullet);
+        projectiles.Add(projectileRefId, bullet);
     }
 }

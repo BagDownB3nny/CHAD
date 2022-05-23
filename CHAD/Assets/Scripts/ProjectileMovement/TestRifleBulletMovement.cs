@@ -23,17 +23,20 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     void Start()
     {
         Face();
+        if (NetworkManager.gameType == GameType.Server) {
+            gameObject.GetComponent<Rigidbody2D>().velocity = ((Vector2) directionVector).normalized * speed;
+        }
     }
 
     //move to targetLocation and destroy if reached
     void FixedUpdate()
     {
-        Move();
+        if (NetworkManager.gameType == GameType.Server) {
+            Move();
+        }
     }
 
     public void Move() {
-        gameObject.GetComponent<Rigidbody2D>().velocity = ((Vector2) directionVector).normalized * speed;
-
         //destroy this object if exceeded range
         float distanceTravelled = (transform.position - originLocationVector).magnitude;
         if (distanceTravelled > range) {
