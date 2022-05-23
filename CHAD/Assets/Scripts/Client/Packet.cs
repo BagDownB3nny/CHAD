@@ -10,7 +10,8 @@ public enum ServerPackets
     welcome = 1,
     spawnPlayer = 2,
     movePlayer = 3,
-    playerAttack = 4
+    playerAttack = 4,
+    spawnEnemy = 5
 }
 
 /// <summary>Sent from client to server.</summary>

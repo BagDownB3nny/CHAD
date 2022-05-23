@@ -18,12 +18,10 @@ public abstract class EnemyWeaponManager : MonoBehaviour
     private void Awake() {
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
         statsManagerScript.UpdateAttackStats();
-        Debug.Log("transferred attack stats from stats manager to weapon manager");
     }
 
     void Start()
     {
-        Debug.Log("equipping enemy weapon");
         EquipWeapon();
     }
 

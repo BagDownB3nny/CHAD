@@ -6,6 +6,11 @@ public enum PlayerWeapons {
     TestRifle = 1
 }
 
+public enum Enemies {
+    MaskedGuy = 0,
+    WhiteDude = 1
+}
+
 public class GameManager : MonoBehaviour
 {
 
@@ -13,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> playerPrefabs;
     public Dictionary<int, GameObject> players;
+    public List<GameObject> enemyPrefabs;
     public List<GameObject> enemies;
     public List<GameObject> projectiles;
     private int placeholderInt = -1;
@@ -63,6 +69,7 @@ public class GameManager : MonoBehaviour
 
 #endregion
 
+#region PlayerAttack
     public void PlayerAttack(int playerId, PlayerWeapons gunType, float directionRotation) {
         Debug.Log("Server GameManager receives attack");
         Debug.Log("Wpn manager:" + players[playerId].GetComponent<PlayerWeaponsManager>());
@@ -82,4 +89,21 @@ public class GameManager : MonoBehaviour
             .ReceiveAttack(gunType, bulletDirectionRotation);
         projectiles.Add(bullet);
     }
+#endregion
+
+#region SpawnEnemy
+
+    public void SpawnEnemy(GameObject _enemy, int _id, Vector2 _position) {
+        enemies.Add(_enemy);
+        ServerSend.SpawnEnemy(_id, _position);
+    }
+
+    public void ReceiveSpawnEnemy(int _enemyId, Vector2 _position) {
+        //might want to shift the actual instantiation to anotehr script?
+        Debug.Log("client spawning enemy");
+        enemies.Add(Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity));
+    }
+
+#endregion
+
 }

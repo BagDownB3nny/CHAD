@@ -39,4 +39,10 @@ public class ClientHandle : MonoBehaviour
         float bulletDirectionRotation = _packet.ReadFloat();
         GameManager.instance.ReceivePlayerAttack(_affectedPlayerId, gunType, bulletDirectionRotation);
     }
+
+    public static void SpawnEnemy(Packet _packet) {
+        int enemyId = _packet.ReadInt();
+        Vector2 position = _packet.ReadVector2();
+        GameManager.instance.ReceiveSpawnEnemy(enemyId, position);
+    }
 }

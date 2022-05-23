@@ -251,7 +251,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer},
             {(int)ServerPackets.movePlayer, ClientHandle.MovePlayer},
-            {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack}
+            {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack},
+            {(int)ServerPackets.spawnEnemy, ClientHandle.SpawnEnemy}
         };
     }
 
