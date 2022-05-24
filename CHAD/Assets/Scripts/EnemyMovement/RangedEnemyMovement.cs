@@ -22,10 +22,12 @@ public class RangedEnemyMovement : EnemyMovement
         Debug.Log("ENEMY: set reference to weapon manager script in movement");
     }
 
-    private void FixedUpdate() {
-        FindTarget();
-        if (target != null) {
-            Move();
+    private void Update() {
+        if (NetworkManager.gameType == GameType.Server) {
+            FindTarget();
+            if (target != null) {
+                Move();
+            }
         }
     }
 
@@ -42,6 +44,9 @@ public class RangedEnemyMovement : EnemyMovement
         } else if (distance < retreatDistance) {
             enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * -speed * Time.deltaTime));
         }
+
+        //send position to client
+        ServerSend.MoveEnemy(statsManagerScript.enemyRefId, transform.position);
     }
 
     public override void UpdateWeaponTarget() {

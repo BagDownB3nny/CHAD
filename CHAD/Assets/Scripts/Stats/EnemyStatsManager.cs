@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
 {
     [Header("Enemy Stats")]
+    public int enemyRefId;
     public float hp;
     public float attack;
     public float speed;
@@ -23,7 +24,6 @@ public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
         movementScript = gameObject.GetComponent<EnemyMovement>();
         weaponManagerScript = gameObject.GetComponent<EnemyWeaponManager>();
         deathScript = gameObject.GetComponent<Death>();
-        Debug.Log("ENEMY: set reference to other scripts in stats manager");
     }
 
     public void UpdateMovementStats() {

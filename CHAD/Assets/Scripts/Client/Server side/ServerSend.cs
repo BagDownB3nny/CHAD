@@ -117,6 +117,7 @@ public class ServerSend
         }
     }
 
+<<<<<<< HEAD
     public static void MoveProjectile(int _projectileId, Vector2 _position) {
         using (Packet _packet = new Packet((int)ServerPackets.moveProjectile))
         {
@@ -130,6 +131,13 @@ public class ServerSend
         using (Packet _packet = new Packet((int)ServerPackets.destroyProjectile))
         {
             _packet.Write(_projectileId);
+=======
+    public static void MoveEnemy(int _enemyRefId, Vector2 _position) {
+        using (Packet _packet = new Packet((int)ServerPackets.moveEnemy))
+        {
+            _packet.Write(_enemyRefId);
+            _packet.Write(_position);
+>>>>>>> e4d26958fe2c96631d87155a5c7e249730e64ee5
             SendTCPDataToAll(_packet);
         }
     }
