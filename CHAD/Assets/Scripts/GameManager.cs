@@ -81,23 +81,22 @@ public class GameManager : MonoBehaviour
 
 #region PlayerAttack
     public void PlayerAttack(int playerId, PlayerWeapons gunType, float directionRotation) {
-        Debug.Log("Server GameManager receives attack");
-        Debug.Log("Wpn manager:" + players[playerId].GetComponent<PlayerWeaponsManager>());
-        Debug.Log("Wpn script: " + players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript);
         object[] bulletInfo = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
             .Attack(gunType, directionRotation);
-        
         if (bulletInfo != null) {
-            projectiles.Add(projectileId, (GameObject) bulletInfo[0]);
+            GameObject bullet = (GameObject)bulletInfo[0];
+            bullet.GetComponent<ProjectileStatsManager>().id = projectileId;
+            Debug.Log("Projectile id: " + projectileId);
+            projectiles.Add(projectileId, bullet);
             ServerSend.PlayerAttack(playerId, projectileId, gunType, (float) bulletInfo[1]);
             projectileId++;
         }
     }
 
     public void ReceivePlayerAttack(int playerId, int projectileRefId, PlayerWeapons gunType, float bulletDirectionRotation) {
-        Debug.Log("Client GameManager receives attack");
         GameObject bullet = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
             .ReceiveAttack(gunType, bulletDirectionRotation);
+        Debug.Log("Projectile ref id: " + projectileRefId);
         projectiles.Add(projectileRefId, bullet);
     }
 #endregion

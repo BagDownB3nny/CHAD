@@ -13,7 +13,7 @@ public class ServerSend
     public static void SendTCPDataToAll(Packet _packet)
     {
         _packet.WriteLength();
-        for (int i = 0; i <= Server.MaxPlayers; i++)
+        for (int i = 1; i <= Server.MaxPlayers; i++)
         {
             if (Server.serverClients[i].tcp != null)
             {
@@ -25,7 +25,7 @@ public class ServerSend
     public static void SendTCPDataToAll(int _noSend, Packet _packet)
     {
         _packet.WriteLength();
-        for (int i = 0; i <= Server.MaxPlayers; i++)
+        for (int i = 1; i <= Server.MaxPlayers; i++)
         {
             if (Server.serverClients[i].tcp != null && i != _noSend)
             {
@@ -43,7 +43,7 @@ public class ServerSend
     public static void SendUDPDataToAll(Packet _packet)
     {
         _packet.WriteLength();
-        for (int i = 0; i <= Server.MaxPlayers; i++)
+        for (int i = 1; i <= Server.MaxPlayers; i++)
         {
             if (Server.serverClients[i].tcp != null)
             {
@@ -55,7 +55,7 @@ public class ServerSend
     public static void SendUDPDataToAll(int _noSend, Packet _packet)
     {
         _packet.WriteLength();
-        for (int i = 0; i <= Server.MaxPlayers; i++)
+        for (int i = 1; i <= Server.MaxPlayers; i++)
         {
             if (Server.serverClients[i].tcp != null && i != _noSend)
             {
@@ -99,7 +99,6 @@ public class ServerSend
         PlayerWeapons gunType, float directionRotation) {
         using (Packet _packet = new Packet((int)ServerPackets.playerAttack))
         {
-            Debug.Log("Server sends attack");
             _packet.Write(_affectedPlayerId);
             _packet.Write(_projectileId);
             _packet.Write((int) gunType);
@@ -114,6 +113,23 @@ public class ServerSend
             _packet.Write(_enemyRefId);
             _packet.Write(_enemyId);
             _packet.Write(_position);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MoveProjectile(int _projectileId, Vector2 _position) {
+        using (Packet _packet = new Packet((int)ServerPackets.moveProjectile))
+        {
+            _packet.Write(_projectileId);
+            _packet.Write(_position);
+            SendUDPDataToAll(_packet);
+        }
+    }
+
+    public static void DestroyProjectile(int _projectileId) {
+        using (Packet _packet = new Packet((int)ServerPackets.destroyProjectile))
+        {
+            _packet.Write(_projectileId);
             SendTCPDataToAll(_packet);
         }
     }
@@ -145,4 +161,5 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
 }
