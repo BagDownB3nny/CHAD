@@ -12,13 +12,9 @@ public enum ServerPackets
     movePlayer = 3,
     playerAttack = 4,
     spawnEnemy = 5,
-<<<<<<< HEAD
-    
     moveProjectile = 6,
-    destroyProjectile = 7
-=======
-    moveEnemy = 7,
->>>>>>> e4d26958fe2c96631d87155a5c7e249730e64ee5
+    destroyProjectile = 7,
+    moveEnemy = 8
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -27,7 +23,6 @@ public enum ClientPackets
     welcomeReceived = 1,
     spawnPlayer = 2,
     movePlayer = 3,
-
     sendAttack = 4,
     //SPAM = 3
     sendGunRotation = 5,

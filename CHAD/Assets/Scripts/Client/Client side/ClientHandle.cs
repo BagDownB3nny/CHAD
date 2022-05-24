@@ -48,7 +48,6 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.ReceiveSpawnEnemy(enemyRefId, enemyId, position);
     }
 
-<<<<<<< HEAD
     public static void ReceiveProjectileMovement(Packet _packet) {
         int _projectileId = _packet.ReadInt();
         Vector2 _position  = _packet.ReadVector2();
@@ -62,11 +61,11 @@ public class ClientHandle : MonoBehaviour
         int _projectileId = _packet.ReadInt();
         GameManager.instance.projectiles[_projectileId].GetComponent<ProjectileMovement>()
             .ReceiveDestroyProjectile();
-=======
+    }
+    
     public static void MoveEnemy(Packet _packet) {
         int enemyRefId = _packet.ReadInt();
         Vector2 position = _packet.ReadVector2();
         GameManager.instance.enemies[enemyRefId].transform.position = position;
->>>>>>> e4d26958fe2c96631d87155a5c7e249730e64ee5
     }
 }

@@ -251,16 +251,11 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer},
             {(int)ServerPackets.movePlayer, ClientHandle.MovePlayer},
-<<<<<<< HEAD
-            {(int)ServerPackets.playerAttack, ClientHandle.ReceivePlayerAttack},
             {(int)ServerPackets.spawnEnemy, ClientHandle.SpawnEnemy},
             {(int)ServerPackets.moveProjectile, ClientHandle.ReceiveProjectileMovement},
-            {(int)ServerPackets.destroyProjectile, ClientHandle.ReceiveDestroyProjectile}
-=======
-            {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack},
-            {(int)ServerPackets.spawnEnemy, ClientHandle.SpawnEnemy},
+            {(int)ServerPackets.destroyProjectile, ClientHandle.ReceiveDestroyProjectile},
+            {(int)ServerPackets.playerAttack, ClientHandle.ReceivePlayerAttack},
             {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy}
->>>>>>> e4d26958fe2c96631d87155a5c7e249730e64ee5
         };
     }
 
