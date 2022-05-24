@@ -22,6 +22,10 @@ public abstract class EnemyMovement : MonoBehaviour
     //movement behaviour will be defined by each enemy
     protected abstract void Move();
 
+    public void ReceiveMove(Vector2 _position) {
+        transform.position = _position;
+    }
+
     //flips the sprite to face the target
     protected void Face() {
         Vector3 distToPlayer = target.transform.position - transform.position;

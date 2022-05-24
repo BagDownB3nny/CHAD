@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterType {
+    Player = 0,
+    Enemy = 1
+}
+
 public enum PlayerWeapons {
     TestRifle = 1
 }
@@ -23,8 +28,10 @@ public class GameManager : MonoBehaviour
     public Dictionary<int, GameObject> enemies;
     public Dictionary<int, GameObject> projectiles;
 
+    //keep track of all enemies spawned
     public int enemyRefId {get; private set;} = 0;
 
+    //keep track of all porjectile spawned
     public int projectileId {get; private set;} = 0;
 
     private void Awake()
@@ -99,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy(GameObject _enemy, int _id, Vector2 _position) {
         enemies.Add(enemyRefId, _enemy);
-        _enemy.GetComponent<EnemyStatsManager>().enemyRefId = enemyRefId;
+        _enemy.GetComponent<EnemyStatsManager>().characterRefId = enemyRefId;
         ServerSend.SpawnEnemy(enemyRefId, _id, _position);
         enemyRefId++;
     }
@@ -108,18 +115,9 @@ public class GameManager : MonoBehaviour
         //might want to shift the actual instantiation to anotehr script?
         Debug.Log("client spawning enemy");
         GameObject enemySpawned = Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity);
-        enemySpawned.GetComponent<EnemyStatsManager>().enemyRefId = _enemyRefId;
+        enemySpawned.GetComponent<EnemyStatsManager>().characterRefId = _enemyRefId;
         enemies.Add(_enemyRefId, enemySpawned);
     }
 
 #endregion
-
-#region MoveEnemy
-
-    public void MoveEnemy(int _enemyRefId, Vector2 _position) {
-        enemies[_enemyRefId].transform.position = _position;
-    }
-
-#endregion
-
 }

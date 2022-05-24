@@ -51,6 +51,35 @@ public class ClientHandle : MonoBehaviour
     public static void MoveEnemy(Packet _packet) {
         int enemyRefId = _packet.ReadInt();
         Vector2 position = _packet.ReadVector2();
-        GameManager.instance.enemies[enemyRefId].transform.position = position;
+        GameManager.instance.enemies[enemyRefId].GetComponent<EnemyMovement>().ReceiveMove(position);
+    }
+
+    public static void TakeDamage(Packet _packet) {
+        int characterType = _packet.ReadInt();
+        int characterRefId = _packet.ReadInt();
+        float damageTaken = _packet.ReadFloat();
+        if (characterType == (int) CharacterType.Player) {
+            if (GameManager.instance.players.ContainsKey(characterRefId)) {
+                GameManager.instance.players[characterRefId].GetComponent<PlayerStatsManager>().ReceiveTakeDamage(damageTaken);
+            }
+        } else if (characterType == (int) CharacterType.Enemy) {
+            if (GameManager.instance.enemies.ContainsKey(characterRefId)) {
+                GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveTakeDamage(damageTaken);
+            }
+        }
+    }
+
+    public static void Die(Packet _packet) {
+        int characterType = _packet.ReadInt();
+        int characterRefId = _packet.ReadInt();
+        if (characterType == (int) CharacterType.Player) {
+            if (GameManager.instance.players.ContainsKey(characterRefId)) {
+                GameManager.instance.players[characterRefId].GetComponent<PlayerStatsManager>().ReceiveDie();
+            }
+        } else if (characterType == (int) CharacterType.Enemy) {
+            if (GameManager.instance.enemies.ContainsKey(characterRefId)) {
+                GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveDie();
+            }
+        }
     }
 }

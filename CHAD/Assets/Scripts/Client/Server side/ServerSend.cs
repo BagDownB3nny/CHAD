@@ -123,6 +123,25 @@ public class ServerSend
         {
             _packet.Write(_enemyRefId);
             _packet.Write(_position);
+            SendUDPDataToAll(_packet);
+        }
+    }
+
+    public static void TakeDamage(int _characterType, int _characterRefId, float _damageTaken) {
+        using (Packet _packet = new Packet((int)ServerPackets.takeDamage))
+        {
+            _packet.Write(_characterType);
+            _packet.Write(_characterRefId);
+            _packet.Write(_damageTaken);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void Die(int _characterType, int _characterRefId) {
+        using (Packet _packet = new Packet((int)ServerPackets.die))
+        {
+            _packet.Write(_characterType);
+            _packet.Write(_characterRefId);
             SendTCPDataToAll(_packet);
         }
     }
