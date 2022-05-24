@@ -5,14 +5,6 @@ using UnityEngine;
 public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
 {
     ProjectileStatsManager statsManagerScript;
-
-    [Header("Projectile Parameters")]
-    public float speed;
-    public float range;
-    public GameObject origin;
-    public Vector3 originLocationVector;
-    public Vector3 directionVector;
-    public float rotationOffset;
     
     private void Awake() {
         statsManagerScript = gameObject.GetComponent<ProjectileStatsManager>();
@@ -21,7 +13,8 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     {
         Face();
         if (NetworkManager.gameType == GameType.Server) {
-            gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2) directionVector * speed;
+            gameObject.GetComponent<Rigidbody2D>().velocity = 
+                (Vector2) statsManagerScript.directionVector * statsManagerScript.speed;
         }
     }
 
@@ -29,8 +22,8 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     void FixedUpdate()
     {
         if (NetworkManager.gameType == GameType.Server) {
-            float distanceTravelled = (transform.position - originLocationVector).magnitude;
-            if (distanceTravelled > range) {
+            float distanceTravelled = (transform.position - statsManagerScript.originLocationVector).magnitude;
+            if (distanceTravelled > statsManagerScript.range) {
                 DestroyProjectile();
             } else {
                 SendMove();
@@ -48,8 +41,9 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
 
     //point projectile towards target
     public void Face() {
-        float directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, directionRotation + rotationOffset);
+        float directionRotation = Mathf.Atan2(statsManagerScript.directionVector.y, 
+            statsManagerScript.directionVector.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, directionRotation + statsManagerScript.rotationOffset);
     }
 
     public void DestroyProjectile() {
@@ -59,15 +53,5 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
 
     public void ReceiveDestroyProjectile() {
         Destroy(gameObject);
-    }
-
-    public void SetStats(float _speed, float _range, GameObject _origin, 
-            Vector3 _originLocationVector, Vector3 _directionVector, float _rotationOffset) {
-        speed = _speed;
-        range = _range;
-        origin = _origin;
-        originLocationVector = _originLocationVector;
-        directionVector = _directionVector;
-        rotationOffset = _rotationOffset;
     }
 }

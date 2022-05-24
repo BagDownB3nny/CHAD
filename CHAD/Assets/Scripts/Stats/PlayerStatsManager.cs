@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsManager : MonoBehaviour, CharacterStatsManager
+public class PlayerStatsManager : CharacterStatsManager
 {
     [Header("scripts collected")]
     //Scripts needed
@@ -10,10 +10,8 @@ public class PlayerStatsManager : MonoBehaviour, CharacterStatsManager
 
     [Header("Player Stats")]
     public float hp;
-    public float attack;
     public float speed;
     public float armour;
-    public float armourPenetration;
     public float armourEffectiveness;
     public float proficiency;
     public GameObject damageEffect;
@@ -25,7 +23,7 @@ public class PlayerStatsManager : MonoBehaviour, CharacterStatsManager
         deathScipt = gameObject.GetComponent<Death>();
     }
 
-    public void TakeDamage(float _damageDealt, float _armourPenetration) {
+    public override void TakeDamage(float _damageDealt, float _armourPenetration) {
         float effectiveArmour = armour * (1 - armourPenetration);
         float damageTaken = _damageDealt * (1 - effectiveArmour/(effectiveArmour + (1/armourEffectiveness)));
         hp -= damageTaken;

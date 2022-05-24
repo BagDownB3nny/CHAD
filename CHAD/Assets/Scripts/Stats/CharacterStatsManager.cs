@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface CharacterStatsManager
+public abstract class CharacterStatsManager : MonoBehaviour
 {
-    void TakeDamage(float _damageTaken, float _armourPenetration);
+    public float attack;
+    public float armourPenetration;
+    public abstract void TakeDamage(float _damageTaken, float _armourPenetration);
 }

@@ -1513,7 +1513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &892006687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: 1
-  spawnInterval: 1
+  spawnInterval: 20
   timeToNextSpawn: 0
 --- !u!212 &892006688
 SpriteRenderer:
@@ -8537,7 +8537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1386459946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8551,7 +8551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyId: 0
-  spawnInterval: 5
+  spawnInterval: 20
   timeToNextSpawn: 0
 --- !u!212 &1386459947
 SpriteRenderer:

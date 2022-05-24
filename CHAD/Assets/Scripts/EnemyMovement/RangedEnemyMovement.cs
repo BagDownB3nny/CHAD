@@ -15,6 +15,7 @@ public class RangedEnemyMovement : EnemyMovement
     private void Awake() {
         //get the statsmanager and ask for the movement stats
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
+        weaponManagerScript = gameObject.GetComponent<RangedEnemyWeaponManager>();
     }
 
     private void Update() {

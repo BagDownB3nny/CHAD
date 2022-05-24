@@ -129,7 +129,7 @@ MonoBehaviour:
   attack: 0
   armourPenetration: 0
   damage: 0
-  targetType: 
+  targetType: Player
   origin: {fileID: 0}
 --- !u!114 &824023124990475281
 MonoBehaviour:
@@ -143,9 +143,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70a7e958af9a46d8bf2999e4ade03b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  holder: {fileID: 0}
-  attack: 0
-  armourPenetration: 0
-  targetArmour: 0
-  targetArmourEffectiveness: 0

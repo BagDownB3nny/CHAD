@@ -28,18 +28,18 @@ public class ProjectileStatsManager : MonoBehaviour
     public float rotationOffset;
 
     public void SetStats(GameObject _weaponHolder, RangedWeapon _rangedWeapon, GameObject _origin, 
-            Vector3 _directionVector, float _rotationOffset) {
+            Vector3 _bulletDirectionVector, float _rotationOffset) {
                 holder = _weaponHolder;
-                PlayerStatsManager playerStatsManager = _weaponHolder.GetComponent<PlayerStatsManager>();
-                attack = playerStatsManager.attack;
-                armourPenetration = playerStatsManager.armourPenetration;
+                CharacterStatsManager characterStatsManager = _weaponHolder.GetComponent<CharacterStatsManager>();
+                attack = characterStatsManager.attack;
+                armourPenetration = characterStatsManager.armourPenetration;
                 speed = _rangedWeapon.speed;
                 damage = _rangedWeapon.damage;
                 range = _rangedWeapon.range;
                 targetType = _rangedWeapon.targetType;
                 origin = _origin;
                 originLocationVector = _origin.transform.position;
-                directionVector = _directionVector;
+                directionVector = _bulletDirectionVector;
                 rotationOffset = _rotationOffset;
     }
 }

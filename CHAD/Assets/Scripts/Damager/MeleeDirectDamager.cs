@@ -8,7 +8,7 @@ public class MeleeDirectDamager : MonoBehaviour, DirectDamager
     DamageDealerStatsManager damageDealerStatsManager;
     void Start()
     {
-        
+        damageDealerStatsManager = GetComponent<DamageDealerStatsManager>();
     }
     private void OnTriggerEnter2D(Collider2D _collider) {
         if (_collider.CompareTag(damageDealerStatsManager.targetType)) {

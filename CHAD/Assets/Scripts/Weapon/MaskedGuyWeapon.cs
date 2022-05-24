@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MaskedGuyWeapon : EnemyRangedWeapon
 {
+
+    void Start()
+    {
+        projectileRotationOffset = -90;
+    }
     void Update()
     {
         //enemy heading

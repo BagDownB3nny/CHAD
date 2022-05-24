@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
+public class EnemyStatsManager : CharacterStatsManager
 {
     [Header("Enemy Stats")]
     public int enemyRefId;
     public float hp;
-    public float attack;
     public float speed;
     public float armour;
-    public float armourPenetration;
     public float armourEffectiveness;
     public float proficiency;
     public GameObject damageEffect;
@@ -26,7 +24,7 @@ public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
         deathScript = gameObject.GetComponent<Death>();
     }
 
-    public void TakeDamage(float _damageDealt, float _armourPenetration) {
+    public override void TakeDamage(float _damageDealt, float _armourPenetration) {
         float effectiveArmour = armour * (1 - _armourPenetration);
         float damageTaken = _damageDealt * (1 - effectiveArmour/(effectiveArmour + (1/armourEffectiveness)));
         hp -= damageTaken;
