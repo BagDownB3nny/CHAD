@@ -32,16 +32,21 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     void FixedUpdate()
     {
         if (NetworkManager.gameType == GameType.Server) {
-            Move();
+            float distanceTravelled = (transform.position - originLocationVector).magnitude;
+            if (distanceTravelled > range) {
+                DestroyProjectile();
+            } else {
+                SendMove();
+            }
         }
     }
 
-    public void Move() {
-        //destroy this object if exceeded range
-        float distanceTravelled = (transform.position - originLocationVector).magnitude;
-        if (distanceTravelled > range) {
-            DestroyProjectile();
-        }
+    public void SendMove() {
+        ServerSend.MoveProjectile(statsManagerScript.id, transform.position);
+    }
+
+    public void ReceiveMovement(Vector2 _position) {
+        transform.position = _position;
     }
 
     //point projectile towards target
@@ -51,6 +56,11 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void DestroyProjectile() {
+        ServerSend.DestroyProjectile(statsManagerScript.id);
+        Destroy(gameObject);
+    }
+
+    public void ReceiveDestroyProjectile() {
         Destroy(gameObject);
     }
 

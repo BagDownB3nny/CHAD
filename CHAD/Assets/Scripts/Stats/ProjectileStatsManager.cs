@@ -8,6 +8,8 @@ public class ProjectileStatsManager : MonoBehaviour
     ProjectileMovement movementScript;
     RangedDirectDamager damagerScript;
 
+    public int id;
+
     private void Awake() {
         movementScript = gameObject.GetComponent<ProjectileMovement>();
         damagerScript = gameObject.GetComponent<RangedDirectDamager>();

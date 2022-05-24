@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
 {
+    ProjectileStatsManager statsManagerScript;
+
     [Header("Projectile Parameters")]
     public float speed;
     public float range;
@@ -12,25 +14,36 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     public Vector3 directionVector;
     public float rotationOffset;
     
+    private void Awake() {
+        statsManagerScript = gameObject.GetComponent<ProjectileStatsManager>();
+        statsManagerScript.UpdateMovementStats();
+    }
     void Start()
     {
         Face();
+        if (NetworkManager.gameType == GameType.Server) {
+            gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2) directionVector * speed;
+        }
     }
 
     //move to targetLocation and destroy if reached
     void FixedUpdate()
     {
-        Move();
-    }
-
-    public void Move() {
-        gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2) directionVector * speed;
-
-        //destroy this object if exceeded range
         float distanceTravelled = (transform.position - originLocationVector).magnitude;
         if (distanceTravelled > range) {
             DestroyProjectile();
         }
+        if (NetworkManager.gameType == GameType.Server) {
+            SendMove();
+        }
+    }
+
+    public void SendMove() {
+        ServerSend.MoveProjectile(statsManagerScript.id, transform.position);
+    }
+
+    public void ReceiveMovement(Vector2 _position) {
+        transform.position = _position;
     }
 
     //point projectile towards target
@@ -40,6 +53,10 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void DestroyProjectile() {
+        Destroy(gameObject);
+    }
+
+    public void ReceiveDestroyProjectile() {
         Destroy(gameObject);
     }
 

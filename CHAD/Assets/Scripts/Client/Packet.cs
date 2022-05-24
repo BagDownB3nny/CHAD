@@ -11,7 +11,10 @@ public enum ServerPackets
     spawnPlayer = 2,
     movePlayer = 3,
     playerAttack = 4,
-    spawnEnemy = 5
+    spawnEnemy = 5,
+    
+    moveProjectile = 6,
+    destroyProjectile = 7
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -24,6 +27,8 @@ public enum ClientPackets
     sendAttack = 4,
     //SPAM = 3
     sendGunRotation = 5,
+
+    receiveProjectileMovement = 6,
 }
 
 public class Packet : IDisposable
