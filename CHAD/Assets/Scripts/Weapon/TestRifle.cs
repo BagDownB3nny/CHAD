@@ -8,7 +8,7 @@ public class TestRifle : PlayerRangedWeapon
     public PlayerWeapons gunType = PlayerWeapons.TestRifle;
     void FixedUpdate()
     {
-        if (NetworkManager.IsMine(myId))
+        if (NetworkManager.IsMine(holder.GetComponent<PlayerStatsManager>().playerId))
         {
             FiringDirection();
             PointAtMouse();
@@ -27,8 +27,7 @@ public class TestRifle : PlayerRangedWeapon
         if (timeToNextShot <= 0) {
             BulletDirection();
             GameObject shot = Instantiate(projectile, transform.position, Quaternion.Euler(0f, 0f, _directionRotation + projectileRotationOffset));
-            shot.GetComponent<ProjectileStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration, speed, 
-                    damage, range, targetType, gameObject, transform.position, bulletDirectionVector, projectileRotationOffset);    
+            shot.GetComponent<ProjectileStatsManager>().SetStats(holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);    
             
             timeToNextShot = shotInterval;
             return new object[] {shot, bulletDirectionRotation};
@@ -45,8 +44,7 @@ public class TestRifle : PlayerRangedWeapon
     public override GameObject ReceiveAttack(PlayerWeapons gunType, float _bulletDirectionRotation) {
         bulletDirectionVector = Quaternion.AngleAxis(_bulletDirectionRotation, Vector3.forward) * Vector2.right;
         GameObject shot = Instantiate(projectile, transform.position, Quaternion.Euler(0f, 0f, _bulletDirectionRotation + projectileRotationOffset));
-        shot.GetComponent<ProjectileStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration, speed, 
-                damage, range, targetType, gameObject, transform.position, bulletDirectionVector, projectileRotationOffset);   
+        shot.GetComponent<ProjectileStatsManager>().SetStats(holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);   
         return shot;
     }
 }

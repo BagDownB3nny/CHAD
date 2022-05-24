@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             if (receiving)
             {
                 GameObject player = Instantiate(playerPrefabs[characterType]);
-                player.GetComponent<PlayerStatsManager>().myId = id;
+                player.GetComponent<PlayerStatsManager>().playerId = id;
                 players.Add(id ,player);
             } else
             {
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
             .Attack(gunType, directionRotation);
         if (bulletInfo != null) {
             GameObject bullet = (GameObject)bulletInfo[0];
-            bullet.GetComponent<ProjectileStatsManager>().id = projectileId;
+            bullet.GetComponent<ProjectileStatsManager>().projectileId = projectileId;
             Debug.Log("Projectile id: " + projectileId);
             projectiles.Add(projectileId, bullet);
             ServerSend.PlayerAttack(playerId, projectileId, gunType, (float) bulletInfo[1]);

@@ -20,11 +20,7 @@ public class DamageDealerStatsManager : MonoBehaviour
     }
 
     private void Start() {
-        UpdateDamageStats();
-    }
 
-    public void UpdateDamageStats() {
-        damagerScript.SetStats(holder, attack, armourPenetration, damage, targetType);
     }
 
     public void SetStats(GameObject _holder, float _attack, float _armourPenetration, float _damage, 

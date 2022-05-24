@@ -33,7 +33,7 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.players[_affectedPlayerId].GetComponent<PlayerMovement>().ReceiveMovement(_position);
     }
 
-    public static void ReceivePlayerAttack(Packet _packet) {
+    public static void PlayerAttack(Packet _packet) {
         int _affectedPlayerId = _packet.ReadInt();
         int _projectileRefId = _packet.ReadInt();
         PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
@@ -48,7 +48,7 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.ReceiveSpawnEnemy(enemyRefId, enemyId, position);
     }
 
-    public static void ReceiveProjectileMovement(Packet _packet) {
+    public static void ProjectileMovement(Packet _packet) {
         int _projectileId = _packet.ReadInt();
         Vector2 _position  = _packet.ReadVector2();
         if (GameManager.instance.projectiles.ContainsKey(_projectileId)) {
@@ -57,7 +57,7 @@ public class ClientHandle : MonoBehaviour
         }
     }
 
-    public static void ReceiveDestroyProjectile(Packet _packet) {
+    public static void DestroyProjectile(Packet _packet) {
         int _projectileId = _packet.ReadInt();
         GameManager.instance.projectiles[_projectileId].GetComponent<ProjectileMovement>()
             .ReceiveDestroyProjectile();

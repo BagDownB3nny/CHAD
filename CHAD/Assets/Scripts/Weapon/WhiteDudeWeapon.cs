@@ -7,7 +7,7 @@ public class WhiteDudeWeapon : EnemyMeleeWeapon
     private GameObject currentDamageDealer;
 
     private void Start() {
-        Attack();
+        
     }
 
     private void Update() {
@@ -17,7 +17,8 @@ public class WhiteDudeWeapon : EnemyMeleeWeapon
     public void Attack() {
         if (timeToNextAttack <= 0 && currentDamageDealer == null) {
             currentDamageDealer = Instantiate(defaultDamageDealer, transform.position, Quaternion.identity, transform);
-            currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration,
+            currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(holder, 
+                holder.GetComponent<EnemyStatsManager>().attack, holder.GetComponent<EnemyStatsManager>().armourPenetration,
                     damage, targetType, gameObject);
             timeToNextAttack = attackInterval;
         } else {

@@ -4,8 +4,5 @@ using UnityEngine;
 
 public interface CharacterStatsManager
 {
-    void UpdateMovementStats();
-    void UpdateAttackStats();
-    void UpdateTargetStats(GameObject _damager);
-    void TakeDamage(float _damageTaken);
+    void TakeDamage(float _damageTaken, float _armourPenetration);
 }

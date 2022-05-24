@@ -5,18 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //scripts needed
-    PlayerStatsManager statsManagerScript;
-    PlayerWeaponsManager weaponManagerScript;
-
-    public float speed;
+    PlayerStatsManager playerStatsManager;
     Rigidbody2D playerRb;
 
      private void Awake() {
-        //get the statsmanager and ask for the movement stats
-        statsManagerScript = gameObject.GetComponent<PlayerStatsManager>();
-        statsManagerScript.UpdateMovementStats();
-
-        weaponManagerScript = gameObject.GetComponent<PlayerWeaponsManager>();
+         playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     // Start is called before the first frame update
@@ -28,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (NetworkManager.IsMine(statsManagerScript.myId))
+        if (NetworkManager.IsMine(playerStatsManager.playerId))
         {
             SendMovement();
         }
     }
-
+#region MovePlayer
     //client sends the input to server
     public void SendMovement() {
         Vector2 movement;
@@ -47,11 +40,6 @@ public class PlayerMovement : MonoBehaviour
         ClientSend.MovePlayer(_input);
     }
 
-    //client receives processed game state from server and sets it
-    public void ReceiveMovement(Vector2 _position) {
-        transform.position = _position;
-    }
-
     //server decodes the input received from client, changes its own game state and sends the game state back to client
     public Vector2 MovePlayer(bool[] _input) {
         Vector2 _movement = new Vector3(0, 0, 0);
@@ -61,11 +49,13 @@ public class PlayerMovement : MonoBehaviour
         if (_input[3]) { _movement.x += 1; }
         _movement.Normalize();
 
-        playerRb.MovePosition((Vector2) transform.position + _movement * speed * Time.deltaTime);
+        playerRb.MovePosition((Vector2) transform.position + _movement * playerStatsManager.speed * Time.deltaTime);
         return (Vector2) transform.position;
     }
 
-    public void SetMovementStats(float _speed) {
-        speed = _speed;
+    //client receives processed game state from server and sets it
+    public void ReceiveMovement(Vector2 _position) {
+        transform.position = _position;
     }
+    #endregion
 }

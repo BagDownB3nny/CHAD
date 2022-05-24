@@ -6,16 +6,10 @@ public class MeleeEnemyMovement : EnemyMovement
 {
     //scripts needed
     EnemyStatsManager statsManagerScript;
-    MeleeEnemyWeaponManager weaponManagerScript;
 
     private void Awake() {
         //get the statsmanager and ask for the movement stats
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
-        statsManagerScript.UpdateMovementStats();
-        Debug.Log("ENEMY: transferred movement stats from stats manager to movement");
-
-        weaponManagerScript = gameObject.GetComponent<MeleeEnemyWeaponManager>();
-        Debug.Log("ENEMY: set reference to weapon manager script in movement");
     }
 
     private void Update() {
@@ -34,7 +28,7 @@ public class MeleeEnemyMovement : EnemyMovement
         directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
 
         Face();
-        enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * speed * Time.deltaTime));
+        enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * statsManagerScript.speed * Time.deltaTime));
 
         //send position to client
         ServerSend.MoveEnemy(statsManagerScript.enemyRefId, transform.position);

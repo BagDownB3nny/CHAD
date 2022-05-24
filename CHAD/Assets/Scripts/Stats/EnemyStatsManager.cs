@@ -26,31 +26,10 @@ public class EnemyStatsManager : MonoBehaviour, CharacterStatsManager
         deathScript = gameObject.GetComponent<Death>();
     }
 
-    public void UpdateMovementStats() {
-        movementScript.SetStats(speed);    
-    }
-
-    public void UpdateAttackStats() {
-        weaponManagerScript.SetAttackStats(attack, armourPenetration);
-    }
-
-    public void UpdateTargetStats(GameObject _damager) {
-        _damager.GetComponent<Damager>().SetTargetStats(armour, armourEffectiveness);
-    }
-
-    public void SetStats(float _hp, float _attack, float _speed, float _armour, 
-            float _armourPenetration, float _targetArmourEffectiveness, float _proficiency) {
-                hp = _hp;
-                attack = _attack;
-                speed = _speed;
-                armour = _armour;
-                armourPenetration = _armourPenetration;
-                armourEffectiveness = _targetArmourEffectiveness;
-                proficiency = _proficiency;
-            }
-
-    public void TakeDamage(float _damageTaken) {
-        hp -= _damageTaken;
+    public void TakeDamage(float _damageDealt, float _armourPenetration) {
+        float effectiveArmour = armour * (1 - _armourPenetration);
+        float damageTaken = _damageDealt * (1 - effectiveArmour/(effectiveArmour + (1/armourEffectiveness)));
+        hp -= damageTaken;
 
         //might want to abstract this to a DamageEffect script
         if (damageEffect != null) {

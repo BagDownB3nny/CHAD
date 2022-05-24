@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 16
+  controlID: 84
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 272.5
     height: 503.5
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -120,14 +120,14 @@ MonoBehaviour:
     y: 503.5
     width: 1097.5
     height: 346.5
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
   - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 17
+  controlID: 85
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 18
+  controlID: 86
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,22 +317,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/Menus
+    - Assets/Scripts/Weapon
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/Menus
+  - Assets/Scripts/Weapon
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8a610000
-    m_LastClickedID: 24970
-    m_ExpandedIDs: 000000007a6100007c610000886100009461000000ca9a3b
+    scrollPos: {x: 0, y: 46.5}
+    m_SelectedIDs: 16770000
+    m_LastClickedID: 30486
+    m_ExpandedIDs: 000000008061000082610000766e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007a6100007c610000
+    m_ExpandedIDs: 000000008061000082610000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -490,7 +490,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c49afffffc9affffe09cffffe69cfffffa9cffff029dffff109dffff1c9dffff2a9dffff369dffffcebfffff06c1ffff3ec1ffff22c3ffff28c3ffff3cc3ffff44c3ffff52c3ffff5ec3ffff6cc3ffff78c3ffffe4c8ffff1cc9ffff00cbffff06cbffff1acbffff22cbffff30cbffff3ccbffff4acbffff56cbffffacd2ffffe4d2ffffc8d4ffffced4ffffe2d4ffffead4fffff8d4ffff04d5ffff12d5ffff1ed5ffff90e4ffffc8e4fffface6ffffb2e6ffffc6e6ffffcee6ffffdce6ffffe8e6fffff6e6ffff02e7ffffb2e8ffffeae8ffffd2eaffffdceafffff4eaffff00ebffff12ebffff22ebffff34ebffff44ebffffa2ebffff24ecffff54ecffff10f7ffff48f7ffff2cf9ffff32f9ffff46f9ffff4ef9ffff5cf9ffff68f9ffff76f9ffff82f9ffff2cfbffff
+      m_ExpandedIDs: 5c70ffff9470ffff7c72ffff8672ffff9e72ffffaa72ffffbc72ffffcc72ffffde72ffffee72ffff8c7dffffc47dffff9c7fffffa27fffffb67fffffbe7fffffcc7fffffd87fffffe67ffffff27fffff00b8ffff38b8ffff1cbaffff22baffff36baffff3ebaffff4cbaffff58baffff66baffff72baffff1cceffff54ceffff38d0ffff3ed0ffff52d0ffff5ad0ffff68d0ffff74d0ffff82d0ffff8ed0ffffccf7ffff04f8ffffe8f9ffffeef9ffff02faffff0afaffff18faffff24faffff32faffff3efaffff24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -902,7 +902,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
