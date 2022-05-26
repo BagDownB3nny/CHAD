@@ -24,19 +24,15 @@ public abstract class CharacterStatsManager : MonoBehaviour
         deathScript = gameObject.GetComponent<Death>();
     }
 
-    public abstract void UpdateMovementStats();
-    public abstract void UpdateAttackStats();
-    public abstract void UpdateTargetStats(GameObject _damager);
-
-    public override void TakeDamage(float _damageDealt, float _armourPenetration) {
+    public void TakeDamage(float _damageDealt, float _armourPenetration) {
         float effectiveArmour = armour * (1 - armourPenetration);
         float damageTaken = _damageDealt * (1 - effectiveArmour/(effectiveArmour + (1/armourEffectiveness)));
         hp -= damageTaken;
 
         if (gameObject.tag == "Player") {
-            ServerSend.TakeDamage((int) CharacterType.Player, characterRefId, _damageTaken);
+            ServerSend.TakeDamage((int) CharacterType.Player, characterRefId, damageTaken);
         } else if (gameObject.tag == "Enemy") {
-            ServerSend.TakeDamage((int) CharacterType.Enemy, characterRefId, _damageTaken);
+            ServerSend.TakeDamage((int) CharacterType.Enemy, characterRefId, damageTaken);
         }
 
         if (damageEffect != null) {

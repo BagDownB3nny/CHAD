@@ -126,10 +126,10 @@ public class ServerSend
         }
     }
 
-    public static void DestroyProjectile(int _projectileId) {
+    public static void DestroyProjectile(int _projectileRefId) {
         using (Packet _packet = new Packet((int)ServerPackets.destroyProjectile))
         {
-            _packet.Write(_projectileId);
+            _packet.Write(_projectileRefId);
             SendTCPDataToAll(_packet);
         }
     }

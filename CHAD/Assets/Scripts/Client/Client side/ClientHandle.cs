@@ -56,19 +56,21 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void ProjectileMovement(Packet _packet) {
-        int _projectileId = _packet.ReadInt();
+        int _projectileRefId = _packet.ReadInt();
         Vector2 _position  = _packet.ReadVector2();
-        if (GameManager.instance.projectiles.ContainsKey(_projectileId)) {
-            GameManager.instance.projectiles[_projectileId].GetComponent<ProjectileMovement>()
+        if (GameManager.instance.projectiles.ContainsKey(_projectileRefId) && GameManager.instance.projectiles[_projectileRefId]) {
+            Debug.Log("Moving Projectile:" + _projectileRefId);
+            GameManager.instance.projectiles[_projectileRefId].GetComponent<ProjectileMovement>()
             .ReceiveMovement(_position);
         }
     }
 
     public static void DestroyProjectile(Packet _packet) {
-        int _projectileId = _packet.ReadInt();
-        if (GameManager.instance.projectiles.ContainsKey(_projectileId)) {
-            GameManager.instance.projectiles[_projectileId].GetComponent<ProjectileMovement>()
-            .ReceiveDestroyProjectile();
+        int _projectileRefId = _packet.ReadInt();
+        if (GameManager.instance.projectiles.ContainsKey(_projectileRefId) && GameManager.instance.projectiles[_projectileRefId]) {
+            Debug.Log("Destroying Projectile:" + _projectileRefId);
+            GameManager.instance.projectiles[_projectileRefId].GetComponent<ProjectileMovement>()
+                    .ReceiveDestroyProjectile();
         }
     }
     

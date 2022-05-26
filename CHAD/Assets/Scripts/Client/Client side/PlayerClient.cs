@@ -256,8 +256,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy},
             {(int)ServerPackets.takeDamage, ClientHandle.TakeDamage},
             {(int)ServerPackets.die, ClientHandle.Die},
-            {(int)ServerPackets.moveProjectile, ClientHandle.ReceiveProjectileMovement},
-            {(int)ServerPackets.destroyProjectile, ClientHandle.ReceiveDestroyProjectile}
+            {(int)ServerPackets.moveProjectile, ClientHandle.ProjectileMovement},
+            {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile}
         };
     }
 

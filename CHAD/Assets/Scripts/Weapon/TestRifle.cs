@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TestRifle : PlayerRangedWeapon
 {
-
     public PlayerWeapons gunType = PlayerWeapons.TestRifle;
     void Update()
     {
-        if (NetworkManager.IsMine(holder.GetComponent<PlayerStatsManager>().playerId))
+        if (NetworkManager.IsMine(holder.GetComponent<PlayerStatsManager>().playerRefId))
         {
             FiringDirection();
             PointAtMouse();

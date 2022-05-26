@@ -37,7 +37,7 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void SendMove() {
-        ServerSend.MoveProjectile(projectileStatsManager.projectileId, transform.position);
+        ServerSend.MoveProjectile(projectileStatsManager.projectileRefId, transform.position);
     }
 
     public void ReceiveMovement(Vector2 _position) {
@@ -52,7 +52,7 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void DestroyProjectile() {
-        ServerSend.DestroyProjectile(projectileStatsManager.projectileId);
+        ServerSend.DestroyProjectile(projectileStatsManager.projectileRefId);
         Destroy(gameObject);
     }
 
