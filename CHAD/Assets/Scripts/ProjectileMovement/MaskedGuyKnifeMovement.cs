@@ -32,7 +32,7 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void SendMove() {
-        ServerSend.MoveProjectile(statsManagerScript.projectileId, transform.position);
+        ServerSend.MoveProjectile(statsManagerScript.projectileRefId, transform.position);
     }
 
     public void ReceiveMovement(Vector2 _position) {
@@ -47,7 +47,7 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void DestroyProjectile() {
-        //ServerSend.DestroyProjectile(statsManagerScript.id);
+        ServerSend.DestroyProjectile(statsManagerScript.projectileRefId);
         Destroy(gameObject);
     }
 

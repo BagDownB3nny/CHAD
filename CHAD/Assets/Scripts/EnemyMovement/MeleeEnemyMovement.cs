@@ -31,7 +31,7 @@ public class MeleeEnemyMovement : EnemyMovement
         enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * statsManagerScript.speed * Time.deltaTime));
 
         //send position to client
-        ServerSend.MoveEnemy(statsManagerScript.enemyRefId, transform.position);
+        ServerSend.MoveEnemy(statsManagerScript.characterRefId, transform.position);
     }
 
     public override void UpdateWeaponTarget() {

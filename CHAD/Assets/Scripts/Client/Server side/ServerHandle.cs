@@ -27,7 +27,7 @@ public class ServerHandle
             _input[i] = _packet.ReadBool();
         }
         
-        Vector2 _position = GameManager.instance.players[_fromClient].GetComponent<PlayerMovement>().MovePlayer(_input);
+        Vector2 _position = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerMovement>().MovePlayer(_input);
         ServerSend.MovePlayer(_fromClient, _position);
     }
 
@@ -50,10 +50,23 @@ public class ServerHandle
             .currentWeapon.GetComponent<PlayerRangedWeapon>().ReceiveGunRotation(rotation);
     }
 
-    public static void Attack(int _fromClient, Packet _packet) {
+    public static void PlayerAttack(int _fromClient, Packet _packet) {
         PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
         float directionRotation = _packet.ReadFloat();
-        GameManager.instance.PlayerAttack(_fromClient, gunType, directionRotation);
-    }
 
+        //perform the attack on server side and receive the projectile info
+        object[] projectileInfo = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerWeaponsManager>().weaponScript
+                .Attack(gunType, directionRotation);
+
+        if (projectileInfo != null) {
+            GameObject bullet = (GameObject) projectileInfo[0];
+            //set projectile reference id  and add it to dictionary on server side
+            //string projectileRefId = string.Format("P{0}")
+            bullet.GetComponent<ProjectileStatsManager>().projectileRefId = GameManager.instance.projectileRefId;
+            GameManager.instance.projectiles.Add(GameManager.instance.projectileRefId, bullet);
+            //send attack info to client
+            ServerSend.PlayerAttack(_fromClient, GameManager.instance.projectileRefId, gunType, (float) projectileInfo[1]);
+            GameManager.instance.projectileRefId++;
+        }
+    }
 }

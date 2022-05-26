@@ -18,9 +18,8 @@ public static class NetworkManager
         gameType = _gameType;
     }
 
-    public static bool IsMine(int id)
-    {
-        if (NetworkManager.gameType == GameType.Client && PlayerClient.instance.myId == id)
+    public static bool IsMine(string _id) {
+        if (NetworkManager.gameType == GameType.Client && string.Equals(PlayerClient.instance.myId.ToString(), _id))
         {
             return true;
         }

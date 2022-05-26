@@ -42,7 +42,7 @@ public class RangedEnemyMovement : EnemyMovement
         }
 
         //send position to client
-        ServerSend.MoveEnemy(statsManagerScript.enemyRefId, transform.position);
+        ServerSend.MoveEnemy(statsManagerScript.characterRefId, transform.position);
     }
 
     public override void UpdateWeaponTarget() {

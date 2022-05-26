@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
+
+public enum CharacterType {
+    Player = 0,
+    Enemy = 1
+}
 
 public enum PlayerWeapons {
     TestRifle = 1
@@ -20,45 +25,51 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
 
-    public Dictionary<int, GameObject> players;
-    public Dictionary<int, GameObject> enemies;
+    public Dictionary<string, GameObject> spawners;
+    public Dictionary<string, GameObject> players;
+    public Dictionary<string, GameObject> enemies;
     public Dictionary<int, GameObject> projectiles;
+    public Dictionary<int, GameObject> damageDealers;
 
-    public int enemyRefId {get; private set;} = 0;
-
-    public int projectileId {get; private set;} = 0;
+    //keep track of all projectile spawned
+    public int projectileRefId = 0;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            players = new Dictionary<int, GameObject>();
+            spawners = new Dictionary<string, GameObject>();
+            players = new Dictionary<string, GameObject>();
             projectiles = new Dictionary<int, GameObject>();
-            enemies = new Dictionary<int, GameObject>();
+            enemies = new Dictionary<string, GameObject>();
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        //temporary manual adding of spawners into the spawners dictionary for testing
+        spawners.Add("MGS0", GameObject.Find("MaskedGuySpawner"));
+        spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
     }
 
     
 #region SpawnPlayer
     public void SpawnWaitingRoomPlayer()
     {
-        SpawnPlayer(PlayerClient.instance.myId, 0, new Vector2(0, 0));
+        SpawnPlayer(PlayerClient.instance.myId.ToString(), 0, new Vector2(0, 0));
     }
 
-    public void SpawnPlayer(int id, int characterType, Vector2 position, bool receiving = false)
+    public void SpawnPlayer(string id, int characterType, Vector2 position, bool receiving = false)
     {
         if (NetworkManager.gameType == GameType.Client)
         {
             if (receiving)
             {
                 GameObject player = Instantiate(playerPrefabs[characterType]);
-                player.GetComponent<PlayerStatsManager>().playerId = id;
+                player.GetComponent<PlayerStatsManager>().playerRefId = id;
                 players.Add(id ,player);
             } else
             {
@@ -72,81 +83,4 @@ public class GameManager : MonoBehaviour
     }
 
 #endregion
-
-#region PlayerAttack
-    public void PlayerAttack(int playerId, PlayerWeapons gunType, float directionRotation) {
-        object[] bulletInfo = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
-            .Attack(gunType, directionRotation);
-        if (bulletInfo != null) {
-            GameObject bullet = (GameObject)bulletInfo[0];
-            bullet.GetComponent<ProjectileStatsManager>().projectileId = projectileId;
-            Debug.Log("Projectile id: " + projectileId);
-            projectiles.Add(projectileId, bullet);
-            ServerSend.PlayerAttack(playerId, projectileId, gunType, (float) bulletInfo[1]);
-            projectileId++;
-        }
-    }
-
-    public void ReceivePlayerAttack(int playerId, int projectileRefId, PlayerWeapons gunType, float bulletDirectionRotation) {
-        GameObject bullet = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
-            .ReceiveAttack(gunType, bulletDirectionRotation);
-        Debug.Log("Projectile ref id: " + projectileRefId);
-        projectiles.Add(projectileRefId, bullet);
-    }
-#endregion
-
-#region SpawnEnemy
-
-    public void SpawnEnemy(GameObject _enemy, int _id, Vector2 _position) {
-        enemies.Add(enemyRefId, _enemy);
-        _enemy.GetComponent<EnemyStatsManager>().enemyRefId = enemyRefId;
-        ServerSend.SpawnEnemy(enemyRefId, _id, _position);
-        enemyRefId++;
-    }
-
-    public void ReceiveSpawnEnemy(int _enemyRefId, int _enemyId, Vector2 _position) {
-        //might want to shift the actual instantiation to anotehr script?
-        Debug.Log("client spawning enemy");
-        GameObject enemySpawned = Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity);
-        enemySpawned.GetComponent<EnemyStatsManager>().enemyRefId = _enemyRefId;
-        enemies.Add(_enemyRefId, enemySpawned);
-    }
-
-#endregion
-
-#region MoveEnemy
-
-    public void MoveEnemy(int _enemyRefId, Vector2 _position) {
-        enemies[_enemyRefId].transform.position = _position;
-    }
-
-#endregion
-
-    public void Disconnect(int playerRefId) {
-        ServerSend.DisconnectPlayer(playerRefId);
-        Destroy(players[playerRefId]);
-        players.Remove(playerRefId);
-        if (players.Count == 0) {
-            ResetGame();
-        }
-    }
-
-    public void ResetGame() {
-        foreach(KeyValuePair<int, GameObject> player in players)
-        {
-            Destroy(player.Value);
-        }
-        players.Clear();
-        foreach(KeyValuePair<int, GameObject> enemy in enemies)
-        {
-            Destroy(enemy.Value);
-        }
-        enemies.Clear();
-        foreach(KeyValuePair<int, GameObject> projectile in projectiles)
-        {
-            Destroy(projectile.Value);
-        }
-        projectiles.Clear();
-        SceneManager.LoadScene("Hosting room");
-    }
 }

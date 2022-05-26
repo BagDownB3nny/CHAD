@@ -11,11 +11,13 @@ public class MaskedGuyWeapon : EnemyRangedWeapon
     }
     void Update()
     {
-        //enemy heading
-        FiringDirection();
-        //final bullet heading with inaccuracy
-        BulletDirection();
-        Attack();
+        if (NetworkManager.gameType == GameType.Server) {
+            //enemy heading
+            FiringDirection();
+            //final bullet heading with inaccuracy
+            BulletDirection();
+            Attack();
+        }
     }
 
     //instantiates an EnemyProjectile towards the current player position

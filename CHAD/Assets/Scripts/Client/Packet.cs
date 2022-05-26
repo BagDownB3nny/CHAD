@@ -12,10 +12,11 @@ public enum ServerPackets
     movePlayer = 3,
     playerAttack = 4,
     spawnEnemy = 5,
-    moveProjectile = 6,
-    destroyProjectile = 7,
-    moveEnemy = 8,
-    disconnectPlayer = 9
+    moveEnemy = 6,
+    takeDamage = 7,
+    die = 8,
+    moveProjectile = 9,
+    destroyProjectile = 10,
 }
 
 /// <summary>Sent from client to server.</summary>

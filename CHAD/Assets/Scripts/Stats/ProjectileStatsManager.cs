@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileStatsManager : MonoBehaviour
 {
-    public int projectileId;
+    public int projectileRefId;
 
     private void Awake() {
 

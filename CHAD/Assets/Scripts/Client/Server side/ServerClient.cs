@@ -198,14 +198,13 @@ public class ServerClient
 
     public void SendIntoGame(int _characterType, Vector2 position)
     {
-
-        GameManager.instance.SpawnPlayer(id, _characterType, position);
-        player = GameManager.instance.players[id];
+        GameManager.instance.SpawnPlayer(id.ToString(), _characterType, position);
+        player = GameManager.instance.players[id.ToString()];
         foreach (ServerClient _client in Server.serverClients.Values)
         {
             if (_client.player != null)
             {
-                ServerSend.SpawnPlayer(id, _client.id, GameManager.instance.players[_client.id], 0);
+                ServerSend.SpawnPlayer(id, _client.id, GameManager.instance.players[_client.id.ToString()], 0);
                 //TODO: 0 to be replaced with character type from player script
             }
         }
@@ -220,31 +219,5 @@ public class ServerClient
                 }
             }
         }
-    }
-
-    public void PlayerMovement(bool[] _input)
-    {
-        Vector2 movement = new Vector3(0, 0, 0);
-        if (_input[0])
-        {
-            movement.y += 1;
-        }
-        if (_input[1])
-        {
-            movement.x -= 1;
-        }
-        if (_input[2])
-        {
-            movement.y -= 1;
-        }
-        if (_input[3])
-        {
-            movement.x += 1;
-        }
-        if (player != null)
-        {
-            //player.GetComponent<PlayerMovement>().movement = movement.normalized;
-        }
-
     }
 }

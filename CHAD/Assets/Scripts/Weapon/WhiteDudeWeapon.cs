@@ -16,12 +16,6 @@ public class WhiteDudeWeapon : EnemyMeleeWeapon
     public void Attack() {
         if (timeToNextAttack <= 0 && currentDamageDealer == null) {
             currentDamageDealer = Instantiate(defaultDamageDealer, transform.position, Quaternion.identity, transform);
-            // Debug.Log("Holder: " + holder);
-            // Debug.Log("DamageDealerStatsManager: " + currentDamageDealer.GetComponent<DamageDealerStatsManager>());
-            // Debug.Log("Attack: " + holder.GetComponent<EnemyStatsManager>().attack);
-            // Debug.Log("Arm pen: " + holder.GetComponent<EnemyStatsManager>().armourPenetration);
-            // Debug.Log("Damage: "+ damage);
-            // Debug.Log("TargetType: " + targetType);
 
             EnemyStatsManager holderScript = holder.GetComponent<EnemyStatsManager>();
             Debug.Log(holderScript != null);
