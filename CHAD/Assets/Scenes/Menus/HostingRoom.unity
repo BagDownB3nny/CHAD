@@ -1508,12 +1508,12 @@ GameObject:
   - component: {fileID: 892006688}
   - component: {fileID: 892006687}
   m_Layer: 0
-  m_Name: EnemySpawner (1)
+  m_Name: WhiteDudeSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &892006687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,8 +1526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ed6f8c743fd47e8ad1d9d891221ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnerInitials: WDS
+  spawnerId: 0
+  localEnemyRefId: 0
   enemyId: 1
-  spawnInterval: 1
+  spawnInterval: 2
   timeToNextSpawn: 0
 --- !u!212 &892006688
 SpriteRenderer:
@@ -1571,7 +1574,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8532,12 +8535,12 @@ GameObject:
   - component: {fileID: 1386459947}
   - component: {fileID: 1386459946}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: MaskedGuySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1386459946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8550,6 +8553,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ed6f8c743fd47e8ad1d9d891221ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnerInitials: MGS
+  spawnerId: 0
+  localEnemyRefId: 0
   enemyId: 0
   spawnInterval: 5
   timeToNextSpawn: 0
@@ -8654,6 +8660,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5135349388637485356, guid: e9b97cc2990a54537a663b0bb02b68d8, type: 3}
   - {fileID: 331346586343184388, guid: c246bc23d06ab4f8388171f4d4fb6c53, type: 3}
+  projectileRefId: 0
 --- !u!4 &1520199903
 Transform:
   m_ObjectHideFlags: 0

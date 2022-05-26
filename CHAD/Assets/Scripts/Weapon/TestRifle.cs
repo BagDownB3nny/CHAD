@@ -6,9 +6,9 @@ public class TestRifle : PlayerRangedWeapon
 {
 
     public PlayerWeapons gunType = PlayerWeapons.TestRifle;
-    void FixedUpdate()
+    void Update()
     {
-        if (NetworkManager.IsMine(myId))
+        if (NetworkManager.IsMine(holder.GetComponent<PlayerStatsManager>().myId))
         {
             FiringDirection();
             PointAtMouse();
@@ -20,7 +20,7 @@ public class TestRifle : PlayerRangedWeapon
 
     public override object[] Attack(PlayerWeapons _gunType, float _directionRotation) {
         directionRotation = _directionRotation;
-        directionVector = Quaternion.AngleAxis(-_directionRotation, Vector3.back) * Vector2.right;
+        directionVector = Quaternion.AngleAxis(_directionRotation, Vector3.forward) * Vector2.right;
         if (_gunType != gunType) {
             //Switch weapon
         }

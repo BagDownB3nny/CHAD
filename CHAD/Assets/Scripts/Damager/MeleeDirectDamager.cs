@@ -16,13 +16,15 @@ public class MeleeDirectDamager : MonoBehaviour, DirectDamager
     public float targetArmourEffectiveness;
 
     private void OnTriggerEnter2D(Collider2D _collider) {
-        if (_collider.CompareTag(targetType)) {
-            //copy over target parameters
-            _collider.GetComponent<CharacterStatsManager>().UpdateTargetStats(gameObject);
+        if (NetworkManager.gameType == GameType.Server) {
+            if (_collider.CompareTag(targetType)) {
+                //copy over target parameters
+                _collider.GetComponent<CharacterStatsManager>().UpdateTargetStats(gameObject);
 
-            float finalDamage = CalculateDamage(damage, attack, armourPenetration, targetArmour, targetArmourEffectiveness);
-            DealDamage(_collider.gameObject, finalDamage);
-            DestroyDamager();
+                float finalDamage = CalculateDamage(damage, attack, armourPenetration, targetArmour, targetArmourEffectiveness);
+                DealDamage(_collider.gameObject, finalDamage);
+                DestroyDamager();
+            }
         }
     }
 
@@ -39,6 +41,7 @@ public class MeleeDirectDamager : MonoBehaviour, DirectDamager
     }
 
     public void DestroyDamager() {
+        ServerSend.DestroyProjectile(gameObject.GetComponent<ProjectileStatsManager>().projectileRefId);
         Destroy(gameObject);
     }
 

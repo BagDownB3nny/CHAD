@@ -9,7 +9,7 @@ public class PlayerStatsManager : CharacterStatsManager
     public PlayerWeaponsManager weaponsManagerScipt;
 
     [Header("Network Id")]
-    public int myId;
+    public string myId;
 
     protected override void Awake() {
         base.Awake();

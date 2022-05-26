@@ -95,21 +95,21 @@ public class ServerSend
         }
     }
 
-    public static void PlayerAttack(int _affectedPlayerId, int _projectileId, 
-        PlayerWeapons gunType, float directionRotation) {
+    public static void PlayerAttack(int _affectedPlayerId, int _projectileRefId, PlayerWeapons _gunType, float _directionRotation) {
         using (Packet _packet = new Packet((int)ServerPackets.playerAttack))
         {
             _packet.Write(_affectedPlayerId);
-            _packet.Write(_projectileId);
-            _packet.Write((int) gunType);
-            _packet.Write(directionRotation);
+            _packet.Write(_projectileRefId);
+            _packet.Write((int) _gunType);
+            _packet.Write(_directionRotation);
             SendTCPDataToAll(_packet);
         }
     }
 
-    public static void SpawnEnemy(int _enemyRefId, int _enemyId, Vector2 _position) {
+    public static void SpawnEnemy(string _spawnerRefId, string _enemyRefId, int _enemyId, Vector2 _position) {
         using (Packet _packet = new Packet((int)ServerPackets.spawnEnemy))
         {
+            _packet.Write(_spawnerRefId);
             _packet.Write(_enemyRefId);
             _packet.Write(_enemyId);
             _packet.Write(_position);
@@ -134,7 +134,7 @@ public class ServerSend
         }
     }
 
-    public static void MoveEnemy(int _enemyRefId, Vector2 _position) {
+    public static void MoveEnemy(string _enemyRefId, Vector2 _position) {
         using (Packet _packet = new Packet((int)ServerPackets.moveEnemy))
         {
             _packet.Write(_enemyRefId);
@@ -143,7 +143,7 @@ public class ServerSend
         }
     }
 
-    public static void TakeDamage(int _characterType, int _characterRefId, float _damageTaken) {
+    public static void TakeDamage(int _characterType, string _characterRefId, float _damageTaken) {
         using (Packet _packet = new Packet((int)ServerPackets.takeDamage))
         {
             _packet.Write(_characterType);
@@ -153,7 +153,7 @@ public class ServerSend
         }
     }
 
-    public static void Die(int _characterType, int _characterRefId) {
+    public static void Die(int _characterType, string _characterRefId) {
         using (Packet _packet = new Packet((int)ServerPackets.die))
         {
             _packet.Write(_characterType);

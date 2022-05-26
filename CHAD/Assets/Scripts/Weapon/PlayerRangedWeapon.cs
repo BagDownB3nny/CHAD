@@ -6,7 +6,6 @@ public abstract class PlayerRangedWeapon : RangedWeapon
 {
 
     public PlayerWeapons myWeapon;
-    public int myId;
 
     //points this gameObject at the mouse
     public void PointAtMouse() {

@@ -16,7 +16,6 @@ public class RangedDirectDamager : MonoBehaviour, DirectDamager
     public float targetArmourEffectiveness;
 
     private void OnTriggerEnter2D(Collider2D _collider) {
-
         if (NetworkManager.gameType == GameType.Server) {
             if (_collider.CompareTag(targetType)) {
                 //copy over target parameters
@@ -27,7 +26,6 @@ public class RangedDirectDamager : MonoBehaviour, DirectDamager
                 DestroyDamager();
             }
         }
-        
     }
 
     public float CalculateDamage(float _rawDamage, float _attack, float _armourPenetration,
@@ -43,6 +41,7 @@ public class RangedDirectDamager : MonoBehaviour, DirectDamager
     }
 
     public void DestroyDamager() {
+        ServerSend.DestroyProjectile(gameObject.GetComponent<ProjectileStatsManager>().projectileRefId);
         Destroy(gameObject);
     }
 

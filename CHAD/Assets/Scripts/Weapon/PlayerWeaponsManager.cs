@@ -39,7 +39,6 @@ public class PlayerWeaponsManager : MonoBehaviour
         }      
         currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
-        weaponScript.myId = statsManagerScript.myId;
         UpdateWeaponAttackStats();
     }
 

@@ -8,7 +8,7 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public Death deathScript;
 
     [Header("Character Reference ID")]
-    public int characterRefId;
+    public string characterRefId;
 
     [Header("Character Stats")]
     public float hp;

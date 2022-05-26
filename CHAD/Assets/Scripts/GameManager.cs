@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum CharacterType {
     Player = 0,
@@ -24,40 +25,44 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
 
-    public Dictionary<int, GameObject> players;
-    public Dictionary<int, GameObject> enemies;
+    public Dictionary<string, GameObject> spawners;
+    public Dictionary<string, GameObject> players;
+    public Dictionary<string, GameObject> enemies;
     public Dictionary<int, GameObject> projectiles;
+    public Dictionary<int, GameObject> damageDealers;
 
-    //keep track of all enemies spawned
-    public int enemyRefId {get; private set;} = 0;
-
-    //keep track of all porjectile spawned
-    public int projectileId {get; private set;} = 0;
+    //keep track of all projectile spawned
+    public int projectileRefId = 0;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            players = new Dictionary<int, GameObject>();
+            spawners = new Dictionary<string, GameObject>();
+            players = new Dictionary<string, GameObject>();
             projectiles = new Dictionary<int, GameObject>();
-            enemies = new Dictionary<int, GameObject>();
+            enemies = new Dictionary<string, GameObject>();
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        //temporary manual adding of spawners into the spawners dictionary for testing
+        spawners.Add("MGS0", GameObject.Find("MaskedGuySpawner"));
+        spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
     }
 
     
 #region SpawnPlayer
     public void SpawnWaitingRoomPlayer()
     {
-        SpawnPlayer(PlayerClient.instance.myId, 0, new Vector2(0, 0));
+        SpawnPlayer(PlayerClient.instance.myId.ToString(), 0, new Vector2(0, 0));
     }
 
-    public void SpawnPlayer(int id, int characterType, Vector2 position, bool receiving = false)
+    public void SpawnPlayer(string id, int characterType, Vector2 position, bool receiving = false)
     {
         if (NetworkManager.gameType == GameType.Client)
         {
@@ -75,47 +80,6 @@ public class GameManager : MonoBehaviour
         {
             players.Add(id, Instantiate(playerPrefabs[characterType]));
         }
-    }
-
-#endregion
-
-#region PlayerAttack
-    public void PlayerAttack(int playerId, PlayerWeapons gunType, float directionRotation) {
-        object[] bulletInfo = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
-            .Attack(gunType, directionRotation);
-        if (bulletInfo != null) {
-            GameObject bullet = (GameObject)bulletInfo[0];
-            bullet.GetComponent<ProjectileStatsManager>().id = projectileId;
-            Debug.Log("Projectile id: " + projectileId);
-            projectiles.Add(projectileId, bullet);
-            ServerSend.PlayerAttack(playerId, projectileId, gunType, (float) bulletInfo[1]);
-            projectileId++;
-        }
-    }
-
-    public void ReceivePlayerAttack(int playerId, int projectileRefId, PlayerWeapons gunType, float bulletDirectionRotation) {
-        GameObject bullet = players[playerId].GetComponent<PlayerWeaponsManager>().weaponScript
-            .ReceiveAttack(gunType, bulletDirectionRotation);
-        Debug.Log("Projectile ref id: " + projectileRefId);
-        projectiles.Add(projectileRefId, bullet);
-    }
-#endregion
-
-#region SpawnEnemy
-
-    public void SpawnEnemy(GameObject _enemy, int _id, Vector2 _position) {
-        enemies.Add(enemyRefId, _enemy);
-        _enemy.GetComponent<EnemyStatsManager>().characterRefId = enemyRefId;
-        ServerSend.SpawnEnemy(enemyRefId, _id, _position);
-        enemyRefId++;
-    }
-
-    public void ReceiveSpawnEnemy(int _enemyRefId, int _enemyId, Vector2 _position) {
-        //might want to shift the actual instantiation to anotehr script?
-        Debug.Log("client spawning enemy");
-        GameObject enemySpawned = Instantiate(enemyPrefabs[_enemyId], _position, Quaternion.identity);
-        enemySpawned.GetComponent<EnemyStatsManager>().characterRefId = _enemyRefId;
-        enemies.Add(_enemyRefId, enemySpawned);
     }
 
 #endregion

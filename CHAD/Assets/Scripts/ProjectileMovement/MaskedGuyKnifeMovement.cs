@@ -29,17 +29,19 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     //move to targetLocation and destroy if reached
     void FixedUpdate()
     {
-        float distanceTravelled = (transform.position - originLocationVector).magnitude;
-        if (distanceTravelled > range) {
-            DestroyProjectile();
-        }
         if (NetworkManager.gameType == GameType.Server) {
-            SendMove();
+            float distanceTravelled = (transform.position - originLocationVector).magnitude;
+            if (distanceTravelled > range) {
+                DestroyProjectile();
+            }
+            if (NetworkManager.gameType == GameType.Server) {
+                SendMove();
+            }
         }
     }
 
     public void SendMove() {
-        ServerSend.MoveProjectile(statsManagerScript.id, transform.position);
+        ServerSend.MoveProjectile(statsManagerScript.projectileRefId, transform.position);
     }
 
     public void ReceiveMovement(Vector2 _position) {
@@ -53,6 +55,7 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     }
 
     public void DestroyProjectile() {
+        ServerSend.DestroyProjectile(statsManagerScript.projectileRefId);
         Destroy(gameObject);
     }
 

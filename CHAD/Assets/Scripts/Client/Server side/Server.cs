@@ -122,7 +122,7 @@ public class Server
                 {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer},
                 {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer},
                 {(int)ClientPackets.sendGunRotation, ServerHandle.ReceiveGunRotation},
-                {(int)ClientPackets.sendAttack, ServerHandle.Attack}
+                {(int)ClientPackets.sendAttack, ServerHandle.PlayerAttack}
 
             };
     }
