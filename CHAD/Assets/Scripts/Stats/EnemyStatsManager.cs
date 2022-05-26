@@ -11,6 +11,7 @@ public class EnemyStatsManager : CharacterStatsManager
 
     protected override void Awake() {
         base.Awake();
+        characterType = CharacterType.Enemy;
         FindTarget();
     }
 

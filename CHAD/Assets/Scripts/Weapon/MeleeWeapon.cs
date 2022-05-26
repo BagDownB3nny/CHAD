@@ -6,7 +6,7 @@ public abstract class MeleeWeapon : Weapon
 {
     [Header("Weapon Parameters")]
     public GameObject defaultDamageDealer;
-    private GameObject currentDamageDealer;
+    public GameObject currentDamageDealer;
 
     public override void Attack() {
         CharacterStatsManager characterStats = holder.GetComponent<CharacterStatsManager>();
