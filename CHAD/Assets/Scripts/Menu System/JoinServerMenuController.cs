@@ -1,24 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class MultiplayerMenuController : MonoBehaviour
+public class JoinServerMenuController : MonoBehaviour
 {
     [Header("Levels to Load")]
-    public string hostRoomScreen;
     public string joinRoomScreen;
     public string backScreen;
-
-    public void LoadHostRoom() {
-        SceneManager.LoadScene(hostRoomScreen);
-        NetworkManager.SetGameType(GameType.Server);
-        Server.Start(4, 26950);
-    }
+    public TMP_InputField serverIp;
 
     public void LoadJoinRoom() {
         SceneManager.LoadScene(joinRoomScreen);
+        NetworkManager.SetGameType(GameType.Client);
+        PlayerClient.instance.SetServerIp(serverIp.text);
+        PlayerClient.instance.ConnectToServer();
     }
 
     public void Back() {
