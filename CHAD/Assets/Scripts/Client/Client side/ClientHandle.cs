@@ -40,7 +40,7 @@ public class ClientHandle : MonoBehaviour
         float projectileDirectionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
             GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
-                .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+                    .ReceiveAttack(projectileRefId, projectileDirectionRotation);
         } else if (characterType == CharacterType.Enemy) {
             GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
                     .ReceiveAttack(projectileRefId, projectileDirectionRotation);
@@ -51,7 +51,7 @@ public class ClientHandle : MonoBehaviour
         CharacterType characterType = (CharacterType) _packet.ReadInt();
         string affectedCharacterRefId = _packet.ReadString();
         string damageDealerRefId = _packet.ReadString();
-        if (GameManager.instance.enemies.ContainsKey(affectedCharacterRefId)) {
+        if (GameManager.instance.enemies.ContainsKey(affectedCharacterRefId) && GameManager.instance.enemies[affectedCharacterRefId]) {
             GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().meleeWeaponScript
                 .ReceiveAttack(damageDealerRefId); 
         }
@@ -64,7 +64,6 @@ public class ClientHandle : MonoBehaviour
         Vector2 position = _packet.ReadVector2();
         Debug.Log(spawnerRefId);
         if (GameManager.instance.spawners.ContainsKey(spawnerRefId)) {
-            Debug.Log("spawning enemy on client");
             GameManager.instance.spawners[spawnerRefId].GetComponent<EnemySpawner>().ReceiveSpawnEnemy(enemyRefId, enemyId, position);
         }
     }
