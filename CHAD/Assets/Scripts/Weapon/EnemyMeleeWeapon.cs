@@ -4,5 +4,10 @@ using UnityEngine;
 
 public abstract class EnemyMeleeWeapon : MeleeWeapon
 {
-    
+    void Update()
+    {
+        if (CanAttack()) {
+            Attack();
+        }
+    }
 }

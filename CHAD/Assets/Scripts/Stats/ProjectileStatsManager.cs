@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileStatsManager : MonoBehaviour
 {
-    public int projectileRefId;
+    public string projectileRefId;
 
     private void Awake() {
 
@@ -24,11 +24,11 @@ public class ProjectileStatsManager : MonoBehaviour
     public string targetType;
     public GameObject origin;
     public Vector3 originLocationVector;
-    public Vector3 directionVector;
+    public Vector3 projectileDirectionVector;
     public float rotationOffset;
 
-    public void SetStats(GameObject _weaponHolder, RangedWeapon _rangedWeapon, GameObject _origin, 
-            Vector3 _bulletDirectionVector, float _rotationOffset) {
+    public void SetStats(string _projectileRefId, GameObject _weaponHolder, RangedWeapon _rangedWeapon, GameObject _origin, 
+            Vector3 _projectileDirectionVector, float _rotationOffset) {
                 holder = _weaponHolder;
                 CharacterStatsManager characterStatsManager = _weaponHolder.GetComponent<CharacterStatsManager>();
                 attack = characterStatsManager.attack;
@@ -39,7 +39,7 @@ public class ProjectileStatsManager : MonoBehaviour
                 targetType = _rangedWeapon.targetType;
                 origin = _origin;
                 originLocationVector = _origin.transform.position;
-                directionVector = _bulletDirectionVector;
+                projectileDirectionVector = _projectileDirectionVector;
                 rotationOffset = _rotationOffset;
     }
 }

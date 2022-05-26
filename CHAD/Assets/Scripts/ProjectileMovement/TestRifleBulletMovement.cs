@@ -16,10 +16,9 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
 
     void Start()
     {
-        Face();
         if (NetworkManager.gameType == GameType.Server) {
             gameObject.GetComponent<Rigidbody2D>().velocity = 
-                ((Vector2) projectileStatsManager.directionVector).normalized * projectileStatsManager.speed;
+                ((Vector2) projectileStatsManager.projectileDirectionVector).normalized * projectileStatsManager.speed;
         }
     }
 
@@ -42,13 +41,6 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
 
     public void ReceiveMovement(Vector2 _position) {
         transform.position = _position;
-    }
-
-    //point projectile towards target
-    public void Face() {
-        Vector2 directionVector = projectileStatsManager.directionVector;
-        float directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, directionRotation + rotationOffset);
     }
 
     public void DestroyProjectile() {

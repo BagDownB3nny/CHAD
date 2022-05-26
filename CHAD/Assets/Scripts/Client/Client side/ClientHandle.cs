@@ -33,14 +33,28 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.players[_affectedPlayerId.ToString()].GetComponent<PlayerMovement>().ReceiveMovement(_position);
     }
 
-    public static void PlayerAttack(Packet _packet) {
-        string affectedPlayerId = _packet.ReadInt().ToString();
-        int projectileRefId = _packet.ReadInt();
-        PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
-        float bulletDirectionRotation = _packet.ReadFloat();
-        GameObject projectile = GameManager.instance.players[affectedPlayerId].GetComponent<PlayerWeaponsManager>().weaponScript
-                .ReceiveAttack(gunType, bulletDirectionRotation);
-        GameManager.instance.projectiles.Add(projectileRefId, projectile);
+    public static void RangedAttack(Packet _packet) {
+        CharacterType characterType = (CharacterType) _packet.ReadInt();
+        string affectedCharacterRefId = _packet.ReadString();
+        string projectileRefId = _packet.ReadString();
+        float projectileDirectionRotation = _packet.ReadFloat();
+        if (characterType == CharacterType.Player) {
+            GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+        } else if (characterType == CharacterType.Enemy) {
+            GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
+                    .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+        }  
+    }
+
+    public static void MeleeAttack(Packet _packet) {
+        CharacterType characterType = (CharacterType) _packet.ReadInt();
+        string affectedCharacterRefId = _packet.ReadString();
+        string damageDealerRefId = _packet.ReadString();
+        if (GameManager.instance.enemies.ContainsKey(affectedCharacterRefId)) {
+            GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().meleeWeaponScript
+                .ReceiveAttack(damageDealerRefId); 
+        }
     }
 
     public static void SpawnEnemy(Packet _packet) {
@@ -56,7 +70,7 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void ProjectileMovement(Packet _packet) {
-        int _projectileRefId = _packet.ReadInt();
+        string _projectileRefId = _packet.ReadString();
         Vector2 _position  = _packet.ReadVector2();
         if (GameManager.instance.projectiles.ContainsKey(_projectileRefId) && GameManager.instance.projectiles[_projectileRefId]) {
             Debug.Log("Moving Projectile:" + _projectileRefId);
@@ -66,12 +80,19 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void DestroyProjectile(Packet _packet) {
-        int _projectileRefId = _packet.ReadInt();
+        string _projectileRefId = _packet.ReadString();
         if (GameManager.instance.projectiles.ContainsKey(_projectileRefId) && GameManager.instance.projectiles[_projectileRefId]) {
             Debug.Log("Destroying Projectile:" + _projectileRefId);
             GameManager.instance.projectiles[_projectileRefId].GetComponent<ProjectileMovement>()
                     .ReceiveDestroyProjectile();
         }
+    }
+
+    public static void DestroyDamageDealer(Packet _packet) {
+        string damageDealerRefId = _packet.ReadString();
+        if (GameManager.instance.damageDealers.ContainsKey(damageDealerRefId)) {
+            GameManager.instance.damageDealers[damageDealerRefId].GetComponent<Damager>().ReceiveDestroyDamager();
+        }   
     }
     
     public static void MoveEnemy(Packet _packet) {

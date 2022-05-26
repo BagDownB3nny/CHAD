@@ -251,13 +251,14 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer},
             {(int)ServerPackets.movePlayer, ClientHandle.MovePlayer},
-            {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack},
+            {(int)ServerPackets.rangedAttack, ClientHandle.RangedAttack},
             {(int)ServerPackets.spawnEnemy, ClientHandle.SpawnEnemy},
             {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy},
             {(int)ServerPackets.takeDamage, ClientHandle.TakeDamage},
             {(int)ServerPackets.die, ClientHandle.Die},
             {(int)ServerPackets.moveProjectile, ClientHandle.ProjectileMovement},
-            {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile}
+            {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile},
+            {(int)ServerPackets.meleeAttack, ClientHandle.MeleeAttack}
         };
     }
 

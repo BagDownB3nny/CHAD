@@ -6,7 +6,6 @@ public interface ProjectileMovement
 {
 
     void SendMove();
-    void Face();
     void DestroyProjectile();
     void ReceiveDestroyProjectile();
     void ReceiveMovement(Vector2 _position);

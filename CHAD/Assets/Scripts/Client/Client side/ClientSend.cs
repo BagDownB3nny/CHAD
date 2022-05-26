@@ -60,19 +60,18 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    public static void SendGunRotation(Quaternion rotation)
+    public static void RotateRangedWeapon(float _rotation)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.sendGunRotation))
+        using (Packet _packet = new Packet((int)ClientPackets.rotateGun))
         {
-            _packet.Write(rotation);
+            _packet.Write(_rotation);
             SendUDPData(_packet);
         }
     }
 
-    public static void SendAttack(PlayerWeapons _gunType, float _directionRotation) {
-        using (Packet _packet = new Packet((int)ClientPackets.sendAttack)) {
-            _packet.Write((int)_gunType);
-            _packet.Write(_directionRotation);
+    public static void RangedAttack(string _characterRefId) {
+        using (Packet _packet = new Packet((int)ClientPackets.rangedAttack)) {
+            _packet.Write(_characterRefId);
             SendTCPData(_packet);
         }
     }

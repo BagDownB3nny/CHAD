@@ -28,11 +28,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, GameObject> spawners;
     public Dictionary<string, GameObject> players;
     public Dictionary<string, GameObject> enemies;
-    public Dictionary<int, GameObject> projectiles;
-    public Dictionary<int, GameObject> damageDealers;
-
-    //keep track of all projectile spawned
-    public int projectileRefId = 0;
+    public Dictionary<string, GameObject> projectiles;
+    public Dictionary<string, GameObject> damageDealers;
 
     private void Awake()
     {
@@ -41,8 +38,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             spawners = new Dictionary<string, GameObject>();
             players = new Dictionary<string, GameObject>();
-            projectiles = new Dictionary<int, GameObject>();
+            projectiles = new Dictionary<string, GameObject>();
             enemies = new Dictionary<string, GameObject>();
+            damageDealers = new Dictionary<string, GameObject>();
         }
         else if (instance != this)
         {
