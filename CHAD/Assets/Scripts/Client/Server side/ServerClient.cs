@@ -52,6 +52,14 @@ public class ServerClient
             ServerSend.Welcome(id, "Welcome to the server!");
         }
 
+        public void Disconnect() {
+            socket.Close();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
+        }
+
         public void SendData(Packet _packet)
         {
             try
@@ -71,11 +79,10 @@ public class ServerClient
         {
             try
             {
-                Debug.Log("Received some TCP data!");
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
-                    // TODO: disconnect
+                    Server.serverClients[id].Disconnect();
                     return;
                 }
 
@@ -88,13 +95,12 @@ public class ServerClient
             catch (Exception _ex)
             {
                 Debug.Log($"Error receiving TCP data: {_ex}");
-                // TODO: disconnect
+                Server.serverClients[id].Disconnect();
             }
         }
 
         private bool HandleData(byte[] _data)
         {
-            Debug.Log("Handling data");
             int _packetLength = 0;
 
             receivedData.SetBytes(_data);
@@ -153,8 +159,11 @@ public class ServerClient
 
         public void Connect(IPEndPoint _endPoint)
         {
-            Debug.Log("Server UDP connected to client");
             endPoint = _endPoint;
+        }
+
+        public void Disconnect() {
+            endPoint = null;
         }
 
         public void SendData(Packet _packet)
@@ -176,6 +185,12 @@ public class ServerClient
                 }
             });
         }
+    }
+
+    private void Disconnect() {
+        GameManager.instance.Disconnect(id);
+        tcp.Disconnect();
+        udp.Disconnect();
     }
 
     public void SendIntoGame(int _characterType, Vector2 position)
