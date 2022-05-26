@@ -40,11 +40,15 @@ public class ClientHandle : MonoBehaviour
         float projectileDirectionRotation = _packet.ReadFloat();
         Debug.Log("AFFECTED CHARACTER: " + affectedCharacterRefId);
         if (characterType == CharacterType.Player) {
-            GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
-                    .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+            if (GameManager.instance.players.ContainsKey(affectedCharacterRefId)) {
+                GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                        .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+            }
         } else if (characterType == CharacterType.Enemy) {
-            GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
-                    .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+            if (GameManager.instance.enemies.ContainsKey(affectedCharacterRefId)) {
+                GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
+                        .ReceiveAttack(projectileRefId, projectileDirectionRotation);
+            }
         }  
     }
 
