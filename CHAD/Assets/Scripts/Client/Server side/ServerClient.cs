@@ -75,7 +75,7 @@ public class ServerClient
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
-                    // TODO: disconnect
+                    Server.serverClients[id].Disconnect();
                     return;
                 }
 
@@ -88,7 +88,7 @@ public class ServerClient
             catch (Exception _ex)
             {
                 Debug.Log($"Error receiving TCP data: {_ex}");
-                // TODO: disconnect
+                Server.serverClients[id].Disconnect();
             }
         }
 
@@ -138,6 +138,14 @@ public class ServerClient
 
             return false;
         }
+
+        public void Disconnect() {
+            socket.Close();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
+        }
     }
 
     public class ServerUDP
@@ -176,6 +184,16 @@ public class ServerClient
                 }
             });
         }
+
+        public void Disconnect() {
+            endPoint = null;
+        }
+    }
+
+    private void Disconnect() {
+        tcp.Disconnect();
+        udp.Disconnect();
+        GameManager.instance.Disconnect(id);
     }
 
     public void SendIntoGame(int _characterType, Vector2 position)
