@@ -7,7 +7,6 @@ public class WhiteDudeWeapon : EnemyMeleeWeapon
     private GameObject currentDamageDealer;
 
     private void Start() {
-        Attack();
     }
 
     private void Update() {
@@ -17,7 +16,18 @@ public class WhiteDudeWeapon : EnemyMeleeWeapon
     public void Attack() {
         if (timeToNextAttack <= 0 && currentDamageDealer == null) {
             currentDamageDealer = Instantiate(defaultDamageDealer, transform.position, Quaternion.identity, transform);
-            currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration,
+            // Debug.Log("Holder: " + holder);
+            // Debug.Log("DamageDealerStatsManager: " + currentDamageDealer.GetComponent<DamageDealerStatsManager>());
+            // Debug.Log("Attack: " + holder.GetComponent<EnemyStatsManager>().attack);
+            // Debug.Log("Arm pen: " + holder.GetComponent<EnemyStatsManager>().armourPenetration);
+            // Debug.Log("Damage: "+ damage);
+            // Debug.Log("TargetType: " + targetType);
+
+            EnemyStatsManager holderScript = holder.GetComponent<EnemyStatsManager>();
+            Debug.Log(holderScript != null);
+
+            currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(holder, 
+                holder.GetComponent<EnemyStatsManager>().attack, holder.GetComponent<EnemyStatsManager>().armourPenetration,
                     damage, targetType, gameObject);
             timeToNextAttack = attackInterval;
         } else {

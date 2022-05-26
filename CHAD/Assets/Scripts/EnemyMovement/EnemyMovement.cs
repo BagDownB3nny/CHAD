@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class EnemyMovement : MonoBehaviour
 {
     [Header("Movement Parameters")]
-    public float speed;
     public GameObject target;
     protected Vector3 targetSize;
     public Rigidbody2D enemyRb;
@@ -49,10 +48,6 @@ public abstract class EnemyMovement : MonoBehaviour
             }
             UpdateWeaponTarget();
         }
-    }
-
-    public void SetStats(float _speed) {
-        speed = _speed;
     }
 
     //might not be needed since melee enemymovement doesnt need target information for weapon

@@ -110,11 +110,9 @@ public class ServerClient
 
             while (_packetLength > 0 && _packetLength <= receivedData.UnreadLength())
             {
-                Debug.Log("Handling data 2");
                 byte[] _packetBytes = receivedData.ReadBytes(_packetLength);
                 ThreadManager.ExecuteOnMainThread(() =>
                 {
-                    Debug.Log("Handling data 3");
                     using (Packet _packet = new Packet(_packetBytes))
                     {
                         int _packetId = _packet.ReadInt();

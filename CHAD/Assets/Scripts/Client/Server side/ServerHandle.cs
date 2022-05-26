@@ -46,8 +46,8 @@ public class ServerHandle
     public static void ReceiveGunRotation(int _fromClient, Packet _packet)
     {
         Quaternion rotation = _packet.ReadQuaternion();
-        Server.serverClients[_fromClient].player.GetComponent<PlayerStatsManager>().
-            weaponsManagerScipt.currentWeapon.GetComponent<PlayerRangedWeapon>().ReceiveGunRotation(rotation);
+        Server.serverClients[_fromClient].player.GetComponent<PlayerWeaponsManager>()
+            .currentWeapon.GetComponent<PlayerRangedWeapon>().ReceiveGunRotation(rotation);
     }
 
     public static void PlayerAttack(int _fromClient, Packet _packet) {

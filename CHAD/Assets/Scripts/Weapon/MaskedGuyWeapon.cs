@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MaskedGuyWeapon : EnemyRangedWeapon
 {
+
+    void Start()
+    {
+        projectileRotationOffset = -90;
+    }
     void Update()
     {
         if (NetworkManager.gameType == GameType.Server) {
@@ -19,8 +24,7 @@ public class MaskedGuyWeapon : EnemyRangedWeapon
     public void Attack() {
         if (timeToNextShot <= 0) {
             GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity);
-            shot.GetComponent<ProjectileStatsManager>().SetStats(holder, holderAttack, holderArmourPenetration, speed, 
-                    damage, range, targetType, gameObject, transform.position, bulletDirectionVector, projectileRotationOffset);
+            shot.GetComponent<ProjectileStatsManager>().SetStats(holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);
             timeToNextShot = shotInterval;
         } else {
             timeToNextShot -= Time.deltaTime;

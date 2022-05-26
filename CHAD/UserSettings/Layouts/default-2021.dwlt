@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 54
+  controlID: 84
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -92,8 +92,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 198.5
-    height: 462.5
+    width: 272.5
+    height: 503.5
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
@@ -111,23 +111,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 462.5
-    width: 839
-    height: 318.5
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+    y: 503.5
+    width: 1097.5
+    height: 346.5
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
   - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 55
+  controlID: 85
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 40
+  controlID: 86
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,22 +317,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Weapons/Test Rifle
+    - Assets/Scripts/Weapon
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Weapons/Test Rifle
+  - Assets/Scripts/Weapon
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/clement1/Documents/Unity Projects/CHAD/CHAD
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 58740000
-    m_LastClickedID: 29784
-    m_ExpandedIDs: 00000000806100008261000084610000726700009e7b000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 46.5}
+    m_SelectedIDs: 16770000
+    m_LastClickedID: 30486
+    m_ExpandedIDs: 000000008061000082610000766e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000806100008261000084610000
+    m_ExpandedIDs: 000000008061000082610000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -490,7 +490,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 7eadffffc2adffffa6afffffacafffffc0afffffc8afffffd6afffffe2affffff0affffffcafffff04c5ffff48c5ffff2cc7ffff32c7ffff46c7ffff4ec7ffff5cc7ffff68c7ffff76c7ffff82c7ffff64d0ffffa8d0ffffd2d0ffffd8d0ffffead0ffffeed0fffffad0ffff06d1ffff12d1ffff1ed1ffff10d2ffff54d2ffff38d4ffff3ed4ffff52d4ffff5ad4ffff68d4ffff74d4ffff82d4ffff8ed4ffff78edffffbcedffff9eefffffa4efffffb8efffffc0efffffceefffffdaefffffe8effffff4efffff2af6ffff92f7ffffd6f7ffffbaf9ffffc0f9ffffd4f9ffffdcf9ffffeaf9fffff6f9ffff04faffff10faffff2afbfffff08b0000c4920000a09c0000
+      m_ExpandedIDs: 5c70ffff9470ffff7c72ffff8672ffff9e72ffffaa72ffffbc72ffffcc72ffffde72ffffee72ffff8c7dffffc47dffff9c7fffffa27fffffb67fffffbe7fffffcc7fffffd87fffffe67ffffff27fffff00b8ffff38b8ffff1cbaffff22baffff36baffff3ebaffff4cbaffff58baffff66baffff72baffff1cceffff54ceffff38d0ffff3ed0ffff52d0ffff5ad0ffff68d0ffff74d0ffff82d0ffff8ed0ffffccf7ffff04f8ffffe8f9ffffeef9ffff02faffff0afaffff18faffff24faffff32faffff3efaffff24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

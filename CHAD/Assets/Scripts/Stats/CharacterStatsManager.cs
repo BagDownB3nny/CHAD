@@ -28,16 +28,17 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public abstract void UpdateAttackStats();
     public abstract void UpdateTargetStats(GameObject _damager);
 
-    public void TakeDamage(float _damageTaken) {
-        hp -= _damageTaken;
-        //send take damage info to client
+    public override void TakeDamage(float _damageDealt, float _armourPenetration) {
+        float effectiveArmour = armour * (1 - armourPenetration);
+        float damageTaken = _damageDealt * (1 - effectiveArmour/(effectiveArmour + (1/armourEffectiveness)));
+        hp -= damageTaken;
+
         if (gameObject.tag == "Player") {
             ServerSend.TakeDamage((int) CharacterType.Player, characterRefId, _damageTaken);
         } else if (gameObject.tag == "Enemy") {
             ServerSend.TakeDamage((int) CharacterType.Enemy, characterRefId, _damageTaken);
         }
-        
-        //might want to abstract this to a DamageEffect script
+
         if (damageEffect != null) {
             Instantiate(damageEffect, transform.position, Quaternion.identity);
         }

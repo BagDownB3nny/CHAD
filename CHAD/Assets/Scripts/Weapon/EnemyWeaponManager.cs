@@ -17,26 +17,13 @@ public abstract class EnemyWeaponManager : MonoBehaviour
 
     private void Awake() {
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
-        statsManagerScript.UpdateAttackStats();
     }
 
     void Start()
     {
         EquipWeapon();
     }
-
     public abstract void EquipWeapon();
-
-    public void SetAttackStats(float _attack, float _armourPenetration) {
-        attack = _attack;
-        armourPenetration = _armourPenetration;
-        //only relay the updates to the weapon script if there is a weapon
-        if (currentWeapon != null) {
-            UpdateWeaponAttackStats();
-        }
-    }
-
-    public abstract void UpdateWeaponAttackStats();
 
     /*
     //scripts needed

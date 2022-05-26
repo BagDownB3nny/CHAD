@@ -8557,7 +8557,7 @@ MonoBehaviour:
   spawnerId: 0
   localEnemyRefId: 0
   enemyId: 0
-  spawnInterval: 5
+  spawnInterval: 20
   timeToNextSpawn: 0
 --- !u!212 &1386459947
 SpriteRenderer:

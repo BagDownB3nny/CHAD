@@ -15,11 +15,7 @@ public class RangedEnemyMovement : EnemyMovement
     private void Awake() {
         //get the statsmanager and ask for the movement stats
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
-        statsManagerScript.UpdateMovementStats();
-        //Debug.Log("ENEMY: transferred movement stats from stats manager to movement");
-
         weaponManagerScript = gameObject.GetComponent<RangedEnemyWeaponManager>();
-        Debug.Log("ENEMY: set reference to weapon manager script in movement");
     }
 
     private void Update() {
@@ -40,9 +36,9 @@ public class RangedEnemyMovement : EnemyMovement
 
         Face();
         if (distance > stoppingDistance) {
-            enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * speed * Time.deltaTime));
+            enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * statsManagerScript.speed * Time.deltaTime));
         } else if (distance < retreatDistance) {
-            enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * -speed * Time.deltaTime));
+            enemyRb.MovePosition((Vector2) transform.position + ((Vector2) directionVector * -statsManagerScript.speed * Time.deltaTime));
         }
 
         //send position to client

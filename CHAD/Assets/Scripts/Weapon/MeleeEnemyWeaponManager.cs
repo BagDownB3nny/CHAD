@@ -7,14 +7,12 @@ public class MeleeEnemyWeaponManager : EnemyWeaponManager
     //scripts needed
     EnemyMeleeWeapon weaponScript;
 
+
     //instantiate a selected gun
     public override void EquipWeapon() {      
         currentWeapon = Instantiate(defaultWeapon, transform.position, Quaternion.identity, transform);
         weaponScript = currentWeapon.GetComponent<EnemyMeleeWeapon>();
-        UpdateWeaponAttackStats();
-    }
-
-    public override void UpdateWeaponAttackStats() {
-        weaponScript.SetAttackStats(gameObject, attack, armourPenetration);
+        Debug.Log(weaponScript != null);
+        weaponScript.holder = gameObject;
     }
 }

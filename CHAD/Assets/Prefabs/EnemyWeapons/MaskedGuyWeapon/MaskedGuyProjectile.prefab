@@ -148,14 +148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b13c527e8de74955a5d5ce541af6540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  projectileId: 0
   holder: {fileID: 0}
   attack: 0
   armourPenetration: 0
   speed: 0
   damage: 0
   range: 0
-  targetType: 
+  targetType: Player
   origin: {fileID: 0}
   originLocationVector: {x: 0, y: 0, z: 0}
   directionVector: {x: 0, y: 0, z: 0}
@@ -190,9 +190,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d587b6042860c44248d411b32d9854d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  holder: {fileID: 0}
-  attack: 0
-  armourPenetration: 0
-  targetArmour: 0
-  targetArmourEffectiveness: 0
