@@ -76,7 +76,9 @@ public class GameManager : MonoBehaviour
         }
         if (NetworkManager.gameType == GameType.Server)
         {
-            players.Add(id, Instantiate(playerPrefabs[characterType]));
+            GameObject player = Instantiate(playerPrefabs[characterType]);
+            player.GetComponent<PlayerStatsManager>().characterRefId = id;
+            players.Add(id ,player);
         }
     }
 
