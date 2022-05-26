@@ -39,6 +39,10 @@ public class PlayerClient : MonoBehaviour
         udp = new ClientUDP();
     }
 
+    public void SetServerIp(string _serverIp) {
+        ip = _serverIp;
+    }
+
     public void ConnectToServer()
     {
         InitializeClientData();
