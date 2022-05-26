@@ -124,7 +124,6 @@ public class GameManager : MonoBehaviour
 
     public void Disconnect(int playerRefId) {
         ServerSend.DisconnectPlayer(playerRefId);
-        Debug.Log(playerRefId + " has disconnected");
         Destroy(players[playerRefId]);
         players.Remove(playerRefId);
         if (players.Count == 0) {

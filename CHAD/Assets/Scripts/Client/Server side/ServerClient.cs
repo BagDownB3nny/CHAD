@@ -188,9 +188,9 @@ public class ServerClient
     }
 
     private void Disconnect() {
-        GameManager.instance.Disconnect(id);
         tcp.Disconnect();
         udp.Disconnect();
+        GameManager.instance.Disconnect(id);
     }
 
     public void SendIntoGame(int _characterType, Vector2 position)
