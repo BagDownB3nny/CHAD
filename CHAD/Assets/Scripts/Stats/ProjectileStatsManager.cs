@@ -29,6 +29,7 @@ public class ProjectileStatsManager : MonoBehaviour
 
     public void SetStats(string _projectileRefId, GameObject _weaponHolder, RangedWeapon _rangedWeapon, GameObject _origin, 
             Vector3 _projectileDirectionVector, float _rotationOffset) {
+                projectileRefId = _projectileRefId;
                 holder = _weaponHolder;
                 CharacterStatsManager characterStatsManager = _weaponHolder.GetComponent<CharacterStatsManager>();
                 attack = characterStatsManager.attack;

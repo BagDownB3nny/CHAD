@@ -260,7 +260,7 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy},
             {(int)ServerPackets.takeDamage, ClientHandle.TakeDamage},
             {(int)ServerPackets.die, ClientHandle.Die},
-            {(int)ServerPackets.moveProjectile, ClientHandle.ProjectileMovement},
+            {(int)ServerPackets.moveProjectile, ClientHandle.MoveProjectile},
             {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile},
             {(int)ServerPackets.meleeAttack, ClientHandle.MeleeAttack},
             {(int)ServerPackets.rotateRangedWeapon, ClientHandle.RotateRangedWeapon}

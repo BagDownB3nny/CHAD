@@ -58,6 +58,8 @@ public abstract class RangedWeapon : Weapon
     }
 
     public void ReceiveRotateRangedWeapon(float _directionRotation) {
+        directionRotation = _directionRotation;
+        directionVector = Quaternion.Euler(0, 0, directionRotation) * Vector2.right;
         transform.rotation = Quaternion.Euler(0, 0, _directionRotation);
     }
 

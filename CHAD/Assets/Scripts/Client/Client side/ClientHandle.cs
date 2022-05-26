@@ -38,6 +38,7 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         string projectileRefId = _packet.ReadString();
         float projectileDirectionRotation = _packet.ReadFloat();
+        Debug.Log("AFFECTED CHARACTER: " + affectedCharacterRefId);
         if (characterType == CharacterType.Player) {
             GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                 .ReceiveAttack(projectileRefId, projectileDirectionRotation);
@@ -69,13 +70,12 @@ public class ClientHandle : MonoBehaviour
         }
     }
 
-    public static void ProjectileMovement(Packet _packet) {
+    public static void MoveProjectile(Packet _packet) {
         string _projectileRefId = _packet.ReadString();
         Vector2 _position  = _packet.ReadVector2();
         if (GameManager.instance.projectiles.ContainsKey(_projectileRefId) && GameManager.instance.projectiles[_projectileRefId]) {
-            Debug.Log("Moving Projectile:" + _projectileRefId);
             GameManager.instance.projectiles[_projectileRefId].GetComponent<ProjectileMovement>()
-            .ReceiveMovement(_position);
+                    .ReceiveMovement(_position);
         }
     }
 
