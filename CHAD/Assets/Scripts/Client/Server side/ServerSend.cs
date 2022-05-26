@@ -143,4 +143,12 @@ public class ServerSend
         }
     }
 
+    public static void DisconnectPlayer(int _playerRefId) {
+        using (Packet _packet = new Packet((int)ServerPackets.disconnectPlayer))
+        {
+            _packet.Write(_playerRefId);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
 }
