@@ -33,12 +33,6 @@ public class PlayerClient : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        tcp = new ClientTCP();
-        udp = new ClientUDP();
-    }
-
     public void SetServerIp(string _serverIp) {
         ip = _serverIp;
     }
@@ -46,7 +40,8 @@ public class PlayerClient : MonoBehaviour
     public void ConnectToServer()
     {
         InitializeClientData();
-
+        tcp = new ClientTCP();
+        udp = new ClientUDP();
         tcp.Connect();
     }
 

@@ -44,6 +44,7 @@ public class Server
             IPEndPoint _clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
             byte[] _data = udpListener.EndReceive(_result, ref _clientEndPoint);
             udpListener.BeginReceive(UDPReceiveCallback, null);
+            Debug.Log("Received UDP data");
 
             if (_data.Length < 4)
             {
