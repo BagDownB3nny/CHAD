@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             if (receiving)
             {
                 GameObject player = Instantiate(playerPrefabs[characterType]);
-                player.GetComponent<PlayerStatsManager>().playerRefId = id;
+                player.GetComponent<PlayerStatsManager>().characterRefId = id;
                 players.Add(id ,player);
             } else
             {
