@@ -47,9 +47,10 @@ public class ServerHandle
     {
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
-        GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
-                .ReceiveRotateRangedWeapon(directionRotation);
-        
+        if (GameManager.instance.players.ContainsKey(affectedCharacterRefId)) {
+            GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                    .ReceiveRotateRangedWeapon(directionRotation);
+        }
         //relay the weapon rotation from client to all other clients
         ServerSend.RotatePlayerRangedWeapon(_fromClient, affectedCharacterRefId, directionRotation);
     }
