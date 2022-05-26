@@ -18,7 +18,7 @@ public abstract class RangedWeapon : Weapon
     public float bulletDirectionRotation;
 
     public void CalculateDirectionVector() {
-        Vector3 targetPosition = holder.GetComponent<CharacterStatsManager>().targetPosition;
+        Vector3 targetPosition = holder.GetComponent<CharacterStatsManager>().target.transform.position;
         directionVector = (targetPosition - transform.position).normalized;
         directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
     }
@@ -33,7 +33,6 @@ public abstract class RangedWeapon : Weapon
         shot.GetComponent<ProjectileStatsManager>().SetStats(projectileRefId, holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);    
         timeToNextAttack = attackInterval;
         GameManager.instance.projectiles.Add(projectileRefId, shot);
-        Debug.Log(characterStats.characterRefId + "sent" + projectileRefId);
         ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId, 
                 projectileRefId, bulletDirectionRotation);
     }
@@ -57,6 +56,11 @@ public abstract class RangedWeapon : Weapon
             gameObject.transform.localScale = new Vector3(1, -1, 1);
         }
     }
+
+    public void ReceiveRotateRangedWeapon(float _directionRotation) {
+        transform.rotation = Quaternion.Euler(0, 0, _directionRotation);
+    }
+
     public void CalculateBulletDirection() {
         float _accuracy = 10 - accuracy;
         float rand = Random.Range(-_accuracy, _accuracy);

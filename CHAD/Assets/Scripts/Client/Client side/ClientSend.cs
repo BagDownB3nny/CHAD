@@ -60,10 +60,11 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    public static void RotateRangedWeapon(float _rotation)
+    public static void RotateRangedWeapon(string _characterRefId, float _rotation)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.rotateGun))
+        using (Packet _packet = new Packet((int)ClientPackets.rotateRangedWeapon))
         {
+            _packet.Write(_characterRefId);
             _packet.Write(_rotation);
             SendUDPData(_packet);
         }

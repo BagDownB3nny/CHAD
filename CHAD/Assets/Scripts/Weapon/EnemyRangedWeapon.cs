@@ -7,8 +7,12 @@ public abstract class EnemyRangedWeapon : RangedWeapon
     void Update()
     {
         if (NetworkManager.gameType == GameType.Server) {
+
             CalculateDirectionVector();
+            
             PointToTarget();
+            ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType, 
+                    holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
             if (CanAttack()) {
                 Attack();
             }

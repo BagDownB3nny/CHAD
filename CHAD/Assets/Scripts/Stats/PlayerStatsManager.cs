@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
-    [Header("Network Id")]
-    public string playerRefId;
-
     protected override void Awake() {
         base.Awake();
         characterType = CharacterType.Player;

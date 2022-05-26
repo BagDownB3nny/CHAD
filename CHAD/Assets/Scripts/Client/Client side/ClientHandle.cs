@@ -131,4 +131,17 @@ public class ClientHandle : MonoBehaviour
             }
         }
     }
+
+    public static void RotateRangedWeapon(Packet _packet) {
+        CharacterType characterType = (CharacterType) _packet.ReadInt();
+        string affectedCharacterRefId = _packet.ReadString();
+        float directionRotation = _packet.ReadFloat();
+        if (characterType == CharacterType.Player) {
+            GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                    .ReceiveRotateRangedWeapon(directionRotation);
+        } else if (characterType == CharacterType.Enemy) {
+            GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
+                    .ReceiveRotateRangedWeapon(directionRotation);
+        }
+    }
 }

@@ -43,11 +43,16 @@ public class ServerHandle
         Server.serverClients[_fromClient].SendIntoGame(characterType, position);
     }
 
-    public static void RotateGun(int _fromClient, Packet _packet)
+    public static void RotateRangedWeapon(int _fromClient, Packet _packet)
     {
-        float rotation = _packet.ReadFloat();
-        Server.serverClients[_fromClient].player.GetComponent<PlayerWeaponsManager>()
-            .currentWeapon.GetComponent<PlayerRangedWeapon>().ReceiveGunRotation(rotation);
+        string affectedCharacterRefId = _packet.ReadString();
+        float directionRotation = _packet.ReadFloat();
+        Debug.Log("Received rotation from P" + affectedCharacterRefId + " : " + directionRotation);
+        GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                .ReceiveRotateRangedWeapon(directionRotation);
+        
+        //relay the weapon rotation from client to all other clients
+        ServerSend.RotatePlayerRangedWeapon(_fromClient, affectedCharacterRefId, directionRotation);
     }
 
     public static void RangedAttack(int _fromClient, Packet _packet) {
