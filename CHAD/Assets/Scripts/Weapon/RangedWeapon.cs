@@ -33,6 +33,7 @@ public abstract class RangedWeapon : Weapon
         shot.GetComponent<ProjectileStatsManager>().SetStats(projectileRefId, holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);    
         timeToNextAttack = attackInterval;
         GameManager.instance.projectiles.Add(projectileRefId, shot);
+        Debug.Log(characterStats.characterRefId + "sent" + projectileRefId);
         ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId, 
                 projectileRefId, bulletDirectionRotation);
     }

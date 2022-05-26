@@ -34,7 +34,7 @@ public class RangedDirectDamager : DirectDamager
 
     public override void DestroyDamager() {
         //calls DestroyProjectile because a RangedDirectDamager is attached to a projectile
-        ServerSend.DestroyDamageDealer(gameObject.GetComponent<DamageDealerStatsManager>().damageDealerRefId);
+        ServerSend.DestroyProjectile(gameObject.GetComponent<ProjectileStatsManager>().projectileRefId);
         Destroy(gameObject);
     }
 }

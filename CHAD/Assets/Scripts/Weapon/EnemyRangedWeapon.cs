@@ -6,10 +6,12 @@ public abstract class EnemyRangedWeapon : RangedWeapon
 {
     void Update()
     {
-        CalculateDirectionVector();
-        PointToTarget();
-        if (CanAttack()) {
-            Attack();
+        if (NetworkManager.gameType == GameType.Server) {
+            CalculateDirectionVector();
+            PointToTarget();
+            if (CanAttack()) {
+                Attack();
+            }
         }
     }
 }

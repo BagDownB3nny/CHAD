@@ -6,8 +6,10 @@ public abstract class EnemyMeleeWeapon : MeleeWeapon
 {
     void Update()
     {
-        if (CanAttack()) {
-            Attack();
+        if (NetworkManager.gameType == GameType.Server) {
+            if (CanAttack() && currentDamageDealer == null) {
+                Attack();
+            }
         }
     }
 }

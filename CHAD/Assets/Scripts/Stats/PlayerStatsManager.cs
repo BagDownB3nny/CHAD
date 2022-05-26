@@ -9,5 +9,6 @@ public class PlayerStatsManager : CharacterStatsManager
 
     protected override void Awake() {
         base.Awake();
+        characterType = CharacterType.Player;
     }
 }
