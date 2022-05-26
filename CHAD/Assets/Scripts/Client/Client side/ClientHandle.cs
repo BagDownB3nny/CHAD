@@ -30,11 +30,7 @@ public class ClientHandle : MonoBehaviour
     {
         int _affectedPlayerId = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        if (GameManager.instance.players.ContainsKey(_affectedPlayerId)
-                    && GameManager.instance.players[_affectedPlayerId]) {
-            GameManager.instance.players[_affectedPlayerId].GetComponent<PlayerMovement>()
-                    .ReceiveMovement(_position);
-        }
+        GameManager.instance.players[_affectedPlayerId].GetComponent<PlayerMovement>().ReceiveMovement(_position);
     }
 
     public static void PlayerAttack(Packet _packet) {
@@ -71,12 +67,5 @@ public class ClientHandle : MonoBehaviour
         int enemyRefId = _packet.ReadInt();
         Vector2 position = _packet.ReadVector2();
         GameManager.instance.enemies[enemyRefId].transform.position = position;
-    }
-
-    public static void DisconnectPlayer(Packet _packet) {
-        int playerRefId = _packet.ReadInt();
-        Debug.Log("Disconnecting player " + playerRefId);
-        Destroy(GameManager.instance.players[playerRefId]);
-        GameManager.instance.players.Remove(playerRefId);
     }
 }
