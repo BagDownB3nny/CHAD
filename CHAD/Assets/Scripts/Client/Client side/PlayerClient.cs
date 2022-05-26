@@ -16,6 +16,7 @@ public class PlayerClient : MonoBehaviour
     public ClientTCP tcp;
     public ClientUDP udp;
     public GameObject player;
+    public bool isConnected = false;
 
     private delegate void PacketHandler(Packet _packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
@@ -66,6 +67,13 @@ public class PlayerClient : MonoBehaviour
             socket.BeginConnect(instance.ip, instance.port, ConnectCallback, socket);
         }
 
+        public void Disconnect() {
+            instance.Disconnect();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
+        }
         private void ConnectCallback(IAsyncResult _result)
         {
             socket.EndConnect(_result);
@@ -103,7 +111,7 @@ public class PlayerClient : MonoBehaviour
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
-                    // TODO: disconnect
+                    instance.Disconnect();
                     return;
                 }
 
@@ -114,7 +122,7 @@ public class PlayerClient : MonoBehaviour
             }
             catch
             {
-                // TODO: disconnect
+                Disconnect();
             }
         }
 
@@ -213,7 +221,7 @@ public class PlayerClient : MonoBehaviour
 
                 if (_data.Length < 4)
                 {
-                    // TODO: disconnect
+                    instance.Disconnect();
                     return;
                 }
 
@@ -221,7 +229,7 @@ public class PlayerClient : MonoBehaviour
             }
             catch
             {
-                // TODO: disconnect
+                Disconnect();
             }
         }
 
@@ -242,6 +250,26 @@ public class PlayerClient : MonoBehaviour
                 }
             });
         }
+
+        public void Disconnect() {
+            instance.Disconnect();
+
+            endPoint = null;
+            socket = null;
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        Disconnect();
+    }
+
+    public void Disconnect() {
+        if (isConnected) {
+            isConnected = false;
+            tcp.socket.Close();
+            udp.socket.Close();
+        }
     }
 
     private void InitializeClientData()
@@ -255,7 +283,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.moveProjectile, ClientHandle.ProjectileMovement},
             {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile},
             {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack},
-            {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy}
+            {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy},
+            {(int)ServerPackets.disconnectPlayer, ClientHandle.DisconnectPlayer}
         };
     }
 
