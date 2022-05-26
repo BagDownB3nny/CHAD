@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum PlayerWeapons {
     TestRifle = 1
@@ -122,32 +121,4 @@ public class GameManager : MonoBehaviour
 
 #endregion
 
-    public void Disconnect(int playerRefId) {
-        ServerSend.DisconnectPlayer(playerRefId);
-        Debug.Log(playerRefId + " has disconnected");
-        Destroy(players[playerRefId]);
-        players.Remove(playerRefId);
-        if (players.Count == 0) {
-            ResetGame();
-        }
-    }
-
-    public void ResetGame() {
-        foreach(KeyValuePair<int, GameObject> player in players)
-        {
-            Destroy(player.Value);
-        }
-        players.Clear();
-        foreach(KeyValuePair<int, GameObject> enemy in enemies)
-        {
-            Destroy(enemy.Value);
-        }
-        enemies.Clear();
-        foreach(KeyValuePair<int, GameObject> projectile in projectiles)
-        {
-            Destroy(projectile.Value);
-        }
-        projectiles.Clear();
-        SceneManager.LoadScene("Hosting room");
-    }
 }
