@@ -32,7 +32,6 @@ public class PlayerClient : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
     public void SetServerIp(string _serverIp) {
         ip = _serverIp;
     }
