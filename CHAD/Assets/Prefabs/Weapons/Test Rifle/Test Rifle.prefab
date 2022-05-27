@@ -100,7 +100,7 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 10
   targetType: Enemy
-  attackInterval: 0.1
+  attackInterval: 0.02
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 10
