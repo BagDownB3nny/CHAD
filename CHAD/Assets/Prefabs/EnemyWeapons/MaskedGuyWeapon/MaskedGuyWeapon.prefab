@@ -47,7 +47,7 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 10
   targetType: Player
-  attackInterval: 0.2
+  attackInterval: 0.5
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 10

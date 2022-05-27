@@ -6,14 +6,6 @@ public class ProjectileStatsManager : MonoBehaviour
 {
     public string projectileRefId;
 
-    private void Awake() {
-
-    }
-
-    private void Start() {
-
-    }
-
     [Header("Projectile Parameters")]
     public GameObject holder;
     public float attack;
@@ -26,6 +18,25 @@ public class ProjectileStatsManager : MonoBehaviour
     public Vector3 originLocationVector;
     public Vector3 projectileDirectionVector;
     public float rotationOffset;
+
+    [Header("Auto despawn timer")]
+    float timeToDespawn = 3.0f;
+
+    private void Awake() {
+
+    }
+
+    private void Start() {
+    }
+
+    void Update()
+    {
+        if (timeToDespawn <= 0) {
+            gameObject.GetComponent<ProjectileMovement>().ReceiveDestroyProjectile();
+        } else {
+            timeToDespawn -= Time.deltaTime;
+        }
+    }
 
     public void SetStats(string _projectileRefId, GameObject _weaponHolder, RangedWeapon _rangedWeapon, GameObject _origin, 
             Vector3 _projectileDirectionVector, float _rotationOffset) {
