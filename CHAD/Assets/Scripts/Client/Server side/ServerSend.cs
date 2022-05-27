@@ -95,13 +95,25 @@ public class ServerSend
         }
     }
 
-    public static void PlayerAttack(int _affectedPlayerId, int _projectileRefId, PlayerWeapons _gunType, float _directionRotation) {
-        using (Packet _packet = new Packet((int)ServerPackets.playerAttack))
+    public static void RangedAttack(CharacterType _characterType, string _affectedCharacterRefId, 
+            string _projectileRefId, float _projectileDirectionRotation) {
+        using (Packet _packet = new Packet((int)ServerPackets.rangedAttack))
         {
-            _packet.Write(_affectedPlayerId);
+            _packet.Write((int)_characterType);
+            _packet.Write(_affectedCharacterRefId);
             _packet.Write(_projectileRefId);
-            _packet.Write((int) _gunType);
-            _packet.Write(_directionRotation);
+            _packet.Write(_projectileDirectionRotation);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MeleeAttack(CharacterType _characterType, string _affectedCharacterRefId, 
+            string _damageDealerRefId) {
+        using (Packet _packet = new Packet((int)ServerPackets.meleeAttack))
+        {
+            _packet.Write((int)_characterType);
+            _packet.Write(_affectedCharacterRefId);
+            _packet.Write(_damageDealerRefId);
             SendTCPDataToAll(_packet);
         }
     }
@@ -117,19 +129,27 @@ public class ServerSend
         }
     }
 
-    public static void MoveProjectile(int _projectileId, Vector2 _position) {
+    public static void MoveProjectile(string _projectileRefId, Vector2 _position) {
         using (Packet _packet = new Packet((int)ServerPackets.moveProjectile))
         {
-            _packet.Write(_projectileId);
+            _packet.Write(_projectileRefId);
             _packet.Write(_position);
             SendUDPDataToAll(_packet);
         }
     }
 
-    public static void DestroyProjectile(int _projectileRefId) {
+    public static void DestroyProjectile(string _projectileRefId) {
         using (Packet _packet = new Packet((int)ServerPackets.destroyProjectile))
         {
             _packet.Write(_projectileRefId);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void DestroyDamageDealer(string _damageDealerRefId) {
+        using (Packet _packet = new Packet((int)ServerPackets.destroyDamageDealer))
+        {
+            _packet.Write(_damageDealerRefId);
             SendTCPDataToAll(_packet);
         }
     }
@@ -162,11 +182,31 @@ public class ServerSend
         }
     }
 
-    public static void DisconnectPlayer(int _playerRefId) {
+    public static void DisconnectPlayer(string _playerRefId) {
         using (Packet _packet = new Packet((int)ServerPackets.disconnectPlayer))
         {
             _packet.Write(_playerRefId);
             SendTCPDataToAll(_packet);
         }
     }
+    public static void RotateRangedWeapon(CharacterType _characterType, string _characterRefId, float _directionRotation) {
+        using (Packet _packet = new Packet((int)ServerPackets.rotateRangedWeapon))
+        {
+            _packet.Write((int) _characterType);
+            _packet.Write(_characterRefId);
+            _packet.Write(_directionRotation);
+            SendUDPDataToAll(_packet);
+        }
+    }
+
+    public static void RotatePlayerRangedWeapon(int _noSend, string _characterRefId, float _directionRotation) {
+        using (Packet _packet = new Packet((int)ServerPackets.rotateRangedWeapon))
+        {
+            _packet.Write((int) CharacterType.Player);
+            _packet.Write(_characterRefId);
+            _packet.Write(_directionRotation);
+            SendUDPDataToAll(_noSend, _packet);
+        }
+    }
+
 }

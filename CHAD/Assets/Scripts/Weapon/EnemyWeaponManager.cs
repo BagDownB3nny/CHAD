@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class EnemyWeaponManager : MonoBehaviour
 {
     //scripts needed
-    EnemyStatsManager statsManagerScript;
+    public EnemyStatsManager statsManagerScript;
+    public RangedWeapon rangedWeaponScript;
+    public MeleeWeapon meleeWeaponScript;
 
     [Header("Holder Attack Stats")]
     public float attack;
@@ -22,6 +24,11 @@ public abstract class EnemyWeaponManager : MonoBehaviour
     void Start()
     {
         EquipWeapon();
+        if (string.Equals(currentWeapon.tag, "Ranged")) {
+            rangedWeaponScript = currentWeapon.GetComponent<RangedWeapon>();
+        } else if (string.Equals(currentWeapon.tag, "Melee")) {
+            meleeWeaponScript = currentWeapon.GetComponent<MeleeWeapon>();
+        }
     }
     public abstract void EquipWeapon();
 

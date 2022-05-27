@@ -7,8 +7,11 @@ public abstract class CharacterStatsManager : MonoBehaviour
     //scripts needed
     public Death deathScript;
 
-    [Header("Character Reference ID")]
+    [Header("Reference IDs")]
     public string characterRefId;
+    public CharacterType characterType;
+    public int localProjectileRefId;
+    public int localDamageDealerRefId;
 
     [Header("Character Stats")]
     public float hp;
@@ -18,6 +21,8 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public float armourPenetration;
     public float armourEffectiveness;
     public float proficiency;
+    public GameObject target;
+    public Vector3 targetPosition;
     public GameObject damageEffect;
 
     protected virtual void Awake() {

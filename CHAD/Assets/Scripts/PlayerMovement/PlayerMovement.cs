@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (NetworkManager.IsMine(playerStatsManager.playerRefId))
+        if (NetworkManager.IsMine(playerStatsManager.characterRefId))
         {
             SendMovement();
         }

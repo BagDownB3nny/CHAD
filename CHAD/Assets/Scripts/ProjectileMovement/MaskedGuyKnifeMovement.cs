@@ -11,10 +11,9 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
     }
     void Start()
     {
-        Face();
         if (NetworkManager.gameType == GameType.Server) {
             gameObject.GetComponent<Rigidbody2D>().velocity = 
-                (Vector2) statsManagerScript.directionVector * statsManagerScript.speed;
+                (Vector2) statsManagerScript.projectileDirectionVector * statsManagerScript.speed;
         }
     }
 
@@ -37,13 +36,6 @@ public class MaskedGuyKnifeMovement : MonoBehaviour, ProjectileMovement
 
     public void ReceiveMovement(Vector2 _position) {
         transform.position = _position;
-    }
-
-    //point projectile towards target
-    public void Face() {
-        float directionRotation = Mathf.Atan2(statsManagerScript.directionVector.y, 
-            statsManagerScript.directionVector.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, directionRotation + statsManagerScript.rotationOffset);
     }
 
     public void DestroyProjectile() {

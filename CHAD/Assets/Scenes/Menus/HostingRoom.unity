@@ -8660,7 +8660,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5135349388637485356, guid: e9b97cc2990a54537a663b0bb02b68d8, type: 3}
   - {fileID: 331346586343184388, guid: c246bc23d06ab4f8388171f4d4fb6c53, type: 3}
-  projectileRefId: 0
 --- !u!4 &1520199903
 Transform:
   m_ObjectHideFlags: 0

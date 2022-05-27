@@ -28,11 +28,12 @@ public class PlayerWeaponsManager : MonoBehaviour
     public void EquipGun(int gunIndex) {
         //if currently holding a gun, discard it first
         if (currentWeapon != null) {
-            currentWeapon.GetComponent<PlayerRangedWeapon>().Discard();
+            currentWeapon.GetComponent<PlayerRangedWeapon>().Unequip();
         }      
         currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
         weaponScript.holder = gameObject;
+        
     }
 
     //adds gun to empty slot
