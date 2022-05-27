@@ -57,7 +57,8 @@ public class ServerHandle
 
     public static void RangedAttack(int _fromClient, Packet _packet) {
         string characterRefId =  _packet.ReadString();
-        GameManager.instance.players[characterRefId].GetComponent<PlayerWeaponsManager>()
-                .weaponScript.Attack();
+        PlayerRangedWeapon weaponScript = GameManager.instance.players[characterRefId]
+                .GetComponent<PlayerWeaponsManager>().weaponScript;
+        weaponScript.Attack();
     }
 }

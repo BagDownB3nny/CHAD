@@ -24,19 +24,21 @@ public abstract class RangedWeapon : Weapon
     }
 
     public override void Attack() {
-        CharacterStatsManager characterStats = holder.GetComponent<CharacterStatsManager>();
-        CalculateBulletDirection();
-        GameObject shot = Instantiate(projectile, transform.position, 
-                Quaternion.Euler(0f, 0f, bulletDirectionRotation + projectileRotationOffset));
-        string projectileRefId = string.Format("{0}.{1}", characterStats.characterRefId, 
-                characterStats.localProjectileRefId);
-        characterStats.localProjectileRefId++;
-        shot.GetComponent<ProjectileStatsManager>().SetStats(projectileRefId, holder, this, 
-                gameObject, bulletDirectionVector, projectileRotationOffset);
-        GameManager.instance.projectiles.Add(projectileRefId, shot);
-        ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId, 
-                projectileRefId, bulletDirectionRotation);
-        timeToNextAttack = attackInterval;
+        if (CanAttack()) {
+            CharacterStatsManager characterStats = holder.GetComponent<CharacterStatsManager>();
+            CalculateBulletDirection();
+            GameObject shot = Instantiate(projectile, transform.position, 
+                    Quaternion.Euler(0f, 0f, bulletDirectionRotation + projectileRotationOffset));
+            string projectileRefId = string.Format("{0}.{1}", characterStats.characterRefId, 
+                    characterStats.localProjectileRefId);
+            characterStats.localProjectileRefId++;
+            shot.GetComponent<ProjectileStatsManager>().SetStats(projectileRefId, holder, this, 
+                    gameObject, bulletDirectionVector, projectileRotationOffset);
+            GameManager.instance.projectiles.Add(projectileRefId, shot);
+            ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId, 
+                    projectileRefId, bulletDirectionRotation);
+            timeToNextAttack = attackInterval;
+        }
     }
 
     public void ReceiveAttack(string _projectileRefId, float _projectileDirectionRotation) {
@@ -45,6 +47,7 @@ public abstract class RangedWeapon : Weapon
         shot.GetComponent<ProjectileStatsManager>().SetStats(_projectileRefId, 
                 holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);
         GameManager.instance.projectiles.Add(_projectileRefId, shot);
+        timeToNextAttack = attackInterval;
     }
 
     public void PointToTarget() {
