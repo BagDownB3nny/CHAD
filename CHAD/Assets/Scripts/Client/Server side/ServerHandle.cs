@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ServerHandle
 {
+    public static bool IsPresent(Dictionary<string, GameObject> dict, string refId) {
+        return dict.ContainsKey(refId) && dict[refId] != null;
+    }
     public static void WelcomeReceived(int _fromClient, Packet _packet)
     {
         int _clientIdCheck = _packet.ReadInt();
@@ -26,9 +29,10 @@ public class ServerHandle
         {
             _input[i] = _packet.ReadBool();
         }
-        
-        Vector2 _position = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerMovement>().MovePlayer(_input);
-        ServerSend.MovePlayer(_fromClient, _position);
+        if (IsPresent(GameManager.instance.players, _fromClient.ToString())) {
+            Vector2 _position = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerMovement>().MovePlayer(_input);
+            ServerSend.MovePlayer(_fromClient, _position);
+        }
     }
 
     /*
@@ -47,7 +51,7 @@ public class ServerHandle
     {
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
-        if (GameManager.instance.players.ContainsKey(affectedCharacterRefId)) {
+        if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
             GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                     .ReceiveRotateRangedWeapon(directionRotation);
         }
@@ -57,8 +61,9 @@ public class ServerHandle
 
     public static void RangedAttack(int _fromClient, Packet _packet) {
         string characterRefId =  _packet.ReadString();
-        PlayerRangedWeapon weaponScript = GameManager.instance.players[characterRefId]
-                .GetComponent<PlayerWeaponsManager>().weaponScript;
-        weaponScript.Attack();
+        if (IsPresent(GameManager.instance.players, characterRefId)) {
+            GameManager.instance.players[characterRefId].GetComponent<PlayerWeaponsManager>()
+                    .weaponScript.Attack();
+        }
     }
 }
