@@ -20,6 +20,7 @@ public enum ServerPackets
     meleeAttack = 11,
     destroyDamageDealer = 12,
     rotateRangedWeapon = 13,
+    disconnectPlayer = 14
 }
 
 /// <summary>Sent from client to server.</summary>
