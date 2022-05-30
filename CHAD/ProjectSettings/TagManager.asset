@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Collidable
   - Water
   - UI
   - 
@@ -38,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Collidable
+    uniqueID: 4185120347
+    locked: 0
+  - name: Floor
+    uniqueID: 1878484341
+    locked: 0
+  - name: BehindPlayer
+    uniqueID: 2505641553
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: InFrontOfPlayer
+    uniqueID: 3327773097
     locked: 0
