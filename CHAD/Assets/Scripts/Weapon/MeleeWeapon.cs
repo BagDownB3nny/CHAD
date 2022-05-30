@@ -17,9 +17,9 @@ public abstract class MeleeWeapon : Weapon
         currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(damageDealerRefId, holder, 
             holder.GetComponent<EnemyStatsManager>().attack, holder.GetComponent<EnemyStatsManager>().armourPenetration,
                 damage, targetType, gameObject);
-        timeToNextAttack = attackInterval;
         GameManager.instance.damageDealers.Add(damageDealerRefId, currentDamageDealer);
         ServerSend.MeleeAttack(characterStats.characterType, characterStats.characterRefId, damageDealerRefId);
+        timeToNextAttack = attackInterval;
     }
 
     public void ReceiveAttack(string _damageDealerRefId) {
