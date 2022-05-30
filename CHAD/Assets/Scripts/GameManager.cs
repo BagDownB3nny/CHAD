@@ -89,9 +89,9 @@ public class GameManager : MonoBehaviour
     }
 
 #endregion
-        public void Disconnect(int _playerRefId) {
-            Destroy(GameManager.instance.players[_playerRefId.ToString()]);
-            GameManager.instance.players.Remove(_playerRefId.ToString());
-            ServerSend.DisconnectPlayer(_playerRefId.ToString());
-        }
+    public void Disconnect(int _playerRefId) {
+        Destroy(GameManager.instance.players[_playerRefId.ToString()]);
+        GameManager.instance.players.Remove(_playerRefId.ToString());
+        ServerSend.DisconnectPlayer(_playerRefId.ToString());
+    }
 }

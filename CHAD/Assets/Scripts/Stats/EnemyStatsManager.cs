@@ -13,6 +13,12 @@ public class EnemyStatsManager : CharacterStatsManager
         FindTarget();
     }
 
+    private void Update() {
+        if (target == null) {
+            FindTarget();
+        }
+    }
+
     protected void FindTarget() {
         if (target == null) {
             GameObject[] gameObjects;

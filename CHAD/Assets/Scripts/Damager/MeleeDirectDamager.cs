@@ -15,6 +15,7 @@ public class MeleeDirectDamager : DirectDamager
             if (_collider.CompareTag(damageDealerStatsManager.targetType)) {
                 float finalDamage = CalculateDamageDealt(damageDealerStatsManager.damage, damageDealerStatsManager.attack);
                 DealDamage(_collider.gameObject, finalDamage);
+                ServerSend.DestroyDamageDealer(damageDealerStatsManager.damageDealerRefId);
                 DestroyDamager();
             }
         }
