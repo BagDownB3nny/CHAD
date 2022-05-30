@@ -9,7 +9,9 @@ public enum CharacterType {
 }
 
 public enum PlayerWeapons {
-    TestRifle = 1
+    TestRifle = 1,
+    Crossbow = 2,
+    Minigun = 3
 }
 
 public enum Enemies {
@@ -57,7 +59,7 @@ public class GameManager : MonoBehaviour
 #region SpawnPlayer
     public void SpawnWaitingRoomPlayer()
     {
-        SpawnPlayer(PlayerClient.instance.myId.ToString(), 0, new Vector2(0, 0));
+        SpawnPlayer(PlayerClient.instance.myId.ToString(), 1, new Vector2(0, 0));
     }
 
     public void SpawnPlayer(string id, int characterType, Vector2 position, bool receiving = false)
@@ -66,7 +68,9 @@ public class GameManager : MonoBehaviour
         {
             if (receiving)
             {
+                Debug.Log("Spawning player of type " + characterType);
                 GameObject player = Instantiate(playerPrefabs[characterType]);
+                player.GetComponent<PlayerStatsManager>().playerType = characterType;
                 player.GetComponent<PlayerStatsManager>().characterRefId = id;
                 players.Add(id ,player);
             } else
@@ -77,6 +81,8 @@ public class GameManager : MonoBehaviour
         if (NetworkManager.gameType == GameType.Server)
         {
             GameObject player = Instantiate(playerPrefabs[characterType]);
+            Debug.Log("GameManager Server: Spawning character of type " + characterType);
+            player.GetComponent<PlayerStatsManager>().playerType = characterType;
             player.GetComponent<PlayerStatsManager>().characterRefId = id;
             players.Add(id ,player);
         }

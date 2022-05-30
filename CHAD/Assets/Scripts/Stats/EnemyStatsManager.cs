@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemyStatsManager : CharacterStatsManager
 {
     [Header("Network ID")]
-    public string enemyRefId;
-
     public string targetType = "Player";
 
     protected override void Awake() {

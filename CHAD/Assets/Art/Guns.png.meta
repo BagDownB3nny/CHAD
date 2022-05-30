@@ -434,7 +434,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Guns_14
+      name: Crossbow
       rect:
         serializedVersion: 2
         x: 185
@@ -2114,11 +2114,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Guns_94
+      name: Minigun
       rect:
         serializedVersion: 2
         x: 3
-        y: 92
+        y: 91
         width: 25
         height: 8
       alignment: 0
@@ -2284,6 +2284,7 @@ TextureImporter:
       Guns_66: -1608871774
       Guns_89: -1581948770
       Guns_96: 1099381535
+      Crossbow: 1008962963
       Guns_79: -1564789040
       Guns_68: -74281873
       Guns_86: 1714254246
@@ -2329,6 +2330,7 @@ TextureImporter:
       Guns_1: 1333025432
       Guns_6: -1750110664
       Guns_28: -820767885
+      Minigun: -877753155
       Guns_32: -1981285279
       Guns_43: -1587579778
       Guns_62: -1836489375
@@ -2354,12 +2356,10 @@ TextureImporter:
       Guns_77: -816554636
       Guns_84: -1234738844
       Guns_48: 645513688
-      Guns_14: 1008962963
       Guns_78: 1503969099
       Guns_100: 1208184901
       Guns_37: 883485899
       Guns_90: 1721601894
-      Guns_94: -877753155
       Guns_76: -1168922014
       Guns_83: 122726602
       Guns_9: -381305825

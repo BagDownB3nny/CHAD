@@ -204,8 +204,9 @@ public class ServerClient
         {
             if (_client.player != null)
             {
-                ServerSend.SpawnPlayer(id, _client.id, GameManager.instance.players[_client.id.ToString()], 0);
-                //TODO: 0 to be replaced with character type from player script
+                GameObject character = GameManager.instance.players[_client.id.ToString()];
+                Debug.Log("ServerClient telling client to spawn character of type " + character.GetComponent<PlayerStatsManager>().playerType);
+                ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().playerType);
             }
         }
         foreach (ServerClient _client in Server.serverClients.Values)
@@ -214,8 +215,7 @@ public class ServerClient
             {
                 if (_client.id != id)
                 {
-                    ServerSend.SpawnPlayer(_client.id, id, player, 0);
-                    //TODO: 0 to be replaced with character type from player script
+                    ServerSend.SpawnPlayer(_client.id, id, player, _characterType);
                 }
             }
         }

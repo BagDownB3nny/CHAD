@@ -6,7 +6,6 @@ public class RangedEnemyMovement : EnemyMovement
 {
     //scripts needed
     EnemyStatsManager statsManagerScript;
-    RangedEnemyWeaponManager weaponManagerScript;
 
     [Header("Ranged Movement Parameters")]
     public float retreatDistance;
@@ -15,7 +14,6 @@ public class RangedEnemyMovement : EnemyMovement
     private void Awake() {
         //get the statsmanager and ask for the movement stats
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
-        weaponManagerScript = gameObject.GetComponent<RangedEnemyWeaponManager>();
     }
 
     private void Update() {

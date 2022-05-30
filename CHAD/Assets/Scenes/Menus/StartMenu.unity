@@ -428,6 +428,7 @@ MonoBehaviour:
   port: 26950
   myId: 0
   player: {fileID: 0}
+  isConnected: 0
 --- !u!4 &327512738
 Transform:
   m_ObjectHideFlags: 0
