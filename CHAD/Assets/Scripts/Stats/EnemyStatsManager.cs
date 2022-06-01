@@ -24,7 +24,8 @@ public class EnemyStatsManager : CharacterStatsManager
             GameObject[] gameObjects;
             gameObjects = GameObject.FindGameObjectsWithTag(targetType);
             if (gameObjects.Length > 0) {
-                int rand = Random.Range(0, gameObjects.Length - 1);
+                int rand = Random.Range(0, gameObjects.Length);
+                Debug.Log("picking player " + rand);
                 target = gameObjects[rand];
             }
         }
