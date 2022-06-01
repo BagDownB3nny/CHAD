@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Spawning player of type " + characterType);
                 GameObject player = Instantiate(playerPrefabs[characterType]);
-                player.GetComponent<PlayerStatsManager>().playerType = characterType;
+                player.GetComponent<PlayerStatsManager>().characterClass = characterType;
                 player.GetComponent<PlayerStatsManager>().characterRefId = id;
                 players.Add(id ,player);
             } else
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject player = Instantiate(playerPrefabs[characterType]);
             Debug.Log("GameManager Server: Spawning character of type " + characterType);
-            player.GetComponent<PlayerStatsManager>().playerType = characterType;
+            player.GetComponent<PlayerStatsManager>().characterClass = characterType;
             player.GetComponent<PlayerStatsManager>().characterRefId = id;
             players.Add(id ,player);
         }
