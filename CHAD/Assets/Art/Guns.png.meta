@@ -458,8 +458,8 @@ TextureImporter:
       name: Guns_15
       rect:
         serializedVersion: 2
-        x: 185
-        y: 110
+        x: 146
+        y: 111
         width: 27
         height: 80
       alignment: 0
@@ -581,13 +581,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Guns_21
+      name: toxicgun
       rect:
         serializedVersion: 2
-        x: 269
+        x: 272
         y: 156
-        width: 23
-        height: 34
+        width: 20
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2289,6 +2289,7 @@ TextureImporter:
       Guns_68: -74281873
       Guns_86: 1714254246
       Guns_60: 1136466841
+      toxicgun: -188017837
       Rifle1: -421562448
       Guns_54: 894902154
       Guns_73: 2116412583
@@ -2320,7 +2321,6 @@ TextureImporter:
       Guns_19: -1698052517
       Guns_7: -1193094291
       Guns_85: 1983400986
-      Guns_21: -188017837
       Guns_11: 367749366
       Guns_87: -860847543
       Guns_2: 1707751908

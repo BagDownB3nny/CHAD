@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 #region SpawnPlayer
     public void SpawnWaitingRoomPlayer()
     {
-        SpawnPlayer(PlayerClient.instance.myId.ToString(), 1, new Vector2(0, 0));
+        SpawnPlayer(PlayerClient.instance.myId.ToString(), 2, new Vector2(0, 0));
     }
 
     public void SpawnPlayer(string id, int characterClass, Vector2 position, bool receiving = false)
