@@ -10,20 +10,17 @@ public class PlayerClassSelect : MonoBehaviour
  
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
-            Debug.Log(playerClass + " colliding");
             colliding = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "Player") {
-            Debug.Log(playerClass + " no longer colliding");
             colliding = false;
         }
     }
     
     private void Update() {
-        if(colliding && Input.GetKeyDown(KeyCode.E) && NetworkManager.gameType == GameType.Client) {
-            Debug.Log("Sending class change to " + playerClass);
+        if(colliding && Input.GetKeyDown(KeyCode.Space) && NetworkManager.gameType == GameType.Client) {
             GameManager.instance.SendChangeClass(playerClass);
         }
     }

@@ -196,21 +196,17 @@ public class ServerClient
         GameManager.instance.RemovePlayer(id);
     }
 
-    public void SendIntoGame(int _characterType, Vector2 position)
+    public void SendIntoGame(int _characterType, Vector2 _position)
     {
-        GameManager.instance.SpawnPlayer(id.ToString(), _characterType, position);
+        GameManager.instance.SpawnPlayer(id.ToString(), _characterType, _position);
         player = GameManager.instance.players[id.ToString()];
         foreach (ServerClient _client in Server.serverClients.Values)
         {
             if (_client.player != null)
             {
                 GameObject character = GameManager.instance.players[_client.id.ToString()];
-<<<<<<< HEAD
                 Debug.Log("ServerClient telling client to spawn character of type " + character.GetComponent<PlayerStatsManager>().playerClass);
                 ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().playerClass);
-=======
-                ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().characterClass);
->>>>>>> origin/clement_server
             }
         }
         foreach (ServerClient _client in Server.serverClients.Values)
