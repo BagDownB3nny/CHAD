@@ -205,8 +205,12 @@ public class ServerClient
             if (_client.player != null)
             {
                 GameObject character = GameManager.instance.players[_client.id.ToString()];
+<<<<<<< HEAD
                 Debug.Log("ServerClient telling client to spawn character of type " + character.GetComponent<PlayerStatsManager>().playerClass);
                 ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().playerClass);
+=======
+                ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().characterClass);
+>>>>>>> origin/clement_server
             }
         }
         foreach (ServerClient _client in Server.serverClients.Values)
