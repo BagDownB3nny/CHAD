@@ -144,11 +144,12 @@ public class ClientHandle : MonoBehaviour
         }
     }
 
-    public static void DisconnectPlayer(Packet _packet) {
+    public static void RemovePlayer(Packet _packet) {
         string characterRefId = _packet.ReadString();
         Destroy(GameManager.instance.players[characterRefId]);
         GameManager.instance.players.Remove(characterRefId);
     }
+
     public static void RotateRangedWeapon(Packet _packet) {
         CharacterType characterType = (CharacterType) _packet.ReadInt();
         string affectedCharacterRefId = _packet.ReadString();
@@ -164,5 +165,18 @@ public class ClientHandle : MonoBehaviour
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
         }
+    }
+
+    public static void ReadyStatus(Packet _packet) {
+        int playerRefId = _packet.ReadInt();
+        bool readyStatus = _packet.ReadBool();
+        LobbyManager.instance.ReceiveReadyStatus(playerRefId, readyStatus);
+    }
+
+    public static void ChangeClass(Packet _packet) {
+        int playerRefId = _packet.ReadInt();
+        int playerClass = _packet.ReadInt();
+        Vector2 playerPosition = _packet.ReadVector2();
+        GameManager.instance.ReceiveChangeClass(playerRefId, playerClass, playerPosition);
     }
 }

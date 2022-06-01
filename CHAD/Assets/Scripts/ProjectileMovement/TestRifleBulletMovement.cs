@@ -2,18 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
+public class TestRifleBulletMovement : ProjectileMovement
 {
-    //scripts needed
-    ProjectileStatsManager projectileStatsManager;
-
-    [Header("Projectile Parameters")]
-    public float rotationOffset = -90;
-    
-    private void Awake() {
-        projectileStatsManager = gameObject.GetComponent<ProjectileStatsManager>();
-    }
-
     void Start()
     {
         if (NetworkManager.gameType == GameType.Server) {
@@ -33,22 +23,5 @@ public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
                 SendMove();
             }
         }
-    }
-
-    public void SendMove() {
-        ServerSend.MoveProjectile(projectileStatsManager.projectileRefId, transform.position);
-    }
-
-    public void ReceiveMovement(Vector2 _position) {
-        transform.position = _position;
-    }
-
-    public void DestroyProjectile() {
-        ServerSend.DestroyProjectile(projectileStatsManager.projectileRefId);
-        Destroy(gameObject);
-    }
-
-    public void ReceiveDestroyProjectile() {
-        Destroy(gameObject);
     }
 }

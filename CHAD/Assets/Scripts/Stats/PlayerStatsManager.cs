@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
-    public int characterClass;
+    public int playerClass;
     protected override void Awake() {
         base.Awake();
         characterType = CharacterType.Player;

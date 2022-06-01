@@ -66,4 +66,15 @@ public class ServerHandle
                     .weaponScript.Attack();
         }
     }
+
+    public static void ReadyStatus(int _fromClient, Packet _packet) {
+        int playerRefId = _packet.ReadInt();
+        bool readyStatus = _packet.ReadBool();
+        LobbyManager.instance.ReadyStatus(playerRefId, readyStatus);
+    }
+
+    public static void ChangeClass(int _fromClient, Packet _packet) {
+        int playerClass = _packet.ReadInt();
+        GameManager.instance.ChangeClass(_fromClient, playerClass);
+    }
 }

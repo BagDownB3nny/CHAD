@@ -286,8 +286,10 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile},
             {(int)ServerPackets.meleeAttack, ClientHandle.MeleeAttack},
             {(int)ServerPackets.rotateRangedWeapon, ClientHandle.RotateRangedWeapon},
-            {(int)ServerPackets.disconnectPlayer, ClientHandle.DisconnectPlayer},
-            {(int)ServerPackets.destroyDamageDealer, ClientHandle.DestroyDamageDealer}
+            {(int)ServerPackets.removePlayer, ClientHandle.RemovePlayer},
+            {(int)ServerPackets.destroyDamageDealer, ClientHandle.DestroyDamageDealer},
+            {(int)ServerPackets.readyStatus, ClientHandle.ReadyStatus},
+            {(int)ServerPackets.changeClass, ClientHandle.ChangeClass}
         };
     }
 

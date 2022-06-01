@@ -20,7 +20,11 @@ public enum ServerPackets
     meleeAttack = 11,
     destroyDamageDealer = 12,
     rotateRangedWeapon = 13,
-    disconnectPlayer = 14
+    removePlayer = 14,
+    readyStatus = 15,
+    changeClass = 16,
+
+
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -31,6 +35,9 @@ public enum ClientPackets
     movePlayer = 3,
     rangedAttack = 4,
     rotateRangedWeapon = 5,
+    readyStatus = 6,
+    changeClass = 7,
+
 }
 
 public class Packet : IDisposable
