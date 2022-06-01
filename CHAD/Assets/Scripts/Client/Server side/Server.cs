@@ -121,7 +121,9 @@ public class Server
                 {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer},
                 {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer},
                 {(int)ClientPackets.rotateRangedWeapon, ServerHandle.RotateRangedWeapon},
-                {(int)ClientPackets.rangedAttack, ServerHandle.RangedAttack}
+                {(int)ClientPackets.rangedAttack, ServerHandle.RangedAttack},
+                {(int)ClientPackets.readyStatus, ServerHandle.ReadyStatus},
+                {(int)ClientPackets.changeClass, ServerHandle.ChangeClass}
             };
     }
 }

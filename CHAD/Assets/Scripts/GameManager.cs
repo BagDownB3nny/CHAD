@@ -8,6 +8,14 @@ public enum CharacterType {
     Enemy = 1
 }
 
+public enum PlayerClasses {
+    Captain = 0,
+    Medic = 1,
+    Bastion = 2,
+    Assassin = 3,
+    Engineer = 4
+}
+
 public enum PlayerWeapons {
     TestRifle = 1,
     Crossbow = 2,
@@ -29,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<string, GameObject> spawners;
     public Dictionary<string, GameObject> players;
+    public Dictionary<string, PlayerClasses> playerClasses;
     public Dictionary<string, GameObject> enemies;
     public Dictionary<string, GameObject> projectiles;
     public Dictionary<string, GameObject> damageDealers;
@@ -40,6 +49,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             spawners = new Dictionary<string, GameObject>();
             players = new Dictionary<string, GameObject>();
+            playerClasses = new Dictionary<string, PlayerClasses>();
             projectiles = new Dictionary<string, GameObject>();
             enemies = new Dictionary<string, GameObject>();
             damageDealers = new Dictionary<string, GameObject>();
@@ -62,37 +72,51 @@ public class GameManager : MonoBehaviour
         SpawnPlayer(PlayerClient.instance.myId.ToString(), 2, new Vector2(0, 0));
     }
 
-    public void SpawnPlayer(string id, int characterClass, Vector2 position, bool receiving = false)
+    public void SpawnPlayer(string _playerRefId, int _playerClass, Vector2 _position, bool _receiving = false)
     {
         if (NetworkManager.gameType == GameType.Client)
         {
-            if (receiving)
+            if (_receiving)
             {
-                Debug.Log("Spawning player of type " + characterClass);
-                GameObject player = Instantiate(playerPrefabs[characterClass]);
-                player.GetComponent<PlayerStatsManager>().characterClass = characterClass;
-                player.GetComponent<PlayerStatsManager>().characterRefId = id;
-                players.Add(id ,player);
+                Debug.Log("Spawning player of type " + _playerClass);
+                GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
+                player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
+                player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
+                players.Add(_playerRefId ,player);
             } else
             {
-                ClientSend.SpawnPlayer(characterClass, position);
-                Debug.Log("ClientSending character of type" + characterClass);
+                ClientSend.SpawnPlayer(_playerClass, _position);
             }
         }
         if (NetworkManager.gameType == GameType.Server)
         {
-            GameObject player = Instantiate(playerPrefabs[characterClass]);
-            Debug.Log("GameManager Server: Spawning character of type " + characterClass);
-            player.GetComponent<PlayerStatsManager>().characterClass = characterClass;
-            player.GetComponent<PlayerStatsManager>().characterRefId = id;
-            players.Add(id ,player);
+            GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
+            Debug.Log("GameManager Server: Spawning character of type " + (PlayerClasses) _playerClass);
+            player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
+            player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
+            players.Add(_playerRefId ,player);
         }
     }
 
 #endregion
-    public void Disconnect(int _playerRefId) {
+    public void RemovePlayer(int _playerRefId) {
         Destroy(GameManager.instance.players[_playerRefId.ToString()]);
         GameManager.instance.players.Remove(_playerRefId.ToString());
-        ServerSend.DisconnectPlayer(_playerRefId.ToString());
+        ServerSend.RemovePlayer(_playerRefId.ToString());
+    }
+
+    public void ChangeClass(int _playerRefId, int _playerClass) {
+        Vector2 playerPosition = GameManager.instance.players[_playerRefId.ToString()].transform.position;
+        RemovePlayer(_playerRefId);
+        SpawnPlayer(_playerRefId.ToString(), _playerClass, playerPosition);
+        ServerSend.ChangeClass(_playerRefId, _playerClass, playerPosition);
+    }
+
+    public void SendChangeClass(PlayerClasses _playerClass) {
+        ClientSend.ChangeClass((int) _playerClass);
+    }
+
+    public void ReceiveChangeClass(int _playerRefId, int _playerClass, Vector2 _playerPosition) {
+        SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
     }
 }
