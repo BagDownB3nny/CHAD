@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab893709e0e042b2b8e2801fa8c3ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostRoomScreen: HostingRoom
+  hostRoomScreen: WaitingRoom
   joinRoomScreen: EnterRoomName
   backScreen: StartMenu
 --- !u!4 &492927060
