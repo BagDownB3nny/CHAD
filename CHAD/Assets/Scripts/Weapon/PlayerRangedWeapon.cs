@@ -17,14 +17,15 @@ public abstract class PlayerRangedWeapon : RangedWeapon
             ClientSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterRefId
                     , directionRotation);
 
-            if (Input.GetMouseButton(0)) {
-                if (CanAttack()) {
-                    SendAttack();
-                }
-            }  
+            if (Input.GetMouseButton(0) && CanAttack()) {
+                SendAttack();
+            }
         }
+        timeToNextAttack -= Time.deltaTime;
     }
+
     public void SendAttack() {
+        Debug.Log("Sending attack");
         ClientSend.RangedAttack(holder.GetComponent<CharacterStatsManager>().characterRefId);
     }
 }

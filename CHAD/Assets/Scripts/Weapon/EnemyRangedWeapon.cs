@@ -15,6 +15,8 @@ public abstract class EnemyRangedWeapon : RangedWeapon
                     holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
             if (CanAttack()) {
                 Attack();
+            } else {
+                timeToNextAttack -= Time.deltaTime;
             }
         }
     }

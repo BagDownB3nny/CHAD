@@ -8657,7 +8657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs:
   - {fileID: 8048562091491450911, guid: 3adf5a1f85660400ba10fa5e4f686b05, type: 3}
-  - {fileID: 5576923999570968250, guid: 83da18f9e05a2443e88f7e0125246554, type: 3}
+  - {fileID: 5482566453555046230, guid: 19adf7dc1e23a4280a49cdfab2ed44f7, type: 3}
   enemyPrefabs:
   - {fileID: 5135349388637485356, guid: e9b97cc2990a54537a663b0bb02b68d8, type: 3}
   - {fileID: 331346586343184388, guid: c246bc23d06ab4f8388171f4d4fb6c53, type: 3}

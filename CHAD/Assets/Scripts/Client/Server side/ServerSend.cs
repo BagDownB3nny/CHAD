@@ -79,8 +79,9 @@ public class ServerSend
         using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
         {
             _packet.Write(_affectedPlayerId);
-            _packet.Write(_player.transform.position);
+            _packet.Write((Vector2)_player.transform.position);
             _packet.Write(characterType);
+            Debug.Log("Server send packet: " + _affectedPlayerId + _player.transform.position + characterType);
             SendTCPData(_toClient, _packet);
         }
     }

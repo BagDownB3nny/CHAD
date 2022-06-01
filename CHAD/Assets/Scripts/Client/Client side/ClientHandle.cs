@@ -26,6 +26,7 @@ public class ClientHandle : MonoBehaviour
         int playerIdReceived = _packet.ReadInt();
         Vector2 position = _packet.ReadVector2();
         int characterType = _packet.ReadInt();
+        Debug.Log("ClientHandle packet: " + playerIdReceived + position + characterType);
         GameManager.instance.SpawnPlayer(playerIdReceived.ToString(), characterType, position, true);
     }
 

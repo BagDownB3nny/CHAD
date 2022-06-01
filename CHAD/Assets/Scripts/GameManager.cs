@@ -62,27 +62,28 @@ public class GameManager : MonoBehaviour
         SpawnPlayer(PlayerClient.instance.myId.ToString(), 1, new Vector2(0, 0));
     }
 
-    public void SpawnPlayer(string id, int characterType, Vector2 position, bool receiving = false)
+    public void SpawnPlayer(string id, int characterClass, Vector2 position, bool receiving = false)
     {
         if (NetworkManager.gameType == GameType.Client)
         {
             if (receiving)
             {
-                Debug.Log("Spawning player of type " + characterType);
-                GameObject player = Instantiate(playerPrefabs[characterType]);
-                player.GetComponent<PlayerStatsManager>().characterClass = characterType;
+                Debug.Log("Spawning player of type " + characterClass);
+                GameObject player = Instantiate(playerPrefabs[characterClass]);
+                player.GetComponent<PlayerStatsManager>().characterClass = characterClass;
                 player.GetComponent<PlayerStatsManager>().characterRefId = id;
                 players.Add(id ,player);
             } else
             {
-                ClientSend.SpawnPlayer(characterType, position);
+                ClientSend.SpawnPlayer(characterClass, position);
+                Debug.Log("ClientSending character of type" + characterClass);
             }
         }
         if (NetworkManager.gameType == GameType.Server)
         {
-            GameObject player = Instantiate(playerPrefabs[characterType]);
-            Debug.Log("GameManager Server: Spawning character of type " + characterType);
-            player.GetComponent<PlayerStatsManager>().characterClass = characterType;
+            GameObject player = Instantiate(playerPrefabs[characterClass]);
+            Debug.Log("GameManager Server: Spawning character of type " + characterClass);
+            player.GetComponent<PlayerStatsManager>().characterClass = characterClass;
             player.GetComponent<PlayerStatsManager>().characterRefId = id;
             players.Add(id ,player);
         }
