@@ -79,7 +79,7 @@ public class ServerSend
         using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
         {
             _packet.Write(_affectedPlayerId);
-            _packet.Write(_player.transform.position);
+            _packet.Write((Vector2) _player.transform.position);
             _packet.Write(characterType);
             SendTCPData(_toClient, _packet);
         }
@@ -182,8 +182,8 @@ public class ServerSend
         }
     }
 
-    public static void DisconnectPlayer(string _playerRefId) {
-        using (Packet _packet = new Packet((int)ServerPackets.disconnectPlayer))
+    public static void RemovePlayer(string _playerRefId) {
+        using (Packet _packet = new Packet((int)ServerPackets.removePlayer))
         {
             _packet.Write(_playerRefId);
             SendTCPDataToAll(_packet);
@@ -209,4 +209,22 @@ public class ServerSend
         }
     }
 
+    public static void ReadyStatus(int _playerRefId, bool _readyStatus) {
+        using (Packet _packet = new Packet((int)ServerPackets.readyStatus))
+        {
+            _packet.Write(_playerRefId);
+            _packet.Write(_readyStatus);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void ChangeClass(int _playerRefId, int _playerClass, Vector2 _playerPosition) {
+        using (Packet _packet = new Packet((int)ServerPackets.changeClass))
+        {
+            _packet.Write(_playerRefId);
+            _packet.Write(_playerClass);
+            _packet.Write(_playerPosition);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

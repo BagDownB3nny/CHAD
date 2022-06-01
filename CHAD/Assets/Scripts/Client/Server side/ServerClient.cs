@@ -193,7 +193,7 @@ public class ServerClient
     private void Disconnect() {
         tcp.Disconnect();
         udp.Disconnect();
-        GameManager.instance.Disconnect(id);
+        GameManager.instance.RemovePlayer(id);
     }
 
     public void SendIntoGame(int _characterType, Vector2 position)
@@ -205,8 +205,8 @@ public class ServerClient
             if (_client.player != null)
             {
                 GameObject character = GameManager.instance.players[_client.id.ToString()];
-                Debug.Log("ServerClient telling client to spawn character of type " + character.GetComponent<PlayerStatsManager>().characterClass);
-                ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().characterClass);
+                Debug.Log("ServerClient telling client to spawn character of type " + character.GetComponent<PlayerStatsManager>().playerClass);
+                ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().playerClass);
             }
         }
         foreach (ServerClient _client in Server.serverClients.Values)

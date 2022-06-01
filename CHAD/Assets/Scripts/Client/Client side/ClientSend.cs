@@ -76,4 +76,19 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void ReadyStatus(int _playerRefId, bool _readyStatus) {
+        using (Packet _packet = new Packet((int)ClientPackets.readyStatus)) {
+            _packet.Write(_playerRefId);
+            _packet.Write(_readyStatus);
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void ChangeClass(int _playerClass) {
+        using (Packet _packet = new Packet((int)ClientPackets.changeClass)) {
+            _packet.Write(_playerClass);
+            SendTCPData(_packet);
+        }
+    }
 }
