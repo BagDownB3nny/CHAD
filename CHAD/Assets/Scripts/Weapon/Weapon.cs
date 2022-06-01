@@ -26,7 +26,6 @@ public abstract class Weapon : MonoBehaviour
         if (timeToNextAttack <= 0) {
             return true;
         } else {
-            timeToNextAttack -= Time.deltaTime;
             return false;
         }
     }
