@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Ranged
   - Melee
+  - Tile
+  - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
