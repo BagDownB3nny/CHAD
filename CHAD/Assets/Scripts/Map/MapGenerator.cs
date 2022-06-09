@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using System;
 
 public enum Tiles {
@@ -19,16 +20,21 @@ public enum Tiles {
 public class MapGenerator : MonoBehaviour {
 
     [Header("Dimensions")]
-	public int width;
-	public int height;
+	public int width = 50;
+	public int height = 50;
+
+	[Header("Map Customisation")]
+	[Range(0,100)]
+	public int fillPercent = 49;
+    public int smoothing = 3;
+	public int minOuterRegionSize = 50;
+	public int minInnerRegionSize = 50;
 
     [Header("Seed")]
 	public string seed;
 	public bool useRandomSeed;
 
-	[Range(0,100)]
-	public int fillPercent;
-    public int smoothing;
+	
 
     [Header("Tiles")]
     public GameObject[] outerFloor;
@@ -43,6 +49,7 @@ public class MapGenerator : MonoBehaviour {
     public GameObject[] rightWall;
 
 	int[,] map;
+	int[,] visited;
 
 	void Start() {
 		GenerateMap();
@@ -62,9 +69,32 @@ public class MapGenerator : MonoBehaviour {
 		for (int i = 0; i < smoothing; i ++) {
 			SmoothMap();
 		}
+
+		burstSmallRegions();
+
         DrawMap();
 	}
 
+	void burstSmallRegions() {
+		List<List<Tile>> outerRegions = GetRegions(-1);
+		List<List<Tile>> innerRegions = GetRegions (0);
+
+		foreach (List<Tile> outerRegion in outerRegions) {
+			if (outerRegion.Count < minOuterRegionSize) {
+				foreach (Tile tile in outerRegion) {
+					map[tile.x,tile.y] = (int) Tiles.floor;
+				}
+			}
+		}
+		
+		foreach (List<Tile> innerRegion in innerRegions) {
+			if (innerRegion.Count < minInnerRegionSize) {
+				foreach (Tile tile in innerRegion) {
+					map[tile.x,tile.y] = (int) Tiles.outerFloor;
+				}
+			}
+		}
+	}
 
 	void RandomFillMap() {
 		if (useRandomSeed) {
@@ -76,10 +106,10 @@ public class MapGenerator : MonoBehaviour {
 		for (int x = 0; x < width; x ++) {
 			for (int y = 0; y < height; y ++) {
 				if (x == 0 || x == width-1 || y == 0 || y == height -1) {
-					map[x,y] = (int) Tiles.leftWall;
+					map[x,y] = (int) Tiles.outerFloor;
 				}
 				else {
-					map[x,y] = (rng.Next(0,100) < fillPercent)? (int) Tiles.leftWall: (int) Tiles.floor;
+					map[x,y] = (rng.Next(0,100) < fillPercent)? (int) Tiles.outerFloor: (int) Tiles.floor;
 				}
 			}
 		}
@@ -88,10 +118,10 @@ public class MapGenerator : MonoBehaviour {
 	void SmoothMap() {
 		for (int x = 0; x < width; x ++) {
 			for (int y = 0; y < height; y ++) {
-				int neighbourWallTiles = GetSurroundingWallCount(x,y);
+				int neighbourWallTiles = GetSurroundingOuterCount(x,y);
 
 				if (neighbourWallTiles > 4)
-					map[x,y] = (int) Tiles.leftWall;
+					map[x,y] = (int) Tiles.outerFloor;
 				else if (neighbourWallTiles < 4)
 					map[x,y] = (int) Tiles.floor;
 
@@ -99,15 +129,15 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-	int GetSurroundingWallCount(int tileX, int tileY) {
+	int GetSurroundingOuterCount(int tileX, int tileY) {
 		int wallCount = 0;
 		for (int neighbourX = tileX - 1; neighbourX <= tileX + 1; neighbourX ++) {
 			for (int neighbourY = tileY - 1; neighbourY <= tileY + 1; neighbourY ++) {
                 //if within the map
-				if (neighbourX >= 0 && neighbourX < width && neighbourY >= 0 && neighbourY < height) {
+				if (IsWithinMap(neighbourX, neighbourY)) {
                     //if not the tile itself
 					if (neighbourX != tileX || neighbourY != tileY) {
-                        if (map[neighbourX, neighbourY] >= 1 && map[neighbourX, neighbourY] <= 8) {
+                        if (map[neighbourX, neighbourY] == -1) {
                             wallCount += 1;
                         }
 					}
@@ -118,6 +148,53 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 		return wallCount;
+	}
+
+    List<List<Tile>> GetRegions(int tileType) {
+		List<List<Tile>> regions = new List<List<Tile>>();
+		visited = new int[width,height];
+
+		for (int x = 0; x < width; x ++) {
+			for (int y = 0; y < height; y ++) {
+				if (visited[x,y] == 0 && map[x,y] == tileType) {
+					List<Tile> newRegion = GetRegionTiles(x,y);
+					regions.Add(newRegion);
+				}
+			}
+		}
+
+		return regions;
+	}
+
+	List<Tile> GetRegionTiles(int originX, int originY) {
+		List<Tile> region = new List<Tile>();
+		int tileType = map[originX, originY];
+
+		Queue<Tile> queue = new Queue<Tile>();
+		queue.Enqueue (new Tile(originX, originY));
+		visited[originX, originY] = 1;
+
+		while (queue.Count > 0) {
+			Tile tile = queue.Dequeue();
+			region.Add(tile);
+
+			for (int x = tile.x - 1; x <= tile.x + 1; x++) {
+				for (int y = tile.y - 1; y <= tile.y + 1; y++) {
+					if (IsWithinMap(x,y) && (y == tile.y || x == tile.x)) {
+						if (visited[x,y] == 0 && map[x,y] == tileType) {
+							visited[x,y] = 1;
+							queue.Enqueue(new Tile(x,y));
+						}
+					}
+				}
+			}
+		}
+
+		return region;
+	}
+
+    bool IsWithinMap(int x, int y) {
+		return x >= 0 && x < width && y >= 0 && y < height;
 	}
 
 
@@ -186,4 +263,14 @@ public class MapGenerator : MonoBehaviour {
             Destroy(wall);
         }
     }
+
+    struct Tile {
+		public int x;
+		public int y;
+
+		public Tile(int _x, int _y) {
+			x = _x;
+			y = _y;
+		}
+	}
 }

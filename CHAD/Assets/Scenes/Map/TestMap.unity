@@ -154,6 +154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 50
   height: 50
+  seed: test
+  useRandomSeed: 1
+  fillPercent: 49
+  smoothing: 3
   outerFloor:
   - {fileID: 5974402530829977089, guid: 73b488778c11d4f7daac7f4cc2ef5fef, type: 3}
   floor:
@@ -174,9 +178,6 @@ MonoBehaviour:
   - {fileID: 5974402530829977089, guid: d710f0e2839604fefa54f6639ede92c0, type: 3}
   rightWall:
   - {fileID: 5974402530829977089, guid: fca51f7049a6540a09de08849a030ba8, type: 3}
-  seed: test
-  useRandomSeed: 1
-  randomFillPercent: 48
 --- !u!4 &554364759
 Transform:
   m_ObjectHideFlags: 0
