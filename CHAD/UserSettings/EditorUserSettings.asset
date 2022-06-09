@@ -15,6 +15,7 @@ EditorUserSettings:
       value: 06030753510c5e095b085f7142770f424e164b2c7e2d7f36747a1e67b1b0616a
       flags: 0
     RecentlyUsedSceneGuid-3:
+<<<<<<< HEAD
       value: 060901020600590c5c5a5b2740770d1347161d2f7f7d24607b7b1e65b5b3636e
       flags: 0
     RecentlyUsedSceneGuid-4:
@@ -25,6 +26,18 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedSceneGuid-6:
       value: 5708065e51510c5e5a5f5d7512770f4444161c2e2a2b7132282d4c62bbe1366b
+=======
+      value: 520857565606580a0b575e7116770e16104e4b7c2d7120352c7c4863b5b0313b
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 5103570404070d5e5d5c587514775945174e4d737d2c27687d714832e7b4353b
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 5202510306535c59080a547413775b15404e4c28297d76657f701932b3e2656f
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 5202510306535c59080a547413775b15404e4c28297d76657f701932b3e2656f
+>>>>>>> InGameUI
       flags: 0
     RecentlyUsedSceneGuid-7:
       value: 02090150520c0f035e0f5a7740775b494015497e2f7a7f6775794b64b6b1316b
@@ -33,7 +46,11 @@ EditorUserSettings:
       value: 02090150520c0f035e0f5a7740775b494015497e2f7a7f6775794b64b6b1316b
       flags: 0
     RecentlyUsedSceneGuid-9:
+<<<<<<< HEAD
       value: 0506010404075b0c54585e7045770b444216482c7d7d76367f794a60b5e66768
+=======
+      value: 5708065e51510c5e5a5f5d7512770f4444161c2e2a2b7132282d4c62bbe1366b
+>>>>>>> InGameUI
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650

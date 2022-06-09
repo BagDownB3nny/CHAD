@@ -9,4 +9,9 @@ public class PlayerStatsManager : CharacterStatsManager
         base.Awake();
         characterType = CharacterType.Player;
     }
+
+    public void InitializeHealthBar() {
+        healthBar = GameUIManager.instance.healthBar.GetComponent<HealthBar>();
+        healthBar.Initialize(hp);
+    }
 }
