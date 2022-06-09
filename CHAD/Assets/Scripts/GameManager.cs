@@ -78,10 +78,12 @@ public class GameManager : MonoBehaviour
         {
             if (_receiving)
             {
-                Debug.Log("Spawning player of type " + _playerClass);
                 GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
                 player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
                 player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
+                if (NetworkManager.IsMine(_playerRefId)) {
+                    player.GetComponent<PlayerStatsManager>().InitializeHealthBar();
+                }
                 players.Add(_playerRefId ,player);
             } else
             {
@@ -91,7 +93,6 @@ public class GameManager : MonoBehaviour
         if (NetworkManager.gameType == GameType.Server)
         {
             GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
-            Debug.Log("GameManager Server: Spawning character of type " + (PlayerClasses) _playerClass);
             player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
             player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
             players.Add(_playerRefId ,player);
