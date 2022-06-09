@@ -19,8 +19,6 @@ public static class NetworkManager
     }
 
     public static bool IsMine(string _id) {
-        Debug.Log("Char id: " + _id);
-        Debug.Log("Client id: " + PlayerClient.instance.myId.ToString());
         if (NetworkManager.gameType == GameType.Client && string.Equals(PlayerClient.instance.myId.ToString(), _id))
         {
             return true;

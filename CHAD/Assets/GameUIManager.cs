@@ -16,5 +16,12 @@ public class GameUIManager : MonoBehaviour
         }
     }
     public GameObject healthBar;
+    public GameObject pauseMenu;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+        }
+    }
 }

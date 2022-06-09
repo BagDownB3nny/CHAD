@@ -42,6 +42,7 @@ public class PlayerClient : MonoBehaviour
         InitializeClientData();
         tcp = new ClientTCP();
         udp = new ClientUDP();
+        isConnected = true;
         tcp.Connect();
     }
 
@@ -264,6 +265,7 @@ public class PlayerClient : MonoBehaviour
 
     public void Disconnect() {
         if (isConnected) {
+            Debug.Log("PlayerClient is disconnecting");
             isConnected = false;
             tcp.socket.Close();
             udp.socket.Close();

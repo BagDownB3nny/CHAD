@@ -103,7 +103,11 @@ public class GameManager : MonoBehaviour
     public void RemovePlayer(int _playerRefId) {
         Destroy(GameManager.instance.players[_playerRefId.ToString()]);
         GameManager.instance.players.Remove(_playerRefId.ToString());
-        ServerSend.RemovePlayer(_playerRefId.ToString());
+        if (players.Count == 0) {
+            ResetGame();
+        } else {
+            ServerSend.RemovePlayer(_playerRefId.ToString());
+        }
     }
 
     public void ChangeClass(int _playerRefId, int _playerClass) {
@@ -119,5 +123,24 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveChangeClass(int _playerRefId, int _playerClass, Vector2 _playerPosition) {
         SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
+    }
+
+    public void ResetGame() {
+        foreach (KeyValuePair<string, GameObject> pair in players) {
+            Destroy(pair.Value);
+        }
+        players.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in projectiles) {
+            Destroy(pair.Value);
+        }
+        projectiles.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in enemies) {
+            Destroy(pair.Value);
+        }
+        enemies.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in damageDealers) {
+            Destroy(pair.Value);
+        }
+        damageDealers.Clear();
     }
 }
