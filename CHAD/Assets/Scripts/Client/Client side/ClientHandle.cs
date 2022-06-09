@@ -28,6 +28,7 @@ public class ClientHandle : MonoBehaviour
         int characterType = _packet.ReadInt();
         Debug.Log("ClientHandle packet: " + playerIdReceived + position + characterType);
         GameManager.instance.SpawnPlayer(playerIdReceived.ToString(), characterType, position, true);
+        LobbyManager.instance.ReceiveSpawnPlayer(playerIdReceived);
     }
 
     public static void MovePlayer(Packet _packet)
@@ -178,5 +179,10 @@ public class ClientHandle : MonoBehaviour
         int playerClass = _packet.ReadInt();
         Vector2 playerPosition = _packet.ReadVector2();
         GameManager.instance.ReceiveChangeClass(playerRefId, playerClass, playerPosition);
+    }
+
+    public static void Broadcast(Packet _packet) {
+        string _msg = _packet.ReadString();
+        GameManager.instance.Broadcast(_msg);
     }
 }

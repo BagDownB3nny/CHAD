@@ -61,7 +61,6 @@ public abstract class CharacterStatsManager : MonoBehaviour
     {
         hp -= _damageTaken;
         if (healthBar != null) {
-            Debug.Log("Setting health to " + hp);
             healthBar.SetHealth(hp);
         }
         //might want to abstract this to a DamageEffect script

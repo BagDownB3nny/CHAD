@@ -199,6 +199,7 @@ public class ServerClient
     public void SendIntoGame(int _characterType, Vector2 _position)
     {
         GameManager.instance.SpawnPlayer(id.ToString(), _characterType, _position);
+        LobbyManager.instance.SpawnPlayer(id);
         player = GameManager.instance.players[id.ToString()];
         foreach (ServerClient _client in Server.serverClients.Values)
         {

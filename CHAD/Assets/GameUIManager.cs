@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameUIManager : MonoBehaviour
         }
     }
     public GameObject healthBar;
+    public GameObject weaponIcon;
     public GameObject pauseMenu;
 
     void Update()
@@ -23,5 +25,9 @@ public class GameUIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
+    }
+
+    public void SetWeaponIcon(Sprite _weapon) {
+        weaponIcon.GetComponent<Image>().sprite = _weapon;
     }
 }
