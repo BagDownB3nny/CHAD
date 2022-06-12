@@ -52,8 +52,10 @@ public class ServerHandle
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
-            GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
-                    .ReceiveRotateRangedWeapon(directionRotation);
+            if (GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
+                GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                        .ReceiveRotateRangedWeapon(directionRotation);
+            }
         }
         //relay the weapon rotation from client to all other clients
         ServerSend.RotatePlayerRangedWeapon(_fromClient, affectedCharacterRefId, directionRotation);
@@ -76,5 +78,12 @@ public class ServerHandle
     public static void ChangeClass(int _fromClient, Packet _packet) {
         int playerClass = _packet.ReadInt();
         GameManager.instance.ChangeClass(_fromClient, playerClass);
+    }
+
+    public static void EquipGun(int _fromClient, Packet _packet) {
+        int gunIndex = _packet.ReadInt();
+        GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerWeaponsManager>()
+                .ReceiveEquipGun(gunIndex);
+        ServerSend.EquipGun(_fromClient, gunIndex);
     }
 }

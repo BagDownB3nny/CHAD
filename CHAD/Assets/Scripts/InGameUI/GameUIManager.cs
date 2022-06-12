@@ -19,11 +19,23 @@ public class GameUIManager : MonoBehaviour
     public GameObject healthBar;
     public GameObject weaponIcon;
     public GameObject pauseMenu;
+    public GameObject weaponWheel;
+    public GameObject crosshair;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
+        }
+        if (Input.GetKey(KeyCode.Q)) {
+            weaponWheel.SetActive(true);
+            crosshair.SetActive(false);
+        } else {
+            if (weaponWheel.activeSelf) {
+                weaponWheel.GetComponent<WeaponWheel>().currentButton.GetComponent<WeaponSelectButton>().EquipGun();
+            }
+            weaponWheel.SetActive(false);
+            crosshair.SetActive(true);
         }
     }
 

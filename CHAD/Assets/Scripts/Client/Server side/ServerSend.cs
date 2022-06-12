@@ -236,4 +236,13 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void EquipGun(int _noSend, int _gunIndex) {
+        using (Packet _packet = new Packet((int)ServerPackets.equipGun))
+        {
+            _packet.Write(_gunIndex);
+            _packet.Write(_noSend);
+            SendTCPDataToAll(_noSend, _packet);
+        }
+    }
 }

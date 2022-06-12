@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         if (movement.x < 0) {_input[1] = true;}
         if (movement.y < 0) {_input[2] = true;}
         if (movement.x > 0) {_input[3] = true;}
+        Debug.Log(_input);
         ClientSend.MovePlayer(_input);
     }
 

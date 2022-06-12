@@ -185,4 +185,10 @@ public class ClientHandle : MonoBehaviour
         string _msg = _packet.ReadString();
         GameManager.instance.Broadcast(_msg);
     }
+
+     public static void EquipGun(Packet _packet) {
+        int _gunIndex = _packet.ReadInt();
+        int _playerRefId = _packet.ReadInt();
+        GameManager.instance.players[_playerRefId.ToString()].GetComponent<PlayerWeaponsManager>().ReceiveEquipGun(_gunIndex);
+    }
 }

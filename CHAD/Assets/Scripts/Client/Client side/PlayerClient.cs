@@ -292,7 +292,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.destroyDamageDealer, ClientHandle.DestroyDamageDealer},
             {(int)ServerPackets.readyStatus, ClientHandle.ReadyStatus},
             {(int)ServerPackets.changeClass, ClientHandle.ChangeClass},
-            {(int)ServerPackets.broadcast, ClientHandle.Broadcast}
+            {(int)ServerPackets.broadcast, ClientHandle.Broadcast},
+            {(int)ServerPackets.equipGun, ClientHandle.EquipGun}
         };
     }
 

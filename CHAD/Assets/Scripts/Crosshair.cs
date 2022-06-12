@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Crosshair : MonoBehaviour
 {
-    private void Awake() {
+    private void OnEnable()
+    {
         Cursor.visible = false;
     }
 

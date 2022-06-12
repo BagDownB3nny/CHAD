@@ -23,7 +23,8 @@ public enum ServerPackets
     removePlayer = 14,
     readyStatus = 15,
     changeClass = 16,
-    broadcast = 17
+    broadcast = 17,
+    equipGun = 18
 
 }
 
@@ -37,6 +38,7 @@ public enum ClientPackets
     rotateRangedWeapon = 5,
     readyStatus = 6,
     changeClass = 7,
+    equipGun = 8
 
 }
 

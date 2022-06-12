@@ -91,4 +91,11 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void EquipGun(int _index) {
+        using (Packet _packet = new Packet((int)ClientPackets.equipGun)) {
+            _packet.Write(_index);
+            SendTCPData(_packet);
+        }
+    }
 }

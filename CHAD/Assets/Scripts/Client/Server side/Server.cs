@@ -123,7 +123,8 @@ public class Server
                 {(int)ClientPackets.rotateRangedWeapon, ServerHandle.RotateRangedWeapon},
                 {(int)ClientPackets.rangedAttack, ServerHandle.RangedAttack},
                 {(int)ClientPackets.readyStatus, ServerHandle.ReadyStatus},
-                {(int)ClientPackets.changeClass, ServerHandle.ChangeClass}
+                {(int)ClientPackets.changeClass, ServerHandle.ChangeClass},
+                {(int)ClientPackets.equipGun, ServerHandle.EquipGun}
             };
     }
 }
