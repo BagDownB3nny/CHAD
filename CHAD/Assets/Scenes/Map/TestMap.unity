@@ -157,14 +157,16 @@ MonoBehaviour:
   height: 50
   fillPercent: 49
   smoothing: 5
+  smoothingRadius: 1
   minOuterRegionSize: 50
   minInnerRegionSize: 50
   minBranchRadius: 2
   maxBranchRadius: 4
   branchVariation: 2
-  animationInterval: 0.2
   seed: test
   useRandomSeed: 1
+  animationMode: 1
+  animationInterval: 0.2
   outerFloor:
   - {fileID: 5974402530829977089, guid: 73b488778c11d4f7daac7f4cc2ef5fef, type: 3}
   floor:

@@ -43,11 +43,14 @@ public class MapGenerator : MonoBehaviour {
 	public int maxBranchRadius = 5;
 	public int branchVariation = 2;
 
-	public float animationInterval = 0.5f;
-
     [Header("Seed")]
 	public string seed;
 	public bool useRandomSeed;
+
+	[Header("Animation")]
+	public bool animationMode = false;
+	public float animationInterval = 0.5f;
+
 
     [Header("Tiles")]
     public GameObject[] outerFloor;
@@ -70,17 +73,51 @@ public class MapGenerator : MonoBehaviour {
 	int[,] visited;
 
 	void Start() {
-		StartCoroutine(GenerateMap());
+		if (animationMode) {
+			StartCoroutine(GenerateMapWithAnimation());
+		} else {
+			GenerateMap();
+		}
+		
 	}
 
 	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
             ClearMap();
-			StartCoroutine(GenerateMap());
+			if (animationMode) {
+				StartCoroutine(GenerateMapWithAnimation());
+			} else {
+				GenerateMap();
+			}
 		}
 	}
 
-	IEnumerator GenerateMap() {
+	#region GenerateMap
+	void GenerateMap() {
+		floorMap = new int[width,height];
+		
+		RandomFillMap();
+
+		for (int i = 0; i < smoothing; i ++) {
+			SmoothMap();
+		}
+
+		burstSmallRegions();
+
+		List<Region> finalRegions = GetRegions((int) TileTypes.floor);
+		finalRegions.Sort();
+		finalRegions[0].isMainRegion = true;
+		finalRegions[0].isConnectedToMainRegion = true;
+
+		ConnectClosestRegions(finalRegions, false);
+
+		SmoothMap();
+
+		DrawFloorMap();
+		DrawWallMap();
+	}
+
+	IEnumerator GenerateMapWithAnimation() {
 		floorMap = new int[width,height];
 		
 
@@ -122,6 +159,7 @@ public class MapGenerator : MonoBehaviour {
 
 		DrawWallMap();
 	}
+	#endregion
 
 	void burstSmallRegions() {
 		List<Region> outerRegions = GetRegions(-1);
