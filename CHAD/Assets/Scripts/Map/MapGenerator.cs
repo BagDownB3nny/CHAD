@@ -36,8 +36,14 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0,100)]
 	public int fillPercent = 49;
     public int smoothing = 3;
+	public int smoothingRadius = 1;
 	public int minOuterRegionSize = 50;
 	public int minInnerRegionSize = 50;
+	public int minBranchRadius = 3;
+	public int maxBranchRadius = 5;
+	public int branchVariation = 2;
+
+	public float animationInterval = 0.5f;
 
     [Header("Seed")]
 	public string seed;
@@ -64,45 +70,74 @@ public class MapGenerator : MonoBehaviour {
 	int[,] visited;
 
 	void Start() {
-		GenerateMap();
+		StartCoroutine(GenerateMap());
 	}
 
 	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
             ClearMap();
-			GenerateMap();
+			StartCoroutine(GenerateMap());
 		}
 	}
 
-	void GenerateMap() {
+	IEnumerator GenerateMap() {
 		floorMap = new int[width,height];
+		
+
 		RandomFillMap();
+
+		DrawFloorMap();
+		yield return new WaitForSeconds(animationInterval);
 
 		for (int i = 0; i < smoothing; i ++) {
 			SmoothMap();
+
+			ClearMap();
+			DrawFloorMap();
+			yield return new WaitForSeconds(animationInterval);
 		}
 
 		burstSmallRegions();
 
-        DrawFloorMap();
+		ClearMap();
+		DrawFloorMap();
+		yield return new WaitForSeconds(1);
+
+		List<Region> finalRegions = GetRegions((int) TileTypes.floor);
+		finalRegions.Sort();
+		finalRegions[0].isMainRegion = true;
+		finalRegions[0].isConnectedToMainRegion = true;
+
+		ConnectClosestRegions(finalRegions, false);
+
+		ClearMap();
+		DrawFloorMap();
+		yield return new WaitForSeconds(animationInterval);
+
+		SmoothMap();
+
+		ClearMap();
+		DrawFloorMap();
+		yield return new WaitForSeconds(animationInterval);
+
 		DrawWallMap();
 	}
 
 	void burstSmallRegions() {
-		List<List<Tile>> outerRegions = GetRegions(-1);
-		List<List<Tile>> innerRegions = GetRegions (0);
+		List<Region> outerRegions = GetRegions(-1);
+		List<Region> innerRegions = GetRegions(0);
 
-		foreach (List<Tile> outerRegion in outerRegions) {
-			if (outerRegion.Count < minOuterRegionSize) {
-				foreach (Tile tile in outerRegion) {
+		foreach (Region outerRegion in outerRegions) {
+			if (outerRegion.tiles.Count < minOuterRegionSize) {
+				foreach (Tile tile in outerRegion.tiles) {
 					floorMap[tile.x,tile.y] = (int) TileTypes.floor;
 				}
 			}
 		}
 		
-		foreach (List<Tile> innerRegion in innerRegions) {
-			if (innerRegion.Count < minInnerRegionSize) {
-				foreach (Tile tile in innerRegion) {
+		foreach (Region innerRegion in innerRegions) {
+			if (innerRegion.tiles.Count < minInnerRegionSize) {
+				foreach (Tile tile in innerRegion.tiles) {
 					floorMap[tile.x,tile.y] = (int) TileTypes.outerFloor;
 				}
 			}
@@ -131,24 +166,48 @@ public class MapGenerator : MonoBehaviour {
 	void SmoothMap() {
 		for (int x = 0; x < width; x ++) {
 			for (int y = 0; y < height; y ++) {
-				int surroundingOuterTiles = GetSurroundingTileCount(x, y, (int) TileTypes.outerFloor);
+				int surroundingOuterTiles = GetSurroundingTileCount(x, y, smoothingRadius, (int) TileTypes.outerFloor);
 
-				if (surroundingOuterTiles > 4)
+				int diameter = (smoothingRadius * 2) + 1;
+				int cutOff = ((diameter * diameter) - 1) / 2;
+
+				if (surroundingOuterTiles > cutOff) {
 					floorMap[x,y] = (int) TileTypes.outerFloor;
-				else if (surroundingOuterTiles < 4)
+				} else if (surroundingOuterTiles < cutOff) {
 					floorMap[x,y] = (int) TileTypes.floor;
-
+				}
 			}
 		}
 	}
 
+	int GetSurroundingTileCount(int x, int y, int _radius, int _tileType) {
+		int surroundingTileCount = 0;
+		for (int neighbourX = x - _radius; neighbourX <= x + _radius; neighbourX ++) {
+			for (int neighbourY = y - _radius; neighbourY <= y + _radius; neighbourY ++) {
+                //if within the map
+				if (IsWithinMap(neighbourX, neighbourY)) {
+                    //if not the tile itself
+					if (neighbourX != x || neighbourY != y) {
+                        if (floorMap[neighbourX, neighbourY] == _tileType) {
+                            surroundingTileCount += 1;
+                        }
+					}
+				}
+				else {
+					surroundingTileCount ++;
+				}
+			}
+		}
+		return surroundingTileCount;
+	}
+
 	List<Tile> GetWalls() {
 		wallMap = new int[width, height];
-		List<List<Tile>> outerRegions = GetRegions((int) TileTypes.outerFloor);
+		List<Region> outerRegions = GetRegions((int) TileTypes.outerFloor);
 		List<Tile> walls = new List<Tile>();
 
-		foreach (List<Tile> outerRegion in outerRegions) {
-			foreach (Tile tile in outerRegion) {
+		foreach (Region outerRegion in outerRegions) {
+			foreach (Tile tile in outerRegion.edgeTiles) {
 				List<bool> neighbours = new List<bool>(8);
 				for (int neighbourY = tile.y + 1; neighbourY >= tile.y - 1; neighbourY--) {
 					for (int neighbourX = tile.x - 1; neighbourX <= tile.x + 1; neighbourX++)  {
@@ -167,7 +226,7 @@ public class MapGenerator : MonoBehaviour {
 				}
 				
 				int wallType = GetWallType(neighbours);
-				if (wallType >= 1 && wallType <= 12) {
+				if (wallType != (int) TileTypes.outerFloor) {
 					wallMap[tile.x, tile.y] = wallType;
 					walls.Add(tile);
 				}
@@ -233,35 +292,165 @@ public class MapGenerator : MonoBehaviour {
 		return (int) TileTypes.outerFloor;
 	}
 
-	int GetSurroundingTileCount(int tileX, int tileY, int tileType) {
-		int surroundingTileCount = 0;
-		for (int neighbourX = tileX - 1; neighbourX <= tileX + 1; neighbourX ++) {
-			for (int neighbourY = tileY - 1; neighbourY <= tileY + 1; neighbourY ++) {
-                //if within the map
-				if (IsWithinMap(neighbourX, neighbourY)) {
-                    //if not the tile itself
-					if (neighbourX != tileX || neighbourY != tileY) {
-                        if (floorMap[neighbourX, neighbourY] == tileType) {
-                            surroundingTileCount += 1;
-                        }
+	void ConnectClosestRegions(List<Region> regions, bool forceConnectionToMainRegion = false) {
+		int minDist = 0;
+		Tile bestStartTile = new Tile ();
+		Tile bestEndTile = new Tile ();
+		Region bestStartRoom = new Region(TileTypes.floor);
+		Region bestEndRoom = new Region(TileTypes.floor);
+		bool possibleConnectionFound = false;
+
+		List<Region> notConnectedToMainRegion = new List<Region> ();
+		List<Region> connectedToMainRegion = new List<Region> ();
+		
+		if (forceConnectionToMainRegion) {
+			foreach (Region region in regions) {
+				if (region.isConnectedToMainRegion) {
+					connectedToMainRegion.Add (region);
+				} else {
+					notConnectedToMainRegion.Add (region);
+				}
+			}
+		} else {
+			notConnectedToMainRegion = regions;
+			connectedToMainRegion = regions;
+		}
+
+		foreach (Region startRegion in notConnectedToMainRegion) {
+			if (!forceConnectionToMainRegion) {
+				possibleConnectionFound = false;
+				if (startRegion.connectedRegions.Count > 0) {
+					continue;
+				}
+			}
+			
+
+			foreach (Region endRegion in connectedToMainRegion) {
+				if (startRegion == endRegion || startRegion.IsConnected(endRegion)) {
+					continue;
+				}
+
+				for (int startTileIndex = 0; startTileIndex < startRegion.edgeTiles.Count; startTileIndex ++) {
+					for (int endTileIndex = 0; endTileIndex < endRegion.edgeTiles.Count; endTileIndex ++) {
+						Tile startTile = startRegion.edgeTiles[startTileIndex];
+						Tile endTile = endRegion.edgeTiles[endTileIndex];
+						int dist = (int)(Mathf.Pow(startTile.x - endTile.x, 2) + Mathf.Pow(startTile.y - endTile.y, 2));
+
+						if (dist < minDist || !possibleConnectionFound) {
+							minDist = dist;
+							possibleConnectionFound = true;
+							bestStartTile = startTile;
+							bestEndTile = endTile;
+							bestStartRoom = startRegion;
+							bestEndRoom = endRegion;
+						}
 					}
 				}
-				else {
-					surroundingTileCount ++;
+			}
+			if (possibleConnectionFound && !forceConnectionToMainRegion) {
+				CreateBranch(bestStartRoom, bestEndRoom, bestStartTile, bestEndTile);
+			}
+		}
+		if (possibleConnectionFound && forceConnectionToMainRegion) {
+			CreateBranch(bestStartRoom, bestEndRoom, bestStartTile, bestEndTile);
+		}
+		
+		if (!forceConnectionToMainRegion) {
+			ConnectClosestRegions(regions, true);
+		}
+	}
+
+	void CreateBranch(Region startRoom, Region endRoom, Tile startTile, Tile endTile) {
+		Region.ConnectRooms(startRoom, endRoom);
+
+		List<Tile> lineTiles = GetLine(startTile, endTile);
+		FillBranch(lineTiles);
+
+		Debug.DrawLine(CoordToWorldPoint(startTile.x, startTile.y), CoordToWorldPoint(endTile.x, endTile.y), Color.red, 100);
+	}
+
+	void FillBranch(List<Tile> lineTiles) {
+		System.Random rng = new System.Random(seed.GetHashCode());
+		int prevRadius = rng.Next(minBranchRadius, maxBranchRadius);
+
+		foreach (Tile tile in lineTiles) {
+			int radius = rng.Next((prevRadius - branchVariation < minBranchRadius) ? minBranchRadius : prevRadius - branchVariation, 
+						(prevRadius + branchVariation > maxBranchRadius) ? maxBranchRadius : prevRadius + branchVariation);
+
+			for (int x = -radius; x <= radius; x++) {
+				for (int y = -radius; y <= radius; y++) {
+					if (x*x + y*y <= radius*radius) {
+						int branchX = tile.x + x;
+						int branchY = tile.y + y;
+						if (IsWithinMap(branchX, branchY)) {
+							floorMap[branchX,branchY] = 0;
+						}
+					}
 				}
 			}
 		}
-		return surroundingTileCount;
 	}
 
-    List<List<Tile>> GetRegions(int tileType) {
-		List<List<Tile>> regions = new List<List<Tile>>();
+
+	List<Tile> GetLine(Tile start, Tile end) {
+		List<Tile> line = new List<Tile> ();
+
+		int x = start.x;
+		int y = start.y;
+
+		int dx = end.x - start.x;
+		int dy = end.y - start.y;
+
+		bool inverted = false;
+		int step = Math.Sign (dx);
+		int gradientStep = Math.Sign (dy);
+
+		int longest = Mathf.Abs (dx);
+		int shortest = Mathf.Abs (dy);
+
+		if (longest < shortest) {
+			inverted = true;
+			longest = Mathf.Abs(dy);
+			shortest = Mathf.Abs(dx);
+
+			step = Math.Sign (dy);
+			gradientStep = Math.Sign (dx);
+		}
+
+		int gradientAccumulation = longest / 2;
+		for (int i =0; i < longest; i ++) {
+			line.Add(new Tile(x,y));
+
+			if (inverted) {
+				y += step;
+			}
+			else {
+				x += step;
+			}
+
+			gradientAccumulation += shortest;
+			if (gradientAccumulation >= longest) {
+				if (inverted) {
+					x += gradientStep;
+				}
+				else {
+					y += gradientStep;
+				}
+				gradientAccumulation -= longest;
+			}
+		}
+
+		return line;
+	}
+
+    List<Region> GetRegions(int tileType) {
+		List<Region> regions = new List<Region>();
 		visited = new int[width,height];
 
 		for (int x = 0; x < width; x ++) {
 			for (int y = 0; y < height; y ++) {
 				if (visited[x,y] == 0 && floorMap[x,y] == tileType) {
-					List<Tile> newRegion = GetRegionTiles(x,y);
+					Region newRegion = new Region((TileTypes) tileType, GetRegionTiles(x,y), floorMap, width, height);
 					regions.Add(newRegion);
 				}
 			}
@@ -297,11 +486,6 @@ public class MapGenerator : MonoBehaviour {
 		return region;
 	}
 
-    bool IsWithinMap(int x, int y) {
-		return x >= 0 && x < width && y >= 0 && y < height;
-	}
-
-
 	void DrawFloorMap() {
 		if (floorMap != null) {
 			for (int x = 0; x < width; x ++) {
@@ -321,7 +505,7 @@ public class MapGenerator : MonoBehaviour {
 
     void DrawTile(int x, int y, int[,] map) {
         TileTypes tileType = (TileTypes) map[x, y];
-        Vector3 pos = new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0);
+        Vector3 pos = CoordToWorldPoint(x, y);
         GameObject tileToDraw;
 
         switch(tileType) {
@@ -374,6 +558,14 @@ public class MapGenerator : MonoBehaviour {
         Instantiate(tileToDraw, pos, Quaternion.identity);
     }
 
+	bool IsWithinMap(int x, int y) {
+		return x >= 0 && x < width && y >= 0 && y < height;
+	}
+
+	Vector3 CoordToWorldPoint(int x, int y) {
+		return new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0);
+	}
+
     void ClearMap() {
         GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
@@ -392,6 +584,78 @@ public class MapGenerator : MonoBehaviour {
 		public Tile(int _x, int _y) {
 			x = _x;
 			y = _y;
+		}
+	}
+
+	class Region : IComparable<Region> {
+		public TileTypes tileType;
+		public List<Tile> tiles;
+		public List<Tile> edgeTiles;
+		public List<Region> connectedRegions;
+		public int regionSize;
+		public bool isMainRegion = false;
+		public bool isConnectedToMainRegion = false;
+
+		public Region(TileTypes _tileType) {
+			tileType = _tileType;
+		}
+
+		public Region(TileTypes _tileType, List<Tile> _tiles, int[,] floorMap, int width, int height) {
+			tileType = _tileType;
+			tiles = _tiles;
+			regionSize = tiles.Count;
+			connectedRegions = new List<Region>();
+
+			edgeTiles = new List<Tile>();
+			foreach (Tile tile in tiles) {
+				for (int x = tile.x - 1; x <= tile.x + 1; x++) {
+					for (int y = tile.y - 1; y <= tile.y + 1; y++) {
+						if (x >= 0 && x < width && y >= 0 && y < height) {
+							//exclude diagonals
+							if (tileType == TileTypes.floor) {
+								if (x == tile.x || y == tile.y) {
+									if (floorMap[x,y] == (int) TileTypes.outerFloor) {
+										edgeTiles.Add(tile);
+									}
+								}
+							} 
+							//include diagonals
+							else {
+								if (floorMap[x,y] == (int) TileTypes.floor) {
+									edgeTiles.Add(tile);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public void SetConnectedToMainRegion() {
+			if (!isConnectedToMainRegion) {
+				isConnectedToMainRegion = true;
+				foreach(Region region in connectedRegions) {
+					region.isConnectedToMainRegion = true;
+				}
+			}
+		}
+
+		public static void ConnectRooms(Region regionA, Region regionB) {
+			if (regionA.isConnectedToMainRegion) {
+				regionB.SetConnectedToMainRegion();
+			} else if (regionB.isConnectedToMainRegion) {
+				regionA.SetConnectedToMainRegion();
+			}
+			regionA.connectedRegions.Add (regionB);
+			regionB.connectedRegions.Add (regionA);
+		}
+
+		public bool IsConnected(Region otherRegion) {
+			return connectedRegions.Contains(otherRegion);
+		}
+
+		public int CompareTo(Region otherRegion) {
+			return otherRegion.regionSize.CompareTo(regionSize);
 		}
 	}
 }
