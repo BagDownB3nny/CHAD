@@ -78,10 +78,12 @@ public class GameManager : MonoBehaviour
         {
             if (_receiving)
             {
-                Debug.Log("Spawning player of type " + _playerClass);
                 GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
                 player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
                 player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
+                if (NetworkManager.IsMine(_playerRefId)) {
+                    player.GetComponent<PlayerStatsManager>().InitializeHealthBar();
+                }
                 players.Add(_playerRefId ,player);
             } else
             {
@@ -91,7 +93,6 @@ public class GameManager : MonoBehaviour
         if (NetworkManager.gameType == GameType.Server)
         {
             GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
-            Debug.Log("GameManager Server: Spawning character of type " + (PlayerClasses) _playerClass);
             player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
             player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
             players.Add(_playerRefId ,player);
@@ -118,5 +119,28 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveChangeClass(int _playerRefId, int _playerClass, Vector2 _playerPosition) {
         SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
+    }
+
+    public void ResetGame() {
+        foreach (KeyValuePair<string, GameObject> pair in players) {
+            Destroy(pair.Value);
+        }
+        players.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in projectiles) {
+            Destroy(pair.Value);
+        }
+        projectiles.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in enemies) {
+            Destroy(pair.Value);
+        }
+        enemies.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in damageDealers) {
+            Destroy(pair.Value);
+        }
+        damageDealers.Clear();
+    }
+
+    public void Broadcast(string _msg) {
+        Debug.Log(_msg);
     }
 }

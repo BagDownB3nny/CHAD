@@ -33,7 +33,8 @@ public class PlayerWeaponsManager : MonoBehaviour
         currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
         weaponScript.holder = gameObject;
-        
+
+        GameUIManager.instance.SetWeaponIcon(currentWeapon.GetComponent<SpriteRenderer>().sprite);
     }
 
     //adds gun to empty slot

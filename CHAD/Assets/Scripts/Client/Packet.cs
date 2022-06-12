@@ -23,7 +23,7 @@ public enum ServerPackets
     removePlayer = 14,
     readyStatus = 15,
     changeClass = 16,
-
+    broadcast = 17
 
 }
 

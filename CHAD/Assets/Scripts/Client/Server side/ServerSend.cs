@@ -228,4 +228,12 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void Broadcast(string _msg) {
+        using (Packet _packet = new Packet((int)ServerPackets.broadcast))
+        {
+            _packet.Write(_msg);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

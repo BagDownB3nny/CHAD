@@ -25,6 +25,9 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public Vector3 targetPosition;
     public GameObject damageEffect;
 
+    [Header("UI Elements")]
+    public HealthBar healthBar;
+
     protected virtual void Awake() {
         deathScript = gameObject.GetComponent<Death>();
     }
@@ -57,7 +60,9 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public void ReceiveTakeDamage(float _damageTaken)
     {
         hp -= _damageTaken;
-
+        if (healthBar != null) {
+            healthBar.SetHealth(hp);
+        }
         //might want to abstract this to a DamageEffect script
         if (damageEffect != null) {
             Instantiate(damageEffect, transform.position, Quaternion.identity);

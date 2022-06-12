@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
+#region TileTypes
 public enum TileTypes {
     outerFloor = -1,
     floor = 0,
@@ -22,6 +23,7 @@ public enum TileTypes {
     rightWall = 12,
 
 }
+#endregion
 
 public class MapGenerator : MonoBehaviour {
 	public Text textPrefab;
@@ -40,8 +42,6 @@ public class MapGenerator : MonoBehaviour {
     [Header("Seed")]
 	public string seed;
 	public bool useRandomSeed;
-
-	
 
     [Header("Tiles")]
     public GameObject[] outerFloor;
@@ -142,12 +142,9 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-
-
 	List<Tile> GetWalls() {
 		wallMap = new int[width, height];
 		List<List<Tile>> outerRegions = GetRegions((int) TileTypes.outerFloor);
-		Debug.Log(outerRegions.Count);
 		List<Tile> walls = new List<Tile>();
 
 		foreach (List<Tile> outerRegion in outerRegions) {
@@ -171,7 +168,6 @@ public class MapGenerator : MonoBehaviour {
 				
 				int wallType = GetWallType(neighbours);
 				if (wallType >= 1 && wallType <= 12) {
-					Debug.Log(tile.x + "," + tile.y + ":" + string.Join(",", neighbours) + "\n" + (TileTypes) wallType);
 					wallMap[tile.x, tile.y] = wallType;
 					walls.Add(tile);
 				}
@@ -318,7 +314,6 @@ public class MapGenerator : MonoBehaviour {
 
 	void DrawWallMap() {
 		List<Tile> walls = GetWalls();
-		Debug.Log(walls.Count);
 		foreach (Tile wall in walls) {
 			DrawTile(wall.x, wall.y, wallMap);
 		}
@@ -328,7 +323,6 @@ public class MapGenerator : MonoBehaviour {
         TileTypes tileType = (TileTypes) map[x, y];
         Vector3 pos = new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0);
         GameObject tileToDraw;
-        //Debug.Log(tileType);
 
         switch(tileType) {
             case TileTypes.outerFloor:
@@ -391,7 +385,7 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    public class Tile {
+    public struct Tile {
 		public int x;
 		public int y;
 
