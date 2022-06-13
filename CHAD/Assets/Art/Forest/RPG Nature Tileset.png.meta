@@ -581,7 +581,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_22
+      name: Cliff
       rect:
         serializedVersion: 2
         x: 96
@@ -3310,6 +3310,7 @@ TextureImporter:
       RPG Nature Tileset_16: 1652012706
       Water2: -1616962521
       RPG Nature Tileset_121: -741914926
+      Cliff: 242972297
       RPG Nature Tileset_95: 144291799
       RPG Nature Tileset_8: -98657905
       RPG Nature Tileset_48: -410061162
@@ -3365,13 +3366,12 @@ TextureImporter:
       RPG Nature Tileset_83: 90776889
       RPG Nature Tileset_62: 2088973048
       RPG Nature Tileset_79: -1985112094
-      RPG Nature Tileset_22: 242972297
+      RPG Nature Tileset_142: 1347802685
       RPG Nature Tileset_97: 1983149890
       RPG Nature Tileset_100: 291337863
       RPG Nature Tileset_71: 309415901
       RPG Nature Tileset_123: -537504836
       RPG Nature Tileset_132: 189237522
-      RPG Nature Tileset_142: 1347802685
       RPG Nature Tileset_96: 1410331411
       RPG Nature Tileset_115: 942987936
       RPG Nature Tileset_56: 1747208605

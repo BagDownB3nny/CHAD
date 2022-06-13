@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.25}
+  m_Size: {x: 0.99, y: 1.24}
   m_EdgeRadius: 0
 --- !u!50 &-2769344475882394354
 Rigidbody2D:
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32958722f4df44bed894490735f9de0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha: 0
 --- !u!114 &6520968831888605661
 MonoBehaviour:
   m_ObjectHideFlags: 0

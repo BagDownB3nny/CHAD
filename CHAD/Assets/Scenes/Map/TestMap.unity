@@ -323,7 +323,7 @@ MonoBehaviour:
   treeScale: 20
   seed: test
   useRandomSeed: 1
-  animationMode: 1
+  animationMode: 0
   animationInterval: 0.2
   outerFloor:
   - {fileID: 5974402530829977089, guid: 73b488778c11d4f7daac7f4cc2ef5fef, type: 3}
@@ -359,6 +359,8 @@ MonoBehaviour:
   - {fileID: 5974402530829977089, guid: ac28639df2b394943a3659a133b0547a, type: 3}
   tree:
   - {fileID: 5974402530829977089, guid: 8312c633f1a164f69827dfeda7ced5d4, type: 3}
+  cliff:
+  - {fileID: 5974402530829977089, guid: 23c5ffb8202b64342a39ef2c78dd5cf7, type: 3}
 --- !u!4 &554364759
 Transform:
   m_ObjectHideFlags: 0
