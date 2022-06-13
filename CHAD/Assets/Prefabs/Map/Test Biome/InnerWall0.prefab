@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5974402530829977090}
   - component: {fileID: 2191768669485808949}
   - component: {fileID: 5493752637435234181}
+  - component: {fileID: 8509379175440066453}
   m_Layer: 0
   m_Name: InnerWall0
   m_TagString: Wall
@@ -133,3 +134,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &8509379175440066453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974402530829977089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingBase: 5000
+  offset: 0
+  runOnce: 1
+  updateInterval: 0.1

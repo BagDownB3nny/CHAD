@@ -132,7 +132,7 @@ public class MapGenerator : MonoBehaviour {
 
 		SmoothMap();
 
-		FillRiver();
+		FillWater();
 
 		DrawFloorMap();
 
@@ -183,7 +183,7 @@ public class MapGenerator : MonoBehaviour {
 		DrawFloorMap();
 		yield return new WaitForSeconds(animationInterval);
 
-		FillRiver();
+		FillWater();
 
 		ClearMap();
 		DrawFloorMap();
@@ -286,10 +286,18 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 
 	#region Walls
+	void DrawWallMap() {
+		List<Tile> walls = GetWalls();
+		foreach (Tile wall in walls) {
+			DrawTile(wall.x, wall.y, 0, wallMap);
+		}
+	}
+
 	List<Tile> GetWalls() {
 		wallMap = new int[width, height];
 		List<Region> outerRegions = GetRegions((int) TileTypes.outerFloor);
 		List<Tile> walls = new List<Tile>();
+		List<Tile> outerWalls = new List<Tile>();
 
 		foreach (Region outerRegion in outerRegions) {
 			foreach (Tile tile in outerRegion.edgeTiles) {
@@ -309,13 +317,25 @@ public class MapGenerator : MonoBehaviour {
 						}
 					}
 				}
-				
+
 				int wallType = GetWallType(neighbours);
 				if (wallType != (int) TileTypes.outerFloor) {
+					//if is an outerwall, add to outerWalls list
+					if (wallType == (int) TileTypes.outerWall0 || wallType == (int) TileTypes.outerWall1 ||
+							wallType == (int) TileTypes.outerWall2 || wallType == (int) TileTypes.outerWall3 ||
+							wallType == (int) TileTypes.outerWall4) {
+								outerWalls.Add(new Tile(tile.x, tile.y));
+							}
 					wallMap[tile.x, tile.y] = wallType;
 					walls.Add(tile);
 				}
 			}
+		}
+
+		//add an additional floor below the outerwalls
+		foreach(Tile tile in outerWalls) {
+			floorMap[tile.x, tile.y] = (int) TileTypes.floor;
+			DrawTile(tile.x, tile.y, 0, floorMap);
 		}
 
 		return walls;
@@ -531,7 +551,7 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 
 	#region Water
-	void FillRiver() {
+	void FillWater() {
 		System.Random rng = new System.Random(seed.GetHashCode());
 
 		List<Tile> floorTiles = GetRegions((int) TileTypes.floor)[0].tiles;
@@ -541,13 +561,13 @@ public class MapGenerator : MonoBehaviour {
 		int startDirection = rng.Next(0, 359);
 		int oppDirection = (startDirection + 180) % 360;
 
-		List<Tile> riverLineTiles = GetRiverLineTiles(startTile, startDirection, new List<Tile>());
-		riverLineTiles.AddRange(GetRiverLineTiles(startTile, oppDirection, new List<Tile>()));
+		List<Tile> riverLineTiles = GetWaterLineTiles(startTile, startDirection, new List<Tile>());
+		riverLineTiles.AddRange(GetWaterLineTiles(startTile, oppDirection, new List<Tile>()));
 
-		List<Tile> riverTiles = GetRiverTiles(riverLineTiles);
+		List<Tile> riverTiles = GetWaterTiles(riverLineTiles);
 	}
 
-	List<Tile> GetRiverLineTiles(Tile tile, int prevDirection, List<Tile> riverTiles) {
+	List<Tile> GetWaterLineTiles(Tile tile, int prevDirection, List<Tile> riverTiles) {
 		if (tile == null) {
 			return riverTiles;
 		}
@@ -572,10 +592,10 @@ public class MapGenerator : MonoBehaviour {
 		}
 		AfterLoop:
 
-		return GetRiverLineTiles(nextTile, direction, riverTiles);
+		return GetWaterLineTiles(nextTile, direction, riverTiles);
 	}
 
-	List<Tile> GetRiverTiles(List<Tile> riverLineTiles) {
+	List<Tile> GetWaterTiles(List<Tile> riverLineTiles) {
 		List<Tile> finalRiverTiles = new List<Tile>();
 
 		System.Random rng = new System.Random(seed.GetHashCode());
@@ -686,13 +706,6 @@ public class MapGenerator : MonoBehaviour {
                     DrawTile(x, y, 0, floorMap);
 				}
 			}
-		}
-	}
-
-	void DrawWallMap() {
-		List<Tile> walls = GetWalls();
-		foreach (Tile wall in walls) {
-			DrawTile(wall.x, wall.y, 0, wallMap);
 		}
 	}
 
