@@ -163,6 +163,14 @@ MonoBehaviour:
   minBranchRadius: 2
   maxBranchRadius: 4
   branchVariation: 2
+  minRiverRadius: 1
+  maxRiverRadius: 4
+  riverWidthVariation: 2
+  riverDirectionVariation: 45
+  bushThreshold: 0.3
+  bushScale: 5
+  treeThreshold: 0.2
+  treeScale: 20
   seed: test
   useRandomSeed: 1
   animationMode: 1
@@ -195,6 +203,12 @@ MonoBehaviour:
   - {fileID: 5974402530829977089, guid: 6735d43bc65b345c8ad57799cc251f28, type: 3}
   rightWall:
   - {fileID: 5974402530829977089, guid: dbaeb18ed9ee74c76b279080e98a37c8, type: 3}
+  water:
+  - {fileID: 5974402530829977089, guid: 3d2a5de9aa856470da919baee87cf952, type: 3}
+  bush:
+  - {fileID: 5974402530829977089, guid: ac28639df2b394943a3659a133b0547a, type: 3}
+  tree:
+  - {fileID: 5974402530829977089, guid: 8312c633f1a164f69827dfeda7ced5d4, type: 3}
 --- !u!4 &554364759
 Transform:
   m_ObjectHideFlags: 0

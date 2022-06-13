@@ -21,6 +21,10 @@ public enum TileTypes {
 	innerWall4 = 10,
     leftWall = 11,
     rightWall = 12,
+	water = 13,
+	bush = 14,
+	tree = 15,
+
 
 }
 #endregion
@@ -32,16 +36,28 @@ public class MapGenerator : MonoBehaviour {
 	public int width = 50;
 	public int height = 50;
 
-	[Header("Map Customisation")]
+	[Header("Floor")]
 	[Range(0,100)]
 	public int fillPercent = 49;
     public int smoothing = 3;
 	public int smoothingRadius = 1;
 	public int minOuterRegionSize = 50;
 	public int minInnerRegionSize = 50;
+	[Header("Branch")]
 	public int minBranchRadius = 3;
 	public int maxBranchRadius = 5;
 	public int branchVariation = 2;
+	[Header("River")]
+	public int minRiverRadius = 3;
+	public int maxRiverRadius = 5;
+	public int riverWidthVariation = 2;
+	public int riverDirectionVariation = 45;
+	[Header("Bush")]
+	public float bushThreshold = 0.5f;
+	public float bushScale = 1;
+	[Header("Tree")]
+	public float treeThreshold = 0.2f;
+	public float treeScale = 20;
 
     [Header("Seed")]
 	public string seed;
@@ -67,8 +83,12 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject[] innerWall4;
     public GameObject[] leftWall;
     public GameObject[] rightWall;
+	public GameObject[] water;
+	public GameObject[] bush;
+	public GameObject[] tree;
 
 	int[,] floorMap;
+	int[,] vegetationMap;
 	int[,] wallMap;
 	int[,] visited;
 
@@ -78,7 +98,6 @@ public class MapGenerator : MonoBehaviour {
 		} else {
 			GenerateMap();
 		}
-		
 	}
 
 	void Update() {
@@ -113,7 +132,14 @@ public class MapGenerator : MonoBehaviour {
 
 		SmoothMap();
 
+		FillRiver();
+
 		DrawFloorMap();
+
+		DrawVegetation(TileTypes.bush, bushScale, bushThreshold);
+
+		DrawVegetation(TileTypes.tree, treeScale, treeThreshold);
+		
 		DrawWallMap();
 	}
 
@@ -157,10 +183,25 @@ public class MapGenerator : MonoBehaviour {
 		DrawFloorMap();
 		yield return new WaitForSeconds(animationInterval);
 
+		FillRiver();
+
+		ClearMap();
+		DrawFloorMap();
+		yield return new WaitForSeconds(animationInterval);
+
+		DrawVegetation(TileTypes.bush, bushScale, bushThreshold);
+
+		yield return new WaitForSeconds(animationInterval);
+
+		DrawVegetation(TileTypes.tree, treeScale, treeThreshold);
+
+		yield return new WaitForSeconds(animationInterval);
+
 		DrawWallMap();
 	}
 	#endregion
 
+	#region BurstSmallRegions
 	void burstSmallRegions() {
 		List<Region> outerRegions = GetRegions(-1);
 		List<Region> innerRegions = GetRegions(0);
@@ -181,7 +222,9 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 	}
+	#endregion
 
+	#region RandomFillMap
 	void RandomFillMap() {
 		if (useRandomSeed) {
 			seed = Time.time.ToString();
@@ -200,7 +243,9 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 	}
+	#endregion
 
+	#region SmoothMap
 	void SmoothMap() {
 		for (int x = 0; x < width; x ++) {
 			for (int y = 0; y < height; y ++) {
@@ -238,7 +283,9 @@ public class MapGenerator : MonoBehaviour {
 		}
 		return surroundingTileCount;
 	}
+	#endregion
 
+	#region Walls
 	List<Tile> GetWalls() {
 		wallMap = new int[width, height];
 		List<Region> outerRegions = GetRegions((int) TileTypes.outerFloor);
@@ -251,7 +298,7 @@ public class MapGenerator : MonoBehaviour {
 					for (int neighbourX = tile.x - 1; neighbourX <= tile.x + 1; neighbourX++)  {
 						if (IsWithinMap(neighbourX, neighbourY) ) {
 							if ((neighbourX != tile.x || neighbourY != tile.y)) {
-								if (floorMap[neighbourX, neighbourY] == (int) TileTypes.floor) {
+								if (floorMap[neighbourX, neighbourY] != (int) TileTypes.outerFloor) {
 									neighbours.Add(true);
 								} else {
 									neighbours.Add(false);
@@ -329,11 +376,13 @@ public class MapGenerator : MonoBehaviour {
 		}
 		return (int) TileTypes.outerFloor;
 	}
+	#endregion
 
+	#region ConnectRegions
 	void ConnectClosestRegions(List<Region> regions, bool forceConnectionToMainRegion = false) {
 		int minDist = 0;
-		Tile bestStartTile = new Tile ();
-		Tile bestEndTile = new Tile ();
+		Tile bestStartTile = new Tile();
+		Tile bestEndTile = new Tile();
 		Region bestStartRoom = new Region(TileTypes.floor);
 		Region bestEndRoom = new Region(TileTypes.floor);
 		bool possibleConnectionFound = false;
@@ -402,33 +451,8 @@ public class MapGenerator : MonoBehaviour {
 		Region.ConnectRooms(startRoom, endRoom);
 
 		List<Tile> lineTiles = GetLine(startTile, endTile);
-		FillBranch(lineTiles);
-
-		Debug.DrawLine(CoordToWorldPoint(startTile.x, startTile.y), CoordToWorldPoint(endTile.x, endTile.y), Color.red, 100);
+		FillCircle(lineTiles, TileTypes.floor, minBranchRadius, maxBranchRadius, branchVariation);
 	}
-
-	void FillBranch(List<Tile> lineTiles) {
-		System.Random rng = new System.Random(seed.GetHashCode());
-		int prevRadius = rng.Next(minBranchRadius, maxBranchRadius);
-
-		foreach (Tile tile in lineTiles) {
-			int radius = rng.Next((prevRadius - branchVariation < minBranchRadius) ? minBranchRadius : prevRadius - branchVariation, 
-						(prevRadius + branchVariation > maxBranchRadius) ? maxBranchRadius : prevRadius + branchVariation);
-
-			for (int x = -radius; x <= radius; x++) {
-				for (int y = -radius; y <= radius; y++) {
-					if (x*x + y*y <= radius*radius) {
-						int branchX = tile.x + x;
-						int branchY = tile.y + y;
-						if (IsWithinMap(branchX, branchY)) {
-							floorMap[branchX,branchY] = 0;
-						}
-					}
-				}
-			}
-		}
-	}
-
 
 	List<Tile> GetLine(Tile start, Tile end) {
 		List<Tile> line = new List<Tile> ();
@@ -456,7 +480,7 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		int gradientAccumulation = longest / 2;
-		for (int i =0; i < longest; i ++) {
+		for (int i = 0; i < longest; i ++) {
 			line.Add(new Tile(x,y));
 
 			if (inverted) {
@@ -481,6 +505,135 @@ public class MapGenerator : MonoBehaviour {
 		return line;
 	}
 
+	void FillCircle(List<Tile> tiles, TileTypes tileType, int minRadius, int maxRadius, int variation) {
+		System.Random rng = new System.Random(seed.GetHashCode());
+		int prevRadius = rng.Next(minRadius, maxRadius);
+
+		foreach (Tile tile in tiles) {
+			int radius = rng.Next((prevRadius - variation < minRadius) ? minRadius : prevRadius - variation, 
+						(prevRadius + variation > maxRadius) ? maxRadius : prevRadius + variation);
+
+			for (int x = -radius; x <= radius; x++) {
+				for (int y = -radius; y <= radius; y++) {
+					if ((x * x) + (y * y) <= (radius * radius)) {
+						int circleX = tile.x + x;
+						int circleY = tile.y + y;
+						if (IsWithinMap(circleX, circleY)) {
+							floorMap[circleX,circleY] = (int) tileType;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	
+	#endregion
+
+	#region Water
+	void FillRiver() {
+		System.Random rng = new System.Random(seed.GetHashCode());
+
+		List<Tile> floorTiles = GetRegions((int) TileTypes.floor)[0].tiles;
+
+		Tile startTile = floorTiles[rng.Next(0, floorTiles.Count)];
+
+		int startDirection = rng.Next(0, 359);
+		int oppDirection = (startDirection + 180) % 360;
+
+		List<Tile> riverLineTiles = GetRiverLineTiles(startTile, startDirection, new List<Tile>());
+		riverLineTiles.AddRange(GetRiverLineTiles(startTile, oppDirection, new List<Tile>()));
+
+		List<Tile> riverTiles = GetRiverTiles(riverLineTiles);
+	}
+
+	List<Tile> GetRiverLineTiles(Tile tile, int prevDirection, List<Tile> riverTiles) {
+		if (tile == null) {
+			return riverTiles;
+		}
+
+		riverTiles.Add(tile);
+
+		System.Random rng = new System.Random(seed.GetHashCode());
+		int direction = (rng.Next(prevDirection - riverDirectionVariation, prevDirection + riverDirectionVariation) + 360) % 360;
+		int quadrant = direction / 45;
+		Tile nextTile = null;
+
+		for (int y = tile.y + 1; y >= tile.y - 1; y--) {
+			for (int x = tile.x - 1; x <= tile.x + 1; x++)  {
+				quadrant--;
+				if (quadrant < 0) {
+					if (IsWithinMap(x, y) && floorMap[x, y] != (int) TileTypes.outerFloor) {
+						nextTile = new Tile(x, y);
+					}
+					goto AfterLoop;
+				}
+			}
+		}
+		AfterLoop:
+
+		return GetRiverLineTiles(nextTile, direction, riverTiles);
+	}
+
+	List<Tile> GetRiverTiles(List<Tile> riverLineTiles) {
+		List<Tile> finalRiverTiles = new List<Tile>();
+
+		System.Random rng = new System.Random(seed.GetHashCode());
+		int prevRadius = rng.Next(minRiverRadius, maxRiverRadius);
+
+		foreach (Tile tile in riverLineTiles) {
+			int radius = rng.Next((prevRadius - riverWidthVariation < minRiverRadius) ? minRiverRadius : prevRadius - riverWidthVariation, 
+						(prevRadius + riverWidthVariation > maxRiverRadius) ? maxRiverRadius : prevRadius + riverWidthVariation);
+
+			for (int x = -radius; x <= radius; x++) {
+				for (int y = -radius; y <= radius; y++) {
+					if ((x * x) + (y * y) <= (radius * radius)) {
+						int circleX = tile.x + x;
+						int circleY = tile.y + y;
+						if (IsWithinMap(circleX, circleY) && floorMap[circleX, circleY] == (int) TileTypes.floor) {
+							finalRiverTiles.Add(new Tile(circleX, circleY));
+							floorMap[circleX, circleY] = (int) TileTypes.water;
+						}
+					}
+				}
+			}
+		}
+		return finalRiverTiles;
+	}
+	#endregion
+
+	#region Vegetation
+	void DrawVegetation(TileTypes tileType, float vegetationScale, float vegetationThreshold) {
+		vegetationMap = new int[width, height];
+		List<Tile> vegetations = GetVegetation(tileType, vegetationScale, vegetationThreshold);
+		foreach(Tile vegetation in vegetations) {
+			DrawTile(vegetation.x, vegetation.y, 0, vegetationMap);
+		}
+	}
+
+	List<Tile> GetVegetation(TileTypes tileType, float vegetationScale, float vegetationThreshold) {
+		System.Random rng = new System.Random(seed.GetHashCode());
+		int randomOffset = rng.Next(0,100);
+		int[,] perlinNoise = new int[width, height];
+		List<Tile> vegetations = new List<Tile>();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++)
+			{
+				float perlin = Mathf.PerlinNoise(((float) x / width) * vegetationScale + randomOffset, ((float) y / height) * vegetationScale + randomOffset);
+				if (perlin < vegetationThreshold) {
+					if (floorMap[x, y] != (int) TileTypes.outerFloor && floorMap[x, y] != (int) TileTypes.water) {
+						vegetationMap[x, y] = (int) tileType;
+						vegetations.Add(new Tile(x, y));
+					}
+				}
+			}
+		}
+		return vegetations;
+	}
+
+	#endregion
+
+	#region GetRegion
     List<Region> GetRegions(int tileType) {
 		List<Region> regions = new List<Region>();
 		visited = new int[width,height];
@@ -523,12 +676,14 @@ public class MapGenerator : MonoBehaviour {
 
 		return region;
 	}
+	#endregion
 
+	#region Draw
 	void DrawFloorMap() {
 		if (floorMap != null) {
 			for (int x = 0; x < width; x ++) {
 				for (int y = 0; y < height; y ++) {
-                    DrawTile(x, y, floorMap);
+                    DrawTile(x, y, 0, floorMap);
 				}
 			}
 		}
@@ -537,57 +692,66 @@ public class MapGenerator : MonoBehaviour {
 	void DrawWallMap() {
 		List<Tile> walls = GetWalls();
 		foreach (Tile wall in walls) {
-			DrawTile(wall.x, wall.y, wallMap);
+			DrawTile(wall.x, wall.y, 0, wallMap);
 		}
 	}
 
-    void DrawTile(int x, int y, int[,] map) {
+    void DrawTile(int x, int y, int id, int[,] map) {
         TileTypes tileType = (TileTypes) map[x, y];
         Vector3 pos = CoordToWorldPoint(x, y);
         GameObject tileToDraw;
 
         switch(tileType) {
             case TileTypes.outerFloor:
-                tileToDraw = outerFloor[0];
+                tileToDraw = outerFloor[id];
                 break;
             case TileTypes.floor:
-                tileToDraw = floor[0];
+                tileToDraw = floor[id];
                 break;
             case TileTypes.outerWall0:
-                tileToDraw = outerWall0[0];
+                tileToDraw = outerWall0[id];
                 break;
             case TileTypes.outerWall1:
-                tileToDraw = outerWall1[0];
+                tileToDraw = outerWall1[id];
                 break;
 			case TileTypes.outerWall2:
-                tileToDraw = outerWall2[0];
+                tileToDraw = outerWall2[id];
                 break;
 			case TileTypes.outerWall3:
-                tileToDraw = outerWall3[0];
+                tileToDraw = outerWall3[id];
                 break;
 			case TileTypes.outerWall4:
-                tileToDraw = outerWall4[0];
+                tileToDraw = outerWall4[id];
                 break;
             case TileTypes.innerWall0:
-                tileToDraw = innerWall0[0];
+                tileToDraw = innerWall0[id];
                 break;
             case TileTypes.innerWall1:
-                tileToDraw = innerWall1[0];
+                tileToDraw = innerWall1[id];
                 break;
 			case TileTypes.innerWall2:
-                tileToDraw = innerWall2[0];
+                tileToDraw = innerWall2[id];
                 break;
 			case TileTypes.innerWall3:
-                tileToDraw = innerWall3[0];
+                tileToDraw = innerWall3[id];
                 break;
 			case TileTypes.innerWall4:
-                tileToDraw = innerWall4[0];
+                tileToDraw = innerWall4[id];
                 break;
             case TileTypes.leftWall:
-                tileToDraw = leftWall[0];
+                tileToDraw = leftWall[id];
                 break;
             case TileTypes.rightWall:
-                tileToDraw = rightWall[0];
+                tileToDraw = rightWall[id];
+                break;
+			case TileTypes.water:
+                tileToDraw = water[id];
+                break;
+			case TileTypes.bush:
+                tileToDraw = bush[id];
+                break;
+			case TileTypes.tree:
+                tileToDraw = tree[id];
                 break;
             default:
                 tileToDraw = floor[0];
@@ -595,6 +759,7 @@ public class MapGenerator : MonoBehaviour {
         }
         Instantiate(tileToDraw, pos, Quaternion.identity);
     }
+	#endregion
 
 	bool IsWithinMap(int x, int y) {
 		return x >= 0 && x < width && y >= 0 && y < height;
@@ -615,10 +780,11 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    public struct Tile {
+    public class Tile {
 		public int x;
 		public int y;
 
+		public Tile(){}
 		public Tile(int _x, int _y) {
 			x = _x;
 			y = _y;
@@ -652,14 +818,14 @@ public class MapGenerator : MonoBehaviour {
 							//exclude diagonals
 							if (tileType == TileTypes.floor) {
 								if (x == tile.x || y == tile.y) {
-									if (floorMap[x,y] == (int) TileTypes.outerFloor) {
+									if (floorMap[x,y] != (int) TileTypes.floor) {
 										edgeTiles.Add(tile);
 									}
 								}
 							} 
 							//include diagonals
 							else {
-								if (floorMap[x,y] == (int) TileTypes.floor) {
+								if (floorMap[x,y] != (int) TileTypes.outerFloor) {
 									edgeTiles.Add(tile);
 								}
 							}
