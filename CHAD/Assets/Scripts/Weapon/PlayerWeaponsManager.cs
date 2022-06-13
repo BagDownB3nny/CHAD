@@ -59,6 +59,8 @@ public class PlayerWeaponsManager : MonoBehaviour
     //adds gun to empty slot
     public bool AddGun(GameObject gun) {
         if (weaponInventory.Count < 8) {
+            GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
+                    .UpdateWeaponButton(weaponInventory.Count, gun);
             weaponInventory.Add(weaponInventory.Count, gun);
             return true;
         }

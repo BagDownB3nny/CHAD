@@ -25,7 +25,6 @@ public abstract class PlayerRangedWeapon : RangedWeapon
     }
 
     public void SendAttack() {
-        Debug.Log("Sending attack");
         ClientSend.RangedAttack(holder.GetComponent<CharacterStatsManager>().characterRefId);
     }
 }

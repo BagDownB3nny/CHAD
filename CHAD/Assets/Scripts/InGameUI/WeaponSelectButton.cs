@@ -16,8 +16,10 @@ public class WeaponSelectButton : MonoBehaviour
     }
 
     public void EquipGun() {
-        GameManager.instance.players[PlayerClient.instance.myId.ToString()]
-                .GetComponent<PlayerWeaponsManager>().EquipGun(gunIndex);
+        if (GameManager.instance.players.ContainsKey(PlayerClient.instance.myId.ToString())) {
+            GameManager.instance.players[PlayerClient.instance.myId.ToString()]
+                    .GetComponent<PlayerWeaponsManager>().EquipGun(gunIndex);
+        }
     }
 
 }

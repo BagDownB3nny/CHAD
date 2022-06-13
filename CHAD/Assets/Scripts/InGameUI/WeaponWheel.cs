@@ -19,4 +19,14 @@ public class WeaponWheel : MonoBehaviour
         currentButton = weaponButtons[(int)weaponButton].GetComponent<Button>();
         currentButton.image.color = new Color(0,0,0,94);
     }
+
+    public void UpdateWeaponButton(int weaponButton, GameObject gun) {
+        weaponButton -= 2;
+        if (weaponButton < 0) {
+            weaponButton += 8;
+        }
+        weaponButtons[weaponButton].transform.GetChild(0).GetComponent<Image>().sprite 
+                = gun.GetComponent<SpriteRenderer>().sprite;
+        weaponButtons[weaponButton].transform.GetChild(0).GetComponent<Image>().enabled = true;
+    }
 }
