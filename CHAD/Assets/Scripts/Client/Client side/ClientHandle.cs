@@ -24,10 +24,8 @@ public class ClientHandle : MonoBehaviour
     public static void SpawnPlayer(Packet _packet)
     {
         int playerIdReceived = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
         int characterType = _packet.ReadInt();
-        Debug.Log("ClientHandle packet: " + playerIdReceived + position + characterType);
-        GameManager.instance.SpawnPlayer(playerIdReceived.ToString(), characterType, position, true);
+        GameManager.instance.playerSpawner.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
         LobbyManager.instance.ReceiveSpawnPlayer(playerIdReceived);
     }
 
@@ -156,7 +154,8 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
+                    GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
                 GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }

@@ -18,7 +18,8 @@ public class WaitingRoomUIManager : MonoBehaviour
         }
     }    
     public void SpawnIn() {
-        GameManager.instance.SpawnWaitingRoomPlayer();
+        //GameManager.instance.playerSpawner.SpawnPlayer(PlayerClient.instance.myId, PlayerClasses.Captain);
+        ClientSend.MapLoaded();
         spawnIn.SetActive(false);
         ready.SetActive(true);
     }

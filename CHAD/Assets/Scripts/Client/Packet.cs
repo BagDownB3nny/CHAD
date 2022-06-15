@@ -32,13 +32,13 @@ public enum ServerPackets
 public enum ClientPackets
 {
     welcomeReceived = 1,
-    spawnPlayer = 2,
     movePlayer = 3,
     rangedAttack = 4,
     rotateRangedWeapon = 5,
     readyStatus = 6,
     changeClass = 7,
-    equipGun = 8
+    equipGun = 8,
+    mapLoaded = 9
 
 }
 

@@ -74,14 +74,12 @@ public class ServerSend
         }
     }
 
-    public static void SpawnPlayer(int _toClient, int _affectedPlayerId, GameObject _player, int characterType)
+    public static void SpawnPlayer(int _toClient, int _affectedPlayerId, PlayerClasses characterType)
     {
         using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
         {
             _packet.Write(_affectedPlayerId);
-            _packet.Write((Vector2) _player.transform.position);
-            _packet.Write(characterType);
-            Debug.Log("Server send packet: " + _affectedPlayerId + _player.transform.position + characterType);
+            _packet.Write((int)characterType);
             SendTCPData(_toClient, _packet);
         }
     }
@@ -237,12 +235,12 @@ public class ServerSend
         }
     }
 
-    public static void EquipGun(int _noSend, int _gunIndex) {
+    public static void EquipGun(int _playerRefId, int _affectedClient, int _gunIndex) {
         using (Packet _packet = new Packet((int)ServerPackets.equipGun))
         {
             _packet.Write(_gunIndex);
-            _packet.Write(_noSend);
-            SendTCPDataToAll(_noSend, _packet);
+            _packet.Write(_affectedClient);
+            SendTCPData(_playerRefId, _packet);
         }
     }
 }
