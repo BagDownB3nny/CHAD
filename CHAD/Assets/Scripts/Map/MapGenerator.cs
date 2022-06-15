@@ -25,8 +25,8 @@ public enum SquareTypes {
 	bush = 14,
 	tree = 15,
 	cliff = 16,
-
-
+	playerSpawner = 17,
+	enemySpawner = 18,
 }
 #endregion
 
@@ -38,8 +38,8 @@ public class MapGenerator : MonoBehaviour {
 	public int height = 50;
 
 	[Header("Floor")]
-	[Range(0,100)]
-	public int fillPercent = 49;
+	public float floorThreshold = 0.5f;
+	public float floorScale = 1;
     public int smoothing = 3;
 	public int smoothingRadius = 1;
 	public int minOuterRegionSize = 50;
@@ -88,11 +88,14 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject[] bush;
 	public GameObject[] tree;
 	public GameObject[] cliff;
+	public GameObject[] playerSpawner;
+	public GameObject[] enemySpawner;
 
 	int[,] floorMap;
 	int[,] vegetationMap;
 	int[,] wallMap;
 	int[,] cliffMap;
+	int[,] spawnerMap;
 	int[,] visited;
 
 	void Start() {
@@ -142,6 +145,8 @@ public class MapGenerator : MonoBehaviour {
 		DrawVegetation(SquareTypes.bush, bushScale, bushThreshold);
 
 		DrawVegetation(SquareTypes.tree, treeScale, treeThreshold);
+
+		DrawPlayerSpawner();
 		
 		DrawWallMap();
 	}
@@ -200,6 +205,10 @@ public class MapGenerator : MonoBehaviour {
 
 		yield return new WaitForSeconds(animationInterval);
 
+		DrawPlayerSpawner();
+
+		yield return new WaitForSeconds(animationInterval);
+
 		DrawWallMap();
 	}
 	#endregion
@@ -234,15 +243,18 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		System.Random rng = new System.Random(seed.GetHashCode());
+		int randomOffset = rng.Next(0,100);
+		int[,] perlinNoise = new int[width, height];
 
-		for (int x = 0; x < width; x ++) {
-			for (int y = 0; y < height; y ++) {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				if (x == 0 || x == width-1 || y == 0 || y == height -1) {
 					floorMap[x,y] = (int) SquareTypes.outerFloor;
+				} else {
+					float perlin = Mathf.PerlinNoise(((float) x / width) * floorScale + randomOffset, ((float) y / height) * floorScale + randomOffset);
+					floorMap[x,y] = (perlin < floorThreshold)? (int) SquareTypes.floor: (int) SquareTypes.outerFloor;
 				}
-				else {
-					floorMap[x,y] = (rng.Next(0,100) < fillPercent)? (int) SquareTypes.floor: (int) SquareTypes.outerFloor;
-				}
+				
 			}
 		}
 	}
@@ -426,6 +438,8 @@ public class MapGenerator : MonoBehaviour {
 				if (!IsWithinMap(square.x, y) || floorMap[square.x, y] == (int) SquareTypes.outerFloor) {
 					GameObject cliffSquare = Instantiate(cliff[0], CoordToWorldPoint(square.x, y), Quaternion.identity);
 					columnGroup.Add(cliffSquare);
+				} else {
+					break;
 				}
 			}
 		}
@@ -704,6 +718,54 @@ public class MapGenerator : MonoBehaviour {
 
 	#endregion
 
+	#region PlayerSpawner
+	void DrawPlayerSpawner() {
+		spawnerMap = new int[width, height];
+		List<Region> floors = GetRegions((int) SquareTypes.floor);
+		List<Square> floorSquares = new List<Square>();
+		foreach (Region region in floors) {
+			floorSquares.AddRange(region.squares);
+		}
+		Region floor = new Region(SquareTypes.floor, floorSquares, floorMap, width, height);
+		Square mostIsolatedSquare = GetMostIsolatedSquare(floor);
+		spawnerMap[mostIsolatedSquare.x, mostIsolatedSquare.y] = (int) SquareTypes.playerSpawner;
+		DrawSquare(mostIsolatedSquare.x, mostIsolatedSquare.y, 0, spawnerMap);
+	}
+
+	Square GetMostIsolatedSquare(Region region) {
+		List<Square> edgeSquares = region.edgeSquares;
+		List<Square> squares = region.squares;
+		float largestMinDist = float.MinValue;
+		Square mostIsolatedSquare = new Square(0, 0);
+
+		foreach(Square square in squares) {
+			float squareMinDist = float.MaxValue;
+			
+			foreach(Square edgeSquare in edgeSquares) {
+				int dx = edgeSquare.x - square.x;
+				int dy = edgeSquare.y - square.y;
+				float dist = dx * dx + dy * dy;
+
+				if (dist < squareMinDist) {
+					squareMinDist = dist;
+				}
+			}
+			if (squareMinDist > largestMinDist) {
+				largestMinDist = squareMinDist;
+				mostIsolatedSquare = square;
+				Debug.Log(largestMinDist);
+			}
+		}
+
+		return mostIsolatedSquare;
+	}
+
+	#endregion
+
+	#region EnemySpawner
+
+	#endregion
+
 	#region GetRegion
     List<Region> GetRegions(int squareType) {
 		List<Region> regions = new List<Region>();
@@ -820,6 +882,12 @@ public class MapGenerator : MonoBehaviour {
 			case SquareTypes.cliff:
                 squareToDraw = cliff[id];
                 break;
+			case SquareTypes.playerSpawner:
+                squareToDraw = playerSpawner[id];
+                break;
+			case SquareTypes.enemySpawner:
+                squareToDraw = enemySpawner[id];
+                break;
             default:
                 squareToDraw = floor[0];
                 break;
@@ -841,11 +909,15 @@ public class MapGenerator : MonoBehaviour {
     void ClearMap() {
         GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+		GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         foreach (GameObject floor in floors) {
             Destroy(floor);
         }
         foreach (GameObject wall in walls) {
             Destroy(wall);
+        }
+		foreach (GameObject spawner in spawners) {
+            Destroy(spawner);
         }
     }
 
@@ -871,10 +943,6 @@ public class MapGenerator : MonoBehaviour {
 		public int regionSize;
 		public bool isMainRegion = false;
 		public bool isConnectedToMainRegion = false;
-
-		public Region(SquareTypes _squareType) {
-			squareType = _squareType;
-		}
 
 		public Region(SquareTypes _squareType, List<Square> _squares, int[,] floorMap, int width, int height) {
 			squareType = _squareType;
@@ -905,6 +973,10 @@ public class MapGenerator : MonoBehaviour {
 					}
 				}
 			}
+		}
+
+		public Region(SquareTypes _squareType) {
+			squareType = _squareType;
 		}
 
 		public void SetConnectedToMainRegion() {

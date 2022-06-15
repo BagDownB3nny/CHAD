@@ -10,6 +10,7 @@ TagManager:
   - Tile
   - Wall
   - Floor
+  - Spawner
   layers:
   - Default
   - TransparentFX
