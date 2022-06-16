@@ -294,7 +294,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.changeClass, ClientHandle.ChangeClass},
             {(int)ServerPackets.broadcast, ClientHandle.Broadcast},
             {(int)ServerPackets.equipGun, ClientHandle.EquipGun},
-            {(int)ServerPackets.loadMap, ClientHandle.LoadMap}
+            {(int)ServerPackets.loadMap, ClientHandle.LoadMap},
+            {(int)ServerPackets.addGun, ClientHandle.AddGun}
         };
     }
 

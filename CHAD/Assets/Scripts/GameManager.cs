@@ -17,14 +17,22 @@ public enum PlayerClasses {
 }
 
 public enum PlayerWeapons {
-    TestRifle = 1,
-    Crossbow = 2,
-    Minigun = 3
+    TestRifle = 0,
+    Crossbow = 1,
+    ToxicGun = 2
 }
 
 public enum Enemies {
     MaskedGuy = 0,
     WhiteDude = 1
+}
+
+public enum PlayerItems
+{
+    Rat = 0,
+    Monkey = 1,
+    FlySwatter = 2,
+    TF2Hat = 3
 }
 
 public class GameManager : MonoBehaviour
@@ -34,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
+    public List<GameObject> gunPrefabs;
 
     public Dictionary<string, GameObject> spawners;
     public PlayerSpawner playerSpawner;

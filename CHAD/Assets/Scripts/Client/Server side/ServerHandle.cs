@@ -107,4 +107,10 @@ public class ServerHandle
             }
         }
     }
+
+    public static void Interact(int _fromClient, Packet _packet)
+    {
+        GameObject player = GameManager.instance.players[_fromClient.ToString()];
+        player.GetComponent<PlayerItemsManager>().interact(player);
+    }
 }

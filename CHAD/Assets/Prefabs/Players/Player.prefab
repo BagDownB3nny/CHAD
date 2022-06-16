@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8048562091491450983}
   - component: {fileID: 8048562091491450978}
   - component: {fileID: 8048562091491450981}
+  - component: {fileID: 3347189729515371816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -127,6 +128,7 @@ MonoBehaviour:
   characterType: 0
   localProjectileRefId: 0
   localDamageDealerRefId: 0
+  maxHp: 0
   hp: 1000
   attack: 1
   speed: 10
@@ -137,7 +139,8 @@ MonoBehaviour:
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   damageEffect: {fileID: 0}
-  characterClass: 0
+  healthBar: {fileID: 0}
+  playerClass: 0
 --- !u!114 &8048562091491450984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,9 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatsManager: {fileID: 0}
   weaponScript: {fileID: 0}
-  defaultWeapon: {fileID: 7914521892763815579, guid: ed52286fca79d436ab2ea4427fa3a3d0, type: 3}
+  defaultWeapon: 0
   currentWeapon: {fileID: 0}
-  weaponInventory: []
+  currentWeaponId: 0
 --- !u!114 &8048562091491450983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +230,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3347189729515371816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048562091491450911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db939533ba5c4cd0beda79f35877315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

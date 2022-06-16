@@ -124,7 +124,8 @@ public class Server
                 {(int)ClientPackets.readyStatus, ServerHandle.ReadyStatus},
                 {(int)ClientPackets.changeClass, ServerHandle.ChangeClass},
                 {(int)ClientPackets.equipGun, ServerHandle.EquipGun},
-                {(int)ClientPackets.mapLoaded, ServerHandle.MapLoaded}
+                {(int)ClientPackets.mapLoaded, ServerHandle.MapLoaded},
+                {(int)ClientPackets.interact, ServerHandle.Interact}
             };
     }
 }

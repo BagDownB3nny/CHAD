@@ -25,7 +25,8 @@ public enum ServerPackets
     changeClass = 16,
     broadcast = 17,
     equipGun = 18,
-    loadMap = 19
+    loadMap = 19,
+    addGun = 20
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -38,8 +39,8 @@ public enum ClientPackets
     readyStatus = 6,
     changeClass = 7,
     equipGun = 8,
-    mapLoaded = 9
-
+    mapLoaded = 9,
+    interact = 10
 }
 
 public class Packet : IDisposable

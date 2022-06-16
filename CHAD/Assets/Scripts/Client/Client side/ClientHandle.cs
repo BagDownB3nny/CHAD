@@ -199,4 +199,11 @@ public class ClientHandle : MonoBehaviour
         SceneManager.LoadScene(_map);
         ClientSend.MapLoaded();
     }
+
+    public static void AddGun(Packet _packet)
+    {
+        string _affectedPlayer = _packet.ReadString();
+        PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
+        GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
+    }
 }
