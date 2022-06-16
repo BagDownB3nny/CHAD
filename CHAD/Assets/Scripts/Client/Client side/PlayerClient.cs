@@ -293,7 +293,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.readyStatus, ClientHandle.ReadyStatus},
             {(int)ServerPackets.changeClass, ClientHandle.ChangeClass},
             {(int)ServerPackets.broadcast, ClientHandle.Broadcast},
-            {(int)ServerPackets.equipGun, ClientHandle.EquipGun}
+            {(int)ServerPackets.equipGun, ClientHandle.EquipGun},
+            {(int)ServerPackets.loadMap, ClientHandle.LoadMap}
         };
     }
 

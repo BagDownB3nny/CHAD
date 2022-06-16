@@ -10,21 +10,19 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     [Header("Player Weapons Parameters")]
     public GameObject defaultWeapon;
-    public GameObject defaultWeapon2;
     public GameObject currentWeapon;
+    public int currentWeaponId;
     public Dictionary<int, GameObject> weaponInventory = new Dictionary<int, GameObject>(8);
 
     private void Awake() {
         playerStatsManager = gameObject.GetComponent<PlayerStatsManager>();
+        AddGun(defaultWeapon);
     }
     
     void Start()
     {
-        //AddGun(defaultGun);
-        AddGun(defaultWeapon);
-        AddGun(defaultWeapon2);
         if (NetworkManager.IsMine(playerStatsManager.characterRefId)) {
-             EquipGun(0);
+            EquipGun(0);
         }
     }
 
@@ -36,6 +34,7 @@ public class PlayerWeaponsManager : MonoBehaviour
         if (!weaponInventory.ContainsKey(gunIndex)) {
             return;
         }
+        currentWeaponId = gunIndex;
         if (currentWeapon != null) {
             currentWeapon.GetComponent<PlayerRangedWeapon>().Unequip();
         }      
@@ -48,6 +47,7 @@ public class PlayerWeaponsManager : MonoBehaviour
     }
 
     public void ReceiveEquipGun(int gunIndex) {
+        currentWeaponId = gunIndex;
         if (currentWeapon != null) {
             currentWeapon.GetComponent<PlayerRangedWeapon>().Unequip();
         }      
@@ -58,7 +58,7 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     //adds gun to empty slot
     public bool AddGun(GameObject gun) {
-        if (weaponInventory.Count < 8) {
+        if (weaponInventory.Count < 8 ) {
             GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
                     .UpdateWeaponButton(weaponInventory.Count, gun);
             weaponInventory.Add(weaponInventory.Count, gun);

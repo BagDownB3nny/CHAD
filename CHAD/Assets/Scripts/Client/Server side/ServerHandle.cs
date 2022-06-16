@@ -19,7 +19,7 @@ public class ServerHandle
             Debug.Log($"Player \"{_username}\" (Id: {_fromClient}) " +
                $"has assumed the wrong Id ({_clientIdCheck})!");
         }
-        Debug.Log("Welcome received!");
+        ServerSend.LoadMap(_fromClient, "WaitingRoom");
     }
 
     public static void MovePlayer(int _fromClient, Packet _packet)
@@ -33,18 +33,6 @@ public class ServerHandle
             Vector2 _position = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerMovement>().MovePlayer(_input);
             ServerSend.MovePlayer(_fromClient, _position);
         }
-    }
-
-    /*
-    public static void SPAM(int _fromClient, Packet _packet)
-    {
-        Debug.Log(_packet.ReadString());
-    }*/
-
-    public static void SpawnPlayer(int _fromClient, Packet _packet) {
-        int characterType = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
-        Server.serverClients[_fromClient].SendIntoGame(characterType, position);
     }
 
     public static void RotateRangedWeapon(int _fromClient, Packet _packet)
@@ -72,18 +60,51 @@ public class ServerHandle
     public static void ReadyStatus(int _fromClient, Packet _packet) {
         int playerRefId = _packet.ReadInt();
         bool readyStatus = _packet.ReadBool();
-        LobbyManager.instance.ReadyStatus(playerRefId, readyStatus);
+        LobbyManager.instance.ReadyStatus(playerRefId.ToString(), readyStatus);
     }
 
     public static void ChangeClass(int _fromClient, Packet _packet) {
-        int playerClass = _packet.ReadInt();
-        GameManager.instance.ChangeClass(_fromClient, playerClass);
+        PlayerClasses playerClass = (PlayerClasses)_packet.ReadInt();
+        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, playerClass);
+        foreach (ServerClient serverClient in Server.serverClients.Values) {
+            ServerSend.SpawnPlayer(serverClient.id, _fromClient, playerClass);
+        }
     }
 
     public static void EquipGun(int _fromClient, Packet _packet) {
         int gunIndex = _packet.ReadInt();
         GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerWeaponsManager>()
                 .ReceiveEquipGun(gunIndex);
-        ServerSend.EquipGun(_fromClient, gunIndex);
+        foreach (ServerClient serverClient in Server.serverClients.Values)
+        {
+            if (serverClient.id != _fromClient)
+            {
+                ServerSend.EquipGun(serverClient.id, _fromClient, gunIndex);
+            }
+        }
+    }
+
+    public static void MapLoaded(int _fromClient, Packet _packet)
+    {
+        Server.serverClients[_fromClient].spawnedIn = true;
+        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, PlayerClasses.Captain);
+        foreach (ServerClient serverClient in Server.serverClients.Values)
+        {
+            if (serverClient.spawnedIn)
+            {
+                // Telling all clients to spawn in this player
+                ServerSend.SpawnPlayer(serverClient.id, _fromClient,
+                        PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
+                if (serverClient.id != _fromClient)
+                {
+                    // Telling this client to spawn in all players (except itself)
+                    ServerSend.SpawnPlayer(_fromClient, serverClient.id,
+                            PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
+                    // Telling this client to equip guns for all players
+                    ServerSend.EquipGun(_fromClient, serverClient.id,
+                            GameManager.instance.players[serverClient.id.ToString()].GetComponent<PlayerWeaponsManager>().currentWeaponId);
+                }
+            }
+        }
     }
 }

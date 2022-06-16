@@ -24,21 +24,21 @@ public enum ServerPackets
     readyStatus = 15,
     changeClass = 16,
     broadcast = 17,
-    equipGun = 18
-
+    equipGun = 18,
+    loadMap = 19
 }
 
 /// <summary>Sent from client to server.</summary>
 public enum ClientPackets
 {
     welcomeReceived = 1,
-    spawnPlayer = 2,
     movePlayer = 3,
     rangedAttack = 4,
     rotateRangedWeapon = 5,
     readyStatus = 6,
     changeClass = 7,
-    equipGun = 8
+    equipGun = 8,
+    mapLoaded = 9
 
 }
 
