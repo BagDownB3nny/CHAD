@@ -12,7 +12,6 @@ public class JoinServerMenuController : MonoBehaviour
     public TMP_InputField serverIp;
 
     public void LoadJoinRoom() {
-        SceneManager.LoadScene(joinRoomScreen);
         NetworkManager.SetGameType(GameType.Client);
         PlayerClient.instance.SetServerIp(serverIp.text);
         PlayerClient.instance.ConnectToServer();

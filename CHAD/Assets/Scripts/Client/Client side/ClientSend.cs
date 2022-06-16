@@ -50,16 +50,6 @@ public class ClientSend : MonoBehaviour
         }
     }*/
 
-    public static void SpawnPlayer(int _characterType, Vector2 position)
-    {
-        using (Packet _packet = new Packet((int)ClientPackets.spawnPlayer))
-        {
-            _packet.Write(_characterType);
-            _packet.Write(position);
-            SendTCPData(_packet);
-        }
-    }
-
     public static void RotateRangedWeapon(string _characterRefId, float _rotation)
     {
         using (Packet _packet = new Packet((int)ClientPackets.rotateRangedWeapon))
@@ -88,6 +78,21 @@ public class ClientSend : MonoBehaviour
     public static void ChangeClass(int _playerClass) {
         using (Packet _packet = new Packet((int)ClientPackets.changeClass)) {
             _packet.Write(_playerClass);
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void EquipGun(int _index) {
+        using (Packet _packet = new Packet((int)ClientPackets.equipGun)) {
+            _packet.Write(_index);
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void MapLoaded()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.mapLoaded))
+        {
             SendTCPData(_packet);
         }
     }

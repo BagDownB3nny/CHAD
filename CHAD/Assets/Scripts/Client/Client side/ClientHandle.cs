@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClientHandle : MonoBehaviour
 {
@@ -19,16 +20,14 @@ public class ClientHandle : MonoBehaviour
 
         PlayerClient.instance.udp.Connect(
             ((IPEndPoint)PlayerClient.instance.tcp.socket.Client.LocalEndPoint).Port);
+        ClientSend.WelcomeReceived();
     }
 
     public static void SpawnPlayer(Packet _packet)
     {
         int playerIdReceived = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
         int characterType = _packet.ReadInt();
-        Debug.Log("ClientHandle packet: " + playerIdReceived + position + characterType);
-        GameManager.instance.SpawnPlayer(playerIdReceived.ToString(), characterType, position, true);
-        LobbyManager.instance.ReceiveSpawnPlayer(playerIdReceived);
+        GameManager.instance.playerSpawner.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
     }
 
     public static void MovePlayer(Packet _packet)
@@ -156,7 +155,8 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
+                    GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
                 GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
@@ -169,7 +169,7 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void ReadyStatus(Packet _packet) {
-        int playerRefId = _packet.ReadInt();
+        string playerRefId = _packet.ReadString();
         bool readyStatus = _packet.ReadBool();
         LobbyManager.instance.ReceiveReadyStatus(playerRefId, readyStatus);
     }
@@ -184,5 +184,19 @@ public class ClientHandle : MonoBehaviour
     public static void Broadcast(Packet _packet) {
         string _msg = _packet.ReadString();
         GameManager.instance.Broadcast(_msg);
+    }
+
+     public static void EquipGun(Packet _packet) {
+        int _gunIndex = _packet.ReadInt();
+        int _playerRefId = _packet.ReadInt();
+        GameManager.instance.players[_playerRefId.ToString()].GetComponent<PlayerWeaponsManager>().ReceiveEquipGun(_gunIndex);
+    }
+
+    public static void LoadMap(Packet _packet)
+    {
+        string _map = _packet.ReadString();
+        // TODO: Replace with MapManager.LoadMap();
+        SceneManager.LoadScene(_map);
+        ClientSend.MapLoaded();
     }
 }
