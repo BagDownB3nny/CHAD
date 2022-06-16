@@ -147,6 +147,8 @@ public class MapGenerator : MonoBehaviour {
 		DrawVegetation(SquareTypes.tree, treeScale, treeThreshold);
 
 		DrawPlayerSpawner();
+
+		DrawEnemySpawner();
 		
 		DrawWallMap();
 	}
@@ -206,6 +208,10 @@ public class MapGenerator : MonoBehaviour {
 		yield return new WaitForSeconds(animationInterval);
 
 		DrawPlayerSpawner();
+
+		yield return new WaitForSeconds(animationInterval);
+
+		DrawEnemySpawner();
 
 		yield return new WaitForSeconds(animationInterval);
 
@@ -763,6 +769,11 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 
 	#region EnemySpawner
+	void DrawEnemySpawner() {
+		Debug.Log("enemy spawner");
+		spawnerMap[0, 0] = (int) SquareTypes.enemySpawner;
+		DrawSquare(0, 0, 0, spawnerMap);
+	}
 
 	#endregion
 
