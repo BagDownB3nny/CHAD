@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerSpawner : MonoBehaviour
             if (playerInfo.playerClass == _playerClass)
             {
                 player.GetComponent<PlayerStatsManager>().SetStats(playerInfo);
-                // If GameManager already contains a character, replace that character with new character
+                // If GameManager already contains a character, replace that character with new character (only happens in lobby)
                 if (GameManager.instance.players.ContainsKey(_playerId.ToString()))
                 {
                     Vector2 playerPos = GameManager.instance.players[_playerId.ToString()].transform.position;
@@ -38,6 +39,10 @@ public class PlayerSpawner : MonoBehaviour
             else
             {
                 playerInfo.ChangeClass(_playerClass, player.GetComponent<PlayerStatsManager>());
+                if (NetworkManager.IsMine(_playerId.ToString()))
+                {
+                    LobbyManager.instance.readyToggle.GetComponent<Toggle>().isOn = false;
+                }
                 try
                 {
                     player.transform.position = GameManager.instance.players[_playerId.ToString()].transform.position;

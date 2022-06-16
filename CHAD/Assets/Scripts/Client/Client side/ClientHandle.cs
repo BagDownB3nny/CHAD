@@ -25,9 +25,7 @@ public class ClientHandle : MonoBehaviour
     {
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
-        Debug.Log("Server told me to spawn player " + playerIdReceived + "as a " + ((PlayerClasses)characterType).ToString());
         GameManager.instance.playerSpawner.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
-        LobbyManager.instance.ReceiveSpawnPlayer(playerIdReceived);
     }
 
     public static void MovePlayer(Packet _packet)
@@ -169,7 +167,7 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void ReadyStatus(Packet _packet) {
-        int playerRefId = _packet.ReadInt();
+        string playerRefId = _packet.ReadString();
         bool readyStatus = _packet.ReadBool();
         LobbyManager.instance.ReceiveReadyStatus(playerRefId, readyStatus);
     }

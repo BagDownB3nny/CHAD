@@ -60,7 +60,7 @@ public class ServerHandle
     public static void ReadyStatus(int _fromClient, Packet _packet) {
         int playerRefId = _packet.ReadInt();
         bool readyStatus = _packet.ReadBool();
-        LobbyManager.instance.ReadyStatus(playerRefId, readyStatus);
+        LobbyManager.instance.ReadyStatus(playerRefId.ToString(), readyStatus);
     }
 
     public static void ChangeClass(int _fromClient, Packet _packet) {

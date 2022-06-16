@@ -208,7 +208,7 @@ public class ServerSend
         }
     }
 
-    public static void ReadyStatus(int _playerRefId, bool _readyStatus) {
+    public static void ReadyStatus(string _playerRefId, bool _readyStatus) {
         using (Packet _packet = new Packet((int)ServerPackets.readyStatus))
         {
             _packet.Write(_playerRefId);
