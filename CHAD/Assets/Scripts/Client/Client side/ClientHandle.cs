@@ -25,6 +25,7 @@ public class ClientHandle : MonoBehaviour
     {
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
+        Debug.Log("Server told me to spawn player " + playerIdReceived + "as a " + ((PlayerClasses)characterType).ToString());
         GameManager.instance.playerSpawner.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
         LobbyManager.instance.ReceiveSpawnPlayer(playerIdReceived);
     }

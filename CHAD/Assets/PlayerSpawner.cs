@@ -37,7 +37,7 @@ public class PlayerSpawner : MonoBehaviour
             } // If playerInfo is of different playerClass, that means we are trying to change playerClass of existing player
             else
             {
-                playerInfo.SetStats(player.GetComponent<PlayerStatsManager>());
+                playerInfo.ChangeClass(_playerClass, player.GetComponent<PlayerStatsManager>());
                 try
                 {
                     player.transform.position = GameManager.instance.players[_playerId.ToString()].transform.position;

@@ -93,7 +93,8 @@ public class ServerHandle
             if (serverClient.spawnedIn)
             {
                 // Telling all clients to spawn in this player
-                ServerSend.SpawnPlayer(serverClient.id, _fromClient, PlayerClasses.Captain);
+                ServerSend.SpawnPlayer(serverClient.id, _fromClient,
+                        PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
                 if (serverClient.id != _fromClient)
                 {
                     // Telling this client to spawn in all players (except itself)

@@ -16,13 +16,12 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     private void Awake() {
         playerStatsManager = gameObject.GetComponent<PlayerStatsManager>();
+        AddGun(defaultWeapon);
     }
     
     void Start()
     {
-        AddGun(defaultWeapon);
-        if (NetworkManager.IsMine(playerStatsManager.characterRefId))
-        {
+        if (NetworkManager.IsMine(playerStatsManager.characterRefId)) {
             EquipGun(0);
         }
     }
