@@ -243,4 +243,13 @@ public class ServerSend
             SendTCPData(_playerRefId, _packet);
         }
     }
+
+    public static void LoadMap(int _toClient, string _mapName)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.loadMap))
+        {
+            _packet.Write(_mapName);
+            SendTCPData(_toClient, _packet);
+        }
+    } 
 }

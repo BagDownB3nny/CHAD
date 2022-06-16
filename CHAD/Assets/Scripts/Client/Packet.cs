@@ -24,8 +24,8 @@ public enum ServerPackets
     readyStatus = 15,
     changeClass = 16,
     broadcast = 17,
-    equipGun = 18
-
+    equipGun = 18,
+    loadMap = 19
 }
 
 /// <summary>Sent from client to server.</summary>

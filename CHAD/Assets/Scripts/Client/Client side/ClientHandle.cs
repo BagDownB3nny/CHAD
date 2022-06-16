@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClientHandle : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class ClientHandle : MonoBehaviour
 
         PlayerClient.instance.udp.Connect(
             ((IPEndPoint)PlayerClient.instance.tcp.socket.Client.LocalEndPoint).Port);
+        ClientSend.WelcomeReceived();
     }
 
     public static void SpawnPlayer(Packet _packet)
@@ -188,5 +190,13 @@ public class ClientHandle : MonoBehaviour
         int _gunIndex = _packet.ReadInt();
         int _playerRefId = _packet.ReadInt();
         GameManager.instance.players[_playerRefId.ToString()].GetComponent<PlayerWeaponsManager>().ReceiveEquipGun(_gunIndex);
+    }
+
+    public static void LoadMap(Packet _packet)
+    {
+        string _map = _packet.ReadString();
+        // TODO: Replace with MapManager.LoadMap();
+        SceneManager.LoadScene(_map);
+        ClientSend.MapLoaded();
     }
 }

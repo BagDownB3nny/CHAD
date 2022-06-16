@@ -19,7 +19,7 @@ public class ServerHandle
             Debug.Log($"Player \"{_username}\" (Id: {_fromClient}) " +
                $"has assumed the wrong Id ({_clientIdCheck})!");
         }
-        Debug.Log("Welcome received!");
+        ServerSend.LoadMap(_fromClient, "WaitingRoom");
     }
 
     public static void MovePlayer(int _fromClient, Packet _packet)
