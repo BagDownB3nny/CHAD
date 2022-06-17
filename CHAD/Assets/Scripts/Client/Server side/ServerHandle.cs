@@ -19,7 +19,7 @@ public class ServerHandle
             Debug.Log($"Player \"{_username}\" (Id: {_fromClient}) " +
                $"has assumed the wrong Id ({_clientIdCheck})!");
         }
-        ServerSend.LoadMap(_fromClient, "WaitingRoom");
+        ServerSend.LoadLobby(_fromClient);
     }
 
     public static void MovePlayer(int _fromClient, Packet _packet)
@@ -82,6 +82,16 @@ public class ServerHandle
                 ServerSend.EquipGun(serverClient.id, _fromClient, gunIndex);
             }
         }
+    }
+
+    public static void LobbyLoaded(int _fromClient, Packet _packet) {
+        Debug.Log("Confirmed client " + _fromClient + " lobby loaded");
+        MapLoaded(_fromClient, _packet);
+    }
+
+    public static void EmptyMapLoaded(int _fromClient, Packet _packet) {
+        MapManager.instance.LoadMap();
+        ServerSend.LoadMap(_fromClient, MapManager.instance.mapType, MapManager.instance.seed);
     }
 
     public static void MapLoaded(int _fromClient, Packet _packet)

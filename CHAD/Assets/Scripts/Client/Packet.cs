@@ -25,7 +25,10 @@ public enum ServerPackets
     changeClass = 16,
     broadcast = 17,
     equipGun = 18,
-    loadMap = 19
+    loadLobby = 19,
+    loadEmptyMap = 20,
+    loadMap = 21,
+
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -38,7 +41,9 @@ public enum ClientPackets
     readyStatus = 6,
     changeClass = 7,
     equipGun = 8,
-    mapLoaded = 9
+    lobbyLoaded = 9,
+    emptyMapLoaded = 10,
+    mapLoaded = 11
 
 }
 

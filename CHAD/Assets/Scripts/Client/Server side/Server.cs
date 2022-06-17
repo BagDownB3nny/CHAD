@@ -124,7 +124,10 @@ public class Server
                 {(int)ClientPackets.readyStatus, ServerHandle.ReadyStatus},
                 {(int)ClientPackets.changeClass, ServerHandle.ChangeClass},
                 {(int)ClientPackets.equipGun, ServerHandle.EquipGun},
+                {(int)ClientPackets.lobbyLoaded, ServerHandle.LobbyLoaded},
+                {(int)ClientPackets.emptyMapLoaded, ServerHandle.EmptyMapLoaded},
                 {(int)ClientPackets.mapLoaded, ServerHandle.MapLoaded}
+
             };
     }
 }

@@ -78,8 +78,8 @@ public class ClientHandle : MonoBehaviour
         string enemyRefId = _packet.ReadString();
         int enemyId = _packet.ReadInt();
         Vector2 position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.spawners, spawnerRefId)) {
-            GameManager.instance.spawners[spawnerRefId].GetComponent<EnemySpawner>().ReceiveSpawnEnemy(enemyRefId, enemyId, position);
+        if (IsPresent(GameManager.instance.enemySpawners, spawnerRefId)) {
+            GameManager.instance.enemySpawners[spawnerRefId].GetComponent<EnemySpawner>().ReceiveSpawnEnemy(enemyRefId, enemyId, position);
         }
     }
 
@@ -192,11 +192,23 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.players[_playerRefId.ToString()].GetComponent<PlayerWeaponsManager>().ReceiveEquipGun(_gunIndex);
     }
 
+    public static void LoadLobby(Packet _packet)
+    {
+        Debug.Log("loading lobby on client");
+        SceneManager.LoadScene("WaitingRoom");
+        ClientSend.LobbyLoaded();
+    }
+
+    public static void LoadEmptyMap(Packet _packet)
+    {
+        SceneManager.LoadScene("EmptyMap");
+        ClientSend.EmptyMapLoaded();
+    }
+
     public static void LoadMap(Packet _packet)
     {
-        string _map = _packet.ReadString();
-        // TODO: Replace with MapManager.LoadMap();
-        SceneManager.LoadScene(_map);
-        ClientSend.MapLoaded();
+        MapType mapType = (MapType) _packet.ReadInt();
+        string seed = _packet.ReadString();
+        MapManager.instance.ReceiveLoadMap(mapType, seed);
     }
 }

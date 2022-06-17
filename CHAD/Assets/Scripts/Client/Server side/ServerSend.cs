@@ -244,12 +244,29 @@ public class ServerSend
         }
     }
 
-    public static void LoadMap(int _toClient, string _mapName)
+    public static void LoadLobby(int _toClient)
+    {
+        using (Packet _packet = new Packet((int) ServerPackets.loadLobby))
+        {
+            SendTCPData(_toClient, _packet);
+        }
+    }
+
+    public static void LoadEmptyMap()
+    {
+        using (Packet _packet = new Packet((int) ServerPackets.loadEmptyMap))
+        {
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void LoadMap(int _toClient, MapType _mapType, string _seed)
     {
         using (Packet _packet = new Packet((int)ServerPackets.loadMap))
         {
-            _packet.Write(_mapName);
+            _packet.Write(_mapType);
+            _packet.Write(_seed);
             SendTCPData(_toClient, _packet);
         }
-    } 
+    }
 }

@@ -89,6 +89,22 @@ public class ClientSend : MonoBehaviour
         }
     }
 
+    public static void LobbyLoaded()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.lobbyLoaded))
+        {
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void EmptyMapLoaded()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.emptyMapLoaded))
+        {
+            SendTCPData(_packet);
+        }
+    }
+
     public static void MapLoaded()
     {
         using (Packet _packet = new Packet((int)ClientPackets.mapLoaded))

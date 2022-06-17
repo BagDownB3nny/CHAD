@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
 
-    public Dictionary<string, GameObject> spawners;
+    public Dictionary<string, GameObject> enemySpawners;
     public PlayerSpawner playerSpawner;
     public Dictionary<string, GameObject> players;
     public Dictionary<string, PlayerClasses> playerClasses;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            spawners = new Dictionary<string, GameObject>();
+            enemySpawners = new Dictionary<string, GameObject>();
             players = new Dictionary<string, GameObject>();
             playerClasses = new Dictionary<string, PlayerClasses>();
             projectiles = new Dictionary<string, GameObject>();
@@ -62,8 +62,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //temporary manual adding of spawners into the spawners dictionary for testing
-        spawners.Add("MGS0", GameObject.Find("MaskedGuySpawner"));
-        spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
+        // spawners.Add("MGS0", GameObject.Find("MaskedGuySpawner"));
+        // spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
     }
 
     public void RemovePlayer(int _playerRefId) {
@@ -104,6 +104,10 @@ public class GameManager : MonoBehaviour
             Destroy(pair.Value);
         }
         damageDealers.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in enemySpawners) {
+            Destroy(pair.Value);
+        }
+        enemySpawners.Clear();
     }
 
     public void Broadcast(string _msg) {
