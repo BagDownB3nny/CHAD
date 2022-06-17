@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Drops : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerItemsManager>().interact += PickUp;
-            Debug.Log("Weapon can be picked up");
+            collision.gameObject.GetComponent<PlayerItemsManager>().interact += OnInteract;
         }
     }
 
@@ -17,10 +16,9 @@ public abstract class Drops : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerItemsManager>().interact -= PickUp;
-            Debug.Log("Weapon cannot be picked up");
+            collision.gameObject.GetComponent<PlayerItemsManager>().interact -= OnInteract;
         }
     }
 
-    public abstract void PickUp(GameObject player);
+    public abstract void OnInteract(GameObject player);
 }

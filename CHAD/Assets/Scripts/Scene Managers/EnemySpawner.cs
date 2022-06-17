@@ -4,19 +4,20 @@ using UnityEngine;
 
 public abstract class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawner Reference ID")]
-    public string spawnerInitials;
-    public string spawnerId;
-    public int localEnemyRefId = 0;
+    // To keep track of enemies in level
+    public List<int> enemiesPerLevel;
+    public int enemiesToSpawn;
+    public int enemiesAlive;
+    public Time timeToNextSpawn;
+    public int[][] playerBounds;
 
-    [Header("Enemies to Spawn")]
-    public Enemies enemyId;
+    // To check if spawner should start spawning
 
-    [Header("Spawner Parameters")]
-    public float spawnInterval;
-    public float timeToNextSpawn;
-
-    public abstract void SpawnEnemy();
-
-    public abstract void ReceiveSpawnEnemy(string _enemyRefId, int _enemyId, Vector2 _position);
+    private void Update()
+    {
+        if (NetworkManager.gameType == GameType.Server)
+        {
+            // TODO: Add spawning behavior
+        }
+    }
 }

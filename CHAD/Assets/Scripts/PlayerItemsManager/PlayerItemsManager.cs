@@ -13,7 +13,6 @@ public class PlayerItemsManager : MonoBehaviour
     {
         if (NetworkManager.IsMine(gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
             if (Input.GetKeyDown(KeyCode.E)) {
-                Debug.Log("Sending interact");
                 ClientSend.Interact();
             }
         }

@@ -37,13 +37,15 @@ public enum PlayerItems
 
 public class GameManager : MonoBehaviour
 {
-
+    // Singleton instance
     public static GameManager instance;
 
+    // List of prefabs
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
     public List<GameObject> gunPrefabs;
 
+    // Dictionary of in-game objects
     public Dictionary<string, GameObject> spawners;
     public PlayerSpawner playerSpawner;
     public Dictionary<string, GameObject> players;
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, GameObject> enemies;
     public Dictionary<string, GameObject> projectiles;
     public Dictionary<string, GameObject> damageDealers;
+
+    // Level tracking data
+    public int currentLevel;
 
     private void Awake()
     {
