@@ -201,6 +201,7 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadEmptyMap(Packet _packet)
     {
+        GameManager.instance.ResetGame();
         SceneManager.LoadScene("EmptyMap");
         ClientSend.EmptyMapLoaded();
     }

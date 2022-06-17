@@ -41,15 +41,10 @@ public class MapManager : MonoBehaviour
     }
 
     public void LoadMap() {
-        Debug.Log("loop 0");
         SceneManager.LoadScene("EmptyMap");
-        Debug.Log("loop 1");
-        Debug.Log("loop 2");
-
+        GameManager.instance.ResetGame();
         GameObject mapGenerator = Instantiate(mapGenerators[(int) GetMapType()], new Vector3(0, 0, 0), Quaternion.identity);
-        Debug.Log("loop 3");
         mapGenerator.GetComponent<MapGenerator>().GenerateMap(GetSeed());
-        Debug.Log("loop 4");
         ServerSend.LoadEmptyMap();
     }
 
