@@ -96,19 +96,24 @@ public class MapGenerator : MonoBehaviour {
 	int[,] cliffMap;
 	int[,] visited;
 
-	// void Update() {
-	// 	if (Input.GetMouseButtonDown(0)) {
+    // void Update() {
+    // 	if (Input.GetMouseButtonDown(0)) {
     //         ClearMap();
-	// 		if (animationMode) {
-	// 			StartCoroutine(GenerateMapWithAnimation());
-	// 		} else {
-	// 			GenerateMap();
-	// 		}
-	// 	}
-	// }
+    // 		if (animationMode) {
+    // 			StartCoroutine(GenerateMapWithAnimation());
+    // 		} else {
+    // 			GenerateMap();
+    // 		}
+    // 	}
+    // }
+    private void OnDestroy()
+    {
+		Debug.Log("I've been destroyed");
+    }
 
-	#region GenerateMap
-	public void GenerateMap(string _seed) {
+    #region GenerateMap
+    public void GenerateMap(string _seed) {
+		Debug.Log("GENERATING A MAP");
 		seed = _seed;
 
 		if (animationMode) {
@@ -117,13 +122,11 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		floorMap = new int[width,height];
-		
 		RandomFillMap();
 
 		for (int i = 0; i < smoothing; i ++) {
 			SmoothMap();
 		}
-
 		burstSmallRegions();
 
 		List<Region> finalRegions = GetRegions((int) SquareTypes.floor);
@@ -153,6 +156,8 @@ public class MapGenerator : MonoBehaviour {
 		{
 			SendMapLoaded();
 		}
+
+		Debug.Log("I have generated a map");
 	}
 
 	IEnumerator GenerateMapWithAnimation() {

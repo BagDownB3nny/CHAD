@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour
     public static MapManager instance;
     public MapType mapType;
     public string seed;
+    public static int counter = 0;
     public List<GameObject> mapGenerators = new List<GameObject>();
 
     private void Awake()
@@ -41,15 +42,20 @@ public class MapManager : MonoBehaviour
     }
 
     public void LoadMap() {
-        SceneManager.LoadScene("EmptyMap");
         GameManager.instance.ResetGame();
-        GameObject mapGenerator = Instantiate(mapGenerators[(int) GetMapType()], new Vector3(0, 0, 0), Quaternion.identity);
-        mapGenerator.GetComponent<MapGenerator>().GenerateMap(GetSeed());
-        ServerSend.LoadEmptyMap();
+        StartCoroutine(GenerateScene());
     }
 
-    public void SendLoadMap() {
-
+    public IEnumerator GenerateScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("EmptyMap");
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        GameObject mapGenerator = Instantiate(mapGenerators[(int)GetMapType()], new Vector3(0, 0, 0), Quaternion.identity);
+        mapGenerator.GetComponent<MapGenerator>().GenerateMap(GetSeed());
+        ServerSend.LoadEmptyMap();
     }
 
     public void ReceiveLoadMap(MapType _mapType, string _seed) {

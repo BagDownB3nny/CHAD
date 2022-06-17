@@ -13,7 +13,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public void SpawnPlayer(int _playerId, PlayerClasses _playerClass)
     {
-        GameObject player = Instantiate(GameManager.instance.playerPrefabs[(int)_playerClass]);
+        GameObject player = Instantiate(GameManager.instance.playerPrefabs[(int)_playerClass], transform.position, Quaternion.identity);
         player.GetComponent<PlayerStatsManager>().characterRefId = _playerId.ToString();
         // If playerInfo exists
         if (PlayerInfoManager.AllPlayerInfo.ContainsKey(_playerId.ToString()))
