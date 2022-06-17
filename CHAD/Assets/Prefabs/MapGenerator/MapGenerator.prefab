@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652e4491b01e346ecba94968b2411c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPrefab: {fileID: 0}
   width: 70
   height: 70
   floorThreshold: 0.5
@@ -105,6 +104,6 @@ MonoBehaviour:
   cliff:
   - {fileID: 5974402530829977089, guid: 23c5ffb8202b64342a39ef2c78dd5cf7, type: 3}
   playerSpawner:
-  - {fileID: 3220429690255358432, guid: af0be876ade814ae0a341a6443d115f4, type: 3}
+  - {fileID: 5535552169974500748, guid: 91a301c829ecc4b2a9ff4fe5c15f2177, type: 3}
   enemySpawner:
   - {fileID: 3220429690255358432, guid: af0be876ade814ae0a341a6443d115f4, type: 3}

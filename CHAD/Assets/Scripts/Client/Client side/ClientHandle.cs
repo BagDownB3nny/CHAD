@@ -207,7 +207,7 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadMap(Packet _packet)
     {
-        MapType mapType = (MapType) _packet.ReadInt();
+        MapType mapType = (MapType)_packet.ReadInt();
         string seed = _packet.ReadString();
         MapManager.instance.ReceiveLoadMap(mapType, seed);
     }

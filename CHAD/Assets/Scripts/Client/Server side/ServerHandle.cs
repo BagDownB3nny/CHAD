@@ -90,7 +90,6 @@ public class ServerHandle
     }
 
     public static void EmptyMapLoaded(int _fromClient, Packet _packet) {
-        MapManager.instance.LoadMap();
         ServerSend.LoadMap(_fromClient, MapManager.instance.mapType, MapManager.instance.seed);
     }
 

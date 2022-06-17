@@ -149,7 +149,10 @@ public class MapGenerator : MonoBehaviour {
 		
 		DrawWallMap();
 
-		SendMapLoaded();
+		if (NetworkManager.gameType == GameType.Client)
+		{
+			SendMapLoaded();
+		}
 	}
 
 	IEnumerator GenerateMapWithAnimation() {
