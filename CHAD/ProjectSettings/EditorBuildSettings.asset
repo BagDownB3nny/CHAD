@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Singleplayer.unity
     guid: 960bebf7e3c514c00a681e66e2b308f4
+  - enabled: 1
+    path: Assets/Scenes/Menus/EmptyMap.unity
+    guid: 5de9d8571b422449d802f81bb727495a
   m_configObjects: {}

@@ -14,6 +14,7 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public int localDamageDealerRefId;
 
     [Header("Character Stats")]
+    public float maxHp;
     public float hp;
     public float attack;
     public float speed;

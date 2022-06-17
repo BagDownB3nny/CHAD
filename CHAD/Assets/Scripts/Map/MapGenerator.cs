@@ -31,7 +31,6 @@ public enum SquareTypes {
 #endregion
 
 public class MapGenerator : MonoBehaviour {
-	public Text textPrefab;
 
     [Header("Dimensions")]
 	public int width = 50;
@@ -95,30 +94,28 @@ public class MapGenerator : MonoBehaviour {
 	int[,] vegetationMap;
 	int[,] wallMap;
 	int[,] cliffMap;
-	int[,] spawnerMap;
 	int[,] visited;
 
-	void Start() {
-		if (animationMode) {
-			StartCoroutine(GenerateMapWithAnimation());
-		} else {
-			GenerateMap();
-		}
-	}
-
-	void Update() {
-		if (Input.GetMouseButtonDown(0)) {
-            ClearMap();
-			if (animationMode) {
-				StartCoroutine(GenerateMapWithAnimation());
-			} else {
-				GenerateMap();
-			}
-		}
-	}
+	// void Update() {
+	// 	if (Input.GetMouseButtonDown(0)) {
+    //         ClearMap();
+	// 		if (animationMode) {
+	// 			StartCoroutine(GenerateMapWithAnimation());
+	// 		} else {
+	// 			GenerateMap();
+	// 		}
+	// 	}
+	// }
 
 	#region GenerateMap
-	void GenerateMap() {
+	public void GenerateMap(string _seed) {
+		seed = _seed;
+
+		if (animationMode) {
+			GenerateMapWithAnimation();
+			return;
+		}
+
 		floorMap = new int[width,height];
 		
 		RandomFillMap();
@@ -148,15 +145,19 @@ public class MapGenerator : MonoBehaviour {
 
 		DrawPlayerSpawner();
 
-		DrawEnemySpawner();
+		//DrawEnemySpawner();
 		
 		DrawWallMap();
+
+		if (NetworkManager.gameType == GameType.Client)
+		{
+			SendMapLoaded();
+		}
 	}
 
 	IEnumerator GenerateMapWithAnimation() {
 		floorMap = new int[width,height];
 		
-
 		RandomFillMap();
 
 		DrawFloorMap();
@@ -211,11 +212,17 @@ public class MapGenerator : MonoBehaviour {
 
 		yield return new WaitForSeconds(animationInterval);
 
-		DrawEnemySpawner();
+		//DrawEnemySpawner();
 
 		yield return new WaitForSeconds(animationInterval);
 
 		DrawWallMap();
+
+		SendMapLoaded();
+	}
+
+	public void SendMapLoaded() {
+		ClientSend.MapLoaded();
 	}
 	#endregion
 
@@ -726,7 +733,6 @@ public class MapGenerator : MonoBehaviour {
 
 	#region PlayerSpawner
 	void DrawPlayerSpawner() {
-		spawnerMap = new int[width, height];
 		List<Region> floors = GetRegions((int) SquareTypes.floor);
 		List<Square> floorSquares = new List<Square>();
 		foreach (Region region in floors) {
@@ -734,8 +740,10 @@ public class MapGenerator : MonoBehaviour {
 		}
 		Region floor = new Region(SquareTypes.floor, floorSquares, floorMap, width, height);
 		Square mostIsolatedSquare = GetMostIsolatedSquare(floor);
-		spawnerMap[mostIsolatedSquare.x, mostIsolatedSquare.y] = (int) SquareTypes.playerSpawner;
-		DrawSquare(mostIsolatedSquare.x, mostIsolatedSquare.y, 0, spawnerMap);
+
+		Vector3 position = CoordToWorldPoint(mostIsolatedSquare.x, mostIsolatedSquare.y);
+		GameObject spawner = Instantiate(playerSpawner[0], position, Quaternion.identity);
+		Debug.Log("player spawner created");
 	}
 
 	Square GetMostIsolatedSquare(Region region) {
@@ -759,7 +767,6 @@ public class MapGenerator : MonoBehaviour {
 			if (squareMinDist > largestMinDist) {
 				largestMinDist = squareMinDist;
 				mostIsolatedSquare = square;
-				Debug.Log(largestMinDist);
 			}
 		}
 
@@ -770,9 +777,8 @@ public class MapGenerator : MonoBehaviour {
 
 	#region EnemySpawner
 	void DrawEnemySpawner() {
-		Debug.Log("enemy spawner");
-		spawnerMap[0, 0] = (int) SquareTypes.enemySpawner;
-		DrawSquare(0, 0, 0, spawnerMap);
+		GameObject spawner = Instantiate(playerSpawner[0], new Vector3(0, 0, 0), Quaternion.identity);
+		GameManager.instance.enemySpawners.Add("ES", spawner);
 	}
 
 	#endregion
