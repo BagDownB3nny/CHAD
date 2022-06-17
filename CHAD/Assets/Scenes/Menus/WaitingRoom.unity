@@ -11869,6 +11869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerWeapon: 0
   gun: {fileID: 0}
+  dropId: 
 --- !u!4 &1821875641
 Transform:
   m_ObjectHideFlags: 0
@@ -12024,6 +12025,7 @@ MonoBehaviour:
   - {fileID: 3871045033581860569, guid: 9f2fe2e1a22f943f1ae4866dfa1cb26d, type: 3}
   - {fileID: 264950808175491643, guid: 9efcdf94e305546e6bf4e57029aade46, type: 3}
   playerSpawner: {fileID: 0}
+  currentLevel: 0
 --- !u!4 &1861731112
 Transform:
   m_ObjectHideFlags: 0
