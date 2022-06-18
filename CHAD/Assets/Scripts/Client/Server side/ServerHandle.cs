@@ -85,8 +85,26 @@ public class ServerHandle
     }
 
     public static void LobbyLoaded(int _fromClient, Packet _packet) {
-        Debug.Log("Confirmed client " + _fromClient + " lobby loaded");
-        MapLoaded(_fromClient, _packet);
+        Server.serverClients[_fromClient].spawnedIn = true;
+        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, PlayerClasses.Captain);
+        foreach (ServerClient serverClient in Server.serverClients.Values)
+        {
+            if (serverClient.spawnedIn)
+            {
+                // Telling all clients to spawn in this player
+                ServerSend.SpawnPlayer(serverClient.id, _fromClient,
+                        PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
+                if (serverClient.id != _fromClient)
+                {
+                    // Telling this client to spawn in all players (except itself)
+                    ServerSend.SpawnPlayer(_fromClient, serverClient.id,
+                            PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
+                    // Telling this client to equip guns for all players
+                    ServerSend.EquipGun(_fromClient, serverClient.id,
+                            GameManager.instance.players[serverClient.id.ToString()].GetComponent<PlayerWeaponsManager>().currentWeaponId);
+                }
+            }
+        }
     }
 
     public static void EmptyMapLoaded(int _fromClient, Packet _packet) {
@@ -96,7 +114,8 @@ public class ServerHandle
     public static void MapLoaded(int _fromClient, Packet _packet)
     {
         Server.serverClients[_fromClient].spawnedIn = true;
-        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, PlayerClasses.Captain);
+        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient,
+                PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
         foreach (ServerClient serverClient in Server.serverClients.Values)
         {
             if (serverClient.spawnedIn)
