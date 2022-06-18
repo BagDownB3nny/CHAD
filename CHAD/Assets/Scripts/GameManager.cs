@@ -17,9 +17,9 @@ public enum PlayerClasses {
 }
 
 public enum PlayerWeapons {
-    TestRifle = 1,
-    Crossbow = 2,
-    Minigun = 3
+    TestRifle = 0,
+    Crossbow = 1,
+    ToxicGun = 2
 }
 
 public enum Enemies {
@@ -27,21 +27,36 @@ public enum Enemies {
     WhiteDude = 1
 }
 
+public enum PlayerItems
+{
+    Rat = 0,
+    Monkey = 1,
+    FlySwatter = 2,
+    TF2Hat = 3
+}
+
 public class GameManager : MonoBehaviour
 {
-
+    // Singleton instance
     public static GameManager instance;
 
+    // List of prefabs
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
+    public List<GameObject> gunPrefabs;
 
     public Dictionary<string, GameObject> enemySpawners;
+    // Dictionary of in-game objects
+    public Dictionary<string, GameObject> items;
     public PlayerSpawner playerSpawner;
     public Dictionary<string, GameObject> players;
     public Dictionary<string, PlayerClasses> playerClasses;
     public Dictionary<string, GameObject> enemies;
     public Dictionary<string, GameObject> projectiles;
     public Dictionary<string, GameObject> damageDealers;
+
+    // Level tracking data
+    public int currentLevel;
 
     private void Awake()
     {

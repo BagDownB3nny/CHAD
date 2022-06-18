@@ -28,7 +28,7 @@ public enum ServerPackets
     loadLobby = 19,
     loadEmptyMap = 20,
     loadMap = 21,
-
+    addGun = 22
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -43,8 +43,8 @@ public enum ClientPackets
     equipGun = 8,
     lobbyLoaded = 9,
     emptyMapLoaded = 10,
-    mapLoaded = 11
-
+    mapLoaded = 11,
+    interact = 12
 }
 
 public class Packet : IDisposable

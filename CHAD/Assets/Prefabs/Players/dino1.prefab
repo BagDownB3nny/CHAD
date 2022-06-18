@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2108311698232622385}
   - component: {fileID: 4414262889854049021}
   - component: {fileID: 2667871294291902518}
+  - component: {fileID: 4889111994483599830}
   m_Layer: 0
   m_Name: dino1
   m_TagString: Player
@@ -139,6 +140,7 @@ MonoBehaviour:
   characterType: 0
   localProjectileRefId: 0
   localDamageDealerRefId: 0
+  maxHp: 0
   hp: 1000
   attack: 1
   speed: 7
@@ -149,7 +151,8 @@ MonoBehaviour:
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   damageEffect: {fileID: 0}
-  characterClass: 0
+  healthBar: {fileID: 0}
+  playerClass: 0
 --- !u!114 &6799165634848045080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,9 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatsManager: {fileID: 0}
   weaponScript: {fileID: 0}
-  defaultWeapon: {fileID: 264950808175491643, guid: 9efcdf94e305546e6bf4e57029aade46, type: 3}
+  defaultWeapon: 2
   currentWeapon: {fileID: 0}
-  weaponInventory: []
+  currentWeaponId: 0
 --- !u!61 &2108311698232622385
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227,3 +230,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 3186801142545977611, guid: bf4d51660ba851741acca51652da2360, type: 3}
+--- !u!114 &4889111994483599830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154238627304559600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db939533ba5c4cd0beda79f35877315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

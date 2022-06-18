@@ -212,4 +212,11 @@ public class ClientHandle : MonoBehaviour
         string seed = _packet.ReadString();
         MapManager.instance.ReceiveLoadMap(mapType, seed);
     }
+
+    public static void AddGun(Packet _packet)
+    {
+        string _affectedPlayer = _packet.ReadString();
+        PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
+        GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
+    }
 }

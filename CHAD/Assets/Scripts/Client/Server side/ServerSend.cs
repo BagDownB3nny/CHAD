@@ -269,4 +269,14 @@ public class ServerSend
             SendTCPData(_toClient, _packet);
         }
     }
+
+    public static void AddGun(string _affectedPlayer, PlayerWeapons _gunType)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.addGun))
+        {
+            _packet.Write(_affectedPlayer);
+            _packet.Write((int)_gunType);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }
