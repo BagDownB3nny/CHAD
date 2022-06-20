@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<string, GameObject> enemySpawners;
     // Dictionary of in-game objects
-    public Dictionary<string, GameObject> items;
+    public Dictionary<string, GameObject> spawners;
     public PlayerSpawner playerSpawner;
     public Dictionary<string, GameObject> players;
     public Dictionary<string, PlayerClasses> playerClasses;
