@@ -51,29 +51,32 @@ public class CameraMotor : MonoBehaviour
 
     public void MoveCamera(GameObject _player)
     {
-        if (!playerDead && NetworkManager.IsMine(PlayerClient.instance.myId.ToString()) && player != null) {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!playerDead && NetworkManager.IsMine(_player.GetComponent<PlayerStatsManager>().characterRefId) && player != null) {
+            transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, -10);
+            //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //player = _player;
+            //playerScript = player.GetComponent<PlayerStatsManager>();
 
-            //update camera speed based on player speed
-            cameraSpeed = playerScript.speed * cameraSpeedMultiplier;
+            ////update camera speed based on player speed
+            //cameraSpeed = playerScript.speed * cameraSpeedMultiplier;
 
-            float distance = Vector3.Distance(player.transform.position, transform.position);
+            //float distance = Vector3.Distance(player.transform.position, transform.position);
 
-            //move cam to player if out of bounds
-            if (distance > radialBound) {
-                Vector3 desiredCamPos = 
-                    new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, desiredCamPos, cameraSpeed * Time.deltaTime);
-            }
+            ////move cam to player if out of bounds
+            //if (distance > radialBound) {
+            //    Vector3 desiredCamPos = 
+            //        new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+            //    transform.position = Vector3.MoveTowards(transform.position, desiredCamPos, cameraSpeed * Time.deltaTime);
+            //}
 
-            float camToPlayerDist = Vector3.Distance(player.transform.position, transform.position);
+            //float camToPlayerDist = Vector3.Distance(player.transform.position, transform.position);
 
-            //bias cam to mouse position
-            if (!(camToPlayerDist > maxMouseBiasDist)) {
-                Vector3 biasedCamPos = 
-                    new Vector3(mousePos.x, mousePos.y, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, biasedCamPos, mouseBiasAmount * Time.deltaTime);
-            }
+            ////bias cam to mouse position
+            //if (!(camToPlayerDist > maxMouseBiasDist)) {
+            //    Vector3 biasedCamPos = 
+            //        new Vector3(mousePos.x, mousePos.y, transform.position.z);
+            //    transform.position = Vector3.Lerp(transform.position, biasedCamPos, mouseBiasAmount * Time.deltaTime);
+            //}
         }
     }
 
