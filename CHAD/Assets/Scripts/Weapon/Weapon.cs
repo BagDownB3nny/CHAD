@@ -4,5 +4,11 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public abstract void Attack();
+    //these will be manually set by the weapons manager when it instantiates this weapon
+    [Header("Holder Parameters")]
+    public GameObject holder;
+
+    public void Discard() {
+        Destroy(gameObject);
+    }
 }

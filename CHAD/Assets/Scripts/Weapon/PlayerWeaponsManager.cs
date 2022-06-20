@@ -5,12 +5,8 @@ using UnityEngine;
 public class PlayerWeaponsManager : MonoBehaviour
 {
     //scripts needed
-    PlayerStatsManager statsManagerScript;
-    PlayerRangedWeapon weaponScript;
-
-    [Header("Holder Attack Stats")]
-    public float attack;
-    public float armourPenetration;
+    public PlayerStatsManager playerStatsManager;
+    public PlayerRangedWeapon weaponScript;
 
     [Header("Player Weapons Parameters")]
     public GameObject defaultWeapon;
@@ -18,17 +14,13 @@ public class PlayerWeaponsManager : MonoBehaviour
     public List<GameObject> weaponInventory = new List<GameObject>(8);
 
     private void Awake() {
-        statsManagerScript = gameObject.GetComponent<PlayerStatsManager>();
-        statsManagerScript.UpdateAttackStats();
-        Debug.Log("PLAYER: transferred attack stats from stats manager to weapon manager");
-
+        playerStatsManager = gameObject.GetComponent<PlayerStatsManager>();
     }
-
+    
     void Start()
     {
         //AddGun(defaultGun);
         weaponInventory.Add(defaultWeapon);
-        Debug.Log("equipping gun");
         EquipGun(0);
     }
 
@@ -37,15 +29,10 @@ public class PlayerWeaponsManager : MonoBehaviour
         //if currently holding a gun, discard it first
         if (currentWeapon != null) {
             currentWeapon.GetComponent<PlayerRangedWeapon>().Discard();
-            Debug.Log("weapon discarded");
         }      
         currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
-        Debug.Log("Instantiated Player Weapon");
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
-        Debug.Log("PLAYER: weaponscript reference created");
-        UpdateWeaponAttackStats();
-
-        Debug.Log("equipped" + gunIndex);
+        weaponScript.holder = gameObject;
     }
 
     //adds gun to empty slot
@@ -55,19 +42,6 @@ public class PlayerWeaponsManager : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void SetAttackStats(float _attack, float _armourPenetration) {
-        attack = _attack;
-        armourPenetration = _armourPenetration;
-        //only relay the updates to the weapon script if there is a weapon
-        if (currentWeapon != null) {
-            UpdateWeaponAttackStats();
-        }
-    }
-
-    public void UpdateWeaponAttackStats() {
-        currentWeapon.GetComponent<PlayerRangedWeapon>().SetAttackStats(gameObject, attack, armourPenetration);
     }
 
     //discards a gun

@@ -123,16 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18f5c5af55fd4fd0a55864f04c86841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementScript: {fileID: 0}
-  weaponsManagerScipt: {fileID: 0}
-  hp: 100
+  characterRefId: 
+  hp: 10000
   attack: 1
-  speed: 3
+  speed: 10
   armour: 0
   armourPenetration: 0
   armourEffectiveness: 0
   proficiency: 0
   damageEffect: {fileID: 0}
+  playerRefId: 
 --- !u!114 &8048562091491450984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb79e4cac62c4d68a7eecc7d43bb4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &8048562091491450985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794e79bd8f33540818db0725a9d19df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  armourPenetration: 0
+  playerStatsManager: {fileID: 0}
+  weaponScript: {fileID: 0}
   defaultWeapon: {fileID: 7914521892763815579, guid: ed52286fca79d436ab2ea4427fa3a3d0, type: 3}
   currentWeapon: {fileID: 0}
   weaponInventory: []

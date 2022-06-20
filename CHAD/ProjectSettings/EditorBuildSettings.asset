@@ -6,21 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/New Folder/MainScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Menus/StartMenu.unity
+    guid: a85679f83a6504d96b14c297806741e3
   - enabled: 1
-    path: Assets/Scenes/Singleplayer.unity
-    guid: 960bebf7e3c514c00a681e66e2b308f4
-  - enabled: 1
-    path: Assets/Scenes/Multiplayer.unity
+    path: Assets/Scenes/Menus/Multiplayer.unity
     guid: f75ba227962254444a0f150f20737f30
   - enabled: 1
-    path: Assets/Scenes/Settings.unity
+    path: Assets/Scenes/Menus/Settings.unity
     guid: 4d7278c3a4d7f48f2ae3e43509fcb24d
   - enabled: 1
-    path: Assets/Scenes/NewGame.unity
+    path: Assets/Scenes/Menus/Singleplayer.unity
+    guid: 960bebf7e3c514c00a681e66e2b308f4
+  - enabled: 1
+    path: Assets/Scenes/Menus/HostingRoom.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Menus/NewGame.unity
     guid: 824426706b06543b890b05caa5921f24
   - enabled: 1
-    path: Assets/Scenes/LoadGame.unity
+    path: Assets/Scenes/Menus/WaitingRoom.unity
+    guid: 49284dee7117b4042addfc7bed119ab3
+  - enabled: 1
+    path: Assets/Scenes/Menus/LoadGame.unity
     guid: e85dc507147e042c1aee35b062c67376
   m_configObjects: {}

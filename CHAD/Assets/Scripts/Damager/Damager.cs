@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Damager
+public abstract class Damager : MonoBehaviour
 {
-    void DealDamage(GameObject _target, float _finalDamage);
+    public abstract void DealDamage(GameObject _target, float _damageDealt);
 
-    void DestroyDamager();
+    public abstract void DestroyDamager();
 
-    void SetStats(GameObject _holder, float _attack, float _armourPenetration, float _damage, string _targetType);
-
-    void SetAttackerStats(float _attack, float _armourPenetration);
-
-    void SetTargetStats(float _targetArmour, float _targetArmourEffectiveness);
+    public void ReceiveDestroyDamager() {
+        Destroy(gameObject);
+    }
 }

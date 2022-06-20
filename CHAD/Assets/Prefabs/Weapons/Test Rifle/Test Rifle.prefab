@@ -97,19 +97,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195c4f141edab4ffbbcf26d670bb1e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holder: {fileID: 0}
+  holderAttack: 0
+  holderArmourPenetration: 0
   speed: 10
   damage: 10
   range: 10
   targetType: Enemy
-  accuracy: 5
+  accuracy: 0
   shotInterval: 0.1
   gunRotationOffset: 0
   projectileRotationOffset: -90
   projectile: {fileID: 1965739902269245036, guid: 8b52709c127454b48986032394f77bc6, type: 3}
   directionVector: {x: 0, y: 0, z: 0}
-  bulletDirectionVector: {x: 0, y: 0, z: 0}
   directionRotation: 0
+  bulletDirectionVector: {x: 0, y: 0, z: 0}
+  bulletDirectionRotation: 0
   timeToNextShot: 0
-  holder: {fileID: 0}
-  holderAttack: 0
-  holderArmourPenetration: 0
+  myWeapon: 0
+  gunType: 1

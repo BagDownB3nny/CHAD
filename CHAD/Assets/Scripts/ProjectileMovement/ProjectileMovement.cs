@@ -4,9 +4,10 @@ using UnityEngine;
 
 public interface ProjectileMovement
 {
-    void Move();
+
+    void SendMove();
     void Face();
     void DestroyProjectile();
-    void SetStats(float _speed, float _range, GameObject _origin, 
-            Vector3 _originLocationVector, Vector3 _directionVector, float _rotationOffset);
+    void ReceiveDestroyProjectile();
+    void ReceiveMovement(Vector2 _position);
 }

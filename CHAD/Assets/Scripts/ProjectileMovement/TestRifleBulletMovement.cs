@@ -5,59 +5,58 @@ using UnityEngine;
 public class TestRifleBulletMovement : MonoBehaviour, ProjectileMovement
 {
     //scripts needed
-    ProjectileStatsManager statsManagerScript;
+    ProjectileStatsManager projectileStatsManager;
 
     [Header("Projectile Parameters")]
-    public float speed;
-    public float range;
-    public GameObject origin;
-    public Vector3 originLocationVector;
-    public Vector3 directionVector;
     public float rotationOffset = -90;
     
     private void Awake() {
-        statsManagerScript = gameObject.GetComponent<ProjectileStatsManager>();
-        statsManagerScript.UpdateMovementStats();
+        projectileStatsManager = gameObject.GetComponent<ProjectileStatsManager>();
     }
 
     void Start()
     {
         Face();
+        if (NetworkManager.gameType == GameType.Server) {
+            gameObject.GetComponent<Rigidbody2D>().velocity = 
+                ((Vector2) projectileStatsManager.directionVector).normalized * projectileStatsManager.speed;
+        }
     }
 
     //move to targetLocation and destroy if reached
     void FixedUpdate()
     {
-        Move();
+        if (NetworkManager.gameType == GameType.Server) {
+            float distanceTravelled = (transform.position - projectileStatsManager.originLocationVector).magnitude;
+            if (distanceTravelled > projectileStatsManager.range) {
+                DestroyProjectile();
+            } else {
+                SendMove();
+            }
+        }
     }
 
-    public void Move() {
-        gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2) directionVector * speed;
+    public void SendMove() {
+        ServerSend.MoveProjectile(projectileStatsManager.projectileRefId, transform.position);
+    }
 
-        //destroy this object if exceeded range
-        float distanceTravelled = (transform.position - originLocationVector).magnitude;
-        if (distanceTravelled > range) {
-            DestroyProjectile();
-        }
+    public void ReceiveMovement(Vector2 _position) {
+        transform.position = _position;
     }
 
     //point projectile towards target
     public void Face() {
+        Vector2 directionVector = projectileStatsManager.directionVector;
         float directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, directionRotation + rotationOffset);
     }
 
     public void DestroyProjectile() {
+        ServerSend.DestroyProjectile(projectileStatsManager.projectileRefId);
         Destroy(gameObject);
     }
 
-    public void SetStats(float _speed, float _range, GameObject _origin, 
-            Vector3 _originLocationVector, Vector3 _directionVector, float _rotationOffset) {
-        speed = _speed;
-        range = _range;
-        origin = _origin;
-        originLocationVector = _originLocationVector;
-        directionVector = _directionVector;
-        rotationOffset = _rotationOffset;
+    public void ReceiveDestroyProjectile() {
+        Destroy(gameObject);
     }
 }

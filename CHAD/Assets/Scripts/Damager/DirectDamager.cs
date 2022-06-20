@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface DirectDamager : Damager
+public abstract class DirectDamager : Damager
 {
-    float CalculateDamage(float _rawDamage, float _attack, float _armourPenetration,
-            float _targetArmour, float _targetArmourEffectiveness);   
+    public abstract float CalculateDamageDealt(float _rawDamage, float _attack);   
 }

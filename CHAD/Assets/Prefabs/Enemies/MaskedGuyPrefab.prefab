@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5135349388637485346}
   - component: {fileID: 5135349388637485347}
   - component: {fileID: 5135349388637485344}
+  - component: {fileID: 8286016569271436170}
   - component: {fileID: 5135349388637485345}
-  - component: {fileID: 5135349388637485358}
   - component: {fileID: 5135349388637485359}
   m_Layer: 0
   m_Name: MaskedGuyPrefab
@@ -178,6 +178,23 @@ MonoBehaviour:
   armourEffectiveness: 0
   proficiency: 0
   damageEffect: {fileID: 0}
+--- !u!114 &8286016569271436170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135349388637485356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e00e9b59f6c4402938f19f79f4461e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: 0
+  armourPenetration: 0
+  defaultWeapon: {fileID: 708293737177987063, guid: e2a96d108b3854cb4b2b0e1f65daca87, type: 3}
+  currentWeapon: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &5135349388637485345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,23 +210,8 @@ MonoBehaviour:
   speed: 0
   target: {fileID: 0}
   enemyRb: {fileID: 0}
---- !u!114 &5135349388637485358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5135349388637485356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e34e25369bb496fb681a472b13b4be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  attack: 0
-  armourPenetration: 0
-  defaultWeapon: {fileID: 708293737177987063, guid: e2a96d108b3854cb4b2b0e1f65daca87, type: 3}
-  currentWeapon: {fileID: 0}
+  retreatDistance: 3
+  stoppingDistance: 5
 --- !u!114 &5135349388637485359
 MonoBehaviour:
   m_ObjectHideFlags: 0
