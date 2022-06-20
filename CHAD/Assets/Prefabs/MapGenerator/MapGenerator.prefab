@@ -106,6 +106,6 @@ MonoBehaviour:
   playerSpawner:
   - {fileID: 5535552169974500748, guid: 91a301c829ecc4b2a9ff4fe5c15f2177, type: 3}
   enemySpawner:
-  - {fileID: 3220429690255358432, guid: af0be876ade814ae0a341a6443d115f4, type: 3}
+  - {fileID: 8820170492842701539, guid: c777b9e40537a4a7b88ddc2b9e39db54, type: 3}
   exit:
   - {fileID: 5974402530829977089, guid: 4af895387fa3a4059aa9813f07213bc8, type: 3}

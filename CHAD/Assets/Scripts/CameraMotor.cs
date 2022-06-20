@@ -35,18 +35,18 @@ public class CameraMotor : MonoBehaviour
 
     public void OnPlayerSpawn(int _playerId)
     {
-        Debug.Log("Locking camera onto player " + _playerId);
+        if (NetworkManager.IsMine(_playerId.ToString()))
+        {
+            //assigns player
+            player = GameManager.instance.players[PlayerClient.instance.myId.ToString()];
+            playerScript = player.GetComponent<PlayerStatsManager>();
 
-        //assigns player
-        player = GameManager.instance.players[PlayerClient.instance.myId.ToString()];
-        Debug.Log("Player is " + player);
-        playerScript = player.GetComponent<PlayerStatsManager>();
+            //center camera to player
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
 
-        //center camera to player
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
-
-        //observe player movement
-        player.GetComponent<PlayerMovement>().onPlayerMove += MoveCamera;
+            //observe player movement
+            player.GetComponent<PlayerMovement>().onPlayerMove += MoveCamera;
+        }
     }
 
     public void MoveCamera(GameObject _player)
