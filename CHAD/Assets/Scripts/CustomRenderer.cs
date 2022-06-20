@@ -7,7 +7,7 @@ public class CustomRenderer : MonoBehaviour
     [SerializeField]
     private int sortingBase;
     [SerializeField]
-    private int offset;
+    private float offset;
     [SerializeField]
     private bool runOnce;
     [SerializeField]
