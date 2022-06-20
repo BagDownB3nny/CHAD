@@ -24,7 +24,7 @@ public class CustomRenderer : MonoBehaviour
         timeToNextUpdate -= Time.deltaTime;
         if (timeToNextUpdate < 0) {
             timeToNextUpdate = updateInterval;
-            myRenderer.sortingOrder = (int) (sortingBase - transform.position.y - offset);
+            myRenderer.sortingOrder = myRenderer.sortingOrder + (int) (sortingBase - transform.position.y - offset);
             if (runOnce) {
                 Destroy(this);
             }
