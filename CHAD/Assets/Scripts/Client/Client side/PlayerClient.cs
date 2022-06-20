@@ -16,6 +16,7 @@ public class PlayerClient : MonoBehaviour
     public ClientTCP tcp;
     public ClientUDP udp;
     public GameObject player;
+    public bool isConnected = false;
 
     private delegate void PacketHandler(Packet _packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
@@ -32,17 +33,16 @@ public class PlayerClient : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
-    private void Start()
-    {
-        tcp = new ClientTCP();
-        udp = new ClientUDP();
+    public void SetServerIp(string _serverIp) {
+        ip = _serverIp;
     }
 
     public void ConnectToServer()
     {
         InitializeClientData();
-
+        tcp = new ClientTCP();
+        udp = new ClientUDP();
+        isConnected = true;
         tcp.Connect();
     }
 
@@ -66,6 +66,13 @@ public class PlayerClient : MonoBehaviour
             socket.BeginConnect(instance.ip, instance.port, ConnectCallback, socket);
         }
 
+        public void Disconnect() {
+            instance.Disconnect();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
+        }
         private void ConnectCallback(IAsyncResult _result)
         {
             socket.EndConnect(_result);
@@ -103,7 +110,7 @@ public class PlayerClient : MonoBehaviour
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
-                    // TODO: disconnect
+                    instance.Disconnect();
                     return;
                 }
 
@@ -114,7 +121,7 @@ public class PlayerClient : MonoBehaviour
             }
             catch
             {
-                // TODO: disconnect
+                Disconnect();
             }
         }
 
@@ -213,7 +220,7 @@ public class PlayerClient : MonoBehaviour
 
                 if (_data.Length < 4)
                 {
-                    // TODO: disconnect
+                    instance.Disconnect();
                     return;
                 }
 
@@ -221,7 +228,7 @@ public class PlayerClient : MonoBehaviour
             }
             catch
             {
-                // TODO: disconnect
+                Disconnect();
             }
         }
 
@@ -242,6 +249,27 @@ public class PlayerClient : MonoBehaviour
                 }
             });
         }
+
+        public void Disconnect() {
+            instance.Disconnect();
+
+            endPoint = null;
+            socket = null;
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        Disconnect();
+    }
+
+    public void Disconnect() {
+        if (isConnected) {
+            Debug.Log("PlayerClient is disconnecting");
+            isConnected = false;
+            tcp.socket.Close();
+            udp.socket.Close();
+        }
     }
 
     private void InitializeClientData()
@@ -251,13 +279,21 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.welcome, ClientHandle.Welcome },
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer},
             {(int)ServerPackets.movePlayer, ClientHandle.MovePlayer},
-            {(int)ServerPackets.playerAttack, ClientHandle.PlayerAttack},
+            {(int)ServerPackets.rangedAttack, ClientHandle.RangedAttack},
             {(int)ServerPackets.spawnEnemy, ClientHandle.SpawnEnemy},
             {(int)ServerPackets.moveEnemy, ClientHandle.MoveEnemy},
             {(int)ServerPackets.takeDamage, ClientHandle.TakeDamage},
             {(int)ServerPackets.die, ClientHandle.Die},
-            {(int)ServerPackets.moveProjectile, ClientHandle.ProjectileMovement},
-            {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile}
+            {(int)ServerPackets.moveProjectile, ClientHandle.MoveProjectile},
+            {(int)ServerPackets.destroyProjectile, ClientHandle.DestroyProjectile},
+            {(int)ServerPackets.meleeAttack, ClientHandle.MeleeAttack},
+            {(int)ServerPackets.rotateRangedWeapon, ClientHandle.RotateRangedWeapon},
+            {(int)ServerPackets.removePlayer, ClientHandle.RemovePlayer},
+            {(int)ServerPackets.destroyDamageDealer, ClientHandle.DestroyDamageDealer},
+            {(int)ServerPackets.readyStatus, ClientHandle.ReadyStatus},
+            {(int)ServerPackets.changeClass, ClientHandle.ChangeClass},
+            {(int)ServerPackets.broadcast, ClientHandle.Broadcast},
+            {(int)ServerPackets.equipGun, ClientHandle.EquipGun}
         };
     }
 

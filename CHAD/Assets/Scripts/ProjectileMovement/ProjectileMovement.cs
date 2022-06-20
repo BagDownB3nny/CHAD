@@ -2,12 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ProjectileMovement
+public abstract class ProjectileMovement : MonoBehaviour
 {
+    //scripts needed
+    public ProjectileStatsManager projectileStatsManager;
 
-    void SendMove();
-    void Face();
-    void DestroyProjectile();
-    void ReceiveDestroyProjectile();
-    void ReceiveMovement(Vector2 _position);
+    [Header("Projectile Parameters")]
+    public float rotationOffset = -90;
+    
+    private void Awake() {
+        projectileStatsManager = gameObject.GetComponent<ProjectileStatsManager>();
+    }
+
+
+    public void SendMove() {
+        ServerSend.MoveProjectile(projectileStatsManager.projectileRefId, transform.position);
+    }
+
+    public void ReceiveMovement(Vector2 _position) {
+        transform.position = _position;
+    }
+
+    public void DestroyProjectile() {
+        ServerSend.DestroyProjectile(projectileStatsManager.projectileRefId);
+        Destroy(gameObject);
+        GameManager.instance.projectiles.Remove(projectileStatsManager.projectileRefId);
+    }
+
+    public void ReceiveDestroyProjectile() {
+        Destroy(gameObject);
+        GameManager.instance.projectiles.Remove(projectileStatsManager.projectileRefId);
+    }
 }

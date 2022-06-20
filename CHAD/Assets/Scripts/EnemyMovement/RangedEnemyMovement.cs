@@ -6,7 +6,6 @@ public class RangedEnemyMovement : EnemyMovement
 {
     //scripts needed
     EnemyStatsManager statsManagerScript;
-    RangedEnemyWeaponManager weaponManagerScript;
 
     [Header("Ranged Movement Parameters")]
     public float retreatDistance;
@@ -15,13 +14,11 @@ public class RangedEnemyMovement : EnemyMovement
     private void Awake() {
         //get the statsmanager and ask for the movement stats
         statsManagerScript = gameObject.GetComponent<EnemyStatsManager>();
-        weaponManagerScript = gameObject.GetComponent<RangedEnemyWeaponManager>();
     }
 
     private void Update() {
         if (NetworkManager.gameType == GameType.Server) {
-            FindTarget();
-            if (target != null) {
+            if (GetComponent<EnemyStatsManager>().target != null) {
                 Move();
             }
         }
@@ -29,7 +26,7 @@ public class RangedEnemyMovement : EnemyMovement
 
     //enemy moves to player until stopping distance, retreats if player gets closer than retreat distance
     protected override void Move(){
-        directionVector = target.transform.position - transform.position;
+        directionVector = GetComponent<EnemyStatsManager>().target.transform.position - transform.position;
         float distance = directionVector.magnitude;
         directionVector.Normalize();
         directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
@@ -43,9 +40,5 @@ public class RangedEnemyMovement : EnemyMovement
 
         //send position to client
         ServerSend.MoveEnemy(statsManagerScript.characterRefId, transform.position);
-    }
-
-    public override void UpdateWeaponTarget() {
-        weaponManagerScript.SetTarget(target);
     }
 }

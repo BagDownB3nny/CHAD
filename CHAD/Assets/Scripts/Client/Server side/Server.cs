@@ -118,12 +118,13 @@ public class Server
         packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
-                //{(int)ClientPackets.SPAM, ServerHandle.SPAM},
                 {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer},
                 {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer},
-                {(int)ClientPackets.sendGunRotation, ServerHandle.ReceiveGunRotation},
-                {(int)ClientPackets.sendAttack, ServerHandle.PlayerAttack}
-
+                {(int)ClientPackets.rotateRangedWeapon, ServerHandle.RotateRangedWeapon},
+                {(int)ClientPackets.rangedAttack, ServerHandle.RangedAttack},
+                {(int)ClientPackets.readyStatus, ServerHandle.ReadyStatus},
+                {(int)ClientPackets.changeClass, ServerHandle.ChangeClass},
+                {(int)ClientPackets.equipGun, ServerHandle.EquipGun}
             };
     }
 }

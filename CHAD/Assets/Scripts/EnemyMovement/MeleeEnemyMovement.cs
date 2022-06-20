@@ -14,8 +14,7 @@ public class MeleeEnemyMovement : EnemyMovement
 
     private void Update() {
         if (NetworkManager.gameType == GameType.Server) {
-            FindTarget();
-            if (target != null) {
+            if (GetComponent<EnemyStatsManager>().target != null) {
                 Move();
             }
         }
@@ -23,7 +22,7 @@ public class MeleeEnemyMovement : EnemyMovement
 
     //enemy keeps moving to the player
     protected override void Move(){
-        directionVector = target.transform.position - transform.position;
+        directionVector = GetComponent<EnemyStatsManager>().target.transform.position - transform.position;
         directionVector.Normalize();
         directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
 
@@ -32,10 +31,5 @@ public class MeleeEnemyMovement : EnemyMovement
 
         //send position to client
         ServerSend.MoveEnemy(statsManagerScript.characterRefId, transform.position);
-    }
-
-    public override void UpdateWeaponTarget() {
-        //DO NOTHING SINCE MELEE NO TARGET
-        //weaponManagerScript.SetTarget(target);
     }
 }

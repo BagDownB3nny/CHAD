@@ -10,13 +10,22 @@ public enum ServerPackets
     welcome = 1,
     spawnPlayer = 2,
     movePlayer = 3,
-    playerAttack = 4,
+    rangedAttack = 4,
     spawnEnemy = 5,
     moveEnemy = 6,
     takeDamage = 7,
     die = 8,
     moveProjectile = 9,
     destroyProjectile = 10,
+    meleeAttack = 11,
+    destroyDamageDealer = 12,
+    rotateRangedWeapon = 13,
+    removePlayer = 14,
+    readyStatus = 15,
+    changeClass = 16,
+    broadcast = 17,
+    equipGun = 18
+
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -25,11 +34,12 @@ public enum ClientPackets
     welcomeReceived = 1,
     spawnPlayer = 2,
     movePlayer = 3,
-    sendAttack = 4,
-    //SPAM = 3
-    sendGunRotation = 5,
+    rangedAttack = 4,
+    rotateRangedWeapon = 5,
+    readyStatus = 6,
+    changeClass = 7,
+    equipGun = 8
 
-    receiveProjectileMovement = 6,
 }
 
 public class Packet : IDisposable

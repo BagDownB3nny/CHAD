@@ -75,7 +75,7 @@ public class ServerClient
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
-                    // TODO: disconnect
+                    Server.serverClients[id].Disconnect();
                     return;
                 }
 
@@ -88,7 +88,7 @@ public class ServerClient
             catch (Exception _ex)
             {
                 Debug.Log($"Error receiving TCP data: {_ex}");
-                // TODO: disconnect
+                Server.serverClients[id].Disconnect();
             }
         }
 
@@ -138,6 +138,14 @@ public class ServerClient
 
             return false;
         }
+
+        public void Disconnect() {
+            socket.Close();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
+        }
     }
 
     public class ServerUDP
@@ -176,18 +184,30 @@ public class ServerClient
                 }
             });
         }
+
+        public void Disconnect() {
+            endPoint = null;
+        }
     }
 
-    public void SendIntoGame(int _characterType, Vector2 position)
+    private void Disconnect() {
+        tcp.Disconnect();
+        udp.Disconnect();
+        GameManager.instance.RemovePlayer(id);
+    }
+
+    public void SendIntoGame(int _characterType, Vector2 _position)
     {
-        GameManager.instance.SpawnPlayer(id.ToString(), _characterType, position);
+        GameManager.instance.SpawnPlayer(id.ToString(), _characterType, _position);
+        LobbyManager.instance.SpawnPlayer(id);
         player = GameManager.instance.players[id.ToString()];
         foreach (ServerClient _client in Server.serverClients.Values)
         {
             if (_client.player != null)
             {
-                ServerSend.SpawnPlayer(id, _client.id, GameManager.instance.players[_client.id.ToString()], 0);
-                //TODO: 0 to be replaced with character type from player script
+                GameObject character = GameManager.instance.players[_client.id.ToString()];
+                Debug.Log("ServerClient telling client to spawn character of type " + character.GetComponent<PlayerStatsManager>().playerClass);
+                ServerSend.SpawnPlayer(id, _client.id, character, character.GetComponent<PlayerStatsManager>().playerClass);
             }
         }
         foreach (ServerClient _client in Server.serverClients.Values)
@@ -196,8 +216,7 @@ public class ServerClient
             {
                 if (_client.id != id)
                 {
-                    ServerSend.SpawnPlayer(_client.id, id, player, 0);
-                    //TODO: 0 to be replaced with character type from player script
+                    ServerSend.SpawnPlayer(_client.id, id, player, _characterType);
                 }
             }
         }

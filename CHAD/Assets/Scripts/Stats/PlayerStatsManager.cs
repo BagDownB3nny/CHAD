@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
-    [Header("Network Id")]
-    public string playerRefId;
-
+    public int playerClass;
     protected override void Awake() {
         base.Awake();
+        characterType = CharacterType.Player;
+    }
+
+    public void InitializeHealthBar() {
+        healthBar = GameUIManager.instance.healthBar.GetComponent<HealthBar>();
+        healthBar.Initialize(hp);
     }
 }
