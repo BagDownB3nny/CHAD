@@ -17,23 +17,41 @@ public class CameraMotor : MonoBehaviour
     private PlayerStatsManager playerScript;
     private float cameraSpeed;
 
-    // Start is called before the first frame update
-    void Start()
+    public static CameraMotor instance;
+
+    private void Awake()
     {
-        //get access to player script
-        GameObject player = GameObject.Find("Player");
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            if (NetworkManager.gameType == GameType.Client)
+            {
+                PlayerSpawner.onPlayerSpawn += OnPlayerSpawn;
+            }
+        }
+    }
+   
+
+    public void OnPlayerSpawn(int _playerId)
+    {
+        Debug.Log("Locking camera onto player " + _playerId);
+
+        //assigns player
+        player = GameManager.instance.players[PlayerClient.instance.myId.ToString()];
+        Debug.Log("Player is " + player);
         playerScript = player.GetComponent<PlayerStatsManager>();
 
         //center camera to player
-        transform.position = player.transform.position;
-        transform.Translate(Vector3.back);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
 
-        
+        //observe player movement
+        player.GetComponent<PlayerMovement>().onPlayerMove += MoveCamera;
     }
 
-    void LateUpdate()
+    public void MoveCamera(GameObject _player)
     {
-        if (!playerDead) {
+        if (!playerDead && NetworkManager.IsMine(PlayerClient.instance.myId.ToString()) && player != null) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             //update camera speed based on player speed

@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
     PlayerStatsManager playerStatsManager;
     Rigidbody2D playerRb;
 
+    //OnPlayerMove delegate
+    public delegate void OnPlayerMove(GameObject player);
+    public OnPlayerMove onPlayerMove;
+
      private void Awake() {
          playerStatsManager = GetComponent<PlayerStatsManager>();
     }
@@ -56,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
     //client receives processed game state from server and sets it
     public void ReceiveMovement(Vector2 _position) {
         transform.position = _position;
+        if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId) && onPlayerMove != null)
+        {
+            onPlayerMove(gameObject);
+        }
     }
     #endregion
 }
