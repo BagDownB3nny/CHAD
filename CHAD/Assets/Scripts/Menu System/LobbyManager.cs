@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class LobbyManager : MonoBehaviour
     public Dictionary<string, bool> ready = new Dictionary<string, bool>();
     private bool myReadyStatus = false;
     public GameObject readyToggle;
-    public GameObject spawnIn;
 
     private void Awake() {
         if (instance == null) {
@@ -23,7 +23,6 @@ public class LobbyManager : MonoBehaviour
     {
         if (NetworkManager.gameType == GameType.Server)
         {
-            spawnIn.SetActive(false);
             readyToggle.SetActive(false);
         }
     }
@@ -31,7 +30,6 @@ public class LobbyManager : MonoBehaviour
     public void SpawnIn()
     {
         ClientSend.MapLoaded();
-        spawnIn.SetActive(false);
         readyToggle.SetActive(true);
     }
 
@@ -61,7 +59,8 @@ public class LobbyManager : MonoBehaviour
             } 
         }
         if (ready.Count > 0) {
-            ServerSend.Broadcast("ALL HAVE READIED");
+            //TODO: countdown
+            MapManager.instance.LoadMap();
         }
     }
 

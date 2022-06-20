@@ -117,12 +117,11 @@ public class ServerSend
         }
     }
 
-    public static void SpawnEnemy(string _spawnerRefId, string _enemyRefId, int _enemyId, Vector2 _position) {
+    public static void SpawnEnemy(string _enemyId, Enemies _enemyType, Vector2 _position) {
         using (Packet _packet = new Packet((int)ServerPackets.spawnEnemy))
         {
-            _packet.Write(_spawnerRefId);
-            _packet.Write(_enemyRefId);
             _packet.Write(_enemyId);
+            _packet.Write((int)_enemyType);
             _packet.Write(_position);
             SendTCPDataToAll(_packet);
         }
@@ -244,12 +243,39 @@ public class ServerSend
         }
     }
 
-    public static void LoadMap(int _toClient, string _mapName)
+    public static void LoadLobby(int _toClient)
+    {
+        using (Packet _packet = new Packet((int) ServerPackets.loadLobby))
+        {
+            SendTCPData(_toClient, _packet);
+        }
+    }
+
+    public static void LoadEmptyMap()
+    {
+        using (Packet _packet = new Packet((int) ServerPackets.loadEmptyMap))
+        {
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void LoadMap(int _toClient, MapType _mapType, string _seed)
     {
         using (Packet _packet = new Packet((int)ServerPackets.loadMap))
         {
-            _packet.Write(_mapName);
+            _packet.Write((int)_mapType);
+            _packet.Write(_seed);
             SendTCPData(_toClient, _packet);
         }
-    } 
+    }
+
+    public static void AddGun(string _affectedPlayer, PlayerWeapons _gunType)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.addGun))
+        {
+            _packet.Write(_affectedPlayer);
+            _packet.Write((int)_gunType);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

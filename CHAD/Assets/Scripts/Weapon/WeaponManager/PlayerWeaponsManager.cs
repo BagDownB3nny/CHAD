@@ -9,7 +9,7 @@ public class PlayerWeaponsManager : MonoBehaviour
     public PlayerRangedWeapon weaponScript;
 
     [Header("Player Weapons Parameters")]
-    public GameObject defaultWeapon;
+    public PlayerWeapons defaultWeapon;
     public GameObject currentWeapon;
     public int currentWeaponId;
     public Dictionary<int, GameObject> weaponInventory = new Dictionary<int, GameObject>(8);
@@ -57,8 +57,9 @@ public class PlayerWeaponsManager : MonoBehaviour
     }
 
     //adds gun to empty slot
-    public bool AddGun(GameObject gun) {
+    public bool AddGun(PlayerWeapons gunType) {
         if (weaponInventory.Count < 8 ) {
+            GameObject gun = GameManager.instance.gunPrefabs[(int) gunType];
             GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
                     .UpdateWeaponButton(weaponInventory.Count, gun);
             weaponInventory.Add(weaponInventory.Count, gun);

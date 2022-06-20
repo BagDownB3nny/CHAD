@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5916688848625514765}
   - component: {fileID: 5007131504201879413}
   - component: {fileID: -6664943715485565210}
+  - component: {fileID: 4358602715794604379}
+  - component: {fileID: -3501512456852204365}
   m_Layer: 0
   m_Name: knight1
   m_TagString: Player
@@ -79,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 252006955, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127,6 +129,7 @@ MonoBehaviour:
   characterType: 0
   localProjectileRefId: 0
   localDamageDealerRefId: 0
+  maxHp: 0
   hp: 2000
   attack: 1
   speed: 7
@@ -153,10 +156,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatsManager: {fileID: 0}
   weaponScript: {fileID: 0}
-  defaultWeapon: {fileID: 3871045033581860569, guid: 9f2fe2e1a22f943f1ae4866dfa1cb26d, type: 3}
-  defaultWeapon2: {fileID: 7914521892763815579, guid: ed52286fca79d436ab2ea4427fa3a3d0, type: 3}
+  defaultWeapon: 1
   currentWeapon: {fileID: 0}
-  weaponInventory: []
+  currentWeaponId: 0
 --- !u!114 &488052071484476580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,3 +231,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 3186801142545977611, guid: bf4d51660ba851741acca51652da2360, type: 3}
+--- !u!114 &4358602715794604379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482566453555046230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db939533ba5c4cd0beda79f35877315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3501512456852204365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482566453555046230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingBase: 5000
+  offset: -0.75
+  runOnce: 0
+  updateInterval: 0.1

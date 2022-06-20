@@ -19,7 +19,7 @@ public class ServerHandle
             Debug.Log($"Player \"{_username}\" (Id: {_fromClient}) " +
                $"has assumed the wrong Id ({_clientIdCheck})!");
         }
-        ServerSend.LoadMap(_fromClient, "WaitingRoom");
+        ServerSend.LoadLobby(_fromClient);
     }
 
     public static void MovePlayer(int _fromClient, Packet _packet)
@@ -65,7 +65,7 @@ public class ServerHandle
 
     public static void ChangeClass(int _fromClient, Packet _packet) {
         PlayerClasses playerClass = (PlayerClasses)_packet.ReadInt();
-        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, playerClass);
+        PlayerSpawner.instance.SpawnPlayer(_fromClient, playerClass);
         foreach (ServerClient serverClient in Server.serverClients.Values) {
             ServerSend.SpawnPlayer(serverClient.id, _fromClient, playerClass);
         }
@@ -84,10 +84,9 @@ public class ServerHandle
         }
     }
 
-    public static void MapLoaded(int _fromClient, Packet _packet)
-    {
+    public static void LobbyLoaded(int _fromClient, Packet _packet) {
         Server.serverClients[_fromClient].spawnedIn = true;
-        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, PlayerClasses.Captain);
+        PlayerSpawner.instance.SpawnPlayer(_fromClient, PlayerClasses.Captain);
         foreach (ServerClient serverClient in Server.serverClients.Values)
         {
             if (serverClient.spawnedIn)
@@ -106,5 +105,40 @@ public class ServerHandle
                 }
             }
         }
+    }
+
+    public static void EmptyMapLoaded(int _fromClient, Packet _packet) {
+        ServerSend.LoadMap(_fromClient, MapManager.instance.mapType, MapManager.instance.seed);
+    }
+
+    public static void MapLoaded(int _fromClient, Packet _packet)
+    {
+        Server.serverClients[_fromClient].spawnedIn = true;
+        PlayerSpawner.instance.SpawnPlayer(_fromClient,
+                PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
+        foreach (ServerClient serverClient in Server.serverClients.Values)
+        {
+            if (serverClient.spawnedIn)
+            {
+                // Telling all clients to spawn in this player
+                ServerSend.SpawnPlayer(serverClient.id, _fromClient,
+                        PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
+                if (serverClient.id != _fromClient)
+                {
+                    // Telling this client to spawn in all players (except itself)
+                    ServerSend.SpawnPlayer(_fromClient, serverClient.id,
+                            PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
+                    // Telling this client to equip guns for all players
+                    ServerSend.EquipGun(_fromClient, serverClient.id,
+                            GameManager.instance.players[serverClient.id.ToString()].GetComponent<PlayerWeaponsManager>().currentWeaponId);
+                }
+            }
+        }
+    }
+
+    public static void Interact(int _fromClient, Packet _packet)
+    {
+        GameObject player = GameManager.instance.players[_fromClient.ToString()];
+        player.GetComponent<PlayerItemsManager>().interact(player);
     }
 }

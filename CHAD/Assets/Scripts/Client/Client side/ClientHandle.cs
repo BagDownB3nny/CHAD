@@ -27,7 +27,7 @@ public class ClientHandle : MonoBehaviour
     {
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
-        GameManager.instance.playerSpawner.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
+        PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
     }
 
     public static void MovePlayer(Packet _packet)
@@ -74,13 +74,10 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void SpawnEnemy(Packet _packet) {
-        string spawnerRefId = _packet.ReadString();
-        string enemyRefId = _packet.ReadString();
-        int enemyId = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.spawners, spawnerRefId)) {
-            GameManager.instance.spawners[spawnerRefId].GetComponent<EnemySpawner>().ReceiveSpawnEnemy(enemyRefId, enemyId, position);
-        }
+        string _enemyId = _packet.ReadString();
+        int _enemyType = _packet.ReadInt();
+        Vector2 _position = _packet.ReadVector2();
+        EnemySpawner.instance.ReceiveSpawnEnemy(_enemyId, _enemyType, _position);
     }
 
     public static void MoveProjectile(Packet _packet) {
@@ -192,11 +189,31 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.players[_playerRefId.ToString()].GetComponent<PlayerWeaponsManager>().ReceiveEquipGun(_gunIndex);
     }
 
+    public static void LoadLobby(Packet _packet)
+    {
+        Debug.Log("loading lobby on client");
+        SceneManager.LoadScene("WaitingRoom");
+        ClientSend.LobbyLoaded();
+    }
+
+    public static void LoadEmptyMap(Packet _packet)
+    {
+        GameManager.instance.ResetGame();
+        SceneManager.LoadScene("EmptyMap");
+        ClientSend.EmptyMapLoaded();
+    }
+
     public static void LoadMap(Packet _packet)
     {
-        string _map = _packet.ReadString();
-        // TODO: Replace with MapManager.LoadMap();
-        SceneManager.LoadScene(_map);
-        ClientSend.MapLoaded();
+        MapType mapType = (MapType)_packet.ReadInt();
+        string seed = _packet.ReadString();
+        MapManager.instance.ReceiveLoadMap(mapType, seed);
+    }
+
+    public static void AddGun(Packet _packet)
+    {
+        string _affectedPlayer = _packet.ReadString();
+        PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
+        GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
     }
 }

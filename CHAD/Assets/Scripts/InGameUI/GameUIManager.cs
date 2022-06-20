@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class GameUIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public GameObject healthBar;
     public GameObject weaponIcon;
     public GameObject pauseMenu;
     public GameObject weaponWheel;
     public GameObject crosshair;
+    public GameObject interactText;
 
     void Update()
     {

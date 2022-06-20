@@ -6,14 +6,28 @@ using UnityEngine.UI;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    public void Start()
+
+    public delegate void OnPlayerSpawn(int _playerId);
+    public static OnPlayerSpawn onPlayerSpawn;
+
+    public static PlayerSpawner instance;
+
+    public int playersSpawned;
+
+    public void Awake()
     {
-        GameManager.instance.playerSpawner = this;
+        instance = this;
+        playersSpawned = 0;
+    }
+
+    public void OnDestroy()
+    {
+        instance = null;
     }
 
     public void SpawnPlayer(int _playerId, PlayerClasses _playerClass)
     {
-        GameObject player = Instantiate(GameManager.instance.playerPrefabs[(int)_playerClass]);
+        GameObject player = Instantiate(GameManager.instance.playerPrefabs[(int)_playerClass], transform.position, Quaternion.identity);
         player.GetComponent<PlayerStatsManager>().characterRefId = _playerId.ToString();
         // If playerInfo exists
         if (PlayerInfoManager.AllPlayerInfo.ContainsKey(_playerId.ToString()))
@@ -58,6 +72,18 @@ public class PlayerSpawner : MonoBehaviour
         {
             PlayerInfoManager.Initialize(_playerId.ToString(), _playerClass, player.GetComponent<PlayerStatsManager>());
             GameManager.instance.players.Add(_playerId.ToString(), player);
+        }
+        if (onPlayerSpawn != null)
+        {
+            onPlayerSpawn(_playerId);
+        }
+        playersSpawned += 1;
+        if (NetworkManager.gameType == GameType.Server && playersSpawned == Server.NumberOfPlayers)
+        {
+            if (EnemySpawner.instance != null)
+            {
+                EnemySpawner.instance.StartSpawning();
+            }
         }
     }
 }

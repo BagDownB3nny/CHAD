@@ -29,7 +29,7 @@ public class PlayerClient : MonoBehaviour
         }
         else if (instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
     }
@@ -294,7 +294,10 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.changeClass, ClientHandle.ChangeClass},
             {(int)ServerPackets.broadcast, ClientHandle.Broadcast},
             {(int)ServerPackets.equipGun, ClientHandle.EquipGun},
-            {(int)ServerPackets.loadMap, ClientHandle.LoadMap}
+            {(int)ServerPackets.loadLobby, ClientHandle.LoadLobby},
+            {(int)ServerPackets.loadEmptyMap, ClientHandle.LoadEmptyMap},
+            {(int)ServerPackets.loadMap, ClientHandle.LoadMap},
+            {(int)ServerPackets.addGun, ClientHandle.AddGun}
         };
     }
 
