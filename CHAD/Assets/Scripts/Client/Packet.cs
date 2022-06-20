@@ -44,7 +44,8 @@ public enum ClientPackets
     lobbyLoaded = 9,
     emptyMapLoaded = 10,
     mapLoaded = 11,
-    interact = 12
+    interact = 12,
+    exit = 13,
 }
 
 public class Packet : IDisposable

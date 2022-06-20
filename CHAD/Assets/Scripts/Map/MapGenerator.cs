@@ -27,6 +27,7 @@ public enum SquareTypes {
 	cliff = 16,
 	playerSpawner = 17,
 	enemySpawner = 18,
+	exit = 19,
 }
 #endregion
 
@@ -89,6 +90,7 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject[] cliff;
 	public GameObject[] playerSpawner;
 	public GameObject[] enemySpawner;
+	public GameObject[] exit;
 
 	public int[,] floorMap;
 	int[,] vegetationMap;
@@ -152,8 +154,6 @@ public class MapGenerator : MonoBehaviour {
 		{
 			SendMapLoaded();
 		}
-
-		Debug.Log("I have generated a map");
 	}
 
 	IEnumerator GenerateMapWithAnimation() {
@@ -219,7 +219,10 @@ public class MapGenerator : MonoBehaviour {
 
 		DrawWallMap();
 
-		SendMapLoaded();
+		if (NetworkManager.gameType == GameType.Client)
+		{
+			SendMapLoaded();
+		}
 	}
 
 	public void SendMapLoaded() {
@@ -744,6 +747,8 @@ public class MapGenerator : MonoBehaviour {
 
 		Vector3 position = CoordToWorldPoint(mostIsolatedSquare.x, mostIsolatedSquare.y);
 		GameObject spawner = Instantiate(playerSpawner[0], position, Quaternion.identity);
+
+		DrawHole(mostIsolatedSquare, floor);
 	}
 
 	Square GetMostIsolatedSquare(Region region) {
@@ -773,6 +778,27 @@ public class MapGenerator : MonoBehaviour {
 		return mostIsolatedSquare;
 	}
 
+	#endregion
+
+	#region hole
+	void DrawHole(Square playerSpawnerSquare, Region floorSquares) {
+		float largestDist = float.MinValue;
+		Square furthestSquare = new Square(0, 0);
+
+		foreach (Square edgeSquare in floorSquares.edgeSquares) {
+			int dx = edgeSquare.x - playerSpawnerSquare.x;
+				int dy = edgeSquare.y - playerSpawnerSquare.y;
+				float dist = dx * dx + dy * dy;
+
+			if (dist > largestDist) {
+				largestDist = dist;
+				furthestSquare = edgeSquare;
+			}
+		}
+
+		Vector3 position = CoordToWorldPoint(furthestSquare.x, furthestSquare.y);
+		GameObject Hole = Instantiate(exit[0], position, Quaternion.identity);
+	}
 	#endregion
 
 	#region EnemySpawner
@@ -905,6 +931,9 @@ public class MapGenerator : MonoBehaviour {
                 break;
 			case SquareTypes.enemySpawner:
                 squareToDraw = enemySpawner[id];
+                break;
+			case SquareTypes.exit:
+                squareToDraw = exit[id];
                 break;
             default:
                 squareToDraw = floor[0];

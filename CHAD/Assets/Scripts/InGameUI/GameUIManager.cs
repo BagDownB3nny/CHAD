@@ -23,6 +23,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject weaponWheel;
     public GameObject crosshair;
+    public GameObject interactText;
 
     void Update()
     {

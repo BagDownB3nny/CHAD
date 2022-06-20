@@ -22,4 +22,9 @@ public class WeaponDrops : Interactable
         // TODO: Implement a system to create drop ids for items dropped
         // ServerSend.DestroyGunDrop(dropId);
     }
+
+    public override string GetText()
+    {
+        return "PICK UP";
+    }
 }
