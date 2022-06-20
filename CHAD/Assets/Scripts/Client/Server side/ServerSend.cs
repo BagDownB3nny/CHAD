@@ -117,12 +117,11 @@ public class ServerSend
         }
     }
 
-    public static void SpawnEnemy(string _spawnerRefId, string _enemyRefId, int _enemyId, Vector2 _position) {
+    public static void SpawnEnemy(string _enemyId, Enemies _enemyType, Vector2 _position) {
         using (Packet _packet = new Packet((int)ServerPackets.spawnEnemy))
         {
-            _packet.Write(_spawnerRefId);
-            _packet.Write(_enemyRefId);
             _packet.Write(_enemyId);
+            _packet.Write((int)_enemyType);
             _packet.Write(_position);
             SendTCPDataToAll(_packet);
         }

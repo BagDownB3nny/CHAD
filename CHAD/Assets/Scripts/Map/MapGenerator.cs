@@ -90,7 +90,7 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject[] playerSpawner;
 	public GameObject[] enemySpawner;
 
-	int[,] floorMap;
+	public int[,] floorMap;
 	int[,] vegetationMap;
 	int[,] wallMap;
 	int[,] cliffMap;
@@ -106,10 +106,6 @@ public class MapGenerator : MonoBehaviour {
     // 		}
     // 	}
     // }
-    private void OnDestroy()
-    {
-		Debug.Log("I've been destroyed");
-    }
 
     #region GenerateMap
     public void GenerateMap(string _seed) {
@@ -148,7 +144,7 @@ public class MapGenerator : MonoBehaviour {
 
 		DrawPlayerSpawner();
 
-		//DrawEnemySpawner();
+		DrawEnemySpawner();
 		
 		DrawWallMap();
 
@@ -748,7 +744,6 @@ public class MapGenerator : MonoBehaviour {
 
 		Vector3 position = CoordToWorldPoint(mostIsolatedSquare.x, mostIsolatedSquare.y);
 		GameObject spawner = Instantiate(playerSpawner[0], position, Quaternion.identity);
-		Debug.Log("player spawner created");
 	}
 
 	Square GetMostIsolatedSquare(Region region) {
@@ -782,8 +777,9 @@ public class MapGenerator : MonoBehaviour {
 
 	#region EnemySpawner
 	void DrawEnemySpawner() {
-		GameObject spawner = Instantiate(playerSpawner[0], new Vector3(0, 0, 0), Quaternion.identity);
+		GameObject spawner = Instantiate(enemySpawner[0], new Vector3(0, 0, 0), Quaternion.identity);
 		GameManager.instance.enemySpawners.Add("ES", spawner);
+		spawner.GetComponent<EnemySpawner>().map = gameObject;
 	}
 
 	#endregion
@@ -924,9 +920,14 @@ public class MapGenerator : MonoBehaviour {
 		return x >= 0 && x < width && y >= 0 && y < height;
 	}
 
-	Vector3 CoordToWorldPoint(int x, int y) {
+	public Vector3 CoordToWorldPoint(int x, int y) {
 		return new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0);
 	}
+
+	public int[] WorldPointToCoord(Vector3 point)
+    {
+		return new int[] { (int)Math.Round(point.x + width / 2 - 0.5f, 0), (int)Math.Round(point.y + height / 2 - 0.5f, 0)};
+    }
 
     void ClearMap() {
         GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");

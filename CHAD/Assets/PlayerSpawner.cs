@@ -12,9 +12,12 @@ public class PlayerSpawner : MonoBehaviour
 
     public static PlayerSpawner instance;
 
+    public int playersSpawned;
+
     public void Awake()
     {
         instance = this;
+        playersSpawned = 0;
     }
 
     public void OnDestroy()
@@ -73,6 +76,14 @@ public class PlayerSpawner : MonoBehaviour
         if (onPlayerSpawn != null)
         {
             onPlayerSpawn(_playerId);
+        }
+        playersSpawned += 1;
+        if (NetworkManager.gameType == GameType.Server && playersSpawned == Server.NumberOfPlayers)
+        {
+            if (EnemySpawner.instance != null)
+            {
+                EnemySpawner.instance.StartSpawning();
+            }
         }
     }
 }

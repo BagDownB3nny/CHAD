@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, GameObject> damageDealers;
 
     // Level tracking data
-    public int currentLevel;
+    public int currentLevel = 0;
 
     private void Awake()
     {

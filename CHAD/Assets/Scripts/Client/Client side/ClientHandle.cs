@@ -74,13 +74,10 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void SpawnEnemy(Packet _packet) {
-        string spawnerRefId = _packet.ReadString();
-        string enemyRefId = _packet.ReadString();
-        int enemyId = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.enemySpawners, spawnerRefId)) {
-            GameManager.instance.enemySpawners[spawnerRefId].GetComponent<EnemySpawner>().ReceiveSpawnEnemy(enemyRefId, enemyId, position);
-        }
+        string _enemyId = _packet.ReadString();
+        int _enemyType = _packet.ReadInt();
+        Vector2 _position = _packet.ReadVector2();
+        EnemySpawner.instance.ReceiveSpawnEnemy(_enemyId, _enemyType, _position);
     }
 
     public static void MoveProjectile(Packet _packet) {

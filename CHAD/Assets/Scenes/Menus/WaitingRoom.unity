@@ -11930,7 +11930,6 @@ MonoBehaviour:
   - {fileID: 7914521892763815579, guid: ed52286fca79d436ab2ea4427fa3a3d0, type: 3}
   - {fileID: 3871045033581860569, guid: 9f2fe2e1a22f943f1ae4866dfa1cb26d, type: 3}
   - {fileID: 264950808175491643, guid: 9efcdf94e305546e6bf4e57029aade46, type: 3}
-  playerSpawner: {fileID: 0}
   currentLevel: 0
 --- !u!4 &1861731112
 Transform:
