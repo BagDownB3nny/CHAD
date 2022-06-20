@@ -17,9 +17,9 @@ public enum PlayerClasses {
 }
 
 public enum PlayerWeapons {
-    TestRifle = 1,
-    Crossbow = 2,
-    Minigun = 3
+    TestRifle = 0,
+    Crossbow = 1,
+    ToxicGun = 2
 }
 
 public enum Enemies {
@@ -27,14 +27,26 @@ public enum Enemies {
     WhiteDude = 1
 }
 
+public enum PlayerItems
+{
+    Rat = 0,
+    Monkey = 1,
+    FlySwatter = 2,
+    TF2Hat = 3
+}
+
 public class GameManager : MonoBehaviour
 {
-
+    // Singleton instance
     public static GameManager instance;
 
+    // List of prefabs
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
+    public List<GameObject> gunPrefabs;
 
+    public Dictionary<string, GameObject> enemySpawners;
+    // Dictionary of in-game objects
     public Dictionary<string, GameObject> spawners;
     public Dictionary<string, GameObject> players;
     public Dictionary<string, PlayerClasses> playerClasses;
@@ -42,12 +54,15 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, GameObject> projectiles;
     public Dictionary<string, GameObject> damageDealers;
 
+    // Level tracking data
+    public int currentLevel = 0;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            spawners = new Dictionary<string, GameObject>();
+            enemySpawners = new Dictionary<string, GameObject>();
             players = new Dictionary<string, GameObject>();
             playerClasses = new Dictionary<string, PlayerClasses>();
             projectiles = new Dictionary<string, GameObject>();
@@ -61,45 +76,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //temporary manual adding of spawners into the spawners dictionary for testing
-        spawners.Add("MGS0", GameObject.Find("MaskedGuySpawner"));
-        spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
+        // spawners.Add("MGS0", GameObject.Find("MaskedGuySpawner"));
+        // spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
     }
 
-    
-#region SpawnPlayer
-    public void SpawnWaitingRoomPlayer()
-    {
-        SpawnPlayer(PlayerClient.instance.myId.ToString(), 2, new Vector2(0, 0));
-    }
-
-    public void SpawnPlayer(string _playerRefId, int _playerClass, Vector2 _position, bool _receiving = false)
-    {
-        if (NetworkManager.gameType == GameType.Client)
-        {
-            if (_receiving)
-            {
-                GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
-                player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
-                player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
-                if (NetworkManager.IsMine(_playerRefId)) {
-                    player.GetComponent<PlayerStatsManager>().InitializeHealthBar();
-                }
-                players.Add(_playerRefId ,player);
-            } else
-            {
-                ClientSend.SpawnPlayer(_playerClass, _position);
-            }
-        }
-        if (NetworkManager.gameType == GameType.Server)
-        {
-            GameObject player = Instantiate(playerPrefabs[_playerClass], _position, Quaternion.identity);
-            player.GetComponent<PlayerStatsManager>().playerClass = _playerClass;
-            player.GetComponent<PlayerStatsManager>().characterRefId = _playerRefId;
-            players.Add(_playerRefId ,player);
-        }
-    }
-
-#endregion
     public void RemovePlayer(int _playerRefId) {
         Destroy(GameManager.instance.players[_playerRefId.ToString()]);
         GameManager.instance.players.Remove(_playerRefId.ToString());
@@ -109,7 +89,7 @@ public class GameManager : MonoBehaviour
     public void ChangeClass(int _playerRefId, int _playerClass) {
         Vector2 playerPosition = GameManager.instance.players[_playerRefId.ToString()].transform.position;
         RemovePlayer(_playerRefId);
-        SpawnPlayer(_playerRefId.ToString(), _playerClass, playerPosition);
+        //SpawnPlayer(_playerRefId.ToString(), _playerClass, playerPosition);
         ServerSend.ChangeClass(_playerRefId, _playerClass, playerPosition);
     }
 
@@ -118,7 +98,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ReceiveChangeClass(int _playerRefId, int _playerClass, Vector2 _playerPosition) {
-        SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
+        //SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
     }
 
     public void ResetGame() {
@@ -138,6 +118,10 @@ public class GameManager : MonoBehaviour
             Destroy(pair.Value);
         }
         damageDealers.Clear();
+        foreach (KeyValuePair<string, GameObject> pair in enemySpawners) {
+            Destroy(pair.Value);
+        }
+        enemySpawners.Clear();
     }
 
     public void Broadcast(string _msg) {

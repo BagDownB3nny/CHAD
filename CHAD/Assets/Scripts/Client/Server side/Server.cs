@@ -9,6 +9,7 @@ public class Server
 {
 
     public static int MaxPlayers { get; private set; }
+    public static int NumberOfPlayers;
     public static int Port { get; private set; }
 
     private static TcpListener tcpListener;
@@ -23,6 +24,7 @@ public class Server
     {
         Debug.Log("Starting Server...");
         MaxPlayers = _maxPlayers;
+        NumberOfPlayers = 0;
         Port = _port;
 
         InitializeServerData();
@@ -64,7 +66,6 @@ public class Server
                 if (serverClients[_clientId].udp.endPoint.ToString() ==
                     _clientEndPoint.ToString())
                 {
-                    //Debug.Log(_clientId);
                     serverClients[_clientId].udp.HandleData(_packet);
                 }
 
@@ -118,13 +119,16 @@ public class Server
         packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
-                {(int)ClientPackets.spawnPlayer, ServerHandle.SpawnPlayer},
                 {(int)ClientPackets.movePlayer, ServerHandle.MovePlayer},
                 {(int)ClientPackets.rotateRangedWeapon, ServerHandle.RotateRangedWeapon},
                 {(int)ClientPackets.rangedAttack, ServerHandle.RangedAttack},
                 {(int)ClientPackets.readyStatus, ServerHandle.ReadyStatus},
                 {(int)ClientPackets.changeClass, ServerHandle.ChangeClass},
-                {(int)ClientPackets.equipGun, ServerHandle.EquipGun}
+                {(int)ClientPackets.equipGun, ServerHandle.EquipGun},
+                {(int)ClientPackets.lobbyLoaded, ServerHandle.LobbyLoaded},
+                {(int)ClientPackets.emptyMapLoaded, ServerHandle.EmptyMapLoaded},
+                {(int)ClientPackets.mapLoaded, ServerHandle.MapLoaded},
+                {(int)ClientPackets.interact, ServerHandle.Interact}
             };
     }
 }
