@@ -6,9 +6,20 @@ using UnityEngine.UI;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    public void Start()
+
+    public delegate void OnPlayerSpawn(int _playerId);
+    public static OnPlayerSpawn onPlayerSpawn;
+
+    public static PlayerSpawner instance;
+
+    public void Awake()
     {
-        GameManager.instance.playerSpawner = this;
+        instance = this;
+    }
+
+    public void OnDestroy()
+    {
+        instance = null;
     }
 
     public void SpawnPlayer(int _playerId, PlayerClasses _playerClass)
@@ -58,6 +69,10 @@ public class PlayerSpawner : MonoBehaviour
         {
             PlayerInfoManager.Initialize(_playerId.ToString(), _playerClass, player.GetComponent<PlayerStatsManager>());
             GameManager.instance.players.Add(_playerId.ToString(), player);
+        }
+        if (onPlayerSpawn != null)
+        {
+            onPlayerSpawn(_playerId);
         }
     }
 }

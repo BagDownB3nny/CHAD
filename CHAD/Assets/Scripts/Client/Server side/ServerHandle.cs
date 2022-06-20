@@ -65,7 +65,7 @@ public class ServerHandle
 
     public static void ChangeClass(int _fromClient, Packet _packet) {
         PlayerClasses playerClass = (PlayerClasses)_packet.ReadInt();
-        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, playerClass);
+        PlayerSpawner.instance.SpawnPlayer(_fromClient, playerClass);
         foreach (ServerClient serverClient in Server.serverClients.Values) {
             ServerSend.SpawnPlayer(serverClient.id, _fromClient, playerClass);
         }
@@ -86,7 +86,7 @@ public class ServerHandle
 
     public static void LobbyLoaded(int _fromClient, Packet _packet) {
         Server.serverClients[_fromClient].spawnedIn = true;
-        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient, PlayerClasses.Captain);
+        PlayerSpawner.instance.SpawnPlayer(_fromClient, PlayerClasses.Captain);
         foreach (ServerClient serverClient in Server.serverClients.Values)
         {
             if (serverClient.spawnedIn)
@@ -114,7 +114,7 @@ public class ServerHandle
     public static void MapLoaded(int _fromClient, Packet _packet)
     {
         Server.serverClients[_fromClient].spawnedIn = true;
-        GameManager.instance.playerSpawner.SpawnPlayer(_fromClient,
+        PlayerSpawner.instance.SpawnPlayer(_fromClient,
                 PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
         foreach (ServerClient serverClient in Server.serverClients.Values)
         {
