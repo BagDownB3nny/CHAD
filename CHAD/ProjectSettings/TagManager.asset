@@ -13,6 +13,7 @@ TagManager:
   - Spawner
   - Map
   - Vegetation
+  - Exit
   layers:
   - Default
   - TransparentFX

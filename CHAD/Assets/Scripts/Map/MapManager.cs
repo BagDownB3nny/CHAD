@@ -43,6 +43,9 @@ public class MapManager : MonoBehaviour
     }
 
     public void LoadMap() {
+        GameUIManager.instance.objectiveText.SetActive(false);
+        GameUIManager.instance.holeUI.SetActive(false);
+
         GameManager.instance.ResetGame();
 
         if (currentMapGenerator != null) {
@@ -76,6 +79,9 @@ public class MapManager : MonoBehaviour
     }
 
     public void ReceiveLoadEmptyMap() {
+        GameUIManager.instance.objectiveText.SetActive(false);
+        GameUIManager.instance.holeUI.SetActive(false);
+
         GameManager.instance.ResetGame();
 
         if (currentMapGenerator != null) {
