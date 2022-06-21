@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public int totalEnemiesToSpawn;
     public int enemiesLeftToSpawn;
     public int enemiesAlive;
+    public int enemiesKilled;
     public float timeToNextSpawn;
     public List<int[]> playerCoords;
 
@@ -21,10 +23,15 @@ public class EnemySpawner : MonoBehaviour
     //Static reference to the enemy spawner
     public static EnemySpawner instance;
 
+    //Reference to the Objective Text UI
+    public GameObject objectiveText;
+
     private void Awake()
     {
         enemiesPerLevel = new List<int>(new int[] { 100, 200, 300, 450, 600 });
         instance = this;
+        EnemyDeath.onEnemyDeath += OnEnemyDeath;
+        objectiveText = GameUIManager.instance.objectiveText;
     }
 
     private void OnDestroy()
@@ -67,6 +74,9 @@ public class EnemySpawner : MonoBehaviour
         totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel++]) * Server.NumberOfPlayers;
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
+
+        objectiveText.SetActive(true);
+        objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";
     }
 
     #region SpawnEnemy
@@ -210,5 +220,16 @@ public class EnemySpawner : MonoBehaviour
             }
         }
         return 0f;
+    }
+
+    public void OnEnemyDeath(GameObject deadEnemy) {
+        enemiesAlive -= 1;
+        enemiesKilled += 1;
+
+        if (enemiesKilled >= totalEnemiesToSpawn) {
+            objectiveText.GetComponent<TextMeshProUGUI>().text = "FIND THE EXIT";
+        } else {
+            objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";
+        }
     }
 }

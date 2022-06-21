@@ -94,6 +94,14 @@ public class GameManager : MonoBehaviour
         //SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
     }
 
+    public void NextGame() {
+        if (currentLevel + 1 < EnemySpawner.enemiesPerLevel.Count) {
+            currentLevel++;
+        }
+
+        ResetGame();
+    }
+
     public void ResetGame() {
         foreach (KeyValuePair<string, GameObject> pair in players) {
             Destroy(pair.Value);

@@ -24,6 +24,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject weaponWheel;
     public GameObject crosshair;
     public GameObject interactText;
+    public GameObject objectiveText;
 
     void Update()
     {
