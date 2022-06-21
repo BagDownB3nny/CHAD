@@ -17,9 +17,10 @@ public enum PlayerClasses {
 }
 
 public enum PlayerWeapons {
-    TestRifle = 0,
-    Crossbow = 1,
-    ToxicGun = 2
+    None = 0,
+    TestRifle = 1,
+    Crossbow = 2,
+    ToxicGun = 3
 }
 
 public enum Enemies {

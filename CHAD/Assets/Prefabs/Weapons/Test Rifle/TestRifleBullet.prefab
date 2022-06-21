@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
   m_SortingOrder: 20
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0, b: 0.561501, a: 1}
@@ -138,13 +138,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b13c527e8de74955a5d5ce541af6540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileRefId: 
+  holder: {fileID: 0}
+  attack: 0
+  armourPenetration: 0
   speed: 0
   damage: 0
   range: 0
   targetType: 
   origin: {fileID: 0}
   originLocationVector: {x: 0, y: 0, z: 0}
-  directionVector: {x: 0, y: 0, z: 0}
+  projectileDirectionVector: {x: 0, y: 0, z: 0}
   rotationOffset: -90
 --- !u!114 &-8401559206082059971
 MonoBehaviour:
@@ -158,11 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d482d099023e4fadaeb0bb855141773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  range: 0
-  origin: {fileID: 0}
-  originLocationVector: {x: 0, y: 0, z: 0}
-  directionVector: {x: 0, y: 0, z: 0}
+  projectileStatsManager: {fileID: 0}
   rotationOffset: -90
 --- !u!114 &-1431905509821072836
 MonoBehaviour:
@@ -176,9 +176,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d587b6042860c44248d411b32d9854d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  attacker: {fileID: 0}
-  attack: 0
-  armourPenetration: 0
-  targetArmour: 0
-  targetArmourEffectiveness: 0

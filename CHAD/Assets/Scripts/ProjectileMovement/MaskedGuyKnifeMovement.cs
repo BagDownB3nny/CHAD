@@ -20,7 +20,7 @@ public class MaskedGuyKnifeMovement : ProjectileMovement
             if (distanceTravelled > projectileStatsManager.range) {
                 DestroyProjectile();
             } else {
-                SendMove();
+                Move();
             }
         }
     }
