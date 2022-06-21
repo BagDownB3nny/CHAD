@@ -129,7 +129,7 @@ MonoBehaviour:
   characterType: 0
   localProjectileRefId: 0
   localDamageDealerRefId: 0
-  maxHp: 0
+  maxHp: 1000
   hp: 1000
   attack: 1
   speed: 10
@@ -168,7 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatsManager: {fileID: 0}
   weaponScript: {fileID: 0}
-  defaultWeapon: 0
   currentWeapon: {fileID: 0}
   currentWeaponId: 0
 --- !u!114 &8048562091491450983
