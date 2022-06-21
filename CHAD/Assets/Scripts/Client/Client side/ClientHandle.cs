@@ -215,4 +215,13 @@ public class ClientHandle : MonoBehaviour
         PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
         GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
     }
+
+    public static void UpdateEnemySpawnerStats(Packet _packet) {
+        int _totalEnemiesToSpawn = _packet.ReadInt();
+        int _enemiesLeftToSpawn = _packet.ReadInt();
+        int _enemiesAlive = _packet.ReadInt();
+        int _enemiesKilled = _packet.ReadInt();
+
+        EnemySpawner.instance.ReceiveUpdateEnemySpawnerStats(_totalEnemiesToSpawn, _enemiesLeftToSpawn, _enemiesAlive, _enemiesKilled);
+    }
 }

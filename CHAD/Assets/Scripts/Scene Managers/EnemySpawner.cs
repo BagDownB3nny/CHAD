@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        enemiesPerLevel = new List<int>(new int[] { 100, 200, 300, 450, 600 });
+        enemiesPerLevel = new List<int>(new int[] { 20, 40, 60, 80, 100 });
         instance = this;
         EnemyDeath.onEnemyDeath += OnEnemyDeath;
         objectiveText = GameUIManager.instance.objectiveText;
@@ -75,8 +75,7 @@ public class EnemySpawner : MonoBehaviour
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
 
-        objectiveText.SetActive(true);
-        objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";
+        UpdateEnemySpawnerStats();
     }
 
     #region SpawnEnemy
@@ -97,6 +96,8 @@ public class EnemySpawner : MonoBehaviour
         enemiesLeftToSpawn -= 1;
         enemiesAlive += 1;
         ServerSend.SpawnEnemy(enemyId, _enemy, mapGenerator.CoordToWorldPoint(_coordinates[0], _coordinates[1]));
+
+        UpdateEnemySpawnerStats();
     }
 
 
@@ -231,5 +232,22 @@ public class EnemySpawner : MonoBehaviour
         } else {
             objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";
         }
+    }
+
+    public void UpdateEnemySpawnerStats() {
+        ServerSend.UpdateEnemySpawnerStats(totalEnemiesToSpawn, enemiesLeftToSpawn, enemiesAlive, enemiesKilled);
+
+        objectiveText.SetActive(true);
+        objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";
+    }
+
+    public void ReceiveUpdateEnemySpawnerStats(int _totalEnemiesToSpawn, int _enemiesLeftToSpawn, int _enemiesAlive, int _enemiesKilled) {
+        totalEnemiesToSpawn = _totalEnemiesToSpawn;
+        enemiesLeftToSpawn = _enemiesLeftToSpawn;
+        enemiesAlive = _enemiesAlive;
+        enemiesKilled = _enemiesKilled;
+
+        objectiveText.SetActive(true);
+        objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";
     }
 }

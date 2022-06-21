@@ -278,4 +278,16 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void UpdateEnemySpawnerStats(int totalEnemiesToSpawn, int enemiesLeftToSpawn, int enemiesAlive, int enemiesKilled)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.updateEnemySpawnerStats))
+        {
+            _packet.Write(totalEnemiesToSpawn);
+            _packet.Write(enemiesLeftToSpawn);
+            _packet.Write(enemiesAlive);
+            _packet.Write(enemiesKilled);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }
