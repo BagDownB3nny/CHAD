@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        enemiesPerLevel = new List<int>(new int[] { 20, 40, 60, 80, 100 });
+        enemiesPerLevel = new List<int>(new int[] { 1, 40, 60, 80, 100 });
         instance = this;
         EnemyDeath.onEnemyDeath += OnEnemyDeath;
         objectiveText = GameUIManager.instance.objectiveText;
@@ -228,6 +228,8 @@ public class EnemySpawner : MonoBehaviour
         enemiesKilled += 1;
 
         if (enemiesKilled >= totalEnemiesToSpawn) {
+            GameObject.FindGameObjectWithTag("Exit").GetComponent<Exit>().SetOpen();
+            GameUIManager.instance.holeUI.SetActive(true);
             objectiveText.GetComponent<TextMeshProUGUI>().text = "FIND THE EXIT";
         } else {
             objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";

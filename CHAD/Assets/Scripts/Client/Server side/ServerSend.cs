@@ -287,6 +287,7 @@ public class ServerSend
             _packet.Write(enemiesLeftToSpawn);
             _packet.Write(enemiesAlive);
             _packet.Write(enemiesKilled);
+            SendTCPDataToAll(_packet);
         }
     }
 

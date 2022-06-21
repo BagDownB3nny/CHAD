@@ -25,6 +25,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject crosshair;
     public GameObject interactText;
     public GameObject objectiveText;
+    public GameObject holeUI;
 
     void Update()
     {
