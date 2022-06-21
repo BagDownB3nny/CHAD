@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 331346586343184385}
   - component: {fileID: 331346586343184386}
   - component: {fileID: 331346586343184387}
+  - component: {fileID: 8313104550157708784}
   m_Layer: 0
   m_Name: WhiteDude
   m_TagString: Enemy
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 348064488, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,6 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6709e8502154240d299bc298da262602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRefId: 
+  characterType: 0
+  localProjectileRefId: 0
+  localDamageDealerRefId: 0
+  maxHp: 0
   hp: 50
   attack: 1
   speed: 2
@@ -177,7 +183,11 @@ MonoBehaviour:
   armourPenetration: 0
   armourEffectiveness: 0
   proficiency: 0
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   damageEffect: {fileID: 0}
+  healthBar: {fileID: 0}
+  targetType: Player
 --- !u!114 &331346586343184385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6759a6ca7e8ba4a2387948b5df9d8ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statsManagerScript: {fileID: 0}
+  rangedWeaponScript: {fileID: 0}
+  meleeWeaponScript: {fileID: 0}
   attack: 0
   armourPenetration: 0
   defaultWeapon: {fileID: 2049361276536348796, guid: e0f075382f21c4b0494ed9010968ebd6, type: 3}
@@ -206,8 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014f3f4f291e84cc190abb73725f2e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  target: {fileID: 0}
   enemyRb: {fileID: 0}
 --- !u!114 &331346586343184387
 MonoBehaviour:
@@ -222,3 +233,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 3186801142545977611, guid: bf4d51660ba851741acca51652da2360, type: 3}
+--- !u!114 &8313104550157708784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331346586343184388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingBase: 0
+  offset: -0.75
+  runOnce: 0
+  updateInterval: 0.1

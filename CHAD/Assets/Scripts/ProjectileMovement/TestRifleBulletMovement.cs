@@ -20,7 +20,7 @@ public class TestRifleBulletMovement : ProjectileMovement
             if (distanceTravelled > projectileStatsManager.range) {
                 DestroyProjectile();
             } else {
-                SendMove();
+                Move();
             }
         }
     }

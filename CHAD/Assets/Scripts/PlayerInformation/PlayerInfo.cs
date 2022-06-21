@@ -15,7 +15,8 @@ public class PlayerInfo
     public float armourPenetration;
     public float armourEffectiveness;
     public float proficiency;
-    public Dictionary<int, GameObject> weaponInventory = new Dictionary<int, GameObject>(8);
+    public Dictionary<int, PlayerWeapons> weaponInventory;
+    public Dictionary<PlayerItems, int> itemInventory;
 
     public void UpdateStats(string stat, float newValue) {
         FieldInfo field = typeof(PlayerInfo).GetField(stat);
@@ -44,5 +45,15 @@ public class PlayerInfo
         armourPenetration = stats.armourPenetration;
         armourEffectiveness = stats.armourEffectiveness;
         proficiency = stats.proficiency;
+    }
+
+    public void SetWeaponInventory(PlayerWeaponsManager weaponManager)
+    {
+        weaponInventory = weaponManager.weaponInventory;
+    }
+
+    public void SetItemInventory(PlayerItemsManager itemsManager)
+    {
+        itemInventory = itemsManager.items;
     }
 }
