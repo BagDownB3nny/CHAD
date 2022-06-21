@@ -7,7 +7,6 @@ public class WeaponSelectButton : MonoBehaviour
 {
     public int gunIndex;
     public Button button;
-    public Time colorChange;
 
     void Start()
     {

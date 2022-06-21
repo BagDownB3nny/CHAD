@@ -21,12 +21,21 @@ public class WeaponWheel : MonoBehaviour
     }
 
     public void UpdateWeaponButton(int weaponButton, GameObject gun) {
-        weaponButton -= 2;
+        weaponButton -= 3;
         if (weaponButton < 0) {
             weaponButton += 8;
         }
         weaponButtons[weaponButton].transform.GetChild(0).GetComponent<Image>().sprite 
                 = gun.GetComponent<SpriteRenderer>().sprite;
         weaponButtons[weaponButton].transform.GetChild(0).GetComponent<Image>().enabled = true;
+    }
+
+    public void ResetWheel()
+    {
+        for (int i = 0; i < weaponButtons.Count; i++)
+        {
+            weaponButtons[i].transform.GetChild(0).GetComponent<Image>().sprite = null;
+            weaponButtons[i].transform.GetChild(0).GetComponent<Image>().enabled = false;
+        }
     }
 }
