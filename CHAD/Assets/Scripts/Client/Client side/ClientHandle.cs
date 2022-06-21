@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClientHandle : MonoBehaviour
 {
@@ -19,16 +20,14 @@ public class ClientHandle : MonoBehaviour
 
         PlayerClient.instance.udp.Connect(
             ((IPEndPoint)PlayerClient.instance.tcp.socket.Client.LocalEndPoint).Port);
+        ClientSend.WelcomeReceived();
     }
 
     public static void SpawnPlayer(Packet _packet)
     {
         int playerIdReceived = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
         int characterType = _packet.ReadInt();
-        Debug.Log("ClientHandle packet: " + playerIdReceived + position + characterType);
-        GameManager.instance.SpawnPlayer(playerIdReceived.ToString(), characterType, position, true);
-        LobbyManager.instance.ReceiveSpawnPlayer(playerIdReceived);
+        PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
     }
 
     public static void MovePlayer(Packet _packet)
@@ -75,13 +74,10 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void SpawnEnemy(Packet _packet) {
-        string spawnerRefId = _packet.ReadString();
-        string enemyRefId = _packet.ReadString();
-        int enemyId = _packet.ReadInt();
-        Vector2 position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.spawners, spawnerRefId)) {
-            GameManager.instance.spawners[spawnerRefId].GetComponent<EnemySpawner>().ReceiveSpawnEnemy(enemyRefId, enemyId, position);
-        }
+        string _enemyId = _packet.ReadString();
+        int _enemyType = _packet.ReadInt();
+        Vector2 _position = _packet.ReadVector2();
+        EnemySpawner.instance.ReceiveSpawnEnemy(_enemyId, _enemyType, _position);
     }
 
     public static void MoveProjectile(Packet _packet) {
@@ -156,7 +152,8 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
+                    GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
                 GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
@@ -169,7 +166,7 @@ public class ClientHandle : MonoBehaviour
     }
 
     public static void ReadyStatus(Packet _packet) {
-        int playerRefId = _packet.ReadInt();
+        string playerRefId = _packet.ReadString();
         bool readyStatus = _packet.ReadBool();
         LobbyManager.instance.ReceiveReadyStatus(playerRefId, readyStatus);
     }
@@ -190,5 +187,33 @@ public class ClientHandle : MonoBehaviour
         int _gunIndex = _packet.ReadInt();
         int _playerRefId = _packet.ReadInt();
         GameManager.instance.players[_playerRefId.ToString()].GetComponent<PlayerWeaponsManager>().ReceiveEquipGun(_gunIndex);
+    }
+
+    public static void LoadLobby(Packet _packet)
+    {
+        Debug.Log("loading lobby on client");
+        SceneManager.LoadScene("WaitingRoom");
+        ClientSend.LobbyLoaded();
+    }
+
+    public static void LoadEmptyMap(Packet _packet)
+    {
+        GameManager.instance.ResetGame();
+        SceneManager.LoadScene("EmptyMap");
+        ClientSend.EmptyMapLoaded();
+    }
+
+    public static void LoadMap(Packet _packet)
+    {
+        MapType mapType = (MapType)_packet.ReadInt();
+        string seed = _packet.ReadString();
+        MapManager.instance.ReceiveLoadMap(mapType, seed);
+    }
+
+    public static void AddGun(Packet _packet)
+    {
+        string _affectedPlayer = _packet.ReadString();
+        PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
+        GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
     }
 }
