@@ -28,14 +28,6 @@ public enum Enemies {
     WhiteDude = 1
 }
 
-public enum PlayerItems
-{
-    Rat = 0,
-    Monkey = 1,
-    FlySwatter = 2,
-    TF2Hat = 3
-}
-
 public class GameManager : MonoBehaviour
 {
     // Singleton instance
