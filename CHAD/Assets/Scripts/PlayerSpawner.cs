@@ -92,6 +92,7 @@ public class PlayerSpawner : MonoBehaviour
             if (EnemySpawner.instance != null)
             {
                 EnemySpawner.instance.StartSpawning();
+                ItemManager.instance.StartDropping();
             }
         }
 

@@ -28,14 +28,6 @@ public enum Enemies {
     WhiteDude = 1
 }
 
-public enum PlayerItems
-{
-    Rat = 0,
-    Monkey = 1,
-    FlySwatter = 2,
-    TF2Hat = 3
-}
-
 public class GameManager : MonoBehaviour
 {
     // Singleton instance
@@ -106,7 +98,7 @@ public class GameManager : MonoBehaviour
         if (currentLevel + 1 < EnemySpawner.enemiesPerLevel.Count) {
             currentLevel++;
         }
-
+        ItemManager.instance.ResetItems();
         ResetGame();
     }
 

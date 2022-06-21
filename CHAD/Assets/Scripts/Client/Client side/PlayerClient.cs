@@ -298,7 +298,9 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.loadEmptyMap, ClientHandle.LoadEmptyMap},
             {(int)ServerPackets.loadMap, ClientHandle.LoadMap},
             {(int)ServerPackets.addGun, ClientHandle.AddGun},
-            {(int)ServerPackets.updateEnemySpawnerStats, ClientHandle.UpdateEnemySpawnerStats}
+            {(int)ServerPackets.updateEnemySpawnerStats, ClientHandle.UpdateEnemySpawnerStats},
+            {(int)ServerPackets.weaponDrop, ClientHandle.WeaponDrop},
+            {(int)ServerPackets.removeWeaponDrop, ClientHandle.RemoveWeaponDrop}
         };
     }
 

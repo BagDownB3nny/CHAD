@@ -224,4 +224,18 @@ public class ClientHandle : MonoBehaviour
 
         EnemySpawner.instance.ReceiveUpdateEnemySpawnerStats(_totalEnemiesToSpawn, _enemiesLeftToSpawn, _enemiesAlive, _enemiesKilled);
     }
+    
+    public static void WeaponDrop(Packet _packet)
+    {
+        string dropId = _packet.ReadString();
+        PlayerWeapons droppedWeapon = (PlayerWeapons) _packet.ReadInt();
+        Vector2 position = _packet.ReadVector2();
+        ItemManager.instance.ReceiveWeaponDrop(dropId, droppedWeapon, position);
+    }
+
+    public static void RemoveWeaponDrop(Packet _packet)
+    {
+        string dropId = _packet.ReadString();
+        ItemManager.instance.ReceiveRemoveWeaponDrop(dropId);
+    }
 }
