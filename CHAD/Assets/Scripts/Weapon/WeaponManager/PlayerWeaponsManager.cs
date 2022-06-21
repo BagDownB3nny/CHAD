@@ -9,14 +9,12 @@ public class PlayerWeaponsManager : MonoBehaviour
     public PlayerRangedWeapon weaponScript;
 
     [Header("Player Weapons Parameters")]
-    public PlayerWeapons defaultWeapon;
     public GameObject currentWeapon;
     public int currentWeaponId;
-    public Dictionary<int, GameObject> weaponInventory = new Dictionary<int, GameObject>(8);
+    public Dictionary<int, PlayerWeapons> weaponInventory = new Dictionary<int, PlayerWeapons>(8);
 
     private void Awake() {
         playerStatsManager = gameObject.GetComponent<PlayerStatsManager>();
-        AddGun(defaultWeapon);
     }
     
     void Start()
@@ -26,7 +24,21 @@ public class PlayerWeaponsManager : MonoBehaviour
         }
     }
 
-    
+    public void SetWeaponInventory(PlayerInfo playerInfo)
+    {
+        foreach (PlayerWeapons gun in playerInfo.weaponInventory.Values)
+        {
+            AddGun(gun);
+            Debug.Log("Adding " + gun);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+        PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetWeaponInventory(this);
+    }
+
 
     //instantiate a selected gun
     public void EquipGun(int gunIndex) {
@@ -38,7 +50,7 @@ public class PlayerWeaponsManager : MonoBehaviour
         if (currentWeapon != null) {
             currentWeapon.GetComponent<PlayerRangedWeapon>().Unequip();
         }      
-        currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
+        currentWeapon = Instantiate(GameManager.instance.gunPrefabs[(int)weaponInventory[gunIndex]], transform.position, Quaternion.identity, transform);
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
         weaponScript.holder = gameObject;
 
@@ -51,7 +63,7 @@ public class PlayerWeaponsManager : MonoBehaviour
         if (currentWeapon != null) {
             currentWeapon.GetComponent<PlayerRangedWeapon>().Unequip();
         }      
-        currentWeapon = Instantiate(weaponInventory[gunIndex], transform.position, Quaternion.identity, transform);
+        currentWeapon = Instantiate(GameManager.instance.gunPrefabs[(int)weaponInventory[gunIndex]], transform.position, Quaternion.identity, transform);
         weaponScript = currentWeapon.GetComponent<PlayerRangedWeapon>();
         weaponScript.holder = gameObject;
     }
@@ -62,7 +74,7 @@ public class PlayerWeaponsManager : MonoBehaviour
             GameObject gun = GameManager.instance.gunPrefabs[(int) gunType];
             GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
                     .UpdateWeaponButton(weaponInventory.Count, gun);
-            weaponInventory.Add(weaponInventory.Count, gun);
+            weaponInventory.Add(weaponInventory.Count, gunType);
             return true;
         }
         return false;
@@ -70,6 +82,7 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     //discards a gun
     public void DiscardGun(int gunIndex) {
-        weaponInventory[gunIndex] = null;
+        weaponInventory.Remove(gunIndex);
+        // TODO: Drop a weaponDrop
     }
 }

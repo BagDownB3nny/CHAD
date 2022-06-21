@@ -26,4 +26,9 @@ public class PlayerStatsManager : CharacterStatsManager
         healthBar = GameUIManager.instance.healthBar.GetComponent<HealthBar>();
         healthBar.Initialize(hp);
     }
+
+    private void OnDestroy()
+    {
+        PlayerInfoManager.AllPlayerInfo[characterRefId].SetStats(this);
+    }
 }

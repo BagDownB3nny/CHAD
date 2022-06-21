@@ -29,4 +29,13 @@ public class WeaponWheel : MonoBehaviour
                 = gun.GetComponent<SpriteRenderer>().sprite;
         weaponButtons[weaponButton].transform.GetChild(0).GetComponent<Image>().enabled = true;
     }
+
+    public void ResetWheel()
+    {
+        for (int i = 0; i < weaponButtons.Count; i++)
+        {
+            weaponButtons[i].transform.GetChild(0).GetComponent<Image>().sprite = null;
+            weaponButtons[i].transform.GetChild(0).GetComponent<Image>().enabled = false;
+        }
+    }
 }

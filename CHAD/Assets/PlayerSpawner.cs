@@ -37,10 +37,13 @@ public class PlayerSpawner : MonoBehaviour
             if (playerInfo.playerClass == _playerClass)
             {
                 player.GetComponent<PlayerStatsManager>().SetStats(playerInfo);
+                player.GetComponent<PlayerWeaponsManager>().SetWeaponInventory(playerInfo);
                 // If GameManager already contains a character, replace that character with new character (only happens in lobby)
                 if (GameManager.instance.players.ContainsKey(_playerId.ToString()))
                 {
                     Vector2 playerPos = GameManager.instance.players[_playerId.ToString()].transform.position;
+                    player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
+
                     player.transform.position = playerPos;
                     Destroy(GameManager.instance.players[_playerId.ToString()]);
                     GameManager.instance.players[_playerId.ToString()] = player;
@@ -60,6 +63,8 @@ public class PlayerSpawner : MonoBehaviour
                 try
                 {
                     player.transform.position = GameManager.instance.players[_playerId.ToString()].transform.position;
+                    player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
+
                     Destroy(GameManager.instance.players[_playerId.ToString()]);
                     GameManager.instance.players[_playerId.ToString()] = player;
                 } catch (Exception _ex)
@@ -71,6 +76,8 @@ public class PlayerSpawner : MonoBehaviour
         else
         {
             PlayerInfoManager.Initialize(_playerId.ToString(), _playerClass, player.GetComponent<PlayerStatsManager>());
+            player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
+
             GameManager.instance.players.Add(_playerId.ToString(), player);
         }
         if (onPlayerSpawn != null)
