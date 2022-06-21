@@ -16,6 +16,7 @@ public class MapManager : MonoBehaviour
     public string seed;
     public static int counter = 0;
     public List<GameObject> mapGenerators = new List<GameObject>();
+    public GameObject currentMapGenerator;
 
     private void Awake()
     {
@@ -43,6 +44,11 @@ public class MapManager : MonoBehaviour
 
     public void LoadMap() {
         GameManager.instance.ResetGame();
+
+        if (currentMapGenerator != null) {
+            currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
+        }
+
         StartCoroutine(GenerateScene());
     }
 
@@ -53,13 +59,29 @@ public class MapManager : MonoBehaviour
         {
             yield return null;
         }
-        GameObject mapGenerator = Instantiate(mapGenerators[(int)GetMapType()], new Vector3(0, 0, 0), Quaternion.identity);
-        mapGenerator.GetComponent<MapGenerator>().GenerateMap(GetSeed());
+        currentMapGenerator = Instantiate(mapGenerators[(int)GetMapType()], new Vector3(0, 0, 0), Quaternion.identity);
+        currentMapGenerator.GetComponent<MapGenerator>().GenerateMap(GetSeed());
         ServerSend.LoadEmptyMap();
     }
 
     public void ReceiveLoadMap(MapType _mapType, string _seed) {
+        GameManager.instance.ResetGame();
+
+        if (currentMapGenerator != null) {
+            currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
+        }
+
         GameObject mapGenerator = Instantiate(mapGenerators[(int) _mapType], new Vector3(0, 0, 0), Quaternion.identity);
         mapGenerator.GetComponent<MapGenerator>().GenerateMap(_seed);
+    }
+
+    public void ReceiveLoadEmptyMap() {
+        GameManager.instance.ResetGame();
+
+        if (currentMapGenerator != null) {
+            currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
+        }
+
+        SceneManager.LoadScene("EmptyMap");
     }
 }

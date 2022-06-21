@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5974402530829977090}
   - component: {fileID: -3827967897705889592}
   - component: {fileID: 1238784968598891860}
-  - component: {fileID: -7347362588924311412}
   m_Layer: 0
   m_Name: OuterWall4 1
   m_TagString: Wall
@@ -73,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
+  m_SortingOrder: 32767
   m_Sprite: {fileID: -1297908807, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,19 +133,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3125, y: 1.25}
   m_EdgeRadius: 0
---- !u!114 &-7347362588924311412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974402530829977089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingBase: 5000
-  offset: 0
-  runOnce: 1
-  updateInterval: 0.1

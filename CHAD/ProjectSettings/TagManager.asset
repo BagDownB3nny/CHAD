@@ -11,6 +11,8 @@ TagManager:
   - Wall
   - Floor
   - Spawner
+  - Map
+  - Vegetation
   layers:
   - Default
   - TransparentFX
@@ -45,20 +47,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Collidable
-    uniqueID: 4185120347
-    locked: 0
-  - name: Floor
-    uniqueID: 1878484341
-    locked: 0
-  - name: BehindPlayer
-    uniqueID: 2505641553
+  - name: Background
+    uniqueID: 1573939541
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: InFrontOfPlayer
-    uniqueID: 3327773097
+  - name: Foreground
+    uniqueID: 811253785
     locked: 0
   - name: UI
     uniqueID: 2553255383

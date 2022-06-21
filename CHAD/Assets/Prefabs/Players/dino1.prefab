@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4414262889854049021}
   - component: {fileID: 2667871294291902518}
   - component: {fileID: 4889111994483599830}
-  - component: {fileID: 3685629019219669228}
+  - component: {fileID: -4991100571565363658}
   m_Layer: 0
   m_Name: dino1
   m_TagString: Player
@@ -79,9 +79,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 197303353, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db939533ba5c4cd0beda79f35877315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3685629019219669228
+--- !u!114 &-4991100571565363658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingBase: 5000
+  sortingBase: 0
   offset: -0.75
   runOnce: 0
   updateInterval: 0.1
