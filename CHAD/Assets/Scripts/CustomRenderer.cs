@@ -15,16 +15,19 @@ public class CustomRenderer : MonoBehaviour
     private float timeToNextUpdate;
     private Renderer myRenderer;
 
+    private int sortingOffset;
+
     private void Start()
     {
         myRenderer = gameObject.GetComponent<Renderer>();
+        sortingOffset = myRenderer.sortingOrder;
     }
 
     private void LateUpdate() {
         timeToNextUpdate -= Time.deltaTime;
         if (timeToNextUpdate < 0) {
             timeToNextUpdate = updateInterval;
-            myRenderer.sortingOrder = myRenderer.sortingOrder + (int) (sortingBase - transform.position.y - offset);
+            myRenderer.sortingOrder = sortingOffset + (int) (sortingBase - transform.position.y - offset);
             if (runOnce) {
                 Destroy(this);
             }

@@ -97,6 +97,9 @@ public class MapGenerator : MonoBehaviour {
 	int[,] wallMap;
 	int[,] cliffMap;
 	int[,] visited;
+	Square playerSpawnerSquare;
+	Square exitSquare;
+	List<GameObject> mapObjects = new List<GameObject>();
 
     // void Update() {
     // 	if (Input.GetMouseButtonDown(0)) {
@@ -138,15 +141,17 @@ public class MapGenerator : MonoBehaviour {
 
 		FillWater();
 
+		RemoveFloorBorder();
+
 		DrawFloorMap();
-
-		DrawVegetation(SquareTypes.bush, bushScale, bushThreshold);
-
-		DrawVegetation(SquareTypes.tree, treeScale, treeThreshold);
 
 		DrawPlayerSpawner();
 
 		DrawEnemySpawner();
+
+		DrawVegetation(SquareTypes.bush, bushScale, bushThreshold);
+
+		DrawVegetation(SquareTypes.tree, treeScale, treeThreshold);
 		
 		DrawWallMap();
 
@@ -196,6 +201,7 @@ public class MapGenerator : MonoBehaviour {
 		yield return new WaitForSeconds(animationInterval);
 
 		FillWater();
+		RemoveFloorBorder();
 
 		ClearMap();
 		DrawFloorMap();
@@ -272,6 +278,16 @@ public class MapGenerator : MonoBehaviour {
 					floorMap[x,y] = (perlin < floorThreshold)? (int) SquareTypes.floor: (int) SquareTypes.outerFloor;
 				}
 				
+			}
+		}
+	}
+
+	void RemoveFloorBorder() {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				if (x == 0 || x == width-1 || y == 0 || y == height -1) {
+					floorMap[x,y] = (int) SquareTypes.outerFloor;
+				}
 			}
 		}
 	}
@@ -454,6 +470,7 @@ public class MapGenerator : MonoBehaviour {
 			for (int y = square.y; y >= -10; y--) {
 				if (!IsWithinMap(square.x, y) || floorMap[square.x, y] == (int) SquareTypes.outerFloor) {
 					GameObject cliffSquare = Instantiate(cliff[0], CoordToWorldPoint(square.x, y), Quaternion.identity);
+					mapObjects.Add(cliffSquare);
 					columnGroup.Add(cliffSquare);
 				} else {
 					break;
@@ -721,11 +738,13 @@ public class MapGenerator : MonoBehaviour {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++)
 			{
-				float perlin = Mathf.PerlinNoise(((float) x / width) * vegetationScale + randomOffset, ((float) y / height) * vegetationScale + randomOffset);
-				if (perlin < vegetationThreshold) {
-					if (floorMap[x, y] != (int) SquareTypes.outerFloor && floorMap[x, y] != (int) SquareTypes.water) {
-						vegetationMap[x, y] = (int) squareType;
-						vegetations.Add(new Square(x, y));
+				if ((x != playerSpawnerSquare.x && y != playerSpawnerSquare.y) && (x != exitSquare.y && y != exitSquare.y)) {
+					float perlin = Mathf.PerlinNoise(((float) x / width) * vegetationScale + randomOffset, ((float) y / height) * vegetationScale + randomOffset);
+					if (perlin < vegetationThreshold) {
+						if (floorMap[x, y] != (int) SquareTypes.outerFloor && floorMap[x, y] != (int) SquareTypes.water) {
+							vegetationMap[x, y] = (int) squareType;
+							vegetations.Add(new Square(x, y));
+						}
 					}
 				}
 			}
@@ -743,12 +762,13 @@ public class MapGenerator : MonoBehaviour {
 			floorSquares.AddRange(region.squares);
 		}
 		Region floor = new Region(SquareTypes.floor, floorSquares, floorMap, width, height);
-		Square mostIsolatedSquare = GetMostIsolatedSquare(floor);
+		playerSpawnerSquare = GetMostIsolatedSquare(floor);
 
-		Vector3 position = CoordToWorldPoint(mostIsolatedSquare.x, mostIsolatedSquare.y);
+		Vector3 position = CoordToWorldPoint(playerSpawnerSquare.x, playerSpawnerSquare.y);
 		GameObject spawner = Instantiate(playerSpawner[0], position, Quaternion.identity);
+		mapObjects.Add(spawner);
 
-		DrawHole(mostIsolatedSquare, floor);
+		DrawExit(playerSpawnerSquare, floor);
 	}
 
 	Square GetMostIsolatedSquare(Region region) {
@@ -781,9 +801,8 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 
 	#region hole
-	void DrawHole(Square playerSpawnerSquare, Region floorSquares) {
+	void DrawExit(Square playerSpawnerSquare, Region floorSquares) {
 		float largestDist = float.MinValue;
-		Square furthestSquare = new Square(0, 0);
 
 		foreach (Square edgeSquare in floorSquares.edgeSquares) {
 			int dx = edgeSquare.x - playerSpawnerSquare.x;
@@ -792,18 +811,20 @@ public class MapGenerator : MonoBehaviour {
 
 			if (dist > largestDist) {
 				largestDist = dist;
-				furthestSquare = edgeSquare;
+				exitSquare = edgeSquare;
 			}
 		}
 
-		Vector3 position = CoordToWorldPoint(furthestSquare.x, furthestSquare.y);
-		GameObject Hole = Instantiate(exit[0], position, Quaternion.identity);
+		Vector3 position = CoordToWorldPoint(exitSquare.x, exitSquare.y);
+		GameObject hole = Instantiate(exit[0], position, Quaternion.identity);
+		mapObjects.Add(hole);
 	}
 	#endregion
 
 	#region EnemySpawner
 	void DrawEnemySpawner() {
 		GameObject spawner = Instantiate(enemySpawner[0], new Vector3(0, 0, 0), Quaternion.identity);
+		mapObjects.Add(spawner);
 		GameManager.instance.enemySpawners.Add("ES", spawner);
 		spawner.GetComponent<EnemySpawner>().map = gameObject;
 	}
@@ -940,7 +961,7 @@ public class MapGenerator : MonoBehaviour {
                 break;
         }
 		if (squareType != SquareTypes.outerFloor) {
-			Instantiate(squareToDraw, pos, Quaternion.identity);
+			mapObjects.Add(Instantiate(squareToDraw, pos, Quaternion.identity));
 		}
     }
 	#endregion
@@ -958,18 +979,22 @@ public class MapGenerator : MonoBehaviour {
 		return new int[] { (int)Math.Round(point.x + width / 2 - 0.5f, 0), (int)Math.Round(point.y + height / 2 - 0.5f, 0)};
     }
 
-    void ClearMap() {
-        GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
-        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
-		GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
-        foreach (GameObject floor in floors) {
-            Destroy(floor);
-        }
-        foreach (GameObject wall in walls) {
-            Destroy(wall);
-        }
-		foreach (GameObject spawner in spawners) {
-            Destroy(spawner);
+    public void ClearMap() {
+        // GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+        // GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+		// GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        // foreach (GameObject floor in floors) {
+        //     Destroy(floor);
+        // }
+        // foreach (GameObject wall in walls) {
+        //     Destroy(wall);
+        // }
+		// foreach (GameObject spawner in spawners) {
+        //     Destroy(spawner);
+        // }
+
+		foreach (GameObject mapObject in mapObjects) {
+            Destroy(mapObject);
         }
     }
 
