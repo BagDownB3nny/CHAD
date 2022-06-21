@@ -36,5 +36,6 @@ public class RangedDirectDamager : DirectDamager
         //calls DestroyProjectile because a RangedDirectDamager is attached to a projectile
         ServerSend.DestroyProjectile(gameObject.GetComponent<ProjectileStatsManager>().projectileRefId);
         Destroy(gameObject);
+        GameManager.instance.projectiles.Remove(projectileStatsManager.projectileRefId);
     }
 }

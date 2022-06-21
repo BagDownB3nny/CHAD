@@ -7,8 +7,11 @@ public abstract class CharacterStatsManager : MonoBehaviour
     //scripts needed
     public Death deathScript;
 
-    [Header("Character Reference ID")]
+    [Header("Reference IDs")]
     public string characterRefId;
+    public CharacterType characterType;
+    public int localProjectileRefId;
+    public int localDamageDealerRefId;
 
     [Header("Character Stats")]
     public float hp;
@@ -18,7 +21,12 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public float armourPenetration;
     public float armourEffectiveness;
     public float proficiency;
+    public GameObject target;
+    public Vector3 targetPosition;
     public GameObject damageEffect;
+
+    [Header("UI Elements")]
+    public HealthBar healthBar;
 
     protected virtual void Awake() {
         deathScript = gameObject.GetComponent<Death>();
@@ -52,7 +60,9 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public void ReceiveTakeDamage(float _damageTaken)
     {
         hp -= _damageTaken;
-
+        if (healthBar != null) {
+            healthBar.SetHealth(hp);
+        }
         //might want to abstract this to a DamageEffect script
         if (damageEffect != null) {
             Instantiate(damageEffect, transform.position, Quaternion.identity);

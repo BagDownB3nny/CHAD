@@ -124,15 +124,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRefId: 
-  hp: 10000
+  characterType: 0
+  localProjectileRefId: 0
+  localDamageDealerRefId: 0
+  hp: 1000
   attack: 1
   speed: 10
   armour: 0
   armourPenetration: 0
   armourEffectiveness: 0
   proficiency: 0
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   damageEffect: {fileID: 0}
-  playerRefId: 
+  characterClass: 0
 --- !u!114 &8048562091491450984
 MonoBehaviour:
   m_ObjectHideFlags: 0

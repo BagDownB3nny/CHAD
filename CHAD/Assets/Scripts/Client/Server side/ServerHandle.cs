@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ServerHandle
 {
+    public static bool IsPresent(Dictionary<string, GameObject> dict, string refId) {
+        return dict.ContainsKey(refId) && dict[refId] != null;
+    }
     public static void WelcomeReceived(int _fromClient, Packet _packet)
     {
         int _clientIdCheck = _packet.ReadInt();
@@ -26,9 +29,10 @@ public class ServerHandle
         {
             _input[i] = _packet.ReadBool();
         }
-        
-        Vector2 _position = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerMovement>().MovePlayer(_input);
-        ServerSend.MovePlayer(_fromClient, _position);
+        if (IsPresent(GameManager.instance.players, _fromClient.ToString())) {
+            Vector2 _position = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerMovement>().MovePlayer(_input);
+            ServerSend.MovePlayer(_fromClient, _position);
+        }
     }
 
     /*
@@ -43,30 +47,43 @@ public class ServerHandle
         Server.serverClients[_fromClient].SendIntoGame(characterType, position);
     }
 
-    public static void ReceiveGunRotation(int _fromClient, Packet _packet)
+    public static void RotateRangedWeapon(int _fromClient, Packet _packet)
     {
-        Quaternion rotation = _packet.ReadQuaternion();
-        Server.serverClients[_fromClient].player.GetComponent<PlayerWeaponsManager>()
-            .currentWeapon.GetComponent<PlayerRangedWeapon>().ReceiveGunRotation(rotation);
+        string affectedCharacterRefId = _packet.ReadString();
+        float directionRotation = _packet.ReadFloat();
+        if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
+                GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
+                        .ReceiveRotateRangedWeapon(directionRotation);
+            }
+        }
+        //relay the weapon rotation from client to all other clients
+        ServerSend.RotatePlayerRangedWeapon(_fromClient, affectedCharacterRefId, directionRotation);
     }
 
-    public static void PlayerAttack(int _fromClient, Packet _packet) {
-        PlayerWeapons gunType = (PlayerWeapons) _packet.ReadInt();
-        float directionRotation = _packet.ReadFloat();
-
-        //perform the attack on server side and receive the projectile info
-        object[] projectileInfo = GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerWeaponsManager>().weaponScript
-                .Attack(gunType, directionRotation);
-
-        if (projectileInfo != null) {
-            GameObject bullet = (GameObject) projectileInfo[0];
-            //set projectile reference id  and add it to dictionary on server side
-            //string projectileRefId = string.Format("P{0}")
-            bullet.GetComponent<ProjectileStatsManager>().projectileRefId = GameManager.instance.projectileRefId;
-            GameManager.instance.projectiles.Add(GameManager.instance.projectileRefId, bullet);
-            //send attack info to client
-            ServerSend.PlayerAttack(_fromClient, GameManager.instance.projectileRefId, gunType, (float) projectileInfo[1]);
-            GameManager.instance.projectileRefId++;
+    public static void RangedAttack(int _fromClient, Packet _packet) {
+        string characterRefId =  _packet.ReadString();
+        if (IsPresent(GameManager.instance.players, characterRefId)) {
+            GameManager.instance.players[characterRefId].GetComponent<PlayerWeaponsManager>()
+                    .weaponScript.Attack();
         }
+    }
+
+    public static void ReadyStatus(int _fromClient, Packet _packet) {
+        int playerRefId = _packet.ReadInt();
+        bool readyStatus = _packet.ReadBool();
+        LobbyManager.instance.ReadyStatus(playerRefId, readyStatus);
+    }
+
+    public static void ChangeClass(int _fromClient, Packet _packet) {
+        int playerClass = _packet.ReadInt();
+        GameManager.instance.ChangeClass(_fromClient, playerClass);
+    }
+
+    public static void EquipGun(int _fromClient, Packet _packet) {
+        int gunIndex = _packet.ReadInt();
+        GameManager.instance.players[_fromClient.ToString()].GetComponent<PlayerWeaponsManager>()
+                .ReceiveEquipGun(gunIndex);
+        ServerSend.EquipGun(_fromClient, gunIndex);
     }
 }

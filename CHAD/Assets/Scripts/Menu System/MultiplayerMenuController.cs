@@ -19,8 +19,6 @@ public class MultiplayerMenuController : MonoBehaviour
 
     public void LoadJoinRoom() {
         SceneManager.LoadScene(joinRoomScreen);
-        NetworkManager.SetGameType(GameType.Client);
-        PlayerClient.instance.ConnectToServer();
     }
 
     public void Back() {
