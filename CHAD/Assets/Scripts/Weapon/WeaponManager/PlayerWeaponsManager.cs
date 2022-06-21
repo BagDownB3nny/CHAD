@@ -26,16 +26,15 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     public void SetWeaponInventory(PlayerInfo playerInfo)
     {
+        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
         foreach (PlayerWeapons gun in playerInfo.weaponInventory.Values)
         {
             AddGun(gun);
-            Debug.Log("Adding " + gun);
         }
     }
 
     private void OnDestroy()
     {
-        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
         PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetWeaponInventory(this);
     }
 
@@ -72,9 +71,11 @@ public class PlayerWeaponsManager : MonoBehaviour
     public bool AddGun(PlayerWeapons gunType) {
         if (weaponInventory.Count < 8 ) {
             GameObject gun = GameManager.instance.gunPrefabs[(int) gunType];
-            GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
-                    .UpdateWeaponButton(weaponInventory.Count, gun);
             weaponInventory.Add(weaponInventory.Count, gunType);
+            if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId)) {
+                GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
+                    .UpdateWeaponButton(weaponInventory.Count, gun);
+            }
             return true;
         }
         return false;

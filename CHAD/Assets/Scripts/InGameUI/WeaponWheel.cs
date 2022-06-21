@@ -21,7 +21,7 @@ public class WeaponWheel : MonoBehaviour
     }
 
     public void UpdateWeaponButton(int weaponButton, GameObject gun) {
-        weaponButton -= 2;
+        weaponButton -= 3;
         if (weaponButton < 0) {
             weaponButton += 8;
         }
