@@ -215,4 +215,18 @@ public class ClientHandle : MonoBehaviour
         PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
         GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
     }
+
+    public static void WeaponDrop(Packet _packet)
+    {
+        string dropId = _packet.ReadString();
+        PlayerWeapons droppedWeapon = (PlayerWeapons) _packet.ReadInt();
+        Vector2 position = _packet.ReadVector2();
+        ItemManager.instance.ReceiveWeaponDrop(dropId, droppedWeapon, position);
+    }
+
+    public static void RemoveWeaponDrop(Packet _packet)
+    {
+        string dropId = _packet.ReadString();
+        ItemManager.instance.ReceiveRemoveWeaponDrop(dropId);
+    }
 }

@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         if (currentLevel + 1 < EnemySpawner.enemiesPerLevel.Count) {
             currentLevel++;
         }
-
+        ItemManager.instance.ResetItems();
         ResetGame();
     }
 

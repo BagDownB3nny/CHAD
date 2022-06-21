@@ -14,8 +14,8 @@ public enum PlayerItems
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
-    public Dictionary<string, PlayerItems> itemDrops;
-    public Dictionary<string, PlayerWeapons> weaponDrops;
+    public Dictionary<string, GameObject> itemDrops;
+    public Dictionary<string, GameObject> weaponDrops;
     public GameObject itemDropPrefab;
     public GameObject weaponDropPrefab;
 
@@ -29,6 +29,9 @@ public class ItemManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            EnemyDeath.onEnemyDeath += OnEnemyDeath;
+            itemDrops = new Dictionary<string, GameObject>();
+            weaponDrops = new Dictionary<string, GameObject>();
         } else if (instance != this)
         {
             Destroy(gameObject);
@@ -55,16 +58,22 @@ public class ItemManager : MonoBehaviour
                 // Drop weapon
                 if (dropType == 0)
                 {
-                    GameObject drop = Instantiate(weaponDropPrefab,
+                    GameObject weadponDrop = Instantiate(weaponDropPrefab,
                             deadEnemy.transform.position, Quaternion.identity);
                     PlayerWeapons droppedWeapon = (PlayerWeapons) Mathf.RoundToInt(
                             UnityEngine.Random.Range(0,
                             Enum.GetNames(typeof(PlayerWeapons)).Length));
-                    drop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
+                    string dropId = itemsDropped.ToString();
+                    weadponDrop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
+                    weadponDrop.GetComponent<WeaponDrops>().dropId = dropId;
+                    weaponDrops.Add(dropId, weadponDrop);
+
+                    ServerSend.WeaponDrop(dropId, droppedWeapon, deadEnemy.transform.position);
                 }
                 // Drop item
                 if (dropType == 1)
                 {
+                    // TODO: Create items and make them droppable
                     GameObject drop = Instantiate(weaponDropPrefab,
                             deadEnemy.transform.position, Quaternion.identity);
                     PlayerWeapons droppedWeapon = (PlayerWeapons)Mathf.RoundToInt(
@@ -75,5 +84,37 @@ public class ItemManager : MonoBehaviour
                 itemsDropped += 1;
             }
         }
+    }
+
+    public void ReceiveWeaponDrop(string _dropId, PlayerWeapons _droppedWeapon, Vector2 _position)
+    {
+        GameObject drop = Instantiate(weaponDropPrefab, _position, Quaternion.identity);
+        drop.GetComponent<WeaponDrops>().playerWeapon = _droppedWeapon;
+        weaponDrops.Add(_dropId, drop);
+    }
+
+    public void ResetItems()
+    {
+        foreach (GameObject item in itemDrops.Values)
+        {
+            Destroy(item);
+        }
+        itemDrops.Clear();
+        foreach (GameObject weapon in weaponDrops.Values)
+        {
+            Destroy(weapon);
+        }
+        weaponDrops.Clear();
+    }
+
+    public void RemoveWeaponDrop(string _dropId)
+    {
+        Destroy(weaponDrops[_dropId]);
+        weaponDrops.Remove(_dropId);
+    }
+
+    public void ReceiveRemoveWeaponDrop(string _dropId)
+    {
+        RemoveWeaponDrop(_dropId);
     }
 }

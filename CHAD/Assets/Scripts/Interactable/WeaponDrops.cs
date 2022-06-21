@@ -37,8 +37,8 @@ public class WeaponDrops : Interactable
     {
         player.GetComponent<PlayerWeaponsManager>().AddGun(playerWeapon);
         ServerSend.AddGun(player.GetComponent<PlayerStatsManager>().characterRefId, playerWeapon);
-        // TODO: Implement a system to create drop ids for items dropped
-        // ServerSend.DestroyGunDrop(dropId);
+        ItemManager.instance.RemoveWeaponDrop(dropId);
+        ServerSend.RemoveWeaponDrop(dropId);
     }
 
     public override string GetText()
