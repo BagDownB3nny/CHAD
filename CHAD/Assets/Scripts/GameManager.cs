@@ -17,22 +17,15 @@ public enum PlayerClasses {
 }
 
 public enum PlayerWeapons {
-    TestRifle = 0,
-    Crossbow = 1,
-    ToxicGun = 2
+    None = 0,
+    TestRifle = 1,
+    Crossbow = 2,
+    ToxicGun = 3
 }
 
 public enum Enemies {
     MaskedGuy = 0,
     WhiteDude = 1
-}
-
-public enum PlayerItems
-{
-    Rat = 0,
-    Monkey = 1,
-    FlySwatter = 2,
-    TF2Hat = 3
 }
 
 public class GameManager : MonoBehaviour
@@ -99,6 +92,14 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveChangeClass(int _playerRefId, int _playerClass, Vector2 _playerPosition) {
         //SpawnPlayer(_playerRefId.ToString(), _playerClass, _playerPosition, true);
+    }
+
+    public void NextGame() {
+        if (currentLevel + 1 < EnemySpawner.enemiesPerLevel.Count) {
+            currentLevel++;
+        }
+        ItemManager.instance.ResetItems();
+        ResetGame();
     }
 
     public void ResetGame() {

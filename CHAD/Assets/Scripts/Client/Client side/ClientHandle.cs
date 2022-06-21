@@ -198,8 +198,7 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadEmptyMap(Packet _packet)
     {
-        GameManager.instance.ResetGame();
-        SceneManager.LoadScene("EmptyMap");
+        MapManager.instance.ReceiveLoadEmptyMap();
         ClientSend.EmptyMapLoaded();
     }
 
@@ -215,5 +214,19 @@ public class ClientHandle : MonoBehaviour
         string _affectedPlayer = _packet.ReadString();
         PlayerWeapons _gunType = (PlayerWeapons) _packet.ReadInt();
         GameManager.instance.players[_affectedPlayer].GetComponent<PlayerWeaponsManager>().AddGun(_gunType);
+    }
+
+    public static void WeaponDrop(Packet _packet)
+    {
+        string dropId = _packet.ReadString();
+        PlayerWeapons droppedWeapon = (PlayerWeapons) _packet.ReadInt();
+        Vector2 position = _packet.ReadVector2();
+        ItemManager.instance.ReceiveWeaponDrop(dropId, droppedWeapon, position);
+    }
+
+    public static void RemoveWeaponDrop(Packet _packet)
+    {
+        string dropId = _packet.ReadString();
+        ItemManager.instance.ReceiveRemoveWeaponDrop(dropId);
     }
 }

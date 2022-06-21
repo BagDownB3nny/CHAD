@@ -278,4 +278,24 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void WeaponDrop(string _dropId, PlayerWeapons _droppedWeapon, Vector2 _position)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.weaponDrop))
+        {
+            _packet.Write(_dropId);
+            _packet.Write((int)_droppedWeapon);
+            _packet.Write(_position);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void RemoveWeaponDrop(string _dropId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.removeWeaponDrop))
+        {
+            _packet.Write(_dropId);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

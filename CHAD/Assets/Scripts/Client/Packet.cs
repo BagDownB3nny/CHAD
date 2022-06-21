@@ -28,7 +28,9 @@ public enum ServerPackets
     loadLobby = 19,
     loadEmptyMap = 20,
     loadMap = 21,
-    addGun = 22
+    addGun = 22,
+    weaponDrop = 23,
+    removeWeaponDrop = 24
 }
 
 /// <summary>Sent from client to server.</summary>

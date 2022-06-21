@@ -14,8 +14,13 @@ public abstract class ProjectileMovement : MonoBehaviour
         projectileStatsManager = gameObject.GetComponent<ProjectileStatsManager>();
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (NetworkManager.gameType == GameType.Server && other.tag.Equals("Wall")) {
+            DestroyProjectile();
+        }
+    }
 
-    public void SendMove() {
+    public void Move() {
         ServerSend.MoveProjectile(projectileStatsManager.projectileRefId, transform.position);
     }
 
