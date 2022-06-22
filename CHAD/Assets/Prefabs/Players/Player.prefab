@@ -132,7 +132,7 @@ MonoBehaviour:
   maxHp: 1000
   hp: 1000
   attack: 1
-  speed: 10
+  speed: 30
   armour: 0
   armourPenetration: 0
   armourEffectiveness: 0
