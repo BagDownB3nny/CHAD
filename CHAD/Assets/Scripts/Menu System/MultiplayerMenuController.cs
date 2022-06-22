@@ -15,6 +15,7 @@ public class MultiplayerMenuController : MonoBehaviour
         SceneManager.LoadScene(hostRoomScreen);
         NetworkManager.SetGameType(GameType.Server);
         Server.Start(4, 26950);
+        MusicManager.instance.PlayMusic(Music.none);
     }
 
     public void LoadJoinRoom() {

@@ -192,12 +192,14 @@ public class ClientHandle : MonoBehaviour
     public static void LoadLobby(Packet _packet)
     {
         SceneManager.LoadScene("WaitingRoom");
+        MusicManager.instance.PlayMusic(Music.lobby);
         ClientSend.LobbyLoaded();
     }
 
     public static void LoadEmptyMap(Packet _packet)
     {
         MapManager.instance.ReceiveLoadEmptyMap();
+        MusicManager.instance.PlayMusic(Music.game);
         ClientSend.EmptyMapLoaded();
     }
 
