@@ -46,11 +46,6 @@ public class MapManager : MonoBehaviour
     public void LoadMap() {
         GameUIManager.instance.objectiveText.SetActive(false);
         GameUIManager.instance.holeUI.SetActive(false);
-        foreach (ServerClient serverClient in Server.serverClients.Values)
-        {
-            serverClient.spawnedIn = false;
-        }
-
         if (mapType == MapType.lobby)
         {
             GameManager.instance.ResetGame();

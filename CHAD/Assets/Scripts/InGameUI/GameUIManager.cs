@@ -34,13 +34,13 @@ public class GameUIManager : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q)) {
             weaponWheel.SetActive(true);
-            crosshair.SetActive(false);
+            crosshair.GetComponent<SpriteRenderer>().enabled = false;
         } else {
             if (weaponWheel.activeSelf) {
                 weaponWheel.GetComponent<WeaponWheel>().currentButton.GetComponent<WeaponSelectButton>().EquipGun();
             }
             weaponWheel.SetActive(false);
-            crosshair.SetActive(true);
+            crosshair.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 

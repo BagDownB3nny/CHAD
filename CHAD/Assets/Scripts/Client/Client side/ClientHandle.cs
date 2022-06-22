@@ -158,7 +158,7 @@ public class ClientHandle : MonoBehaviour
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
         } else if (characterType == CharacterType.Enemy) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (IsPresent(GameManager.instance.enemies, affectedCharacterRefId)) {
                 GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
@@ -191,7 +191,6 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadLobby(Packet _packet)
     {
-        Debug.Log("loading lobby on client");
         SceneManager.LoadScene("WaitingRoom");
         ClientSend.LobbyLoaded();
     }

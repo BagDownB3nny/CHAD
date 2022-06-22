@@ -52,7 +52,6 @@ public class EnemySpawner : MonoBehaviour
             if (isSpawning && enemiesLeftToSpawn > 0 && timeToNextSpawn <= 0 && enemiesAlive < 0.3 * totalEnemiesToSpawn)
             {
                 int[] coordinates = generateCoordinates();
-                Debug.Log("coordinates: " + coordinates);
                 if (coordinates != null)
                 {
                     Enemies enemy = generateRandomEnemy();
@@ -69,8 +68,6 @@ public class EnemySpawner : MonoBehaviour
     public void StartSpawning()
     {
         isSpawning = true;
-        Debug.Log("LEVEL " + GameManager.instance.currentLevel);
-        Debug.Log(enemiesPerLevel.Count);
         totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel]) * Server.NumberOfPlayers;
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
