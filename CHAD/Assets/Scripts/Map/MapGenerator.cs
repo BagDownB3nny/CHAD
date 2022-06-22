@@ -114,7 +114,6 @@ public class MapGenerator : MonoBehaviour {
 
     #region GenerateMap
     public void GenerateMap(string _seed) {
-		Debug.Log("GENERATING A MAP");
 		seed = _seed;
 
 		if (animationMode) {

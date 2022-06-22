@@ -20,8 +20,6 @@ public class HealthBar : MonoBehaviour
             player.GetComponent<PlayerStatsManager>().healthBar = this;
             slider.maxValue = player.GetComponent<PlayerStatsManager>().maxHp;
             slider.value = player.GetComponent<PlayerStatsManager>().maxHp;
-            Debug.Log("slider: " + slider);
-            Debug.Log("maxHp: " + player.GetComponent<PlayerStatsManager>().maxHp);
         }
     }
     

@@ -78,6 +78,7 @@ public class ServerSend
     {
         using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
         {
+            ServerSend.Broadcast("SENDING PLAYER SPAWN FOR PLAYER " + _affectedPlayerId + " TO PLAYER " + _toClient);
             _packet.Write(_affectedPlayerId);
             _packet.Write((int)characterType);
             SendTCPData(_toClient, _packet);

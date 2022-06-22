@@ -51,8 +51,10 @@ public class ItemManager : MonoBehaviour
     {
         if (NetworkManager.gameType == GameType.Server && itemsDropped < itemsToDrop)
         {
-            float probability = EnemySpawner.instance.enemiesLeftToSpawn;
-            if (probability > UnityEngine.Random.Range(0, 1))
+            float probability = (float)(itemsToDrop - itemsDropped) /
+                    (float)(EnemySpawner.instance.totalEnemiesToSpawn - EnemySpawner.instance.enemiesKilled);
+            ServerSend.Broadcast(probability.ToString());
+            if (probability > UnityEngine.Random.Range(0, 1.0f))
             {
                 int dropType = Mathf.RoundToInt(UnityEngine.Random.Range(0, 1));
                 // Drop weapon
@@ -62,7 +64,7 @@ public class ItemManager : MonoBehaviour
                             deadEnemy.transform.position, Quaternion.identity);
                     PlayerWeapons droppedWeapon = (PlayerWeapons) Mathf.RoundToInt(
                             UnityEngine.Random.Range(0,
-                            Enum.GetNames(typeof(PlayerWeapons)).Length));
+                            Enum.GetNames(typeof(PlayerWeapons)).Length - 1));
                     string dropId = itemsDropped.ToString();
                     weadponDrop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
                     weadponDrop.GetComponent<WeaponDrops>().dropId = dropId;
@@ -78,7 +80,7 @@ public class ItemManager : MonoBehaviour
                             deadEnemy.transform.position, Quaternion.identity);
                     PlayerWeapons droppedWeapon = (PlayerWeapons)Mathf.RoundToInt(
                             UnityEngine.Random.Range(0,
-                            Enum.GetNames(typeof(PlayerWeapons)).Length));
+                            Enum.GetNames(typeof(PlayerWeapons)).Length - 1));
                     drop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
                 }
                 itemsDropped += 1;

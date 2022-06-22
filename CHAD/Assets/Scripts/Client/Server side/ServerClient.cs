@@ -161,7 +161,6 @@ public class ServerClient
 
         public void Connect(IPEndPoint _endPoint)
         {
-            Debug.Log("Server UDP connected to client");
             endPoint = _endPoint;
         }
 
