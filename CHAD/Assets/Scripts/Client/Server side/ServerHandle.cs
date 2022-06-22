@@ -77,7 +77,7 @@ public class ServerHandle
                 .ReceiveEquipGun(gunIndex);
         foreach (ServerClient serverClient in Server.serverClients.Values)
         {
-            if (serverClient.id != _fromClient)
+            if (serverClient.id != _fromClient && serverClient.spawnedIn)
             {
                 ServerSend.EquipGun(serverClient.id, _fromClient, gunIndex);
             }
@@ -113,6 +113,7 @@ public class ServerHandle
 
     public static void MapLoaded(int _fromClient, Packet _packet)
     {
+        ServerSend.Broadcast("Received map loaded from " + _fromClient);
         Server.serverClients[_fromClient].spawnedIn = true;
         PlayerSpawner.instance.SpawnPlayer(_fromClient,
                 PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
@@ -120,6 +121,8 @@ public class ServerHandle
         {
             if (serverClient.spawnedIn)
             {
+                ServerSend.Broadcast(serverClient.id + " IS SPAWNED IN");
+                ServerSend.Broadcast("Sending spawning info of " + serverClient.id);
                 // Telling all clients to spawn in this player
                 ServerSend.SpawnPlayer(serverClient.id, _fromClient,
                         PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);

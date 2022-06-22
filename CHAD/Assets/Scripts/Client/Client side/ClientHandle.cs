@@ -17,6 +17,7 @@ public class ClientHandle : MonoBehaviour
 
         Debug.Log($"Message from server: {_msg}");
         PlayerClient.instance.myId = _id;
+        Debug.Log("I am player " + _id);
 
         PlayerClient.instance.udp.Connect(
             ((IPEndPoint)PlayerClient.instance.tcp.socket.Client.LocalEndPoint).Port);
@@ -27,6 +28,7 @@ public class ClientHandle : MonoBehaviour
     {
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
+        Debug.Log("Received spawn player");
         PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
     }
 
@@ -152,7 +154,8 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
+            if (GameManager.instance != null &&
+                    IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
                     GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
                 GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
