@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         instance = this;
         EnemyDeath.onEnemyDeath += OnEnemyDeath;
         objectiveText = GameUIManager.instance.objectiveText;
+        Random.InitState(Time.time.ToString().GetHashCode());
     }
 
     private void OnDestroy()
@@ -71,6 +72,8 @@ public class EnemySpawner : MonoBehaviour
         totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel]) * Server.NumberOfPlayers;
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
+        enemiesKilled = 0;
+        enemiesAlive = 0;
 
         UpdateEnemySpawnerStats();
     }
@@ -192,7 +195,7 @@ public class EnemySpawner : MonoBehaviour
         //{
         //    return (Enemies)GameManager.instance.currentLevel + 3;
         //}
-        int randomInt = Random.Range(0, 2);
+        int randomInt = Random.Range(0, (int)GameManager.instance.enemies.Count - 1);
         return (Enemies)randomInt;
     }
 
