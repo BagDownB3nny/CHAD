@@ -95,8 +95,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextGame() {
-        if (currentLevel + 1 < EnemySpawner.enemiesPerLevel.Count) {
+        int maxLevels = 5;
+        if (currentLevel + 1 < maxLevels) {
             currentLevel++;
+        }
+        foreach (ServerClient serverClient in Server.serverClients.Values)
+        {
+            serverClient.spawnedIn = false;
         }
         ItemManager.instance.ResetItems();
         ResetGame();

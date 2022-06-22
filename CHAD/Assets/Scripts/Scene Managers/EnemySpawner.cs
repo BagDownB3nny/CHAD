@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = true;
         Debug.Log("LEVEL " + GameManager.instance.currentLevel);
         Debug.Log(enemiesPerLevel.Count);
-        totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel++]) * Server.NumberOfPlayers;
+        totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel]) * Server.NumberOfPlayers;
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
 

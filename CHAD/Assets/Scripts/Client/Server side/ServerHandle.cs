@@ -128,6 +128,12 @@ public class ServerHandle
                     // Telling this client to spawn in all players (except itself)
                     ServerSend.SpawnPlayer(_fromClient, serverClient.id,
                             PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
+                    Debug.Log("Received MapLoaded from " + _fromClient);
+                    foreach (string id in GameManager.instance.players.Keys)
+                    {
+                        Debug.Log(id + "has status of " + serverClient.spawnedIn);
+                    }
+                    Debug.Log("2 has status of " + Server.serverClients[2].spawnedIn);
                     // Telling this client to equip guns for all players
                     ServerSend.EquipGun(_fromClient, serverClient.id,
                             GameManager.instance.players[serverClient.id.ToString()].GetComponent<PlayerWeaponsManager>().currentWeaponId);
@@ -138,6 +144,7 @@ public class ServerHandle
 
     public static void Interact(int _fromClient, Packet _packet)
     {
+        Debug.Log("Received interact from " + _fromClient);
         GameObject player = GameManager.instance.players[_fromClient.ToString()];
         player.GetComponent<PlayerItemsManager>().interact(player);
     }

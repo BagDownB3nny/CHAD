@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum MapType {
+    lobby = -1,
     city = 0,
     forest = 1,
     desert = 2
@@ -12,7 +13,7 @@ public enum MapType {
 public class MapManager : MonoBehaviour
 {
     public static MapManager instance;
-    public MapType mapType;
+    public MapType mapType = MapType.lobby;
     public string seed;
     public static int counter = 0;
     public List<GameObject> mapGenerators = new List<GameObject>();
@@ -45,9 +46,19 @@ public class MapManager : MonoBehaviour
     public void LoadMap() {
         GameUIManager.instance.objectiveText.SetActive(false);
         GameUIManager.instance.holeUI.SetActive(false);
+        foreach (ServerClient serverClient in Server.serverClients.Values)
+        {
+            serverClient.spawnedIn = false;
+        }
 
-        GameManager.instance.ResetGame();
-
+        if (mapType == MapType.lobby)
+        {
+            GameManager.instance.ResetGame();
+        } else
+        {
+            GameManager.instance.NextGame();
+        }
+        
         if (currentMapGenerator != null) {
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
         }
