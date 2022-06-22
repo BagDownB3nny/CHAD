@@ -38,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
+        EnemyDeath.onEnemyDeath -= OnEnemyDeath;
     }
 
     private void Update()
@@ -72,8 +73,8 @@ public class EnemySpawner : MonoBehaviour
         totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel]) * Server.NumberOfPlayers;
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
-        enemiesKilled = 0;
         enemiesAlive = 0;
+        enemiesKilled = 0;
 
         UpdateEnemySpawnerStats();
     }
@@ -228,6 +229,8 @@ public class EnemySpawner : MonoBehaviour
         enemiesKilled += 1;
 
         if (enemiesKilled >= totalEnemiesToSpawn) {
+            Debug.Log("Hole Triggered");
+            Debug.Log("enemiesKilled: " + enemiesKilled + " totalEnemiesToSpawn: " + totalEnemiesToSpawn);
             GameObject.FindGameObjectWithTag("Exit").GetComponent<Exit>().SetOpen();
             GameUIManager.instance.holeUI.SetActive(true);
             objectiveText.GetComponent<TextMeshProUGUI>().text = "FIND THE EXIT";
@@ -248,6 +251,7 @@ public class EnemySpawner : MonoBehaviour
         enemiesLeftToSpawn = _enemiesLeftToSpawn;
         enemiesAlive = _enemiesAlive;
         enemiesKilled = _enemiesKilled;
+        Debug.Log("Received: " + totalEnemiesToSpawn + " " + enemiesLeftToSpawn + " " + enemiesAlive + " " + enemiesKilled);
 
         objectiveText.SetActive(true);
         objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";

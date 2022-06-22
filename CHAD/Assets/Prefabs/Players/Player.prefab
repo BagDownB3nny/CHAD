@@ -131,9 +131,15 @@ MonoBehaviour:
   localDamageDealerRefId: 0
   maxHp: 1000
   hp: 1000
+<<<<<<< HEAD
   attack: 3
   speed: 30
   armour: 50
+=======
+  attack: 1
+  speed: 30
+  armour: 0
+>>>>>>> development
   armourPenetration: 0
   armourEffectiveness: 0
   proficiency: 0
