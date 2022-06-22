@@ -127,7 +127,7 @@ public class ServerHandle
                     ServerSend.SpawnPlayer(serverClient.id, _fromClient,
                             PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
                 }
-                // Telling this client to spawn in all players (except itself)
+                // Telling this client to spawn in all players
                 ServerSend.SpawnPlayer(_fromClient, serverClient.id,
                         PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
                 // Telling this client to equip guns for all players

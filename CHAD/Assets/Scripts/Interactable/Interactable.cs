@@ -18,7 +18,7 @@ public abstract class Interactable : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerItemsManager>().interact += OnInteract;
 
-            if (NetworkManager.gameType == GameType.Client) {
+            if (NetworkManager.IsMine(collision.gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
                 interactText.GetComponent<TextMeshProUGUI>().text = GetText();
                 interactText.SetActive(true);
             }
@@ -31,7 +31,7 @@ public abstract class Interactable : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerItemsManager>().interact -= OnInteract;
 
-            if (NetworkManager.gameType == GameType.Client) {
+            if (NetworkManager.IsMine(collision.gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
                 interactText.SetActive(false);
             }
         }

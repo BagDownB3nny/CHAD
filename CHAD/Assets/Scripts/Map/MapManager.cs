@@ -75,6 +75,8 @@ public class MapManager : MonoBehaviour
 
     public void ReceiveLoadMap(MapType _mapType, string _seed) {
         GameManager.instance.ResetGame();
+        ItemManager.instance.ResetItems();
+        CameraMotor.instance.SetPlayerDeath(false);
 
         if (currentMapGenerator != null) {
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();

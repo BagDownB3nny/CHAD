@@ -69,7 +69,7 @@ public class PlayerSpawner : MonoBehaviour
                     GameManager.instance.players[_playerId.ToString()] = player;
                 } catch (Exception _ex)
                 {
-                    Debug.Log("Cannot change player class: Player does not exist in GameManager");
+                    Debug.Log("Cannot change player class: Player does not exist in GameManager\n" + _ex);
                 }
             }
         } // If playerInfo does not exist, spawn in default player and create a new playerInfo
