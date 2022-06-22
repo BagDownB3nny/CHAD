@@ -8,6 +8,7 @@ public class ClientHandle : MonoBehaviour
 {
 
     public static bool IsPresent(Dictionary<string, GameObject> dict, string refId) {
+
         return dict.ContainsKey(refId) && dict[refId] != null;
     }
     public static void Welcome(Packet _packet)
@@ -36,7 +37,8 @@ public class ClientHandle : MonoBehaviour
     {
         int _affectedPlayerId = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.players, _affectedPlayerId.ToString())) {
+        if (GameManager.instance != null &&
+                IsPresent(GameManager.instance.players, _affectedPlayerId.ToString())) {
             GameManager.instance.players[_affectedPlayerId.ToString()].GetComponent<PlayerMovement>().ReceiveMovement(_position);
         }
     }

@@ -121,20 +121,19 @@ public class ServerHandle
         {
             if (serverClient.spawnedIn)
             {
-                ServerSend.Broadcast(serverClient.id + " IS SPAWNED IN");
-                ServerSend.Broadcast("Sending spawning info of " + serverClient.id);
-                // Telling all clients to spawn in this player
-                ServerSend.SpawnPlayer(serverClient.id, _fromClient,
-                        PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
                 if (serverClient.id != _fromClient)
                 {
-                    // Telling this client to spawn in all players (except itself)
-                    ServerSend.SpawnPlayer(_fromClient, serverClient.id,
-                            PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
-                    // Telling this client to equip guns for all players
-                    ServerSend.EquipGun(_fromClient, serverClient.id,
-                            GameManager.instance.players[serverClient.id.ToString()].GetComponent<PlayerWeaponsManager>().currentWeaponId);
+                    // Telling all clients except himself to spawn in this player
+                    ServerSend.SpawnPlayer(serverClient.id, _fromClient,
+                            PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
                 }
+                // Telling this client to spawn in all players (except itself)
+                ServerSend.SpawnPlayer(_fromClient, serverClient.id,
+                        PlayerInfoManager.AllPlayerInfo[serverClient.id.ToString()].playerClass);
+                // Telling this client to equip guns for all players
+                ServerSend.EquipGun(_fromClient, serverClient.id,
+                        GameManager.instance.players[serverClient.id.ToString()]
+                        .GetComponent<PlayerWeaponsManager>().currentWeaponId);
             }
         }
     }
