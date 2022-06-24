@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicPrefabs:
   - {fileID: 8300000, guid: 966d80c80bc5441799ed2c527bf24987, type: 3}
-  - {fileID: 8300000, guid: 560a222a51c9443e3a9fbe25fa4e3eac, type: 3}
+  - {fileID: 8300000, guid: 4f89bbafe8f744fbd99472d93f923128, type: 3}
   - {fileID: 8300000, guid: 8309bf59a3e9f49cbbcf8ca1e9d14f05, type: 3}
 --- !u!82 &1389830292
 AudioSource:
@@ -1126,7 +1126,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.199
   m_Pitch: 1
   Loop: 0
   Mute: 0

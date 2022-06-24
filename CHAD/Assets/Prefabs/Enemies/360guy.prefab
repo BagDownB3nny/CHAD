@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 811253785
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1889918811, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
+  m_Sprite: {fileID: -1535491552, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 1340659849416379953}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4255f5cd2d5744a5a82c46937f27909e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8e770e48081644f68bde042ee6df4ea3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -150,7 +150,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.125}
+    oldSize: {x: 1, y: 1.0625}
     newSize: {x: 1, y: 1.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   localDamageDealerRefId: 0
   maxHp: 0
   hp: 100
-  attack: 1
+  attack: 2
   speed: 1
   armour: 0
   armourPenetration: 0

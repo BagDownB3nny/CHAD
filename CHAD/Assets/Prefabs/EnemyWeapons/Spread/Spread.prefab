@@ -47,11 +47,11 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 10
   targetType: Player
-  attackInterval: 0.5
+  attackInterval: 0.25
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 4
-  range: 100
+  range: 30
   accuracy: -50
   projectileRotationOffset: -90
   projectile: {fileID: 5832351311940906823, guid: 2ba5bcd04cee3461d82fa983051d9124, type: 3}
