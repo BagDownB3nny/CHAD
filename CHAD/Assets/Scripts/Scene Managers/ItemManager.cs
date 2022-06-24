@@ -62,8 +62,8 @@ public class ItemManager : MonoBehaviour
                     GameObject weadponDrop = Instantiate(weaponDropPrefab,
                             deadEnemy.transform.position, Quaternion.identity);
                     PlayerWeapons droppedWeapon = (PlayerWeapons) Mathf.RoundToInt(
-                            UnityEngine.Random.Range(0,
-                            Enum.GetNames(typeof(PlayerWeapons)).Length - 1));
+                            UnityEngine.Random.Range(1,
+                            Enum.GetNames(typeof(PlayerWeapons)).Length));
                     string dropId = itemsDropped.ToString();
                     weadponDrop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
                     weadponDrop.GetComponent<WeaponDrops>().dropId = dropId;
