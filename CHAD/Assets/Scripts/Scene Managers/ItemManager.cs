@@ -53,7 +53,6 @@ public class ItemManager : MonoBehaviour
         {
             float probability = (float)(itemsToDrop - itemsDropped) /
                     (float)(EnemySpawner.instance.totalEnemiesToSpawn - EnemySpawner.instance.enemiesKilled);
-            ServerSend.Broadcast(probability.ToString());
             if (probability > UnityEngine.Random.Range(0, 1.0f))
             {
                 int dropType = Mathf.RoundToInt(UnityEngine.Random.Range(0, 1));

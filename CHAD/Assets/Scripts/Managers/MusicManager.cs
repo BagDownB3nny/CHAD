@@ -42,7 +42,6 @@ public class MusicManager : MonoBehaviour
             GetComponent<AudioSource>().clip = musicPrefabs[(int)music - 1];
             GetComponent<AudioSource>().Play();
             currentlyPlaying = music;
-            Debug.Log("Played " + music);
         }
     }
 }

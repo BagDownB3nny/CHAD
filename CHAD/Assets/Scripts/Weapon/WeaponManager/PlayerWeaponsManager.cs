@@ -26,7 +26,10 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     public void SetWeaponInventory(PlayerInfo playerInfo)
     {
-        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+        if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId))
+        {
+            GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+        }
         foreach (PlayerWeapons gun in playerInfo.weaponInventory.Values)
         {
             AddGun(gun);
