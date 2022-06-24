@@ -53,7 +53,6 @@ public class ItemManager : MonoBehaviour
         {
             float probability = (float)(itemsToDrop - itemsDropped) /
                     (float)(EnemySpawner.instance.totalEnemiesToSpawn - EnemySpawner.instance.enemiesKilled);
-            ServerSend.Broadcast(probability.ToString());
             if (probability > UnityEngine.Random.Range(0, 1.0f))
             {
                 int dropType = Mathf.RoundToInt(UnityEngine.Random.Range(0, 1));
@@ -80,7 +79,7 @@ public class ItemManager : MonoBehaviour
                             deadEnemy.transform.position, Quaternion.identity);
                     PlayerWeapons droppedWeapon = (PlayerWeapons)Mathf.RoundToInt(
                             UnityEngine.Random.Range(0,
-                            Enum.GetNames(typeof(PlayerWeapons)).Length - 1));
+                            Enum.GetNames(typeof(PlayerWeapons)).Length));
                     drop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
                 }
                 itemsDropped += 1;

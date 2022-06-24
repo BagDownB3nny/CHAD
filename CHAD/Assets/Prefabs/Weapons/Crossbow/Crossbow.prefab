@@ -98,13 +98,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 0}
-  damage: 100
+  damage: 40
   targetType: Enemy
   attackInterval: 0.7
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 15
-  range: 30
+  range: 15
   accuracy: 10
   projectileRotationOffset: -90
   projectile: {fileID: 2040506203142033655, guid: 9eeda67a488cf4779a1745d1dc65dbca, type: 3}

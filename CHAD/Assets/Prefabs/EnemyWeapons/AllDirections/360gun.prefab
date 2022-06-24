@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6058616002096967651}
   - component: {fileID: 9001527509524809840}
   m_Layer: 0
-  m_Name: AllDirection
+  m_Name: 360gun
   m_TagString: Ranged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,14 +47,14 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 20
   targetType: Player
-  attackInterval: 0.1
+  attackInterval: 0.2
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 2
-  range: 40
+  range: 100
   accuracy: -170
   projectileRotationOffset: -90
-  projectile: {fileID: 5832351311940906823, guid: 2ba5bcd04cee3461d82fa983051d9124, type: 3}
+  projectile: {fileID: 695720632551849577, guid: 9a09f4e5932e14059acba4b0c0f661a7, type: 3}
   directionVector: {x: 0, y: 0}
   directionRotation: 0
   bulletDirectionVector: {x: 0, y: 0, z: 0}

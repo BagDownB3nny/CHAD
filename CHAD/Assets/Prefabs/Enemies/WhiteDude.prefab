@@ -176,9 +176,9 @@ MonoBehaviour:
   localProjectileRefId: 0
   localDamageDealerRefId: 0
   maxHp: 0
-  hp: 50
+  hp: 200
   attack: 1
-  speed: 2
+  speed: 5
   armour: 0
   armourPenetration: 0
   armourEffectiveness: 0

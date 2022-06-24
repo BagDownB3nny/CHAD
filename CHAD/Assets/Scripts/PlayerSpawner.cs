@@ -64,7 +64,10 @@ public class PlayerSpawner : MonoBehaviour
 
                     player.transform.position = GameManager.instance.players[_playerId.ToString()].transform.position;
                     Destroy(GameManager.instance.players[_playerId.ToString()]);
-                    GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+                    if (NetworkManager.IsMine(_playerId.ToString()))
+                    {
+                        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+                    }
                     player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
                     GameManager.instance.players[_playerId.ToString()] = player;
                 } catch (Exception _ex)
