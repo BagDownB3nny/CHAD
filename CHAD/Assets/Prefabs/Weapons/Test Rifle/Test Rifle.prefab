@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3561059576165832785}
   - component: {fileID: 7523301211660542103}
   - component: {fileID: 3575878028085838440}
+  - component: {fileID: 3337929793881534245}
   m_Layer: 0
   m_Name: Test Rifle
   m_TagString: Ranged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 811253785
   m_SortingLayer: 1
-  m_SortingOrder: 20
+  m_SortingOrder: 1
   m_Sprite: {fileID: -421562448, guid: 64dc524ad01e7466d89f77be068d970a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,3 +114,19 @@ MonoBehaviour:
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
   gunType: 1
+--- !u!114 &3337929793881534245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914521892763815579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingBase: 0
+  offset: 0
+  runOnce: 0
+  updateInterval: 0.1
