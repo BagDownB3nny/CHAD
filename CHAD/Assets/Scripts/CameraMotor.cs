@@ -118,6 +118,9 @@ public class CameraMotor : MonoBehaviour
     }
 
     public void SetPlayerDeath(bool deathStatus) {
+        if (!deathStatus) {
+            Camera.main.orthographicSize = 9;
+        }
         playerDead = deathStatus;
     }
 }
