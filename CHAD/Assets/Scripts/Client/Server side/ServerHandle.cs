@@ -113,7 +113,6 @@ public class ServerHandle
 
     public static void MapLoaded(int _fromClient, Packet _packet)
     {
-        ServerSend.Broadcast("Received map loaded from " + _fromClient);
         Server.serverClients[_fromClient].spawnedIn = true;
         PlayerSpawner.instance.SpawnPlayer(_fromClient,
                 PlayerInfoManager.AllPlayerInfo[_fromClient.ToString()].playerClass);
