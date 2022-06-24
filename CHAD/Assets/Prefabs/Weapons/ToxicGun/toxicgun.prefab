@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 0}
-  damage: 2
+  damage: 10
   targetType: Enemy
   attackInterval: 0.002
   weaponRotationOffset: 0
