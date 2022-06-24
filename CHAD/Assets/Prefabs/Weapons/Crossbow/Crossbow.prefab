@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3934598344263199001}
   - component: {fileID: 8348196763407304965}
   - component: {fileID: 2814610861619829107}
+  - component: {fileID: 8977443851223557453}
   m_Layer: 0
   m_Name: Crossbow
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 811253785
   m_SortingLayer: 1
-  m_SortingOrder: 20
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1008962963, guid: 64dc524ad01e7466d89f77be068d970a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,3 +114,19 @@ MonoBehaviour:
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
   gunType: 2
+--- !u!114 &8977443851223557453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871045033581860569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingBase: 0
+  offset: 0
+  runOnce: 0
+  updateInterval: 0.1
