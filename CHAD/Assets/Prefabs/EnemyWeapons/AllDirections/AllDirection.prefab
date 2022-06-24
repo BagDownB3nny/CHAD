@@ -51,7 +51,7 @@ MonoBehaviour:
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 3
-  range: 50
+  range: 80
   accuracy: -170
   projectileRotationOffset: -90
   projectile: {fileID: 5832351311940906823, guid: 2ba5bcd04cee3461d82fa983051d9124, type: 3}

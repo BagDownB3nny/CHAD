@@ -144,10 +144,10 @@ MonoBehaviour:
   maxHp: 1000
   hp: 1000
   attack: 1
-  speed: 7
-  armour: 0
+  speed: 8
+  armour: 50
   armourPenetration: 0
-  armourEffectiveness: 0
+  armourEffectiveness: 5
   proficiency: 0
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}

@@ -50,7 +50,7 @@ MonoBehaviour:
   attackInterval: 0.5
   weaponRotationOffset: 0
   timeToNextAttack: 0
-  speed: 3
+  speed: 4
   range: 100
   accuracy: -50
   projectileRotationOffset: -90

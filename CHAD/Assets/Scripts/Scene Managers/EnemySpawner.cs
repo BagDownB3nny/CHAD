@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        enemiesPerLevel = new List<int>(new int[] { 1, 3, 10, 15, 20 });
+        enemiesPerLevel = new List<int>(new int[] { 1, 1, 1, 1, 100 });
         instance = this;
         EnemyDeath.onEnemyDeath += OnEnemyDeath;
         objectiveText = GameUIManager.instance.objectiveText;
