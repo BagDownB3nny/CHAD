@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4859773240098644688}
   - component: {fileID: 5878026080417535904}
+  - component: {fileID: 3090483775618338188}
   m_Layer: 0
   m_Name: EnemyMinigun
   m_TagString: Ranged
@@ -47,7 +48,7 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 10
   targetType: Player
-  attackInterval: 0.3
+  attackInterval: 3
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 4
@@ -59,3 +60,17 @@ MonoBehaviour:
   directionRotation: 0
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
+--- !u!114 &3090483775618338188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859773240098644691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6d8d880848943d8828bca6e4ad919c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burstInterval: 0.3
+  burstAmount: 10

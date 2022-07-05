@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5214206840135064872}
   - component: {fileID: 6963633518261254843}
+  - component: {fileID: 2899348077498824755}
   m_Layer: 0
   m_Name: MaskedGuyWeapon
   m_TagString: Ranged
@@ -59,3 +60,15 @@ MonoBehaviour:
   directionRotation: 0
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
+--- !u!114 &2899348077498824755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708293737177987063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2154f7994844947d8bcd40f01ee85936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

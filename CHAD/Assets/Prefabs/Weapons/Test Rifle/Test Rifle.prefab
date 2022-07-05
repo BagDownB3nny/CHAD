@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7523301211660542103}
   - component: {fileID: 3575878028085838440}
   - component: {fileID: 3337929793881534245}
+  - component: {fileID: -6834614242604996536}
   m_Layer: 0
   m_Name: Test Rifle
   m_TagString: Ranged
@@ -130,3 +131,15 @@ MonoBehaviour:
   offset: 0
   runOnce: 0
   updateInterval: 0.1
+--- !u!114 &-6834614242604996536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914521892763815579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2154f7994844947d8bcd40f01ee85936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
