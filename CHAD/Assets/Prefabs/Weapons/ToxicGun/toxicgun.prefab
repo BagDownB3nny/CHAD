@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3425651630734486186}
   - component: {fileID: 5778890725466914817}
   - component: {fileID: 327398900703215948}
+  - component: {fileID: -6268870850598817981}
   m_Layer: 0
   m_Name: toxicgun
   m_TagString: Untagged
@@ -101,12 +102,12 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 10
   targetType: Enemy
-  attackInterval: 0.002
+  attackInterval: 1
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 3
   range: 15
-  accuracy: -60
+  accuracy: -20
   projectileRotationOffset: 0
   projectile: {fileID: 1991839593518248786, guid: 71068b4ac2fb54923b150e6c38faf799, type: 3}
   directionVector: {x: 0, y: 0}
@@ -130,3 +131,17 @@ MonoBehaviour:
   offset: 0
   runOnce: 0
   updateInterval: 0.1
+--- !u!114 &-6268870850598817981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264950808175491643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6d8d880848943d8828bca6e4ad919c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burstInterval: 0.002
+  burstAmount: 5

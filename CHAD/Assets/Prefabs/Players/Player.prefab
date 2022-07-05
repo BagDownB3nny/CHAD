@@ -131,7 +131,7 @@ MonoBehaviour:
   localDamageDealerRefId: 0
   maxHp: 500
   hp: 500
-  attack: 1
+  attack: 5
   speed: 8
   armour: 1
   armourPenetration: 0
