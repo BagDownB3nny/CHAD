@@ -13,6 +13,6 @@ public class Boots : Items
     {
         GameObject player = GameManager.instance.players[_playerRefId];
 
-        Debug.Log("Obtained boot (client)");
+        player.GetComponent<PlayerStatsManager>().speed += 0.5f;
     }
 }
