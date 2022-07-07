@@ -300,7 +300,10 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.addGun, ClientHandle.AddGun},
             {(int)ServerPackets.updateEnemySpawnerStats, ClientHandle.UpdateEnemySpawnerStats},
             {(int)ServerPackets.weaponDrop, ClientHandle.WeaponDrop},
-            {(int)ServerPackets.removeWeaponDrop, ClientHandle.RemoveWeaponDrop}
+            {(int)ServerPackets.removeWeaponDrop, ClientHandle.RemoveWeaponDrop},
+            {(int)ServerPackets.addItem, ClientHandle.AddItem},
+            {(int)ServerPackets.itemDrop, ClientHandle.ItemDrop},
+            {(int)ServerPackets.removeItemDrop, ClientHandle.RemoveItemDrop}
         };
     }
 
