@@ -11644,11 +11644,12 @@ MonoBehaviour:
   - {fileID: 4837624267774989085, guid: 9fa785ce56a3f4b5d869de06f9c4be61, type: 3}
   - {fileID: 8529702475448943674, guid: 0fce547d58e3946c8b76f0ac74fd24be, type: 3}
   gunPrefabs:
-  - {fileID: 7914521892763815579, guid: ed52286fca79d436ab2ea4427fa3a3d0, type: 3}
+  - {fileID: 0}
   - {fileID: 7914521892763815579, guid: ed52286fca79d436ab2ea4427fa3a3d0, type: 3}
   - {fileID: 3871045033581860569, guid: 9f2fe2e1a22f943f1ae4866dfa1cb26d, type: 3}
   - {fileID: 264950808175491643, guid: 9efcdf94e305546e6bf4e57029aade46, type: 3}
   itemDrops:
+  - {fileID: 0}
   - {fileID: 4509076951316696128, guid: 0b6eb5469b339444aa4b549786a1b4a7, type: 3}
   currentLevel: 0
 --- !u!4 &1861731112
@@ -11678,9 +11679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b6fa5788c984ee2811a7cfef9f497f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropPrefab: {fileID: 0}
+  itemDropPrefab: {fileID: 718451937415573854, guid: a89b63bbf297f4a929dc7f80b9e74999, type: 3}
   weaponDropPrefab: {fileID: 7417850679297056331, guid: 05cd9e49e0e1847678150582fc784828, type: 3}
-  itemDropRange: 0400000006000000
   itemsToDrop: 0
   itemsDropped: 0
 --- !u!1 &1868734552

@@ -320,4 +320,24 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void ItemDrop(string _dropId, PlayerItems _droppedItem, Vector3 _position)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.itemDrop))
+        {
+            _packet.Write(_dropId);
+            _packet.Write((int)_droppedItem);
+            _packet.Write(_position);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void RemoveItemDrop(string _dropId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.removeItemDrop))
+        {
+            _packet.Write(_dropId);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

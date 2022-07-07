@@ -253,4 +253,18 @@ public class ClientHandle : MonoBehaviour
         GameObject player = GameManager.instance.players[_playerRefId];
         player.GetComponent<PlayerItemsManager>().AddItem(_item);
     }
+
+    public static void ItemDrop(Packet _packet)
+    {
+        string _dropId = _packet.ReadString();
+        PlayerItems _droppedItem = (PlayerItems) _packet.ReadInt();
+        Vector3 _position = _packet.ReadVector3();
+        ItemManager.instance.ReceiveItemDrop(_dropId, _droppedItem, _position);
+    }
+
+    public static void RemoveItemDrop(Packet _packet)
+    {
+        string _dropId = _packet.ReadString();
+        ItemManager.instance.ReceiveRemoveItemDrop(_dropId);
+    }
 }

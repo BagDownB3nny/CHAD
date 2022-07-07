@@ -16,10 +16,15 @@ public class ItemDrops : Interactable
 
     private void Start()
     {
+        position = transform.position;
+    }
+
+    public void SetItemType(PlayerItems _playerItem)
+    {
+        playerItem = _playerItem;
         item = Instantiate(GameManager.instance.itemDrops[(int)playerItem]);
         item.SetActive(false);
         gameObject.GetComponent<SpriteRenderer>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-        position = transform.position;
     }
 
     private void FixedUpdate()
@@ -37,8 +42,8 @@ public class ItemDrops : Interactable
     {
         player.GetComponent<PlayerItemsManager>().AddItem(playerItem);
         ServerSend.AddItem(player.GetComponent<PlayerStatsManager>().characterRefId, playerItem);
-        //ItemManager.instance.RemoveItemDrop(dropId);
-        //ServerSend.RemoveItemDrop(dropId);
+        ItemManager.instance.RemoveItemDrop(dropId);
+        ServerSend.RemoveItemDrop(dropId);
     }
 
     public override string GetText()

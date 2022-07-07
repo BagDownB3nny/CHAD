@@ -5,7 +5,8 @@ using System;
 
 public enum PlayerItems
 {
-    Boot = 0
+    None = 0,
+    Boot = 1
 }
 
 public enum CharacterType {
