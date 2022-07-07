@@ -310,4 +310,14 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void AddItem(string _playerRefId, PlayerItems _playerItem)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.addItem))
+        {
+            _packet.Write(_playerRefId);
+            _packet.Write((int)_playerItem);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

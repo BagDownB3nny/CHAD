@@ -36,7 +36,7 @@ public class ItemDrops : Interactable
     public override void OnInteract(GameObject player)
     {
         player.GetComponent<PlayerItemsManager>().AddItem(playerItem);
-        //ServerSend.Add(player.GetComponent<PlayerStatsManager>().characterRefId, playerItem);
+        ServerSend.AddItem(player.GetComponent<PlayerStatsManager>().characterRefId, playerItem);
         //ItemManager.instance.RemoveItemDrop(dropId);
         //ServerSend.RemoveItemDrop(dropId);
     }

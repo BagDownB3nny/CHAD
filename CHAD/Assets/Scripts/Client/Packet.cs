@@ -31,7 +31,8 @@ public enum ServerPackets
     addGun = 22,
     updateEnemySpawnerStats = 23,
     weaponDrop = 24,
-    removeWeaponDrop = 25
+    removeWeaponDrop = 25,
+    addItem = 26
 }
 
 /// <summary>Sent from client to server.</summary>

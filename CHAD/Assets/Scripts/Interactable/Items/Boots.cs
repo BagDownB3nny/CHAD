@@ -13,6 +13,6 @@ public class Boots : Items
     {
         GameObject player = GameManager.instance.players[_playerRefId];
 
-        ServerSend.Broadcast("OBTAINED " + playerItem);
+        Debug.Log("Obtained boot (client)");
     }
 }
