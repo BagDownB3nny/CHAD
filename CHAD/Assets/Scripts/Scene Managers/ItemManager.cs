@@ -3,14 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerItems
-{
-    Rat = 0,
-    Monkey = 1,
-    FlySwatter = 2,
-    TF2Hat = 3
-}
-
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;

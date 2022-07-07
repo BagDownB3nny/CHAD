@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum PlayerItems
+{
+    Boot = 0
+}
+
 public enum CharacterType {
     Player = 0,
     Enemy = 1
@@ -37,6 +42,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
     public List<GameObject> gunPrefabs;
+    public List<GameObject> itemDrops;
 
     public Dictionary<string, GameObject> enemySpawners;
     // Dictionary of in-game objects
