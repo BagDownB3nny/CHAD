@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6e875d89fdc490982a2814c95b2c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPointer: {fileID: 816323092651608052, guid: e174884ccea8b40bda7186b6f6f9097e, type: 3}
+  playersSpawned: 0

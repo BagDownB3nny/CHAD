@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    public GameObject playerPointer;
 
     public delegate void OnPlayerSpawn(int _playerId);
     public static OnPlayerSpawn onPlayerSpawn;
@@ -47,6 +48,12 @@ public class PlayerSpawner : MonoBehaviour
                     player.GetComponent<PlayerWeaponsManager>().SetWeaponInventory(playerInfo);
 
                     GameManager.instance.players.Add(_playerId.ToString(), player);
+
+                    //spawn the player pointer too
+                    if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
+                        GameObject newPlayerPointer = Instantiate(playerPointer);
+                        newPlayerPointer.GetComponent<PlayerPointer>().target= player;
+                    }
                 }
             } // If playerInfo is of different playerClass, that means we are trying to change playerClass of existing player
             else
@@ -84,6 +91,12 @@ public class PlayerSpawner : MonoBehaviour
             player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
 
             GameManager.instance.players.Add(_playerId.ToString(), player);
+
+            //spawn the player pointer too
+            if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
+                GameObject newPlayerPointer = Instantiate(playerPointer);
+                newPlayerPointer.GetComponent<PlayerPointer>().target = player;
+            }
         }
         if (onPlayerSpawn != null)
         {
