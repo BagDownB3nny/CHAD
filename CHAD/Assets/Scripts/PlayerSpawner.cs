@@ -22,7 +22,10 @@ public class PlayerSpawner : MonoBehaviour
 
     public void OnDestroy()
     {
-        instance = null;
+        if (instance == this)
+        {
+            instance = null;
+        }
     }
 
     public void SpawnPlayer(int _playerId, PlayerClasses _playerClass)
@@ -92,7 +95,10 @@ public class PlayerSpawner : MonoBehaviour
         playersSpawned += 1;
         if (NetworkManager.gameType == GameType.Server && playersSpawned == Server.NumberOfPlayers)
         {
-            if (EnemySpawner.instance != null)
+            if (GameManager.instance.IsBossLevel()) {
+                //BossManager.instance.StartBossFight();
+            }
+            else if (EnemySpawner.instance != null)
             {
                 EnemySpawner.instance.StartSpawning();
                 ItemManager.instance.StartDropping();

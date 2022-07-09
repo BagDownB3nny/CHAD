@@ -31,11 +31,7 @@ public enum SquareTypes {
 }
 #endregion
 
-public class MapGenerator : MonoBehaviour {
-
-    [Header("Dimensions")]
-	public int width = 50;
-	public int height = 50;
+public class ForestMapGenerator : MapGenerator {
 
 	[Header("Floor")]
 	public float floorThreshold = 0.5f;
@@ -92,7 +88,6 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject[] enemySpawner;
 	public GameObject[] exit;
 
-	public int[,] floorMap;
 	int[,] vegetationMap;
 	int[,] wallMap;
 	int[,] cliffMap;
@@ -100,6 +95,7 @@ public class MapGenerator : MonoBehaviour {
 	Square playerSpawnerSquare;
 	Square exitSquare;
 	List<GameObject> mapObjects = new List<GameObject>();
+
 
     // void Update() {
     // 	if (Input.GetMouseButtonDown(0)) {
@@ -113,7 +109,7 @@ public class MapGenerator : MonoBehaviour {
     // }
 
     #region GenerateMap
-    public void GenerateMap(string _seed) {
+    public override void GenerateMap(string _seed) {
 		seed = _seed;
 
 		if (animationMode) {
@@ -969,16 +965,16 @@ public class MapGenerator : MonoBehaviour {
 		return x >= 0 && x < width && y >= 0 && y < height;
 	}
 
-	public Vector3 CoordToWorldPoint(int x, int y) {
+	public override Vector3 CoordToWorldPoint(int x, int y) {
 		return new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0);
 	}
 
-	public int[] WorldPointToCoord(Vector3 point)
+	public override int[] WorldPointToCoord(Vector3 point)
     {
 		return new int[] { (int)Math.Round(point.x + width / 2 - 0.5f, 0), (int)Math.Round(point.y + height / 2 - 0.5f, 0)};
     }
 
-    public void ClearMap() {
+    public override void ClearMap() {
         // GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
         // GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
 		// GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");

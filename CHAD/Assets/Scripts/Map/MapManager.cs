@@ -7,7 +7,8 @@ public enum MapType {
     lobby = -1,
     city = 0,
     forest = 1,
-    desert = 2
+    desert = 2,
+    bossArena = 3
 }
 
 public class MapManager : MonoBehaviour
@@ -34,12 +35,25 @@ public class MapManager : MonoBehaviour
 
     //TODO
     public MapType GetMapType() {
-        mapType = MapType.forest;
+        if (GameManager.instance.IsBossLevel())
+        {
+            mapType = MapType.bossArena;
+        }
+        else
+        {
+            mapType = MapType.forest;
+        }
         return mapType;
     }
 
     public string GetSeed() {
-        seed = Time.time.ToString();
+        if (GameManager.instance.IsBossLevel())
+        {
+            seed = "BossArena1";
+        } else
+        {
+            seed = Time.time.ToString();
+        }
         return seed;
     }
 

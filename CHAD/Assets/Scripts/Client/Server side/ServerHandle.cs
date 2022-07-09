@@ -142,4 +142,9 @@ public class ServerHandle
         GameObject player = GameManager.instance.players[_fromClient.ToString()];
         player.GetComponent<PlayerItemsManager>().interact(player);
     }
+
+    public static void BossArenaLoaded(int _fromClient, Packet _packet)
+    {
+        MapLoaded(_fromClient, _packet);
+    }
 }

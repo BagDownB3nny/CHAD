@@ -29,7 +29,6 @@ public class ClientHandle : MonoBehaviour
     {
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
-        Debug.Log("Received spawn player");
         PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
     }
 
