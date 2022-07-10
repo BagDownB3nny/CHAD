@@ -118,10 +118,8 @@ public class MapManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("EmptyMap");
         while (!asyncLoad.isDone)
         {
-            Debug.Log("LOADING EMPTY MAP...");
             yield return null;
         }
-        Debug.Log("EMPTY MAP LOADED");
         ClientSend.EmptyMapLoaded();
     }
 }

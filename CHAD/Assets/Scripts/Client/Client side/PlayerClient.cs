@@ -304,7 +304,7 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.addItem, ClientHandle.AddItem},
             {(int)ServerPackets.itemDrop, ClientHandle.ItemDrop},
             {(int)ServerPackets.removeItemDrop, ClientHandle.RemoveItemDrop},
-            {(int)ServerPackets.setPrimaryAttack, ClientHandle.SetPrimaryAttack}
+            {(int)ServerPackets.setBossAttack, ClientHandle.SetBossAttack}
         };
     }
 

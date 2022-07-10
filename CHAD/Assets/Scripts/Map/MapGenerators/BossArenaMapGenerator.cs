@@ -28,10 +28,8 @@ public class BossArenaMapGenerator : MapGenerator
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(arena);
         while (!asyncLoad.isDone)
         {
-            Debug.Log("Loading boss arena...");
             yield return null;
         }
-        Debug.Log("Boss arena loaded");
         if (NetworkManager.gameType == GameType.Client)
         {
             ClientSend.MapLoaded();

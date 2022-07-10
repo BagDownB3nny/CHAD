@@ -341,11 +341,12 @@ public class ServerSend
         }
     }
 
-    public static void SetPrimaryAttack(int _primaryAttack)
+    public static void SetBossAttack(string _attackType, int _bossAttack)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.setPrimaryAttack))
+        using (Packet _packet = new Packet((int)ServerPackets.setBossAttack))
         {
-            _packet.Write(_primaryAttack);
+            _packet.Write(_attackType);
+            _packet.Write(_bossAttack);
             SendTCPDataToAll(_packet);
         }
     }

@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class BossAttacker : MonoBehaviour
 {
-    public bool isPrimaryAttacking;
-    public bool isSecondaryAttacking;
+
+    // Attacker trackers
+    private bool isPrimaryAttacking;
+    private float nextPrimaryAttack;
+    [SerializeField]
+    private float primaryAttackCooldown;
+
+    private bool isSecondaryAttacking;
+    private float nextSecondaryAttack;
+    [SerializeField]
+    private float secondaryAttackCooldown;
 
     // Scripts
     private BossStatsManager stats;
@@ -29,21 +38,59 @@ public class BossAttacker : MonoBehaviour
         isSecondaryAttacking = false;
     }
 
+    public void EndAttack(string attackType)
+    {
+        if (attackType == "primary")
+        {
+            isPrimaryAttacking = false;
+            nextPrimaryAttack = primaryAttackCooldown;
+        }
+        if (attackType == "secondary")
+        {
+            isSecondaryAttacking = false;
+            nextSecondaryAttack = secondaryAttackCooldown;
+        }
+    }
+
     public void Update()
     {
         if (isActive && NetworkManager.gameType == GameType.Server)
         {
             if (!isPrimaryAttacking)
             {
-                int chosenPrimaryAttack = ChoosePrimaryAttack();
-                SetPrimaryAttack(chosenPrimaryAttack);
-                ServerSend.SetPrimaryAttack(chosenPrimaryAttack);
+                if (nextPrimaryAttack < 0)
+                {
+                    int chosenPrimaryAttack = ChoosePrimaryAttack();
+                    SetPrimaryAttack(chosenPrimaryAttack);
+                    ServerSend.SetBossAttack("primary", chosenPrimaryAttack);
+                } else
+                {
+                    nextPrimaryAttack -= Time.deltaTime;
+                }
             }
             if (!isSecondaryAttacking)
             {
-                //GameObject chosenSecondaryAttack = ChooseSecondaryAttack();
-                //secondaryAttack = Instantiate(chosenSecondaryAttack);
+                if (nextSecondaryAttack < 0)
+                {
+                    int chosenSecondaryAttack = ChooseSecondaryAttack();
+                    SetSecondaryAttack(chosenSecondaryAttack);
+                    ServerSend.SetBossAttack("secondary", chosenSecondaryAttack);
+                } else
+                {
+                    nextSecondaryAttack -= Time.deltaTime;
+                }
             }
+        }
+    }
+
+    public void ReceiveSetBossAttack(string _attackType, int _attack)
+    {
+        if (_attackType == "primary")
+        {
+            ReceiveSetPrimaryAttack(_attack);
+        } else if (_attackType == "secondary")
+        {
+            ReceiveSetSecondaryAttack(_attack);
         }
     }
 
@@ -59,14 +106,22 @@ public class BossAttacker : MonoBehaviour
         SetPrimaryAttack(_primaryAttack);
     }
 
+    private void SetSecondaryAttack(int _secondaryAttack)
+    {
+        secondaryAttack = Instantiate(secondaryWeapons[_secondaryAttack], transform.position, Quaternion.identity);
+        secondaryAttack.GetComponent<BossRangedWeapon>().holder = gameObject;
+        isSecondaryAttacking = true;
+    }
+
+    public void ReceiveSetSecondaryAttack(int _secondaryAttack)
+    {
+        SetSecondaryAttack(_secondaryAttack);
+    }
+
     public void ReceiveAttack(string affectedGun, string projectileRefId, float projectileDirectionRotation)
     {
-        Debug.Log("Boss attacker receives attack");
-        Debug.Log("server sent: " + affectedGun);
-        Debug.Log("boss gun: " + BossWeaponType.primary.ToString());
         if (affectedGun == BossWeaponType.primary.ToString() && primaryAttack != null)
         {
-            Debug.Log("Boss attacker recognises primary attack");
             primaryAttack.GetComponent<WeaponShooter>().ReceiveShoot(
                     projectileRefId, projectileDirectionRotation);
         }
@@ -82,8 +137,8 @@ public class BossAttacker : MonoBehaviour
         return Random.Range(0, primaryWeapons.Count);
     }
 
-    private GameObject ChooseSecondaryAttack()
+    private int ChooseSecondaryAttack()
     {
-        return secondaryWeapons[Random.Range(0, secondaryWeapons.Count)];
+        return Random.Range(0, secondaryWeapons.Count);
     }
 }

@@ -30,7 +30,6 @@ public class ClientHandle : MonoBehaviour
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
         PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
-        Debug.Log("SPAWNING PLAYER");
     }
 
     public static void MovePlayer(Packet _packet)
@@ -272,9 +271,10 @@ public class ClientHandle : MonoBehaviour
         ItemManager.instance.ReceiveRemoveItemDrop(_dropId);
     }
 
-    public static void SetPrimaryAttack(Packet _packet)
+    public static void SetBossAttack(Packet _packet)
     {
-        int _primaryAttack = _packet.ReadInt();
-        BossManager.instance.bossAttacker.ReceiveSetPrimaryAttack(_primaryAttack);
+        string attackType = _packet.ReadString();
+        int _bossAttack = _packet.ReadInt();
+        BossManager.instance.bossAttacker.ReceiveSetBossAttack(attackType, _bossAttack);
     }
 }

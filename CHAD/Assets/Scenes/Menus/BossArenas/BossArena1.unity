@@ -262,9 +262,9 @@ MonoBehaviour:
   characterType: 2
   localProjectileRefId: 0
   localDamageDealerRefId: 0
-  maxHp: 0
+  maxHp: 1000
   hp: 0
-  attack: 0
+  attack: 1
   speed: 0
   armour: 0
   armourPenetration: 0
@@ -298,11 +298,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49599a03f8cc545328c72bf505d9eb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPrimaryAttacking: 0
-  isSecondaryAttacking: 0
+  primaryAttackCooldown: 2
+  secondaryAttackCooldown: 2
   primaryWeapons:
   - {fileID: 2825049545875686762, guid: 38bb12f67440d46faa456b304b905899, type: 3}
-  secondaryWeapons: []
+  secondaryWeapons:
+  - {fileID: 7966358858070492289, guid: 3c61bf13556c54a1bbd9e6ea10c6f7b1, type: 3}
 --- !u!1001 &411675368
 PrefabInstance:
   m_ObjectHideFlags: 0

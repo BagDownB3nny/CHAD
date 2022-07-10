@@ -15,7 +15,7 @@ public class BossRangedWeapon : RangedWeapon
     [SerializeField]
     public BossWeaponType bossWeaponType;
 
-    void Update()
+    public void Update()
     {
         if (NetworkManager.gameType == GameType.Server)
         {
@@ -23,10 +23,10 @@ public class BossRangedWeapon : RangedWeapon
             {
                 if (bossWeaponType == BossWeaponType.primary)
                 {
-                    holder.GetComponent<BossAttacker>().isPrimaryAttacking = false;
+                    holder.GetComponent<BossAttacker>().EndAttack("primary");
                 } else
                 {
-                    holder.GetComponent<BossAttacker>().isSecondaryAttacking = false;
+                    holder.GetComponent<BossAttacker>().EndAttack("secondary");
                 }
                 Destroy(gameObject);
             } else
