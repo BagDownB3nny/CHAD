@@ -25,12 +25,12 @@ public class MapManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     //TODO
@@ -110,6 +110,18 @@ public class MapManager : MonoBehaviour
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
         }
 
-        SceneManager.LoadScene("EmptyMap");
+        StartCoroutine(GenerateEmptyScene());
+    }
+
+    public IEnumerator GenerateEmptyScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("EmptyMap");
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log("LOADING EMPTY MAP...");
+            yield return null;
+        }
+        Debug.Log("EMPTY MAP LOADED");
+        ClientSend.EmptyMapLoaded();
     }
 }

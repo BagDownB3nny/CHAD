@@ -7,6 +7,11 @@ public class BossArenaMapGenerator : MapGenerator
 {
     private string arena;
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     public override void ClearMap()
     {
         return;
@@ -16,10 +21,6 @@ public class BossArenaMapGenerator : MapGenerator
     {
         arena = _seed;
         StartCoroutine(GenerateBossMap());
-        if (NetworkManager.gameType == GameType.Client)
-        {
-            ClientSend.MapLoaded();
-        }
     }
 
     public IEnumerator GenerateBossMap()
@@ -27,7 +28,13 @@ public class BossArenaMapGenerator : MapGenerator
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(arena);
         while (!asyncLoad.isDone)
         {
+            Debug.Log("Loading boss arena...");
             yield return null;
+        }
+        Debug.Log("Boss arena loaded");
+        if (NetworkManager.gameType == GameType.Client)
+        {
+            ClientSend.MapLoaded();
         }
     }
 
