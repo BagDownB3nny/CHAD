@@ -11,7 +11,8 @@ public enum PlayerItems
 
 public enum CharacterType {
     Player = 0,
-    Enemy = 1
+    Enemy = 1,
+    Boss = 2
 }
 
 public enum PlayerClasses {

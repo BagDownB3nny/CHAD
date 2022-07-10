@@ -62,7 +62,11 @@ public class ClientHandle : MonoBehaviour
                     weaponScript.ReceiveAttack(projectileRefId, projectileDirectionRotation);
                 }
             }
-        }  
+        } else if (characterType == CharacterType.Boss)
+        {
+            BossManager.instance.bossAttacker.ReceiveAttack(affectedCharacterRefId,
+                    projectileRefId, projectileDirectionRotation);
+        }
     }
 
     public static void MeleeAttack(Packet _packet) {
