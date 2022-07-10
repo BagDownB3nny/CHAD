@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -51,8 +52,7 @@ public class PlayerSpawner : MonoBehaviour
 
                     //spawn the player pointer too
                     if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
-                        GameObject newPlayerPointer = Instantiate(playerPointer);
-                        newPlayerPointer.GetComponent<PlayerPointer>().target= player;
+                        GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
                     }
                 }
             } // If playerInfo is of different playerClass, that means we are trying to change playerClass of existing player
@@ -94,8 +94,7 @@ public class PlayerSpawner : MonoBehaviour
 
             //spawn the player pointer too
             if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
-                GameObject newPlayerPointer = Instantiate(playerPointer);
-                newPlayerPointer.GetComponent<PlayerPointer>().target = player;
+                GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
             }
         }
         if (onPlayerSpawn != null)
