@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     // Level tracking data
     public int currentLevel = 0;
+    private HashSet<int> bossLevels = new HashSet<int>() { 1,2,3,8, 12 };
 
     private void Awake()
     {
@@ -112,6 +113,11 @@ public class GameManager : MonoBehaviour
         }
         ItemManager.instance.ResetItems();
         ResetGame();
+    }
+
+    public bool IsBossLevel()
+    {
+        return bossLevels.Contains(currentLevel);
     }
 
     public void ResetGame() {

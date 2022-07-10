@@ -29,8 +29,8 @@ public class ClientHandle : MonoBehaviour
     {
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
-        Debug.Log("Received spawn player");
         PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
+        Debug.Log("SPAWNING PLAYER");
     }
 
     public static void MovePlayer(Packet _packet)
@@ -203,9 +203,9 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadEmptyMap(Packet _packet)
     {
-        MapManager.instance.ReceiveLoadEmptyMap();
         MusicManager.instance.PlayMusic(Music.game);
-        ClientSend.EmptyMapLoaded();
+        MapManager.instance.ReceiveLoadEmptyMap();
+        
     }
 
     public static void LoadMap(Packet _packet)

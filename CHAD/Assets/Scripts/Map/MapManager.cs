@@ -7,7 +7,8 @@ public enum MapType {
     lobby = -1,
     city = 0,
     forest = 1,
-    desert = 2
+    desert = 2,
+    bossArena = 3
 }
 
 public class MapManager : MonoBehaviour
@@ -24,22 +25,35 @@ public class MapManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     //TODO
     public MapType GetMapType() {
-        mapType = MapType.forest;
+        if (GameManager.instance.IsBossLevel())
+        {
+            mapType = MapType.bossArena;
+        }
+        else
+        {
+            mapType = MapType.forest;
+        }
         return mapType;
     }
 
     public string GetSeed() {
-        seed = Time.time.ToString();
+        if (GameManager.instance.IsBossLevel())
+        {
+            seed = "BossArena1";
+        } else
+        {
+            seed = Time.time.ToString();
+        }
         return seed;
     }
 
@@ -96,6 +110,18 @@ public class MapManager : MonoBehaviour
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
         }
 
-        SceneManager.LoadScene("EmptyMap");
+        StartCoroutine(GenerateEmptyScene());
+    }
+
+    public IEnumerator GenerateEmptyScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("EmptyMap");
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log("LOADING EMPTY MAP...");
+            yield return null;
+        }
+        Debug.Log("EMPTY MAP LOADED");
+        ClientSend.EmptyMapLoaded();
     }
 }

@@ -51,7 +51,7 @@ public enum ClientPackets
     emptyMapLoaded = 10,
     mapLoaded = 11,
     interact = 12,
-    exit = 13,
+    exit = 13
 }
 
 public class Packet : IDisposable
