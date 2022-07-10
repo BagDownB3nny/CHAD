@@ -13,7 +13,7 @@ public class BossRangedWeapon : RangedWeapon
     [SerializeField]
     private float timeToWeaponExpiry;
     [SerializeField]
-    private BossWeaponType bossWeaponType;
+    public BossWeaponType bossWeaponType;
 
     void Update()
     {
@@ -39,7 +39,6 @@ public class BossRangedWeapon : RangedWeapon
                     holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
             if (CanAttack())
             {
-                holder.GetComponent<BossStatsManager>().characterRefId = "primary";
                 Attack();
             }
             else

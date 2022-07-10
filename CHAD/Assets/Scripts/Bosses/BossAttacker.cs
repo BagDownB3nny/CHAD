@@ -31,14 +31,13 @@ public class BossAttacker : MonoBehaviour
 
     public void Update()
     {
-        if (isActive)
+        if (isActive && NetworkManager.gameType == GameType.Server)
         {
             if (!isPrimaryAttacking)
             {
-                GameObject chosenPrimaryAttack = ChoosePrimaryAttack();
-                primaryAttack = Instantiate(chosenPrimaryAttack, transform.position, Quaternion.identity);
-                primaryAttack.GetComponent<BossRangedWeapon>().holder = gameObject;
-                isPrimaryAttacking = true;
+                int chosenPrimaryAttack = ChoosePrimaryAttack();
+                SetPrimaryAttack(chosenPrimaryAttack);
+                ServerSend.SetPrimaryAttack(chosenPrimaryAttack);
             }
             if (!isSecondaryAttacking)
             {
@@ -48,23 +47,39 @@ public class BossAttacker : MonoBehaviour
         }
     }
 
+    private void SetPrimaryAttack(int _primaryAttack)
+    {
+        primaryAttack = Instantiate(primaryWeapons[_primaryAttack], transform.position, Quaternion.identity);
+        primaryAttack.GetComponent<BossRangedWeapon>().holder = gameObject;
+        isPrimaryAttacking = true;
+    }
+
+    public void ReceiveSetPrimaryAttack(int _primaryAttack)
+    {
+        SetPrimaryAttack(_primaryAttack);
+    }
+
     public void ReceiveAttack(string affectedGun, string projectileRefId, float projectileDirectionRotation)
     {
-        if (affectedGun == "primary" && primaryAttack != null)
+        Debug.Log("Boss attacker receives attack");
+        Debug.Log("server sent: " + affectedGun);
+        Debug.Log("boss gun: " + BossWeaponType.primary.ToString());
+        if (affectedGun == BossWeaponType.primary.ToString() && primaryAttack != null)
         {
+            Debug.Log("Boss attacker recognises primary attack");
             primaryAttack.GetComponent<WeaponShooter>().ReceiveShoot(
                     projectileRefId, projectileDirectionRotation);
         }
-        else if (affectedGun == "secondary" && secondaryAttack != null)
+        else if (affectedGun == BossWeaponType.secondary.ToString() && secondaryAttack != null)
         {
             secondaryAttack.GetComponent<WeaponShooter>().ReceiveShoot(
                     projectileRefId, projectileDirectionRotation);
         }
     }
 
-    private GameObject ChoosePrimaryAttack()
+    private int ChoosePrimaryAttack()
     {
-        return primaryWeapons[Random.Range(0, primaryWeapons.Count)];
+        return Random.Range(0, primaryWeapons.Count);
     }
 
     private GameObject ChooseSecondaryAttack()

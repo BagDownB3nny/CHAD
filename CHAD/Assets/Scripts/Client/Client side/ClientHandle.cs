@@ -271,4 +271,10 @@ public class ClientHandle : MonoBehaviour
         string _dropId = _packet.ReadString();
         ItemManager.instance.ReceiveRemoveItemDrop(_dropId);
     }
+
+    public static void SetPrimaryAttack(Packet _packet)
+    {
+        int _primaryAttack = _packet.ReadInt();
+        BossManager.instance.bossAttacker.ReceiveSetPrimaryAttack(_primaryAttack);
+    }
 }

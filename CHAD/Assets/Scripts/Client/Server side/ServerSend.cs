@@ -340,4 +340,13 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void SetPrimaryAttack(int _primaryAttack)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.setPrimaryAttack))
+        {
+            _packet.Write(_primaryAttack);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }
