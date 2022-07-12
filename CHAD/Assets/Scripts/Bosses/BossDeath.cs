@@ -10,7 +10,10 @@ public class BossDeath : MonoBehaviour, Death
 
     public void Die()
     {
-        onBossDeath(gameObject);
+        if (onBossDeath != null)
+        {
+            onBossDeath(gameObject);
+        }
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);

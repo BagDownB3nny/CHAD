@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Spinner : BossRangedWeapon
 {
+    [SerializeField]
+    float spinSpeed;
+
     private new void Update()
     {
         base.Update();
-        directionRotation += 5f;
+        directionRotation += spinSpeed;
     }
 }

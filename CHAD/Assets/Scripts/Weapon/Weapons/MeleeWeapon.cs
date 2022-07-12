@@ -15,7 +15,7 @@ public abstract class MeleeWeapon : Weapon
                     characterStats.localDamageDealerRefId);
         characterStats.localDamageDealerRefId++;
         currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(damageDealerRefId, holder, 
-            holder.GetComponent<EnemyStatsManager>().attack, holder.GetComponent<EnemyStatsManager>().armourPenetration,
+            holder.GetComponent<CharacterStatsManager>().attack, holder.GetComponent<CharacterStatsManager>().armourPenetration,
                 damage, targetType, gameObject);
         GameManager.instance.damageDealers.Add(damageDealerRefId, currentDamageDealer);
         ServerSend.MeleeAttack(characterStats.characterType, characterStats.characterRefId, damageDealerRefId);
@@ -25,7 +25,7 @@ public abstract class MeleeWeapon : Weapon
     public void ReceiveAttack(string _damageDealerRefId) {
         currentDamageDealer = Instantiate(defaultDamageDealer, transform.position, Quaternion.identity, transform);
         currentDamageDealer.GetComponent<DamageDealerStatsManager>().SetStats(_damageDealerRefId, holder, 
-            holder.GetComponent<EnemyStatsManager>().attack, holder.GetComponent<EnemyStatsManager>().armourPenetration,
+            holder.GetComponent<CharacterStatsManager>().attack, holder.GetComponent<CharacterStatsManager>().armourPenetration,
                 damage, targetType, gameObject);
         GameManager.instance.damageDealers.Add(_damageDealerRefId, currentDamageDealer);
     }

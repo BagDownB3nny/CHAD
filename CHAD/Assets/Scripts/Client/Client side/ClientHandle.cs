@@ -131,6 +131,9 @@ public class ClientHandle : MonoBehaviour
             if (IsPresent(GameManager.instance.enemies, characterRefId)) {
                 GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveTakeDamage(damageTaken);
             }
+        } else if (characterType == (int) CharacterType.Boss)
+        {
+            BossManager.instance.stats.ReceiveTakeDamage(damageTaken);
         }
     }
 
@@ -145,6 +148,9 @@ public class ClientHandle : MonoBehaviour
             if (IsPresent(GameManager.instance.enemies, characterRefId)) {
                 GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveDie();
             }
+        } else if (characterType == (int) CharacterType.Boss)
+        {
+            BossManager.instance.stats.ReceiveDie();
         }
     }
 

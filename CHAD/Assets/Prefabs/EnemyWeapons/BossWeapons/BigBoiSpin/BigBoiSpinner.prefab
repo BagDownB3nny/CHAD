@@ -78,6 +78,7 @@ MonoBehaviour:
   timeToWeaponExpiry: 6
   bossWeaponType: 1
   targetsPlayers: 0
+  spinSpeed: 0.4
 --- !u!114 &3816523298471279491
 MonoBehaviour:
   m_ObjectHideFlags: 0
