@@ -34,6 +34,12 @@ public enum Enemies {
     WhiteDude = 1
 }
 
+public enum Bosses {
+    Forest = 0,
+    City = 1,
+    Desert = 2,
+}
+
 public class GameManager : MonoBehaviour
 {
     // Singleton instance
@@ -42,6 +48,7 @@ public class GameManager : MonoBehaviour
     // List of prefabs
     public List<GameObject> playerPrefabs;
     public List<GameObject> enemyPrefabs;
+    public List<GameObject> bossPrefabs;
     public List<GameObject> gunPrefabs;
     public List<GameObject> itemDrops;
 
