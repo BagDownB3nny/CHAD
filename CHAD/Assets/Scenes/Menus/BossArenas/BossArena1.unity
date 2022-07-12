@@ -302,6 +302,7 @@ MonoBehaviour:
   secondaryAttackCooldown: 2
   primaryWeapons:
   - {fileID: 2825049545875686762, guid: 38bb12f67440d46faa456b304b905899, type: 3}
+  - {fileID: 5915785180163103226, guid: e50e69b2c586c48b6b1bb51ad1e603e4, type: 3}
   secondaryWeapons:
   - {fileID: 7966358858070492289, guid: 3c61bf13556c54a1bbd9e6ea10c6f7b1, type: 3}
   - {fileID: 4150390411578219183, guid: f355613e64be5487a83f569094ad18f8, type: 3}

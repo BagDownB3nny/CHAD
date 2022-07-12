@@ -14,6 +14,8 @@ public class BossRangedWeapon : RangedWeapon
     private float timeToWeaponExpiry;
     [SerializeField]
     public BossWeaponType bossWeaponType;
+    [SerializeField]
+    public bool targetsPlayers;
 
     public void Update()
     {
@@ -33,10 +35,13 @@ public class BossRangedWeapon : RangedWeapon
             {
                 timeToWeaponExpiry -= Time.deltaTime;
             }
-            // TODO: Set directionvector and directionrotation
+            if (targetsPlayers)
+            {
+                FindTarget();
+            }
             // PointToTarget();
-            ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType,
-                    holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
+            //ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType,
+                    //holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
             if (CanAttack())
             {
                 Attack();
@@ -46,5 +51,22 @@ public class BossRangedWeapon : RangedWeapon
                 timeToNextAttack -= Time.deltaTime;
             }
         }
+    }
+
+    private void FindTarget()
+    {
+        float nearestDistance  = float.MaxValue;
+        GameObject nearestPlayer = null;
+        foreach (GameObject player in GameManager.instance.players.Values)
+        {
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestPlayer = player;
+            }
+        }
+        holder.GetComponent<CharacterStatsManager>().target = nearestPlayer;
+        CalculateDirectionVector();
     }
 }

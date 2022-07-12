@@ -44,9 +44,17 @@ public class BurstShooter : WeaponShooter
             shot.GetComponent<ProjectileStatsManager>().SetStats(projectileRefId, weapon.holder, weapon,
                     gameObject, weapon.bulletDirectionVector, weapon.projectileRotationOffset);
             GameManager.instance.projectiles.Add(projectileRefId, shot);
-            ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId,
-                    projectileRefId, weapon.bulletDirectionRotation);
-
+            if (characterStats.characterType == CharacterType.Boss)
+            {
+                ServerSend.RangedAttack(characterStats.characterType,
+                        GetComponent<BossRangedWeapon>().bossWeaponType.ToString(),
+                        projectileRefId, weapon.directionRotation);
+            }
+            else
+            {
+                ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId,
+                                    projectileRefId, weapon.directionRotation);
+            }
             // Incrementing burstsFired and timeToNextBurst
             burstsFired++;
             timeToNextBurst = burstInterval;

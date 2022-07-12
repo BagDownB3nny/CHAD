@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7966358858070492289
+--- !u!1 &5915785180163103226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,96 +8,97 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9010989552955645352}
-  - component: {fileID: 3921466246599287780}
-  - component: {fileID: 4114191910517992944}
-  - component: {fileID: 3816523298471279491}
-  - component: {fileID: -3853059040058698735}
+  - component: {fileID: 6321579463323086880}
+  - component: {fileID: 4647564252507348332}
+  - component: {fileID: 6062493948696916852}
+  - component: {fileID: 176982557903274989}
+  - component: {fileID: 1825863766185285222}
   m_Layer: 0
-  m_Name: BigBoiSpinner
+  m_Name: BigGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9010989552955645352
+--- !u!4 &6321579463323086880
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966358858070492289}
+  m_GameObject: {fileID: 5915785180163103226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0925383, y: -0.50019985, z: 530.5512}
+  m_LocalPosition: {x: 4.7727957, y: 0.48263374, z: 398.22122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3921466246599287780
+--- !u!114 &4647564252507348332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966358858070492289}
+  m_GameObject: {fileID: 5915785180163103226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8307cf7e6874c3d89b81ebe6018e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletsPerShot: 4
---- !u!114 &4114191910517992944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966358858070492289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bbfbc06d9a046f79e8a48e7f448752, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cd4cb823f69f41e3b100b852024c0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 0}
-  damage: 30
+  damage: 20
   targetType: Player
-  attackInterval: 0.1
+  attackInterval: 2
   weaponRotationOffset: 0
   timeToNextAttack: 0
-  speed: 8
-  range: 20
-  accuracy: -350
+  speed: 4
+  range: 30
+  accuracy: 10
   projectileRotationOffset: 0
-  projectile: {fileID: 6916204541350133633, guid: b5896845f06e3404cb128bb1f22825d1, type: 3}
+  projectile: {fileID: 8576339395326385756, guid: 74cfad5e53d574b9fa5271437f1137cc, type: 3}
   directionVector: {x: 0, y: 0}
   directionRotation: 0
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
-  timeToWeaponExpiry: 6
-  bossWeaponType: 1
-  targetsPlayers: 0
---- !u!114 &3816523298471279491
+  timeToWeaponExpiry: 15
+  bossWeaponType: 0
+  targetsPlayers: 1
+--- !u!114 &6062493948696916852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966358858070492289}
+  m_GameObject: {fileID: 5915785180163103226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6d8d880848943d8828bca6e4ad919c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burstInterval: 0.5
+  burstAmount: 3
+--- !u!114 &176982557903274989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915785180163103226}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c9f90ef8ae4845f38961cdd69ed25be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
---- !u!114 &-3853059040058698735
+--- !u!114 &1825863766185285222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966358858070492289}
+  m_GameObject: {fileID: 5915785180163103226}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22356dcefdb474f6bb5a3d0f03a24b53, type: 3}
