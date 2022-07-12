@@ -10017,7 +10017,7 @@ MonoBehaviour:
   - {fileID: 5551356349820652275, guid: b6a7edc31a6c046af96cc0a88994991d, type: 3}
   - {fileID: 5551356349820652275, guid: b6a7edc31a6c046af96cc0a88994991d, type: 3}
   - {fileID: 5551356349820652275, guid: b6a7edc31a6c046af96cc0a88994991d, type: 3}
-  - {fileID: 5000442740696766942, guid: 8d8d7d6a16f994adbb97cf529fb9837c, type: 3}
+  - {fileID: 6272749396632703177, guid: ab20ab7bd2e1f4aa1b37f70f8272a537, type: 3}
   currentMapGenerator: {fileID: 0}
 --- !u!4 &1272240230
 Transform:

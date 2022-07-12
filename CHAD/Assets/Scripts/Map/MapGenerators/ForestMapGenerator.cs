@@ -5,33 +5,35 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-#region SquareTypes
-public enum SquareTypes {
-    outerFloor = -1,
-    floor = 0,
-    outerWall0 = 1,
-	outerWall1 = 2,
-    outerWall2 = 3,
-	outerWall3 = 4,
-	outerWall4 = 5,
-    innerWall0 = 6,
-	innerWall1 = 7,
-	innerWall2 = 8,
-	innerWall3 = 9,
-	innerWall4 = 10,
-    leftWall = 11,
-    rightWall = 12,
-	water = 13,
-	bush = 14,
-	tree = 15,
-	cliff = 16,
-	playerSpawner = 17,
-	enemySpawner = 18,
-	exit = 19,
-}
-#endregion
+
 
 public class ForestMapGenerator : MapGenerator {
+
+	#region SquareTypes
+	public enum SquareTypes {
+		outerFloor = -1,
+		floor = 0,
+		outerWall0 = 1,
+		outerWall1 = 2,
+		outerWall2 = 3,
+		outerWall3 = 4,
+		outerWall4 = 5,
+		innerWall0 = 6,
+		innerWall1 = 7,
+		innerWall2 = 8,
+		innerWall3 = 9,
+		innerWall4 = 10,
+		leftWall = 11,
+		rightWall = 12,
+		water = 13,
+		bush = 14,
+		tree = 15,
+		cliff = 16,
+		playerSpawner = 17,
+		enemySpawner = 18,
+		exit = 19,
+	}
+	#endregion
 
 	[Header("Floor")]
 	public float floorThreshold = 0.5f;
