@@ -190,18 +190,6 @@ public class BossArenaMapGenerator : MapGenerator {
         }
     }
 
-<<<<<<< HEAD
-    public IEnumerator GenerateBossMap()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(arena);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        if (NetworkManager.gameType == GameType.Client)
-        {
-            ClientSend.MapLoaded();
-=======
     private void FillHexInline() {
         int[,] lines = {{17, 18}, {2, 19}, {5, 20}, {8, 21}, {11, 22}, {14, 23}, 
                 {18, 19}, {19, 20}, {21, 20}, {21, 22}, {22, 23}, {18, 23}};
@@ -216,7 +204,6 @@ public class BossArenaMapGenerator : MapGenerator {
                     vegetationMap[x, y] = (int) SquareTypes.liliypad;
                 }
             }
->>>>>>> origin/development
         }
     }
     #endregion
