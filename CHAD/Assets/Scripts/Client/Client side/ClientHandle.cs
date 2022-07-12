@@ -296,4 +296,9 @@ public class ClientHandle : MonoBehaviour
         Vector3 _pos = _packet.ReadVector3();
         BossManager.instance.bossMover.ReceiveMove(_pos);
     }
+
+    public static void SpawnBoss(Packet _packet) {
+        int bossType = _packet.ReadInt();
+        EnemySpawner.instance.ReceiveSpawnBoss(bossType);
+    }
 }

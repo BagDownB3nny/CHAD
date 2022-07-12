@@ -306,7 +306,8 @@ public class PlayerClient : MonoBehaviour
             {(int)ServerPackets.removeItemDrop, ClientHandle.RemoveItemDrop},
             {(int)ServerPackets.setBossAttack, ClientHandle.SetBossAttack},
             {(int)ServerPackets.moveBossAttack, ClientHandle.MoveBossAttack},
-            {(int)ServerPackets.moveBoss, ClientHandle.MoveBoss}
+            {(int)ServerPackets.moveBoss, ClientHandle.MoveBoss},
+            {(int)ServerPackets.spawnBoss, ClientHandle.SpawnBoss}
         };
     }
 

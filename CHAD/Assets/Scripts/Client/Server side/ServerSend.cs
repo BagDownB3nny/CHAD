@@ -369,4 +369,12 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void SpawnBoss(int _bossType) {
+        using (Packet _packet = new Packet((int)ServerPackets.spawnBoss))
+        {
+            _packet.Write(_bossType);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

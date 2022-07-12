@@ -81,8 +81,12 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnBoss() {
         //find out which boss to spawn
+        ServerSend.SpawnBoss((int) Bosses.Forest);
+        Instantiate(GameManager.instance.bossPrefabs[(int) Bosses.Forest], Vector3.zero, Quaternion.identity);
+    }
 
-        //Instantiate(GameManager.instance.bossPrefabs[Bosses.Forest]);
+    public void ReceiveSpawnBoss(int bossType) {
+        Instantiate(GameManager.instance.bossPrefabs[(int) Bosses.Forest], Vector3.zero, Quaternion.identity);
     }
 
     #region SpawnEnemy
