@@ -304,6 +304,7 @@ MonoBehaviour:
   - {fileID: 2825049545875686762, guid: 38bb12f67440d46faa456b304b905899, type: 3}
   secondaryWeapons:
   - {fileID: 7966358858070492289, guid: 3c61bf13556c54a1bbd9e6ea10c6f7b1, type: 3}
+  - {fileID: 4150390411578219183, guid: f355613e64be5487a83f569094ad18f8, type: 3}
 --- !u!1001 &411675368
 PrefabInstance:
   m_ObjectHideFlags: 0

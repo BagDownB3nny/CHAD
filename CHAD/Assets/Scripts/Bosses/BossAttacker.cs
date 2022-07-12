@@ -132,6 +132,18 @@ public class BossAttacker : MonoBehaviour
         }
     }
 
+    public void ReceiveMoveAttack(BossWeaponType _attack, Vector3 _pos)
+    {
+        if (_attack == BossWeaponType.primary)
+        {
+            primaryAttack.GetComponent<BossAttackMover>().ReceiveMove(_pos);
+        }
+        else 
+        {
+            secondaryAttack.GetComponent<BossAttackMover>().ReceiveMove(_pos);
+        }
+    }
+
     private int ChoosePrimaryAttack()
     {
         return Random.Range(0, primaryWeapons.Count);

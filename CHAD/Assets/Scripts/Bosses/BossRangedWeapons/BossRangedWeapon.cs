@@ -34,7 +34,7 @@ public class BossRangedWeapon : RangedWeapon
                 timeToWeaponExpiry -= Time.deltaTime;
             }
             // TODO: Set directionvector and directionrotation
-            PointToTarget();
+            // PointToTarget();
             ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType,
                     holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
             if (CanAttack())
