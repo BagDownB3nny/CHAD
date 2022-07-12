@@ -30,6 +30,7 @@ public class BossArenaMapGenerator : MapGenerator {
         playerSpawner = 17,
         enemySpawner = 18,
         exit = 19,
+        liliypad = 20,
     }
     #endregion
 
@@ -46,9 +47,7 @@ public class BossArenaMapGenerator : MapGenerator {
 	public int maxRiverRadius = 5;
 	public int riverWidthVariation = 2;
 	public int riverDirectionVariation = 45;
-	[Header("Bush")]
-	public float bushThreshold = 0.5f;
-	public float bushScale = 1;
+    
 	[Header("Tree")]
 	public float treeThreshold = 0.2f;
 	public float treeScale = 20;
@@ -72,6 +71,7 @@ public class BossArenaMapGenerator : MapGenerator {
     public GameObject[] leftWall;
     public GameObject[] rightWall;
 	public GameObject[] water;
+    public GameObject[] lilypad;
 	public GameObject[] bush;
 	public GameObject[] tree;
 	public GameObject[] cliff;
@@ -88,16 +88,17 @@ public class BossArenaMapGenerator : MapGenerator {
 	Square exitSquare;
 	List<GameObject> mapObjects = new List<GameObject>();
 
-
-    void Update() {
-    	if (Input.GetMouseButtonDown(0)) {
-            ClearMap();
-    	    GenerateMap("");
-    	}
-    }
+    // void Update() {
+    // 	if (Input.GetMouseButtonDown(0)) {
+    //         ClearMap();
+    //         seed = Time.time.ToString();
+    // 	    GenerateMap(seed);
+    // 	}
+    // }
 
     #region GenerateMap
     public override void GenerateMap(string _seed) {
+        Camera.main.backgroundColor = new Color32(122, 176, 85, 255);
         height = width;
         floorMap = new int[width, height];
         vegetationMap = new int[width, height];
@@ -115,28 +116,26 @@ public class BossArenaMapGenerator : MapGenerator {
 
         FillHexagons();
 
-        FillHexInline();
+		FillWater();
 
-		// FillWater();
+        FillHexInline();
 
 		DrawFloorMap();
 
         DrawVegetationMap();
 
-		// DrawPlayerSpawner();
+		DrawPlayerSpawner();
 
-		// DrawEnemySpawner();
+		DrawEnemySpawner();
 
-		// DrawVegetation(SquareTypes.bush, bushScale, bushThreshold);
-
-		// DrawVegetation(SquareTypes.tree, treeScale, treeThreshold);
+		DrawVegetation(SquareTypes.tree, treeScale, treeThreshold);
 		
 		DrawWallMap();
 
-		// if (NetworkManager.gameType == GameType.Client)
-		// {
-		// 	SendMapLoaded();
-		// }
+		if (NetworkManager.gameType == GameType.Client)
+		{
+			SendMapLoaded();
+		}
 	}
 
 
@@ -196,7 +195,15 @@ public class BossArenaMapGenerator : MapGenerator {
                 {18, 19}, {19, 20}, {21, 20}, {21, 22}, {22, 23}, {18, 23}};
 
         for (int i = 0; i < lines.GetLength(0); i++) {
-            CreateBranch(hexagonPoints[lines[i, 0]], hexagonPoints[lines[i, 1]], SquareTypes.tree, vegetationMap);
+            CreateBranch(hexagonPoints[lines[i, 0]], hexagonPoints[lines[i, 1]], SquareTypes.bush, vegetationMap);
+        }
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (vegetationMap[x, y] == (int) SquareTypes.bush && floorMap[x, y] == (int) SquareTypes.water) {
+                    vegetationMap[x, y] = (int) SquareTypes.liliypad;
+                }
+            }
         }
     }
     #endregion
@@ -248,16 +255,16 @@ public class BossArenaMapGenerator : MapGenerator {
 			}
 		}
 
-		List<Square> cliffStart = new List<Square>();
-		//add an additional floor below the outerwalls and cliff
-		foreach(Square square in outerWalls) {
-			// floorMap[square.x, square.y] = (int) SquareTypes.floor;
-			// DrawSquare(square.x, square.y, 0, floorMap);
+		// List<Square> cliffStart = new List<Square>();
+		// //add an additional floor below the outerwalls and cliff
+		// foreach(Square square in outerWalls) {
+		// 	// floorMap[square.x, square.y] = (int) SquareTypes.floor;
+		// 	// DrawSquare(square.x, square.y, 0, floorMap);
 
-			cliffStart.Add(new Square(square.x, square.y - 1));
-		}
+		// 	cliffStart.Add(new Square(square.x, square.y - 1));
+		// }
 
-		DrawCliff(cliffStart);
+		// DrawCliff(cliffStart);
 
 		return walls;
 	}
@@ -742,6 +749,9 @@ public class BossArenaMapGenerator : MapGenerator {
                 break;
 			case SquareTypes.exit:
                 squareToDraw = exit[id];
+                break;
+            case SquareTypes.liliypad:
+                squareToDraw = lilypad[id];
                 break;
             default:
                 squareToDraw = floor[0];

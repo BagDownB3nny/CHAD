@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5000442740696766942
+--- !u!1 &6272749396632703177
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8818008256441192001}
-  - component: {fileID: 8866326339351221698}
+  - component: {fileID: 7509672873261025110}
+  - component: {fileID: 7594169234155363541}
   m_Layer: 0
   m_Name: BossArenaMapGenerator
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8818008256441192001
+--- !u!4 &7509672873261025110
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5000442740696766942}
+  m_GameObject: {fileID: 6272749396632703177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.099364, y: -0.04085114, z: 211.98328}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,41 +32,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8866326339351221698
+--- !u!114 &7594169234155363541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5000442740696766942}
+  m_GameObject: {fileID: 6272749396632703177}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fe55be0c776f4d5eb6224c13519e544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0
-  height: 0
-  floorThreshold: 0.5
-  floorScale: 1
-  smoothing: 3
-  smoothingRadius: 1
-  minOuterRegionSize: 50
-  minInnerRegionSize: 50
-  minBranchRadius: 3
-  maxBranchRadius: 5
-  branchVariation: 2
+  width: 40
+  height: 40
+  branchRadius: 3
   minRiverRadius: 3
   maxRiverRadius: 5
   riverWidthVariation: 2
   riverDirectionVariation: 45
-  bushThreshold: 0.5
-  bushScale: 1
   treeThreshold: 0.2
   treeScale: 20
   seed: 
-  useRandomSeed: 0
-  animationMode: 0
-  animationInterval: 0.5
   outerFloor:
   - {fileID: 0}
   floor:
@@ -97,6 +84,8 @@ MonoBehaviour:
   - {fileID: 5974402530829977089, guid: dbaeb18ed9ee74c76b279080e98a37c8, type: 3}
   water:
   - {fileID: 5974402530829977089, guid: 3d2a5de9aa856470da919baee87cf952, type: 3}
+  lilypad:
+  - {fileID: 5974402530829977089, guid: 799bebdb2bbda4dc2b775dc3b3b9ce3f, type: 3}
   bush:
   - {fileID: 5974402530829977089, guid: ac28639df2b394943a3659a133b0547a, type: 3}
   tree:

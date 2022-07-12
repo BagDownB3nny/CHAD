@@ -109,6 +109,8 @@ public class PlayerSpawner : MonoBehaviour
         {
             if (GameManager.instance.IsBossLevel()) {
                 //BossManager.instance.StartBossFight();
+                EnemySpawner.instance.StartSpawning();
+                ItemManager.instance.StartDropping();
             }
             else if (EnemySpawner.instance != null)
             {

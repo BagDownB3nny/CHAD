@@ -959,11 +959,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_44
+      name: vktj
       rect:
         serializedVersion: 2
-        x: 320
-        y: 160
+        x: 327
+        y: 207
         width: 32
         height: 32
       alignment: 0
@@ -3268,6 +3268,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TreeWall
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 207
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60aa774a9d1e142dcb6b7603f6ee94fe
+      internalID: 1920062752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lily
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 207
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d483d23bbf85143e3a2addeafebcd227
+      internalID: 302764378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -3316,23 +3358,23 @@ TextureImporter:
       RPG Nature Tileset_6: 1039477420
       RPG Nature Tileset_107: 1382082282
       RPG Nature Tileset_152: 1813047293
+      vktj: 101163022
       RPG Nature Tileset_141: 453561679
       RPG Nature Tileset_70: 1282429068
       RPG Nature Tileset_7: 711214004
       RPG Nature Tileset_39: 244936357
+      Lily: 302764378
       RPG Nature Tileset_74: 2125144828
       RPG Nature Tileset_50: -327400268
-      RPG Nature Tileset_0: 1920062752
+      ForestHoleClosed: -703557483
       RPG Nature Tileset_89: -416664016
       RPG Nature Tileset_148: 685331659
       RPG Nature Tileset_118: 351772242
-      ForestHoleClosed: -703557483
       RPG Nature Tileset_133: -1604046788
       ForestHole: 1613276355
       RPG Nature Tileset_153: -553299556
       RPG Nature Tileset_126: -1771283180
       RPG Nature Tileset_20: -898030176
-      RPG Nature Tileset_44: 101163022
       RPG Nature Tileset_58: 883938667
       RPG Nature Tileset_32: 733837395
       RPG Nature Tileset_85: -243266340
@@ -3348,6 +3390,7 @@ TextureImporter:
       RPG Nature Tileset_17: -1947555416
       RPG Nature Tileset_28: -706945170
       RPG Nature Tileset_110: 1418268030
+      TreeWall: 1920062752
       RPG Nature Tileset_88: 1850665439
       RPG Nature Tileset_137: 311806961
       RPG Nature Tileset_75: -439820803
