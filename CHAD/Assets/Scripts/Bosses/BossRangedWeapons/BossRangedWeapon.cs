@@ -14,6 +14,13 @@ public class BossRangedWeapon : RangedWeapon
     private float timeToWeaponExpiry;
     [SerializeField]
     public BossWeaponType bossWeaponType;
+    [SerializeField]
+    public bool targetsPlayers;
+
+    private void Awake()
+    {
+        holder = BossManager.instance.gameObject;
+    }
 
     public void Update()
     {
@@ -33,10 +40,14 @@ public class BossRangedWeapon : RangedWeapon
             {
                 timeToWeaponExpiry -= Time.deltaTime;
             }
-            // TODO: Set directionvector and directionrotation
-            PointToTarget();
-            ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType,
-                    holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
+            if (targetsPlayers)
+            {
+                GetComponent<BossAttacker>().FindTarget();
+                CalculateDirectionVector();
+            }
+            // PointToTarget();
+            //ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType,
+                    //holder.GetComponent<CharacterStatsManager>().characterRefId, directionRotation);
             if (CanAttack())
             {
                 Attack();

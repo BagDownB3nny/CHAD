@@ -350,4 +350,23 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void MoveBossAttack(BossWeaponType _attack, Vector3 _pos)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.moveBossAttack))
+        {
+            _packet.Write((int)_attack);
+            _packet.Write(_pos);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MoveBoss(Vector3 _pos)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.moveBoss))
+        {
+            _packet.Write(_pos);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

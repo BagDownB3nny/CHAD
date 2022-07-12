@@ -277,4 +277,17 @@ public class ClientHandle : MonoBehaviour
         int _bossAttack = _packet.ReadInt();
         BossManager.instance.bossAttacker.ReceiveSetBossAttack(attackType, _bossAttack);
     }
+
+    public static void MoveBossAttack(Packet _packet)
+    {
+        BossWeaponType _attack = (BossWeaponType)_packet.ReadInt();
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossAttacker.ReceiveMoveAttack(_attack, _pos);
+    }
+
+    public static void MoveBoss(Packet _packet)
+    {
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossMover.ReceiveMove(_pos);
+    }
 }

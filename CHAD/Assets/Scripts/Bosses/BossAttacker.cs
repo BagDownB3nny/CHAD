@@ -83,6 +83,22 @@ public class BossAttacker : MonoBehaviour
         }
     }
 
+    public void FindTarget()
+    {
+        float nearestDistance = float.MaxValue;
+        GameObject nearestPlayer = null;
+        foreach (GameObject player in GameManager.instance.players.Values)
+        {
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestPlayer = player;
+            }
+        }
+        GetComponent<CharacterStatsManager>().target = nearestPlayer;
+    }
+
     public void ReceiveSetBossAttack(string _attackType, int _attack)
     {
         if (_attackType == "primary")
@@ -97,7 +113,6 @@ public class BossAttacker : MonoBehaviour
     private void SetPrimaryAttack(int _primaryAttack)
     {
         primaryAttack = Instantiate(primaryWeapons[_primaryAttack], transform.position, Quaternion.identity);
-        primaryAttack.GetComponent<BossRangedWeapon>().holder = gameObject;
         isPrimaryAttacking = true;
     }
 
@@ -109,7 +124,6 @@ public class BossAttacker : MonoBehaviour
     private void SetSecondaryAttack(int _secondaryAttack)
     {
         secondaryAttack = Instantiate(secondaryWeapons[_secondaryAttack], transform.position, Quaternion.identity);
-        secondaryAttack.GetComponent<BossRangedWeapon>().holder = gameObject;
         isSecondaryAttacking = true;
     }
 
@@ -129,6 +143,18 @@ public class BossAttacker : MonoBehaviour
         {
             secondaryAttack.GetComponent<WeaponShooter>().ReceiveShoot(
                     projectileRefId, projectileDirectionRotation);
+        }
+    }
+
+    public void ReceiveMoveAttack(BossWeaponType _attack, Vector3 _pos)
+    {
+        if (_attack == BossWeaponType.primary)
+        {
+            primaryAttack.GetComponent<BossAttackMover>().ReceiveMove(_pos);
+        }
+        else 
+        {
+            secondaryAttack.GetComponent<BossAttackMover>().ReceiveMove(_pos);
         }
     }
 

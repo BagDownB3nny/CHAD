@@ -225,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277931218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.04, y: 1.39, z: 0}
+  m_LocalPosition: {x: -2.48, y: 0.9, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossAttacker: {fileID: 0}
+  bossMover: {fileID: 0}
   maxHealth: 0
 --- !u!114 &277931223
 MonoBehaviour:
@@ -301,9 +302,12 @@ MonoBehaviour:
   primaryAttackCooldown: 2
   secondaryAttackCooldown: 2
   primaryWeapons:
-  - {fileID: 2825049545875686762, guid: 38bb12f67440d46faa456b304b905899, type: 3}
+  - {fileID: 5932610132705902556, guid: 9a3dd8050fe8a4859b96df6b67543401, type: 3}
+  - {fileID: 5932610132705902556, guid: 9a3dd8050fe8a4859b96df6b67543401, type: 3}
+  - {fileID: 5932610132705902556, guid: 9a3dd8050fe8a4859b96df6b67543401, type: 3}
   secondaryWeapons:
   - {fileID: 7966358858070492289, guid: 3c61bf13556c54a1bbd9e6ea10c6f7b1, type: 3}
+  - {fileID: 4150390411578219183, guid: f355613e64be5487a83f569094ad18f8, type: 3}
 --- !u!1001 &411675368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535552169974500746, guid: 91a301c829ecc4b2a9ff4fe5c15f2177, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 363.36917
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5535552169974500746, guid: 91a301c829ecc4b2a9ff4fe5c15f2177, type: 3}
       propertyPath: m_LocalRotation.w
