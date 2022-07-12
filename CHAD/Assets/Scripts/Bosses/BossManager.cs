@@ -16,6 +16,7 @@ public class BossManager : MonoBehaviour
     // Reference to the boss scripts
     public BossAttacker bossAttacker;
     public BossMover bossMover;
+    public BossStatsManager stats;
 
     // Health and phase statuses
     [SerializeField]
@@ -28,6 +29,7 @@ public class BossManager : MonoBehaviour
         instance = this;
         bossMover = GetComponent<BossMover>();
         bossAttacker = GetComponent<BossAttacker>();
+        stats = GetComponent<BossStatsManager>();
     }
 
     private void OnDestroy()
