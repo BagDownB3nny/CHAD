@@ -547,7 +547,10 @@ public class BossArenaMapGenerator : MapGenerator {
 			floorSquares.AddRange(region.squares);
 		}
 		Region floor = new Region(SquareTypes.floor, floorSquares, floorMap, width, height);
-		playerSpawnerSquare = GetMostIsolatedSquare(floor);
+
+        System.Random rng = new System.Random(seed.GetHashCode());
+		int randomSquareIndex = rng.Next(0, floor.edgeSquares.Count - 1);
+		playerSpawnerSquare = floor.edgeSquares[randomSquareIndex];
 
 		Vector3 position = CoordToWorldPoint(playerSpawnerSquare.x, playerSpawnerSquare.y);
 		GameObject spawner = Instantiate(playerSpawner[0], position, Quaternion.identity);
