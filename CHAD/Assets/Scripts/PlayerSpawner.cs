@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    public GameObject playerPointer;
 
     public delegate void OnPlayerSpawn(int _playerId);
     public static OnPlayerSpawn onPlayerSpawn;
@@ -50,6 +52,11 @@ public class PlayerSpawner : MonoBehaviour
                     player.GetComponent<PlayerWeaponsManager>().SetWeaponInventory(playerInfo);
 
                     GameManager.instance.players.Add(_playerId.ToString(), player);
+
+                    //spawn the player pointer too
+                    if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
+                        GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
+                    }
                 }
             } // If playerInfo is of different playerClass, that means we are trying to change playerClass of existing player
             else
@@ -87,6 +94,11 @@ public class PlayerSpawner : MonoBehaviour
             player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
 
             GameManager.instance.players.Add(_playerId.ToString(), player);
+
+            //spawn the player pointer too
+            if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
+                GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
+            }
         }
         if (onPlayerSpawn != null)
         {
@@ -96,7 +108,13 @@ public class PlayerSpawner : MonoBehaviour
         if (NetworkManager.gameType == GameType.Server && playersSpawned == Server.NumberOfPlayers)
         {
             if (GameManager.instance.IsBossLevel()) {
+<<<<<<< HEAD
                 BossManager.instance.StartBossFight();
+=======
+                //BossManager.instance.StartBossFight();
+                EnemySpawner.instance.StartSpawning();
+                ItemManager.instance.StartDropping();
+>>>>>>> origin/development
             }
             else if (EnemySpawner.instance != null)
             {

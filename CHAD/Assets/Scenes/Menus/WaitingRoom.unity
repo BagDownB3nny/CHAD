@@ -9878,7 +9878,7 @@ MonoBehaviour:
   - {fileID: 5551356349820652275, guid: b6a7edc31a6c046af96cc0a88994991d, type: 3}
   - {fileID: 5551356349820652275, guid: b6a7edc31a6c046af96cc0a88994991d, type: 3}
   - {fileID: 5551356349820652275, guid: b6a7edc31a6c046af96cc0a88994991d, type: 3}
-  - {fileID: 5000442740696766942, guid: 8d8d7d6a16f994adbb97cf529fb9837c, type: 3}
+  - {fileID: 6272749396632703177, guid: ab20ab7bd2e1f4aa1b37f70f8272a537, type: 3}
   currentMapGenerator: {fileID: 0}
 --- !u!4 &1272240230
 Transform:
@@ -11501,7 +11501,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5135349388637485356, guid: e9b97cc2990a54537a663b0bb02b68d8, type: 3}
   - {fileID: 331346586343184388, guid: c246bc23d06ab4f8388171f4d4fb6c53, type: 3}
-  - {fileID: 8269254058201043549, guid: 5dc8bd90bd1b24eb2804bb9a21ce24ef, type: 3}
+  - {fileID: 573236171162344141, guid: aa9a7c734672d4fdda5a7e08acff25cf, type: 3}
   - {fileID: 1340659849416379953, guid: b291ccb0b12be42af901edb2a9de5f0f, type: 3}
   - {fileID: 4837624267774989085, guid: 9fa785ce56a3f4b5d869de06f9c4be61, type: 3}
   - {fileID: 8529702475448943674, guid: 0fce547d58e3946c8b76f0ac74fd24be, type: 3}

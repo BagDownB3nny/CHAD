@@ -47,13 +47,7 @@ public class MapManager : MonoBehaviour
     }
 
     public string GetSeed() {
-        if (GameManager.instance.IsBossLevel())
-        {
-            seed = "BossArena1";
-        } else
-        {
-            seed = Time.time.ToString();
-        }
+        seed = Time.time.ToString();
         return seed;
     }
 
