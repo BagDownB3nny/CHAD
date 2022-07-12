@@ -196,7 +196,7 @@ public class EnemySpawner : MonoBehaviour
         //{
         //    return (Enemies)GameManager.instance.currentLevel + 3;
         //}
-        int randomInt = Random.Range(0, (int)GameManager.instance.enemies.Count - 1);
+        int randomInt = Random.Range(0, (int)GameManager.instance.enemyPrefabs.Count - 1);
         return (Enemies)randomInt;
     }
 
