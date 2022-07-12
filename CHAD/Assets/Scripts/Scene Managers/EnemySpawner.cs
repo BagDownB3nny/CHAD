@@ -79,6 +79,12 @@ public class EnemySpawner : MonoBehaviour
         UpdateEnemySpawnerStats();
     }
 
+    public void SpawnBoss() {
+        //find out which boss to spawn
+
+        //Instantiate(GameManager.instance.bossPrefabs[Bosses.Forest]);
+    }
+
     #region SpawnEnemy
     /* Instantiates an enemy
      * Creates an enemyId (based on the current enemies that have yet to be spawned)
