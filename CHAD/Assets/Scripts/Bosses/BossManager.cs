@@ -15,7 +15,7 @@ public class BossManager : MonoBehaviour
 
     // Reference to the boss scripts
     public BossAttacker bossAttacker;
-    private BossMover bossMover;
+    public BossMover bossMover;
 
     // Health and phase statuses
     [SerializeField]

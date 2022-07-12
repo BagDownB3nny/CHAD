@@ -284,4 +284,10 @@ public class ClientHandle : MonoBehaviour
         Vector3 _pos = _packet.ReadVector3();
         BossManager.instance.bossAttacker.ReceiveMoveAttack(_attack, _pos);
     }
+
+    public static void MoveBoss(Packet _packet)
+    {
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossMover.ReceiveMove(_pos);
+    }
 }

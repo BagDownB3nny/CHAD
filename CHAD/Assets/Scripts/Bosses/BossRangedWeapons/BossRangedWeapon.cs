@@ -17,6 +17,11 @@ public class BossRangedWeapon : RangedWeapon
     [SerializeField]
     public bool targetsPlayers;
 
+    private void Awake()
+    {
+        holder = BossManager.instance.gameObject;
+    }
+
     public void Update()
     {
         if (NetworkManager.gameType == GameType.Server)
@@ -37,7 +42,8 @@ public class BossRangedWeapon : RangedWeapon
             }
             if (targetsPlayers)
             {
-                FindTarget();
+                GetComponent<BossAttacker>().FindTarget();
+                CalculateDirectionVector();
             }
             // PointToTarget();
             //ServerSend.RotateRangedWeapon(holder.GetComponent<CharacterStatsManager>().characterType,
@@ -51,22 +57,5 @@ public class BossRangedWeapon : RangedWeapon
                 timeToNextAttack -= Time.deltaTime;
             }
         }
-    }
-
-    private void FindTarget()
-    {
-        float nearestDistance  = float.MaxValue;
-        GameObject nearestPlayer = null;
-        foreach (GameObject player in GameManager.instance.players.Values)
-        {
-            float distance = Vector2.Distance(transform.position, player.transform.position);
-            if (distance < nearestDistance)
-            {
-                nearestDistance = distance;
-                nearestPlayer = player;
-            }
-        }
-        holder.GetComponent<CharacterStatsManager>().target = nearestPlayer;
-        CalculateDirectionVector();
     }
 }
