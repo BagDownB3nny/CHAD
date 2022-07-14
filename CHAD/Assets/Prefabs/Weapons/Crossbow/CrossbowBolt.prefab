@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2488385671574674180}
   - component: {fileID: 5373077483659439387}
   - component: {fileID: 750193650759694868}
-  - component: {fileID: -2306589532548323571}
   m_Layer: 0
   m_Name: CrossbowBolt
   m_TagString: Untagged
@@ -76,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1858767441
-  m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
+  m_SortingOrder: 20
   m_Sprite: {fileID: 1656483306, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,19 +176,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.4375, y: 1.3125}
   m_Direction: 0
---- !u!114 &-2306589532548323571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040506203142033655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingBase: 0
-  offset: 0
-  runOnce: 0
-  updateInterval: 0.1

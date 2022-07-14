@@ -129,13 +129,13 @@ MonoBehaviour:
   characterType: 0
   localProjectileRefId: 0
   localDamageDealerRefId: 0
-  maxHp: 1000
-  hp: 1000
+  maxHp: 0
+  hp: 2000
   attack: 1
   speed: 7
-  armour: 2
+  armour: 50
   armourPenetration: 0
-  armourEffectiveness: 0.5
+  armourEffectiveness: 5
   proficiency: 0
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatsManager: {fileID: 0}
   weaponScript: {fileID: 0}
+  defaultWeapon: 1
   currentWeapon: {fileID: 0}
   currentWeaponId: 0
 --- !u!114 &488052071484476580
@@ -183,7 +184,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03203249, y: -0.40511763}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -194,7 +195,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6397867, y: 0.43976474}
+  m_Size: {x: 0.9375, y: 1.25}
   m_EdgeRadius: 0
 --- !u!50 &5007131504201879413
 Rigidbody2D:
@@ -209,7 +210,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1000
+  m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3244076298980378863}
   - component: {fileID: -8401559206082059971}
   - component: {fileID: -1431905509821072836}
-  - component: {fileID: 2417286761850498774}
   m_Layer: 0
   m_Name: TestRifleBullet
   m_TagString: Untagged
@@ -76,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1858767441
-  m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
+  m_SortingOrder: 20
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0, b: 0.561501, a: 1}
   m_FlipX: 0
@@ -177,19 +176,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d587b6042860c44248d411b32d9854d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2417286761850498774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965739902269245036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingBase: 0
-  offset: 0
-  runOnce: 0
-  updateInterval: 0.1

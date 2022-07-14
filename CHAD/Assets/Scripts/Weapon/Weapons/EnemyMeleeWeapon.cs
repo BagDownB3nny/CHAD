@@ -9,9 +9,7 @@ public abstract class EnemyMeleeWeapon : MeleeWeapon
         if (NetworkManager.gameType == GameType.Server) {
             if (CanAttack() && currentDamageDealer == null) {
                 Attack();
-                Debug.Log("White Dude Attacking on Server");
             }
-            timeToNextAttack -= Time.deltaTime;
         }
     }
 }

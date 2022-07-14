@@ -13,7 +13,6 @@ TagManager:
   - Spawner
   - Map
   - Vegetation
-  - Exit
   layers:
   - Default
   - TransparentFX
@@ -56,9 +55,6 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 811253785
-    locked: 0
-  - name: Weapon
-    uniqueID: 2436199855
     locked: 0
   - name: UI
     uniqueID: 2553255383

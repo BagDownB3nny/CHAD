@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     }
 #region MovePlayer
     //client sends the input to server
-    private void SendMovement() {
+    public void SendMovement() {
         Vector2 movement;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -44,8 +44,7 @@ public class PlayerMovement : MonoBehaviour
         ClientSend.MovePlayer(_input);
     }
 
-    //server decodes the input received from client,
-    //changes its own game state and sends the game state back to client
+    //server decodes the input received from client, changes its own game state and sends the game state back to client
     public Vector2 MovePlayer(bool[] _input) {
         Vector2 _movement = new Vector3(0, 0, 0);
         if (_input[0]) { _movement.y += 1; }

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5997856040867719278}
   - component: {fileID: 8785153112283951690}
   - component: {fileID: 955521345060250311}
-  - component: {fileID: -3142122316268483658}
   m_Layer: 0
   m_Name: Toxic fumes
   m_TagString: Untagged
@@ -76,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1858767441
-  m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
+  m_SortingOrder: 20
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.011764707, g: 1, b: 0, a: 1}
   m_FlipX: 0
@@ -177,19 +176,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d587b6042860c44248d411b32d9854d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3142122316268483658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991839593518248786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingBase: 0
-  offset: 0
-  runOnce: 0
-  updateInterval: 0.1

@@ -287,7 +287,6 @@ public class ServerSend
             _packet.Write(enemiesLeftToSpawn);
             _packet.Write(enemiesAlive);
             _packet.Write(enemiesKilled);
-            SendTCPDataToAll(_packet);
         }
     }
 
@@ -305,36 +304,6 @@ public class ServerSend
     public static void RemoveWeaponDrop(string _dropId)
     {
         using (Packet _packet = new Packet((int)ServerPackets.removeWeaponDrop))
-        {
-            _packet.Write(_dropId);
-            SendTCPDataToAll(_packet);
-        }
-    }
-
-    public static void AddItem(string _playerRefId, PlayerItems _playerItem)
-    {
-        using (Packet _packet = new Packet((int)ServerPackets.addItem))
-        {
-            _packet.Write(_playerRefId);
-            _packet.Write((int)_playerItem);
-            SendTCPDataToAll(_packet);
-        }
-    }
-
-    public static void ItemDrop(string _dropId, PlayerItems _droppedItem, Vector3 _position)
-    {
-        using (Packet _packet = new Packet((int)ServerPackets.itemDrop))
-        {
-            _packet.Write(_dropId);
-            _packet.Write((int)_droppedItem);
-            _packet.Write(_position);
-            SendTCPDataToAll(_packet);
-        }
-    }
-
-    public static void RemoveItemDrop(string _dropId)
-    {
-        using (Packet _packet = new Packet((int)ServerPackets.removeItemDrop))
         {
             _packet.Write(_dropId);
             SendTCPDataToAll(_packet);
