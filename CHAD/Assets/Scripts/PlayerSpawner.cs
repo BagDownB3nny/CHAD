@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    public GameObject playerPointer;
 
     public delegate void OnPlayerSpawn(int _playerId);
     public static OnPlayerSpawn onPlayerSpawn;
@@ -24,10 +22,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public void OnDestroy()
     {
-        if (instance == this)
-        {
-            instance = null;
-        }
+        instance = null;
     }
 
     public void SpawnPlayer(int _playerId, PlayerClasses _playerClass)
@@ -52,11 +47,6 @@ public class PlayerSpawner : MonoBehaviour
                     player.GetComponent<PlayerWeaponsManager>().SetWeaponInventory(playerInfo);
 
                     GameManager.instance.players.Add(_playerId.ToString(), player);
-
-                    //spawn the player pointer too
-                    if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
-                        GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
-                    }
                 }
             } // If playerInfo is of different playerClass, that means we are trying to change playerClass of existing player
             else
@@ -74,15 +64,12 @@ public class PlayerSpawner : MonoBehaviour
 
                     player.transform.position = GameManager.instance.players[_playerId.ToString()].transform.position;
                     Destroy(GameManager.instance.players[_playerId.ToString()]);
-                    if (NetworkManager.IsMine(_playerId.ToString()))
-                    {
-                        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
-                    }
+                    GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
                     player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
                     GameManager.instance.players[_playerId.ToString()] = player;
                 } catch (Exception _ex)
                 {
-                    Debug.Log("Cannot change player class: Player does not exist in GameManager\n" + _ex);
+                    Debug.Log("Cannot change player class: Player does not exist in GameManager");
                 }
             }
         } // If playerInfo does not exist, spawn in default player and create a new playerInfo
@@ -94,11 +81,6 @@ public class PlayerSpawner : MonoBehaviour
             player.GetComponent<PlayerWeaponsManager>().AddGun(PlayerWeapons.TestRifle);
 
             GameManager.instance.players.Add(_playerId.ToString(), player);
-
-            //spawn the player pointer too
-            if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
-                GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
-            }
         }
         if (onPlayerSpawn != null)
         {
@@ -107,12 +89,7 @@ public class PlayerSpawner : MonoBehaviour
         playersSpawned += 1;
         if (NetworkManager.gameType == GameType.Server && playersSpawned == Server.NumberOfPlayers)
         {
-            if (GameManager.instance.IsBossLevel()) {
-                //BossManager.instance.StartBossFight();
-                EnemySpawner.instance.StartSpawning();
-                ItemManager.instance.StartDropping();
-            }
-            else if (EnemySpawner.instance != null)
+            if (EnemySpawner.instance != null)
             {
                 EnemySpawner.instance.StartSpawning();
                 ItemManager.instance.StartDropping();

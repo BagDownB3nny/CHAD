@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5214206840135064872}
   - component: {fileID: 6963633518261254843}
-  - component: {fileID: 2899348077498824755}
   m_Layer: 0
   m_Name: MaskedGuyWeapon
   m_TagString: Ranged
@@ -48,11 +47,11 @@ MonoBehaviour:
   holder: {fileID: 0}
   damage: 10
   targetType: Player
-  attackInterval: 1.5
+  attackInterval: 0.5
   weaponRotationOffset: 0
   timeToNextAttack: 0
-  speed: 7
-  range: 30
+  speed: 10
+  range: 10
   accuracy: 10
   projectileRotationOffset: -90
   projectile: {fileID: 4348536902379984181, guid: b1a07ba14c53ea7489b9ebc9de4518ba, type: 3}
@@ -60,15 +59,3 @@ MonoBehaviour:
   directionRotation: 0
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
---- !u!114 &2899348077498824755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708293737177987063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2154f7994844947d8bcd40f01ee85936, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -10,9 +10,7 @@ public class PlayerDeath : MonoBehaviour, Death
         if (deathEffect != null) {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
-        if (NetworkManager.IsMine(gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
-            CameraMotor.instance.SetPlayerDeath(true);
-        }
+        //Camera.main.GetComponent<CameraMotor>().DeclarePlayerDead();
         Destroy(gameObject);
     }
 }

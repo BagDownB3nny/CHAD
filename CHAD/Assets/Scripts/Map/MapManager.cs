@@ -4,17 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum MapType {
-    lobby = -1,
     city = 0,
     forest = 1,
-    desert = 2,
-    bossArena = 3
+    desert = 2
 }
 
 public class MapManager : MonoBehaviour
 {
     public static MapManager instance;
-    public MapType mapType = MapType.lobby;
+    public MapType mapType;
     public string seed;
     public static int counter = 0;
     public List<GameObject> mapGenerators = new List<GameObject>();
@@ -25,24 +23,17 @@ public class MapManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     //TODO
     public MapType GetMapType() {
-        if (GameManager.instance.IsBossLevel())
-        {
-            mapType = MapType.bossArena;
-        }
-        else
-        {
-            mapType = MapType.forest;
-        }
+        mapType = MapType.forest;
         return mapType;
     }
 
@@ -52,16 +43,8 @@ public class MapManager : MonoBehaviour
     }
 
     public void LoadMap() {
-        GameUIManager.instance.objectiveText.SetActive(false);
-        GameUIManager.instance.holeUI.SetActive(false);
-        if (mapType == MapType.lobby)
-        {
-            GameManager.instance.ResetGame();
-        } else
-        {
-            GameManager.instance.NextGame();
-        }
-        
+        GameManager.instance.ResetGame();
+
         if (currentMapGenerator != null) {
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
         }
@@ -83,8 +66,6 @@ public class MapManager : MonoBehaviour
 
     public void ReceiveLoadMap(MapType _mapType, string _seed) {
         GameManager.instance.ResetGame();
-        ItemManager.instance.ResetItems();
-        CameraMotor.instance.SetPlayerDeath(false);
 
         if (currentMapGenerator != null) {
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
@@ -95,27 +76,12 @@ public class MapManager : MonoBehaviour
     }
 
     public void ReceiveLoadEmptyMap() {
-        GameUIManager.instance.objectiveText.SetActive(false);
-        GameUIManager.instance.holeUI.SetActive(false);
-
         GameManager.instance.ResetGame();
 
         if (currentMapGenerator != null) {
             currentMapGenerator.GetComponent<MapGenerator>().ClearMap();
         }
 
-        StartCoroutine(GenerateEmptyScene());
-    }
-
-    public IEnumerator GenerateEmptyScene()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("EmptyMap");
-        while (!asyncLoad.isDone)
-        {
-            Debug.Log("LOADING EMPTY MAP...");
-            yield return null;
-        }
-        Debug.Log("EMPTY MAP LOADED");
-        ClientSend.EmptyMapLoaded();
+        SceneManager.LoadScene("EmptyMap");
     }
 }

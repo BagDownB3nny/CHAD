@@ -32,7 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/EmptyMap.unity
     guid: 5de9d8571b422449d802f81bb727495a
-  - enabled: 1
-    path: Assets/Scenes/Menus/BossArenas/BossArena1.unity
-    guid: d0416e351c3204f5b8107718fa914e72
   m_configObjects: {}
