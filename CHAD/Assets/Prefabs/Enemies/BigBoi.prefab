@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 39960599634237695}
   - component: {fileID: 39960599634237694}
   - component: {fileID: 41040661759939840}
+  - component: {fileID: 7313590629382035149}
   m_Layer: 0
   m_Name: BigBoi
   m_TagString: Enemy
@@ -189,6 +190,32 @@ MonoBehaviour:
   bossMover: {fileID: 0}
   stats: {fileID: 0}
   maxHealth: 0
+--- !u!61 &7313590629382035149
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39960599634237693}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1383647}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.625, y: 2.125}
+    newSize: {x: 1.625, y: 2.125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1167212, y: 1.4981229}
+  m_EdgeRadius: 0
 --- !u!1 &1260624356688912569
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,22 +627,22 @@ PrefabInstance:
     - target: {fileID: 2470192250712941760, guid: b6c2136ec4d934dce84fe727feb8a188, type: 3}
       propertyPath: defaultDamageDealer
       value: 
-      objectReference: {fileID: 1607782453537212540, guid: 266dacdea85e54f91bc07acd75ce55fd, type: 3}
+      objectReference: {fileID: 2806214178785291526, guid: 266dacdea85e54f91bc07acd75ce55fd, type: 3}
     - target: {fileID: 6522055075167346372, guid: b6c2136ec4d934dce84fe727feb8a188, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522055075167346372, guid: b6c2136ec4d934dce84fe727feb8a188, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.3143916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522055075167346372, guid: b6c2136ec4d934dce84fe727feb8a188, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.42588
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522055075167346372, guid: b6c2136ec4d934dce84fe727feb8a188, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.03007576
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522055075167346372, guid: b6c2136ec4d934dce84fe727feb8a188, type: 3}
       propertyPath: m_LocalRotation.w

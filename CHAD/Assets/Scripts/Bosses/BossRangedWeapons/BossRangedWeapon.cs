@@ -42,7 +42,7 @@ public class BossRangedWeapon : RangedWeapon
             }
             if (targetsPlayers)
             {
-                GetComponent<BossAttacker>().FindTarget();
+                holder.GetComponent<BossAttacker>().FindTarget();
                 CalculateDirectionVector();
             }
             // PointToTarget();

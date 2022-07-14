@@ -50,5 +50,5 @@ MonoBehaviour:
   attackInterval: 1.5
   weaponRotationOffset: 0
   timeToNextAttack: 0
-  defaultDamageDealer: {fileID: 6401054296400050142, guid: 266dacdea85e54f91bc07acd75ce55fd, type: 3}
+  defaultDamageDealer: {fileID: 2806214178785291526, guid: 266dacdea85e54f91bc07acd75ce55fd, type: 3}
   currentDamageDealer: {fileID: 0}
