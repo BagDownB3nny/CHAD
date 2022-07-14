@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 907556488087875592}
   - component: {fileID: 3425651630734486186}
   - component: {fileID: 5778890725466914817}
-  - component: {fileID: 327398900703215948}
-  - component: {fileID: -6268870850598817981}
   m_Layer: 0
   m_Name: toxicgun
   m_TagString: Untagged
@@ -73,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1858767441
-  m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingLayerID: 811253785
+  m_SortingLayer: 1
+  m_SortingOrder: 20
   m_Sprite: {fileID: -188017837, guid: 64dc524ad01e7466d89f77be068d970a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,48 +98,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 0}
-  damage: 10
+  damage: 2
   targetType: Enemy
-  attackInterval: 1
+  attackInterval: 0.002
   weaponRotationOffset: 0
   timeToNextAttack: 0
   speed: 3
   range: 15
-  accuracy: -20
+  accuracy: -60
   projectileRotationOffset: 0
   projectile: {fileID: 1991839593518248786, guid: 71068b4ac2fb54923b150e6c38faf799, type: 3}
   directionVector: {x: 0, y: 0}
   directionRotation: 0
   bulletDirectionVector: {x: 0, y: 0, z: 0}
   bulletDirectionRotation: 0
-  gunType: 3
---- !u!114 &327398900703215948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264950808175491643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingBase: 0
-  offset: 0
-  runOnce: 0
-  updateInterval: 0.1
---- !u!114 &-6268870850598817981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264950808175491643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c6d8d880848943d8828bca6e4ad919c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  burstInterval: 0.002
-  burstAmount: 5
+  gunType: 1

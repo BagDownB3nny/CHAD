@@ -31,10 +31,7 @@ public enum ServerPackets
     addGun = 22,
     updateEnemySpawnerStats = 23,
     weaponDrop = 24,
-    removeWeaponDrop = 25,
-    addItem = 26,
-    itemDrop = 27,
-    removeItemDrop = 28
+    removeWeaponDrop = 25
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -51,7 +48,7 @@ public enum ClientPackets
     emptyMapLoaded = 10,
     mapLoaded = 11,
     interact = 12,
-    exit = 13
+    exit = 13,
 }
 
 public class Packet : IDisposable

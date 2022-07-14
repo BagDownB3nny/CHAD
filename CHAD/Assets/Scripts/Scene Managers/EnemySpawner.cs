@@ -28,17 +28,15 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        enemiesPerLevel = new List<int>(new int[] { 5, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 });
+        enemiesPerLevel = new List<int>(new int[] { 20, 40, 60, 80, 100 });
         instance = this;
         EnemyDeath.onEnemyDeath += OnEnemyDeath;
         objectiveText = GameUIManager.instance.objectiveText;
-        Random.InitState(Time.time.ToString().GetHashCode());
     }
 
     private void OnDestroy()
     {
         instance = null;
-        EnemyDeath.onEnemyDeath -= OnEnemyDeath;
     }
 
     private void Update()
@@ -54,6 +52,7 @@ public class EnemySpawner : MonoBehaviour
             if (isSpawning && enemiesLeftToSpawn > 0 && timeToNextSpawn <= 0 && enemiesAlive < 0.3 * totalEnemiesToSpawn)
             {
                 int[] coordinates = generateCoordinates();
+                Debug.Log("coordinates: " + coordinates);
                 if (coordinates != null)
                 {
                     Enemies enemy = generateRandomEnemy();
@@ -70,11 +69,11 @@ public class EnemySpawner : MonoBehaviour
     public void StartSpawning()
     {
         isSpawning = true;
-        totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel]) * Server.NumberOfPlayers;
+        Debug.Log("LEVEL " + GameManager.instance.currentLevel);
+        Debug.Log(enemiesPerLevel.Count);
+        totalEnemiesToSpawn = (enemiesPerLevel[GameManager.instance.currentLevel++]) * Server.NumberOfPlayers;
         enemiesLeftToSpawn = totalEnemiesToSpawn;
         timeToNextSpawn = 5.0f;
-        enemiesAlive = 0;
-        enemiesKilled = 0;
 
         UpdateEnemySpawnerStats();
     }
@@ -196,7 +195,7 @@ public class EnemySpawner : MonoBehaviour
         //{
         //    return (Enemies)GameManager.instance.currentLevel + 3;
         //}
-        int randomInt = Random.Range(0, (int)GameManager.instance.enemyPrefabs.Count - 1);
+        int randomInt = Random.Range(0, 2);
         return (Enemies)randomInt;
     }
 
@@ -229,8 +228,6 @@ public class EnemySpawner : MonoBehaviour
         enemiesKilled += 1;
 
         if (enemiesKilled >= totalEnemiesToSpawn) {
-            GameObject.FindGameObjectWithTag("Exit").GetComponent<Exit>().SetOpen();
-            GameUIManager.instance.holeUI.SetActive(true);
             objectiveText.GetComponent<TextMeshProUGUI>().text = "FIND THE EXIT";
         } else {
             objectiveText.GetComponent<TextMeshProUGUI>().text = "KILL ALL ENEMIES\n" + enemiesKilled + "/" + totalEnemiesToSpawn + " KILLED";

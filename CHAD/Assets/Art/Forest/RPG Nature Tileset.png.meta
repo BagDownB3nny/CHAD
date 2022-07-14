@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fafb8237aa33141c9aabaa87e5db6d67
+guid: 79bc9c14a6eeb4150b2736c347d7e73e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 339a10ca842934165914ffa43bf1b317
-      internalID: -570336067
+      spriteID: 8dd126bcf7f3443669e1571cd0b35844
+      internalID: 652375012
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 973301fc811a0466587b899dcdb37812
-      internalID: 684129072
+      spriteID: fa9bc2d9984934d678833a9af448fdbc
+      internalID: 1365631726
       vertices: []
       indices: 
       edges: []
@@ -196,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9863a42088efd4434b809fb16b7c8f01
-      internalID: 837405759
+      spriteID: b1a6e997f7e0b43c784d03ce4e961f77
+      internalID: 1736303135
       vertices: []
       indices: 
       edges: []
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ad8f48629a1b46c7bcd75bfec7ceb10
-      internalID: 971282557
+      spriteID: 47a84f7e72c8e460a882de75a3662538
+      internalID: -1713305421
       vertices: []
       indices: 
       edges: []
@@ -238,8 +238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d1bee27f3a14d9596885657c8e77c4
-      internalID: -948838892
+      spriteID: 0911b97fdd883432689038199f07c272
+      internalID: 1809720090
       vertices: []
       indices: 
       edges: []
@@ -259,8 +259,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0fcbc812a80546d9a47cf6af6c859fd
-      internalID: 1039477420
+      spriteID: 9755c59e03a9e4fe49a04c079a733718
+      internalID: 821176040
       vertices: []
       indices: 
       edges: []
@@ -280,8 +280,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2768371f1787f4a0d9d06517e42d8aa6
-      internalID: 711214004
+      spriteID: 46a047ff2f6884377aa5413c8a1f937f
+      internalID: -1761893539
       vertices: []
       indices: 
       edges: []
@@ -301,8 +301,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bf84dbc613a14b74ae74e399907af38
-      internalID: -67566671
+      spriteID: 4bbbf119adfc34ee4a53fb865dc79bcd
+      internalID: -98657905
       vertices: []
       indices: 
       edges: []
@@ -322,8 +322,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1ae7e3665d7f4e8da79950c64f92a39
-      internalID: 488965653
+      spriteID: e3fc66c3657b4414da61d127e118c5b0
+      internalID: 1167877863
       vertices: []
       indices: 
       edges: []
@@ -343,8 +343,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 484f3821b38c04987a5c7f1ac465f19c
-      internalID: 1672666456
+      spriteID: c59d18adc1d7641189caf25939eb1ffa
+      internalID: 698195419
       vertices: []
       indices: 
       edges: []
@@ -364,8 +364,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2397eed4263114acc999a8ac561efbbb
-      internalID: -793933279
+      spriteID: 48954f2ac60da47eeb489bc4dbefa91c
+      internalID: 1504461107
       vertices: []
       indices: 
       edges: []
@@ -385,8 +385,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 487fd30866cea482584d5e31ef8bc944
-      internalID: -113467363
+      spriteID: 0524e73458c5147708a539e507406113
+      internalID: -2147191891
       vertices: []
       indices: 
       edges: []
@@ -406,56 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dc0117fa22664fb3a7c891337191ea1
-      internalID: 1916314222
+      spriteID: efb8b9a24590749fe841821735ba2c3a
+      internalID: -1169570073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForestHole
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 207
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9594438cf244446a7897bb3122080ebd
-      internalID: 1613276355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ForestHoleClosed
-      rect:
-        serializedVersion: 2
-        x: 181
-        y: 207
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a04a69e0e8374a2e9965f03b4f65bc8
-      internalID: -703557483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_17
+      name: RPG Nature Tileset_14
       rect:
         serializedVersion: 2
         x: 480
@@ -469,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 703ed9c4b83f2401088d23b68fc91eb7
-      internalID: -1947555416
+      spriteID: 1f1ea06ae3d1147f79e4735247fa8c8e
+      internalID: -960565372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_18
+      name: RPG Nature Tileset_15
       rect:
         serializedVersion: 2
         x: 512
@@ -490,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11307c3c337ab4160ad930cbfaff18c8
-      internalID: 1029286673
+      spriteID: d7554f471f92b4df39ac0144ba51323f
+      internalID: -259526924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_19
+      name: RPG Nature Tileset_16
       rect:
         serializedVersion: 2
         x: 544
@@ -511,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c365330d0878a4e9a9208cdb355880a0
-      internalID: -1003057251
+      spriteID: 97a96914963f94e85b7d696c7fc6b7cd
+      internalID: 1652012706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_20
+      name: RPG Nature Tileset_17
       rect:
         serializedVersion: 2
         x: 576
@@ -532,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ad56ba1862074ab39119880fd3a9e6c
-      internalID: -898030176
+      spriteID: dff168664f82444f483567fff31e5366
+      internalID: -1278636842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_21
+      name: RPG Nature Tileset_18
       rect:
         serializedVersion: 2
         x: 608
@@ -553,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 258e6ff2bb9f64ccda4689f69e92617b
-      internalID: -1826353575
+      spriteID: 103623c808625490ea8f25f9d9f11b05
+      internalID: -683629370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_22
+      name: ForestFloor2
       rect:
         serializedVersion: 2
         x: 0
@@ -574,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 285bbd5cf0af64d2bb1be14ad14565d1
-      internalID: -105532993
+      spriteID: 23874b8d9efaa4960a68d0fe3d882e8d
+      internalID: -2006778456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_23
+      name: Water2
       rect:
         serializedVersion: 2
         x: 32
@@ -595,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b3cf8cc88c824928a21d8f3a55fa89a
-      internalID: 187451609
+      spriteID: 74f19d06e79b948d2b52bea3056aa383
+      internalID: -1616962521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_24
+      name: RPG Nature Tileset_21
       rect:
         serializedVersion: 2
         x: 64
@@ -616,8 +574,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ee34d558ff1548539ad4e0efac951a8
-      internalID: -240075587
+      spriteID: 88befbb2f48c74f258fd9675fa5601d5
+      internalID: 1085943497
       vertices: []
       indices: 
       edges: []
@@ -637,8 +595,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5740ec2a0ac14a948a952e807ff98e7
-      internalID: -1709604472
+      spriteID: d9312441cb129447086d035d40924af4
+      internalID: 242972297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG Nature Tileset_23
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0450e248ccc42b098627261c667dc2
+      internalID: 1435901552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG Nature Tileset_24
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40662759154644ce788b5434440773c3
+      internalID: 827281066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG Nature Tileset_25
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f181294926dd4d58b9fd4b89abda7f5
+      internalID: 2106425896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG Nature Tileset_26
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8042895c875214ce1994fc4ee8176864
+      internalID: 1626113347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG Nature Tileset_27
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef3ae38501b74b68aca45b28678e5f3
+      internalID: 65606557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPG Nature Tileset_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe9bb8677de1b4d64b762bbe639d6586
+      internalID: 1996482086
       vertices: []
       indices: 
       edges: []
@@ -647,8 +731,8 @@ TextureImporter:
       name: RPG Nature Tileset_29
       rect:
         serializedVersion: 2
-        x: 480
-        y: 192
+        x: 32
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -658,8 +742,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 562f2d59af4c442e9841699a1eab4c4e
-      internalID: -1174067841
+      spriteID: 0b1e069c137334e4f9411ee068fa0062
+      internalID: -762755796
       vertices: []
       indices: 
       edges: []
@@ -668,8 +752,8 @@ TextureImporter:
       name: RPG Nature Tileset_30
       rect:
         serializedVersion: 2
-        x: 512
-        y: 192
+        x: 64
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -679,8 +763,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4517d046b8e9c49ae87c0a8eb540033e
-      internalID: -1693520910
+      spriteID: 9a215545449d941b6968a296c3e3ae7e
+      internalID: -547247309
       vertices: []
       indices: 
       edges: []
@@ -689,8 +773,8 @@ TextureImporter:
       name: RPG Nature Tileset_31
       rect:
         serializedVersion: 2
-        x: 544
-        y: 192
+        x: 96
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -700,8 +784,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7215a7893c69a45ccbb316b217d5da60
-      internalID: -1477992987
+      spriteID: 031d90a9267204f9bb2acb7bb664acfa
+      internalID: -2039683850
       vertices: []
       indices: 
       edges: []
@@ -710,8 +794,8 @@ TextureImporter:
       name: RPG Nature Tileset_32
       rect:
         serializedVersion: 2
-        x: 576
-        y: 192
+        x: 128
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -721,8 +805,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 255964863476c4c3a8a1c31c00629a8b
-      internalID: 733837395
+      spriteID: 65133bfb2602a49feb7dded32486faa0
+      internalID: 1729248328
       vertices: []
       indices: 
       edges: []
@@ -731,8 +815,8 @@ TextureImporter:
       name: RPG Nature Tileset_33
       rect:
         serializedVersion: 2
-        x: 608
-        y: 192
+        x: 160
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -742,8 +826,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6e77f94dc2874c21ab53afc8b6b7a76
-      internalID: 1846287465
+      spriteID: a34e83046effe4f4188bc3748fa4358f
+      internalID: -48168519
       vertices: []
       indices: 
       edges: []
@@ -752,7 +836,7 @@ TextureImporter:
       name: RPG Nature Tileset_34
       rect:
         serializedVersion: 2
-        x: 0
+        x: 192
         y: 160
         width: 32
         height: 32
@@ -763,8 +847,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afe1617f43e7d479f9ec19dac1c303f4
-      internalID: -946651775
+      spriteID: 34f41e33b3a1646c99eb40be0f944dbe
+      internalID: -1189159359
       vertices: []
       indices: 
       edges: []
@@ -773,7 +857,7 @@ TextureImporter:
       name: RPG Nature Tileset_35
       rect:
         serializedVersion: 2
-        x: 32
+        x: 224
         y: 160
         width: 32
         height: 32
@@ -784,8 +868,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 665ef11c2a2684196875aa4fa3708c03
-      internalID: 1314220264
+      spriteID: 8df740714ee11412283a088c886a96ca
+      internalID: 590056606
       vertices: []
       indices: 
       edges: []
@@ -794,7 +878,7 @@ TextureImporter:
       name: RPG Nature Tileset_36
       rect:
         serializedVersion: 2
-        x: 64
+        x: 256
         y: 160
         width: 32
         height: 32
@@ -805,8 +889,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c7eeb2c2d55b44ada8c95aed1e3b4b9
-      internalID: -21496562
+      spriteID: eb73424be94a547718190bef59f5896f
+      internalID: 1737824144
       vertices: []
       indices: 
       edges: []
@@ -815,7 +899,7 @@ TextureImporter:
       name: RPG Nature Tileset_37
       rect:
         serializedVersion: 2
-        x: 96
+        x: 288
         y: 160
         width: 32
         height: 32
@@ -826,8 +910,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2a9a8a6198ed4dedb64a06c02a4a17a
-      internalID: -1303486206
+      spriteID: 6f01bdd1c63c6497cacbc7e700101db4
+      internalID: -61344626
       vertices: []
       indices: 
       edges: []
@@ -836,7 +920,7 @@ TextureImporter:
       name: RPG Nature Tileset_38
       rect:
         serializedVersion: 2
-        x: 128
+        x: 320
         y: 160
         width: 32
         height: 32
@@ -847,8 +931,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d982409839f54d02950a9bd391c15ef
-      internalID: -1907819378
+      spriteID: 1e79b7dee3cf143ab991df5151ab173c
+      internalID: 967485353
       vertices: []
       indices: 
       edges: []
@@ -857,7 +941,7 @@ TextureImporter:
       name: RPG Nature Tileset_39
       rect:
         serializedVersion: 2
-        x: 160
+        x: 352
         y: 160
         width: 32
         height: 32
@@ -868,8 +952,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb8758174d94448008aaa457a50b6aac
-      internalID: 244936357
+      spriteID: 459b29f044d9943d494d6cc251f52485
+      internalID: 1721912465
       vertices: []
       indices: 
       edges: []
@@ -878,7 +962,7 @@ TextureImporter:
       name: RPG Nature Tileset_40
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 160
         width: 32
         height: 32
@@ -889,8 +973,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a5b86061787647bd92c6ded4e80ad00
-      internalID: 229965646
+      spriteID: 1418f72c2077147cebf5f82615d34273
+      internalID: -1568765880
       vertices: []
       indices: 
       edges: []
@@ -899,7 +983,7 @@ TextureImporter:
       name: RPG Nature Tileset_41
       rect:
         serializedVersion: 2
-        x: 224
+        x: 416
         y: 160
         width: 32
         height: 32
@@ -910,8 +994,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70e86dca823794b5cace48d02dc6b526
-      internalID: -197514899
+      spriteID: 59f36f18adc17408bb54d46a8abef4b9
+      internalID: -1798637748
       vertices: []
       indices: 
       edges: []
@@ -920,7 +1004,7 @@ TextureImporter:
       name: RPG Nature Tileset_42
       rect:
         serializedVersion: 2
-        x: 256
+        x: 448
         y: 160
         width: 32
         height: 32
@@ -931,8 +1015,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10e6116b44702498d93ab1f2b34a3ced
-      internalID: -1725319629
+      spriteID: 23c6583fa937f4728bc9aed1964791c9
+      internalID: 13028129
       vertices: []
       indices: 
       edges: []
@@ -941,7 +1025,7 @@ TextureImporter:
       name: RPG Nature Tileset_43
       rect:
         serializedVersion: 2
-        x: 288
+        x: 480
         y: 160
         width: 32
         height: 32
@@ -952,18 +1036,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c9b843f7eec24a7a8c12cbdace1ae5e
-      internalID: 2086390647
+      spriteID: 615bb2eefa51f4e9ba3f3da73bba639d
+      internalID: 175974765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vktj
+      name: RPG Nature Tileset_44
       rect:
         serializedVersion: 2
-        x: 327
-        y: 207
+        x: 512
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -973,8 +1057,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59c70309605774a70bcb0e4d1d2f1108
-      internalID: 101163022
+      spriteID: 100938ec9394c483aa2fdaeb3b166c13
+      internalID: -1881107323
       vertices: []
       indices: 
       edges: []
@@ -983,7 +1067,7 @@ TextureImporter:
       name: RPG Nature Tileset_45
       rect:
         serializedVersion: 2
-        x: 352
+        x: 544
         y: 160
         width: 32
         height: 32
@@ -994,8 +1078,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf70c71935c814a1eb173f73d225b2e2
-      internalID: 2030610916
+      spriteID: 1020b7175b9554159875d8c138ebd039
+      internalID: 156173854
       vertices: []
       indices: 
       edges: []
@@ -1004,7 +1088,7 @@ TextureImporter:
       name: RPG Nature Tileset_46
       rect:
         serializedVersion: 2
-        x: 384
+        x: 576
         y: 160
         width: 32
         height: 32
@@ -1015,8 +1099,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f88c641aac3e421f94a3b156fe89186
-      internalID: -260270203
+      spriteID: 85882b2969da942e4966808447c214b4
+      internalID: 1350273518
       vertices: []
       indices: 
       edges: []
@@ -1025,7 +1109,7 @@ TextureImporter:
       name: RPG Nature Tileset_47
       rect:
         serializedVersion: 2
-        x: 416
+        x: 608
         y: 160
         width: 32
         height: 32
@@ -1036,8 +1120,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe8562d4f582f4dcdb063404146b2ce9
-      internalID: -356312708
+      spriteID: 491469d02e0db4bc9ad5f0e43d700488
+      internalID: -218802808
       vertices: []
       indices: 
       edges: []
@@ -1046,8 +1130,8 @@ TextureImporter:
       name: RPG Nature Tileset_48
       rect:
         serializedVersion: 2
-        x: 448
-        y: 160
+        x: 0
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -1057,18 +1141,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e49bbd304866b4da6a3870979a8385cf
-      internalID: -963290155
+      spriteID: 967e236baaf954773a95ea1768162284
+      internalID: -410061162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_49
+      name: ForestFloor
       rect:
         serializedVersion: 2
-        x: 480
-        y: 160
+        x: 32
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -1078,8 +1162,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e028df4c3a4643359e6b031d1bcf95b
-      internalID: 785330808
+      spriteID: fa0b24af652b247f1b532a621d56f54e
+      internalID: 1525520721
       vertices: []
       indices: 
       edges: []
@@ -1088,8 +1172,8 @@ TextureImporter:
       name: RPG Nature Tileset_50
       rect:
         serializedVersion: 2
-        x: 512
-        y: 160
+        x: 64
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -1099,8 +1183,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bc06fec44eaf46299723c6d795706cf
-      internalID: -327400268
+      spriteID: d62fef2375d6942159871a5ad1188573
+      internalID: -340548950
       vertices: []
       indices: 
       edges: []
@@ -1109,8 +1193,8 @@ TextureImporter:
       name: RPG Nature Tileset_51
       rect:
         serializedVersion: 2
-        x: 544
-        y: 160
+        x: 96
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -1120,8 +1204,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 150f7259c893b42ceb312bb680f1ebc0
-      internalID: -2066409969
+      spriteID: 87037a986911147aaac7c004fdd17ed0
+      internalID: 1817932083
       vertices: []
       indices: 
       edges: []
@@ -1130,8 +1214,8 @@ TextureImporter:
       name: RPG Nature Tileset_52
       rect:
         serializedVersion: 2
-        x: 576
-        y: 160
+        x: 128
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -1141,8 +1225,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c4803cfe8ffd4854a8f5519de53fc75
-      internalID: -887522446
+      spriteID: 10f37a674781a4c4fa5c5a4830b97759
+      internalID: -767652351
       vertices: []
       indices: 
       edges: []
@@ -1151,8 +1235,8 @@ TextureImporter:
       name: RPG Nature Tileset_53
       rect:
         serializedVersion: 2
-        x: 608
-        y: 160
+        x: 160
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -1162,8 +1246,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5194460799004432e9cb7ef49b0b8647
-      internalID: 361388743
+      spriteID: da7555ce13058494f9cef5cf2eb021cc
+      internalID: -1347101255
       vertices: []
       indices: 
       edges: []
@@ -1172,7 +1256,7 @@ TextureImporter:
       name: RPG Nature Tileset_54
       rect:
         serializedVersion: 2
-        x: 0
+        x: 192
         y: 128
         width: 32
         height: 32
@@ -1183,8 +1267,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1ec27147500d4f91980ab14b9a63576
-      internalID: -1332339827
+      spriteID: 206c0d7fb729a446badee6bb3e0fada2
+      internalID: 151630829
       vertices: []
       indices: 
       edges: []
@@ -1193,7 +1277,7 @@ TextureImporter:
       name: RPG Nature Tileset_55
       rect:
         serializedVersion: 2
-        x: 32
+        x: 224
         y: 128
         width: 32
         height: 32
@@ -1204,8 +1288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a4a3e75f50724ffeae04ec0cd138d88
-      internalID: -1415487139
+      spriteID: a599e4499895e41948052b4f9e180d74
+      internalID: -1368161546
       vertices: []
       indices: 
       edges: []
@@ -1214,7 +1298,7 @@ TextureImporter:
       name: RPG Nature Tileset_56
       rect:
         serializedVersion: 2
-        x: 64
+        x: 256
         y: 128
         width: 32
         height: 32
@@ -1225,8 +1309,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f05d2f635be0417f9cdb50b6c7d6924
-      internalID: -1812434435
+      spriteID: a6ea549da2ffb42e79639244e266b9fe
+      internalID: 1747208605
       vertices: []
       indices: 
       edges: []
@@ -1235,7 +1319,7 @@ TextureImporter:
       name: RPG Nature Tileset_57
       rect:
         serializedVersion: 2
-        x: 96
+        x: 288
         y: 128
         width: 32
         height: 32
@@ -1246,8 +1330,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58c4b52e4e826463dacf3ef20da2e083
-      internalID: -115786740
+      spriteID: dc216cdd179714efca648925daee22ef
+      internalID: 718914729
       vertices: []
       indices: 
       edges: []
@@ -1256,7 +1340,7 @@ TextureImporter:
       name: RPG Nature Tileset_58
       rect:
         serializedVersion: 2
-        x: 128
+        x: 320
         y: 128
         width: 32
         height: 32
@@ -1267,8 +1351,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac5660e060d674cbd96937d5e3674899
-      internalID: 883938667
+      spriteID: 8dbbe2d16785f4760ade6a4827cb9739
+      internalID: -1374300948
       vertices: []
       indices: 
       edges: []
@@ -1277,7 +1361,7 @@ TextureImporter:
       name: RPG Nature Tileset_59
       rect:
         serializedVersion: 2
-        x: 160
+        x: 352
         y: 128
         width: 32
         height: 32
@@ -1288,8 +1372,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee1e0f32acd674b59b24cf914b2b294e
-      internalID: 16748453
+      spriteID: 18614c6107f3f4b7499152d755b21c22
+      internalID: -584326852
       vertices: []
       indices: 
       edges: []
@@ -1298,7 +1382,7 @@ TextureImporter:
       name: RPG Nature Tileset_60
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 128
         width: 32
         height: 32
@@ -1309,8 +1393,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce484fdfd33fa45ba964891164069b2b
-      internalID: 709501997
+      spriteID: 30c8e94e7c8be4ab1a231f3ac09343ff
+      internalID: -1984957503
       vertices: []
       indices: 
       edges: []
@@ -1319,7 +1403,7 @@ TextureImporter:
       name: RPG Nature Tileset_61
       rect:
         serializedVersion: 2
-        x: 224
+        x: 416
         y: 128
         width: 32
         height: 32
@@ -1330,8 +1414,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1360f326a709846a28975b5ce6d64a82
-      internalID: 2069950187
+      spriteID: f0d41bb8404c144f7a3196637cdd4533
+      internalID: -325501621
       vertices: []
       indices: 
       edges: []
@@ -1340,7 +1424,7 @@ TextureImporter:
       name: RPG Nature Tileset_62
       rect:
         serializedVersion: 2
-        x: 256
+        x: 448
         y: 128
         width: 32
         height: 32
@@ -1351,8 +1435,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23b18936daf29472ebde4ac30205f3dc
-      internalID: 1434367905
+      spriteID: e2e53bc5dcf2947b7a1a8b3906db8d16
+      internalID: 2088973048
       vertices: []
       indices: 
       edges: []
@@ -1361,7 +1445,7 @@ TextureImporter:
       name: RPG Nature Tileset_63
       rect:
         serializedVersion: 2
-        x: 288
+        x: 480
         y: 128
         width: 32
         height: 32
@@ -1372,8 +1456,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f87d0206337944799b1ceed4e560ea61
-      internalID: 1156162603
+      spriteID: b17e0fbbbb40c43e0902f5a5257a0341
+      internalID: -401257242
       vertices: []
       indices: 
       edges: []
@@ -1382,7 +1466,7 @@ TextureImporter:
       name: RPG Nature Tileset_64
       rect:
         serializedVersion: 2
-        x: 320
+        x: 512
         y: 128
         width: 32
         height: 32
@@ -1393,8 +1477,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1e9cd84d46bc466eb250de58a09e7f6
-      internalID: -2071204127
+      spriteID: 6848e25cd0d394d02851b57bdb2177e1
+      internalID: -2103336292
       vertices: []
       indices: 
       edges: []
@@ -1403,7 +1487,7 @@ TextureImporter:
       name: RPG Nature Tileset_65
       rect:
         serializedVersion: 2
-        x: 352
+        x: 544
         y: 128
         width: 32
         height: 32
@@ -1414,8 +1498,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 956f686691b164aa2a42ff6e76679ce2
-      internalID: -847742191
+      spriteID: 9e2581f8eb5c649989bde3001e73df99
+      internalID: -2085032982
       vertices: []
       indices: 
       edges: []
@@ -1424,7 +1508,7 @@ TextureImporter:
       name: RPG Nature Tileset_66
       rect:
         serializedVersion: 2
-        x: 384
+        x: 576
         y: 128
         width: 32
         height: 32
@@ -1435,8 +1519,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06dd3a0ceed6a47b18e54beeb3e55d3b
-      internalID: -1033069968
+      spriteID: 8437bc5500a0d41c5af166c0087482f7
+      internalID: -787447991
       vertices: []
       indices: 
       edges: []
@@ -1445,7 +1529,7 @@ TextureImporter:
       name: RPG Nature Tileset_67
       rect:
         serializedVersion: 2
-        x: 416
+        x: 608
         y: 128
         width: 32
         height: 32
@@ -1456,8 +1540,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6ed7d92690304e0e809a064f1cd3af5
-      internalID: 2027247792
+      spriteID: b18619c370e9246a6a1c391818aa11c9
+      internalID: 911649607
       vertices: []
       indices: 
       edges: []
@@ -1466,8 +1550,8 @@ TextureImporter:
       name: RPG Nature Tileset_68
       rect:
         serializedVersion: 2
-        x: 448
-        y: 128
+        x: 0
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1477,8 +1561,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c96c1f62ae20843049fef8312aa4d74a
-      internalID: 1250144688
+      spriteID: 906b31d5daf754e6085a6b968488db0f
+      internalID: 1747025360
       vertices: []
       indices: 
       edges: []
@@ -1487,8 +1571,8 @@ TextureImporter:
       name: RPG Nature Tileset_69
       rect:
         serializedVersion: 2
-        x: 480
-        y: 128
+        x: 32
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1498,8 +1582,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6599fd9c285294c86b4fad3dc2c56ddb
-      internalID: -1924409602
+      spriteID: bc9bb9b862cfd459894576287e1c13cf
+      internalID: -295383026
       vertices: []
       indices: 
       edges: []
@@ -1508,8 +1592,8 @@ TextureImporter:
       name: RPG Nature Tileset_70
       rect:
         serializedVersion: 2
-        x: 512
-        y: 128
+        x: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1519,8 +1603,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7bf3175e6dc440b28352bf645f8a626
-      internalID: 1282429068
+      spriteID: 00b44efa0d2234b179699c408fbbd31f
+      internalID: 16480291
       vertices: []
       indices: 
       edges: []
@@ -1529,8 +1613,8 @@ TextureImporter:
       name: RPG Nature Tileset_71
       rect:
         serializedVersion: 2
-        x: 544
-        y: 128
+        x: 96
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1540,8 +1624,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cf173a4072b24f94963ee2956d7e5a4
-      internalID: 1720487244
+      spriteID: f406f9246f9d3406cb6f9ea54301887b
+      internalID: 309415901
       vertices: []
       indices: 
       edges: []
@@ -1550,8 +1634,8 @@ TextureImporter:
       name: RPG Nature Tileset_72
       rect:
         serializedVersion: 2
-        x: 576
-        y: 128
+        x: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1561,8 +1645,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49b994d6b313d4ddf9e62ed712073056
-      internalID: 563635613
+      spriteID: 8921f4c13621b4785b898e2f49d92781
+      internalID: -1754881354
       vertices: []
       indices: 
       edges: []
@@ -1571,8 +1655,8 @@ TextureImporter:
       name: RPG Nature Tileset_73
       rect:
         serializedVersion: 2
-        x: 608
-        y: 128
+        x: 160
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1582,8 +1666,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f84c1bb7169244cf5bed6845d325e7e8
-      internalID: -1896475394
+      spriteID: f4af630ce383642d185d4424e1b306d3
+      internalID: 473402534
       vertices: []
       indices: 
       edges: []
@@ -1592,7 +1676,7 @@ TextureImporter:
       name: RPG Nature Tileset_74
       rect:
         serializedVersion: 2
-        x: 0
+        x: 192
         y: 96
         width: 32
         height: 32
@@ -1603,8 +1687,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00cd73e2125ae459195cb0ab07e0c37a
-      internalID: 2125144828
+      spriteID: dd4a3b85d6bff4dccb47c9a956ce84f6
+      internalID: 1581022077
       vertices: []
       indices: 
       edges: []
@@ -1613,7 +1697,7 @@ TextureImporter:
       name: RPG Nature Tileset_75
       rect:
         serializedVersion: 2
-        x: 32
+        x: 224
         y: 96
         width: 32
         height: 32
@@ -1624,8 +1708,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fca5358c0df2c418f931dd2a579d7d95
-      internalID: -439820803
+      spriteID: 16aa9ab2ac90c43d7bfbaaa6ffbc3262
+      internalID: 1785298467
       vertices: []
       indices: 
       edges: []
@@ -1634,7 +1718,7 @@ TextureImporter:
       name: RPG Nature Tileset_76
       rect:
         serializedVersion: 2
-        x: 64
+        x: 256
         y: 96
         width: 32
         height: 32
@@ -1645,8 +1729,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c616a676a6f94677aa597e30c28a5bf
-      internalID: -2017416413
+      spriteID: 188eb1b9715d5449dbb137c62e42f98b
+      internalID: 643029057
       vertices: []
       indices: 
       edges: []
@@ -1655,7 +1739,7 @@ TextureImporter:
       name: RPG Nature Tileset_77
       rect:
         serializedVersion: 2
-        x: 96
+        x: 288
         y: 96
         width: 32
         height: 32
@@ -1666,8 +1750,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fda0d724788074cf39006a1459091e1d
-      internalID: -469851394
+      spriteID: 747f3e832e1f9486d8df9d04ed382783
+      internalID: 617851990
       vertices: []
       indices: 
       edges: []
@@ -1676,7 +1760,7 @@ TextureImporter:
       name: RPG Nature Tileset_78
       rect:
         serializedVersion: 2
-        x: 128
+        x: 320
         y: 96
         width: 32
         height: 32
@@ -1687,8 +1771,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e7733fcc86a6417da3cdaf014ad538f
-      internalID: 1986084036
+      spriteID: 1a0a3b0e4232349d897b8c09227f6d81
+      internalID: 1684233131
       vertices: []
       indices: 
       edges: []
@@ -1697,7 +1781,7 @@ TextureImporter:
       name: RPG Nature Tileset_79
       rect:
         serializedVersion: 2
-        x: 160
+        x: 352
         y: 96
         width: 32
         height: 32
@@ -1708,8 +1792,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f3769f91995f4dcda0d3dd1c11ebae0
-      internalID: -1748381457
+      spriteID: b852512f8502944d58e07c874f7991f3
+      internalID: -1985112094
       vertices: []
       indices: 
       edges: []
@@ -1718,7 +1802,7 @@ TextureImporter:
       name: RPG Nature Tileset_80
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 96
         width: 32
         height: 32
@@ -1729,8 +1813,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6673ba7f05c2842ff862a41a462083cc
-      internalID: 1052074289
+      spriteID: c27d04582c6b441cb8fb40e1f4132051
+      internalID: 939087686
       vertices: []
       indices: 
       edges: []
@@ -1739,7 +1823,7 @@ TextureImporter:
       name: RPG Nature Tileset_81
       rect:
         serializedVersion: 2
-        x: 224
+        x: 416
         y: 96
         width: 32
         height: 32
@@ -1750,8 +1834,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8548f8fde34864c46af1c6ae02509f0d
-      internalID: -1098393560
+      spriteID: 5933f765677d94d8ca9f958c1e7dad05
+      internalID: 1451678538
       vertices: []
       indices: 
       edges: []
@@ -1760,7 +1844,7 @@ TextureImporter:
       name: RPG Nature Tileset_82
       rect:
         serializedVersion: 2
-        x: 256
+        x: 448
         y: 96
         width: 32
         height: 32
@@ -1771,8 +1855,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dcd2666fcaa446c88a6b2a750864d56
-      internalID: 1855701033
+      spriteID: 6779e300db4854e23adebdb8685a3f63
+      internalID: 15151090
       vertices: []
       indices: 
       edges: []
@@ -1781,7 +1865,7 @@ TextureImporter:
       name: RPG Nature Tileset_83
       rect:
         serializedVersion: 2
-        x: 288
+        x: 480
         y: 96
         width: 32
         height: 32
@@ -1792,8 +1876,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a246e46f61114f35874672172581fad
-      internalID: -1984007254
+      spriteID: 5ad6f764f5fb64e9594d5432e2596751
+      internalID: 90776889
       vertices: []
       indices: 
       edges: []
@@ -1802,7 +1886,7 @@ TextureImporter:
       name: RPG Nature Tileset_84
       rect:
         serializedVersion: 2
-        x: 320
+        x: 512
         y: 96
         width: 32
         height: 32
@@ -1813,8 +1897,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b112efece7b034303b1bfb15062328b6
-      internalID: -2026543130
+      spriteID: c0d95288696394fa89e3af4ef297d525
+      internalID: 720060285
       vertices: []
       indices: 
       edges: []
@@ -1823,7 +1907,7 @@ TextureImporter:
       name: RPG Nature Tileset_85
       rect:
         serializedVersion: 2
-        x: 352
+        x: 544
         y: 96
         width: 32
         height: 32
@@ -1834,8 +1918,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 701b287aebe0e46d4b176f1ad4c0afb5
-      internalID: -243266340
+      spriteID: 5fe3a7aa8b5dc47feaa790e4f51ddd0d
+      internalID: 1218576896
       vertices: []
       indices: 
       edges: []
@@ -1844,132 +1928,6 @@ TextureImporter:
       name: RPG Nature Tileset_86
       rect:
         serializedVersion: 2
-        x: 384
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebd245cabb84a4826b5f72691196eca7
-      internalID: -770421358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_87
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5806f92d3f2448959289a781cc45224
-      internalID: 1522036770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_88
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2a9134e2427843c9b8d165ec0570029
-      internalID: 1850665439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_89
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c91ad8261ec674e5088345d252208d18
-      internalID: -416664016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_90
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17d540d4af2854a6992f72e4de4d045b
-      internalID: 938263543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_91
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f572272bf572d45e7b83f59b89fb9ecb
-      internalID: -1370133961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RPG Nature Tileset_92
-      rect:
-        serializedVersion: 2
         x: 576
         y: 96
         width: 32
@@ -1981,14 +1939,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30f6802d1b45946d3bcf0884e01464e2
-      internalID: 2046299207
+      spriteID: 496b950c58f3b4b2eaba83ffbdff1c16
+      internalID: -1154696292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_93
+      name: RPG Nature Tileset_87
       rect:
         serializedVersion: 2
         x: 608
@@ -2002,14 +1960,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5b1b47cd20804d64ac5bdbae00ebef2
-      internalID: -2015123419
+      spriteID: 7f9a59d69e59e4071b198e5bd806b9e1
+      internalID: 1346178114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_94
+      name: RPG Nature Tileset_88
       rect:
         serializedVersion: 2
         x: 0
@@ -2023,14 +1981,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 512b69353539f4280ba4f84dc25b203d
-      internalID: 2047440462
+      spriteID: 336ba196afc5b4e52b58023f03fcd9c5
+      internalID: 1844682575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_95
+      name: RPG Nature Tileset_89
       rect:
         serializedVersion: 2
         x: 32
@@ -2044,14 +2002,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 783cbe509bb8f46ce9e3027f2f5e95d1
-      internalID: -840247962
+      spriteID: 38f6369298c154c40ace77543f4a3a37
+      internalID: 1191973133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_96
+      name: RPG Nature Tileset_90
       rect:
         serializedVersion: 2
         x: 64
@@ -2065,14 +2023,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72b5331b02e6542f1bcfe94f4e7f49e8
-      internalID: 192974898
+      spriteID: 7538449f106a34f23b7fb7976e4dc7ce
+      internalID: -1824430213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_97
+      name: RPG Nature Tileset_91
       rect:
         serializedVersion: 2
         x: 96
@@ -2086,14 +2044,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce377f4065dac437b99fdace589fcd7f
-      internalID: -173719328
+      spriteID: a4b7e0c1c6ff240a182ff4887de0e251
+      internalID: -41038532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_98
+      name: RPG Nature Tileset_92
       rect:
         serializedVersion: 2
         x: 128
@@ -2107,14 +2065,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 585c8d777201447c5ace5b0533b064f8
-      internalID: -2107647044
+      spriteID: dde33395a91ca485192b04a6ad2cf2cd
+      internalID: 671311364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_99
+      name: RPG Nature Tileset_93
       rect:
         serializedVersion: 2
         x: 160
@@ -2128,14 +2086,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c80cdf0abea01468c99a124831c2e90e
-      internalID: -1694592712
+      spriteID: d0716f3c23f1244f7872ddb2a88a4337
+      internalID: 1733408498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_100
+      name: RPG Nature Tileset_94
       rect:
         serializedVersion: 2
         x: 192
@@ -2149,14 +2107,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 196ab26ce910340e08fda74ee740e796
-      internalID: -1618553659
+      spriteID: 5c47745b81e6a483d83ea32409a4ead5
+      internalID: 1275392952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_101
+      name: RPG Nature Tileset_95
       rect:
         serializedVersion: 2
         x: 224
@@ -2170,14 +2128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91f65f276b08f4513a4a730cc2e644d2
-      internalID: -909865144
+      spriteID: d71944530238e4d11a1e45f03692d6d9
+      internalID: 144291799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_102
+      name: RPG Nature Tileset_96
       rect:
         serializedVersion: 2
         x: 256
@@ -2191,14 +2149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53a1370d9ee934417b1576bd8ee61468
-      internalID: 1717287275
+      spriteID: 7d49ac21cf54840f48f8c2f507f003ee
+      internalID: 1410331411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_103
+      name: RPG Nature Tileset_97
       rect:
         serializedVersion: 2
         x: 288
@@ -2212,14 +2170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d11653a46d4fe43a4a06707a79bbdc32
-      internalID: 568119436
+      spriteID: d5037562893c2499799b54cd0b9aa99f
+      internalID: 1983149890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_104
+      name: RPG Nature Tileset_98
       rect:
         serializedVersion: 2
         x: 320
@@ -2233,14 +2191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d384f601eb054237a41d43138a0fa07
-      internalID: 1373398380
+      spriteID: 011719c50b09548aa8a20deb2f284899
+      internalID: 1227478416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_105
+      name: RPG Nature Tileset_99
       rect:
         serializedVersion: 2
         x: 352
@@ -2254,14 +2212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53820bb334b6a4599ac07b9c9fe3c416
-      internalID: 1042905214
+      spriteID: bf35e6f0eb5f14d12a08c88321482593
+      internalID: -1621824399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_106
+      name: RPG Nature Tileset_100
       rect:
         serializedVersion: 2
         x: 384
@@ -2275,14 +2233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25b87c5a0d6084143a01d7f120b813a0
-      internalID: 1987301983
+      spriteID: 6fcf686e39c314afc8005fe06411284c
+      internalID: 291337863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_107
+      name: RPG Nature Tileset_101
       rect:
         serializedVersion: 2
         x: 416
@@ -2296,14 +2254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6e3e45b6e14b4c0591fdef2b8e1968a
-      internalID: 1382082282
+      spriteID: 80a2e7d492d7f42a8a6abadce08f8b27
+      internalID: 1680297391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_108
+      name: RPG Nature Tileset_102
       rect:
         serializedVersion: 2
         x: 448
@@ -2317,14 +2275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36481830d30004006adc6eb1f33bf0ba
-      internalID: -1423372293
+      spriteID: c6d0fa94fa096446095fd813d8eec246
+      internalID: 1132536438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_109
+      name: RPG Nature Tileset_103
       rect:
         serializedVersion: 2
         x: 480
@@ -2338,14 +2296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78bc078c534004d4caad8ee379b012c0
-      internalID: 278406757
+      spriteID: d56f5928ac9ff406390645e19fc9a6c7
+      internalID: 1661922445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_110
+      name: RPG Nature Tileset_104
       rect:
         serializedVersion: 2
         x: 512
@@ -2359,14 +2317,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e52594fffdcd4c1eb2d047b216968a5
-      internalID: 1418268030
+      spriteID: cef6600827235466a85c64018391f650
+      internalID: 1907573684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_111
+      name: RPG Nature Tileset_105
       rect:
         serializedVersion: 2
         x: 544
@@ -2380,14 +2338,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b01ad19dacc9440cbbecb7155b3fb36
-      internalID: -1768111535
+      spriteID: 38290f2b52e1e41e98159110e78e372e
+      internalID: 640221833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_112
+      name: RPG Nature Tileset_106
       rect:
         serializedVersion: 2
         x: 576
@@ -2401,14 +2359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b38f7745ae3474a109bd3151e95fca6a
-      internalID: 978686355
+      spriteID: 9271c30ae96fe40b9b177f180f9f90d4
+      internalID: -549498930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_113
+      name: RPG Nature Tileset_107
       rect:
         serializedVersion: 2
         x: 608
@@ -2422,14 +2380,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e66706087d0ee4b989389ecdd76a7471
-      internalID: -1458708308
+      spriteID: bcb344e1194d04332aee2260332754d5
+      internalID: 538316071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_114
+      name: RPG Nature Tileset_108
       rect:
         serializedVersion: 2
         x: 0
@@ -2443,14 +2401,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c20e16492107f4dcf9721d3a80c38bb5
-      internalID: 1997426621
+      spriteID: 7d454c493f6164983a278cc8967156e3
+      internalID: -565257546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor
+      name: RPG Nature Tileset_109
       rect:
         serializedVersion: 2
         x: 32
@@ -2464,14 +2422,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2633d1537e6334984819411cfa5609e0
-      internalID: -2074323082
+      spriteID: 135df0d5dd9e447ecb8fdae80b6b1b2a
+      internalID: 1872169948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_116
+      name: RPG Nature Tileset_110
       rect:
         serializedVersion: 2
         x: 64
@@ -2485,14 +2443,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b5af5d7a0d684c0d90dfd359341a13d
-      internalID: -210461198
+      spriteID: 19a2872b684104b7d8742ec0d2f2204e
+      internalID: 823062855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_117
+      name: RPG Nature Tileset_111
       rect:
         serializedVersion: 2
         x: 96
@@ -2506,14 +2464,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 102af03afb73a4efa82efcb634a49ea8
-      internalID: 1839154499
+      spriteID: dd9eafadcdf5b4921b3acffda2fda495
+      internalID: -175898374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_118
+      name: RPG Nature Tileset_112
       rect:
         serializedVersion: 2
         x: 128
@@ -2527,14 +2485,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f176b115b6f2743e3a4b306edade033a
-      internalID: 351772242
+      spriteID: ac67c4a544ce74a28b00e2243066cc02
+      internalID: 529949565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_119
+      name: RPG Nature Tileset_113
       rect:
         serializedVersion: 2
         x: 160
@@ -2548,14 +2506,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 087e05194c7f74dc3bc7c8628ccf7903
-      internalID: -1748406445
+      spriteID: cf09feed320604526931eea12b7c171b
+      internalID: -2079793533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_120
+      name: RPG Nature Tileset_114
       rect:
         serializedVersion: 2
         x: 192
@@ -2569,14 +2527,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9d253f91f6a54909a3644660fef3ade
-      internalID: -1881505475
+      spriteID: 384e4ce82e2cd4ec3b73c01df3dc4308
+      internalID: -252572747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_121
+      name: RPG Nature Tileset_115
       rect:
         serializedVersion: 2
         x: 224
@@ -2590,14 +2548,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 195c806bda84f40099f7de739b93551e
-      internalID: 2013258028
+      spriteID: eddfb7ac2fc25498f9b28616f5af0af0
+      internalID: 942987936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_122
+      name: RPG Nature Tileset_116
       rect:
         serializedVersion: 2
         x: 256
@@ -2611,14 +2569,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99979bba98a7e4ef2a9e7e9ca9ed7947
-      internalID: -1032336260
+      spriteID: e9856dd7a8e494ec9a394cf177c85c69
+      internalID: 294527942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_123
+      name: RPG Nature Tileset_117
       rect:
         serializedVersion: 2
         x: 288
@@ -2632,14 +2590,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 795e28353cc9c4dd4a1a46910cc5dda4
-      internalID: 754049724
+      spriteID: a7c7bf2ca43e345e39491f4c9d3af13a
+      internalID: 835427414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_124
+      name: RPG Nature Tileset_118
       rect:
         serializedVersion: 2
         x: 320
@@ -2653,8 +2611,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a71e213634961471b8d5b463a960fce9
-      internalID: -503550044
+      spriteID: 2a163124fa5f94c22b24857d89035fbd
+      internalID: 1087735391
       vertices: []
       indices: 
       edges: []
@@ -2674,14 +2632,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0431ff186e9c1402fbef573f42b859f9
-      internalID: 55744825
+      spriteID: 5dc1bc1798fb84661b0642bd1461746c
+      internalID: 412593780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_126
+      name: RPG Nature Tileset_120
       rect:
         serializedVersion: 2
         x: 384
@@ -2695,14 +2653,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0f7abda1c95245d8bfaf88b912ebcde
-      internalID: -1771283180
+      spriteID: af3504c2088404a88b5708bb8dcf2cbf
+      internalID: 1621474130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_127
+      name: RPG Nature Tileset_121
       rect:
         serializedVersion: 2
         x: 416
@@ -2716,14 +2674,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f85e9d5fee576422fb1b6528651cf8b4
-      internalID: 1246992040
+      spriteID: e143c845337ee459c818f623b40c7ffa
+      internalID: -741914926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_128
+      name: RPG Nature Tileset_122
       rect:
         serializedVersion: 2
         x: 448
@@ -2737,14 +2695,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bf323bf0e62e4dab9ddbf7bf610474b
-      internalID: 814000417
+      spriteID: 945313e24b1cf4c1dbb37dffa9343fe7
+      internalID: 65976170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_129
+      name: RPG Nature Tileset_123
       rect:
         serializedVersion: 2
         x: 480
@@ -2758,14 +2716,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 894eb8e5c766c409aa402f701bfcbab2
-      internalID: 1792347767
+      spriteID: 8920b8163174341b19496605a126ba6b
+      internalID: -537504836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_130
+      name: RPG Nature Tileset_124
       rect:
         serializedVersion: 2
         x: 512
@@ -2779,14 +2737,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6c9c46fc06964046ae5be66c8d8e064
-      internalID: 890766989
+      spriteID: 438fe2595c51b4b6d8de633ce79bd71a
+      internalID: 1077070878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_131
+      name: RPG Nature Tileset_125
       rect:
         serializedVersion: 2
         x: 544
@@ -2800,14 +2758,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0136bbd39bb74ce09b93910d3434ed4
-      internalID: 388371005
+      spriteID: 0739069d64d94498aa30c68a4b237389
+      internalID: 859309936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_132
+      name: RPG Nature Tileset_126
       rect:
         serializedVersion: 2
         x: 576
@@ -2821,14 +2779,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 329f471f0f68a4ca2833bb383c342a29
-      internalID: 902623222
+      spriteID: 4367a430644534c5f9573bacc6f91518
+      internalID: 1055619917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_133
+      name: RPG Nature Tileset_127
       rect:
         serializedVersion: 2
         x: 608
@@ -2842,14 +2800,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4b8be19a517540abb3b22127e93639c
-      internalID: -1604046788
+      spriteID: 802d2414722c74ac5a6459b437be6751
+      internalID: -1409508963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_134
+      name: RPG Nature Tileset_128
       rect:
         serializedVersion: 2
         x: 0
@@ -2863,14 +2821,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 309aee51805434ed2963cb7f66ecd970
-      internalID: -1774202661
+      spriteID: 7441dca8f7912422cad9673ec3e4aa7a
+      internalID: -1023375772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_135
+      name: RPG Nature Tileset_129
       rect:
         serializedVersion: 2
         x: 32
@@ -2884,14 +2842,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f687dc2b5481b42dca38c45b72a0cdd8
-      internalID: 970126525
+      spriteID: 761412eb99e13404d838cadeb9b9e8a0
+      internalID: -1583237680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_136
+      name: RPG Nature Tileset_130
       rect:
         serializedVersion: 2
         x: 64
@@ -2905,14 +2863,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea79e1f011c8c46fa80f631cbb925fd1
-      internalID: 1638566886
+      spriteID: 96e9f0de5cdaa4eff8ab2647529fa2c7
+      internalID: -585374858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_137
+      name: RPG Nature Tileset_131
       rect:
         serializedVersion: 2
         x: 96
@@ -2926,14 +2884,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5658fb62c79e4634aff3998453b2621
-      internalID: 311806961
+      spriteID: 98f630cbc644c4e7aa7d922791c25268
+      internalID: -166256070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_138
+      name: RPG Nature Tileset_132
       rect:
         serializedVersion: 2
         x: 128
@@ -2947,14 +2905,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 187fd3d59e5004854a14ef5e23db67c1
-      internalID: 1865682242
+      spriteID: 4b15d90f3958148b1b4a22a4020ce751
+      internalID: 189237522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_139
+      name: RPG Nature Tileset_133
       rect:
         serializedVersion: 2
         x: 160
@@ -2968,14 +2926,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a7402b82d8e642d481a7acca6d6792e
-      internalID: -1854581080
+      spriteID: ab501b6a84dd645f393e9eeef6eef167
+      internalID: -175732222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_140
+      name: RPG Nature Tileset_134
       rect:
         serializedVersion: 2
         x: 192
@@ -2989,14 +2947,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42ba667b910734501a563c4316d3df41
-      internalID: 598321353
+      spriteID: 45a9692a9c84d4bfe8fe687626773b72
+      internalID: 349906457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_141
+      name: RPG Nature Tileset_135
       rect:
         serializedVersion: 2
         x: 224
@@ -3010,14 +2968,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf666dbb85f4841bcb809b3979f52f8a
-      internalID: 453561679
+      spriteID: 640c3b72b2f9a49dfa7a223d86487ea8
+      internalID: 37810590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_142
+      name: RPG Nature Tileset_136
       rect:
         serializedVersion: 2
         x: 256
@@ -3031,14 +2989,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9684a0e05e49474cb92a0f2404e75ed
-      internalID: 2086716791
+      spriteID: abafc05f55a394a49bc8e550dae3d6e6
+      internalID: 976628343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_143
+      name: RPG Nature Tileset_137
       rect:
         serializedVersion: 2
         x: 288
@@ -3052,14 +3010,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5569a6e986f494c0698e90fa2d7f6cd3
-      internalID: -466769531
+      spriteID: 27adfadaffa39478185664ebd45858de
+      internalID: 770004669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_144
+      name: RPG Nature Tileset_138
       rect:
         serializedVersion: 2
         x: 320
@@ -3073,14 +3031,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4266ccba58404d24b5252cb567657dd
-      internalID: 606110713
+      spriteID: d713c0ef937344d929bfec5c753974f7
+      internalID: 399553821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_145
+      name: RPG Nature Tileset_139
       rect:
         serializedVersion: 2
         x: 352
@@ -3094,14 +3052,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c323d2953306041cab8d8669c394ce93
-      internalID: -849712951
+      spriteID: 7e8aeba1fe0dc48f1b7def65c049617f
+      internalID: 219090557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_146
+      name: RPG Nature Tileset_140
       rect:
         serializedVersion: 2
         x: 384
@@ -3115,14 +3073,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc0fdcc9713f8449caaaafd19ae98748
-      internalID: 1187526574
+      spriteID: 8a6924b6eb83d46ad9d1ac76e93dacbd
+      internalID: 45145561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_147
+      name: RPG Nature Tileset_141
       rect:
         serializedVersion: 2
         x: 416
@@ -3136,14 +3094,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e932dfb1e3334c199d6a84e7804cc8c
-      internalID: -2014847863
+      spriteID: 52024b91f255346b5a0b34a401cfb65c
+      internalID: 1211607207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_148
+      name: RPG Nature Tileset_142
       rect:
         serializedVersion: 2
         x: 448
@@ -3157,14 +3115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b20cecccae8f4b9eb00ef655921bed5
-      internalID: 685331659
+      spriteID: 807e407071e164c4790d9784926bf789
+      internalID: 1347802685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_149
+      name: RPG Nature Tileset_143
       rect:
         serializedVersion: 2
         x: 480
@@ -3178,14 +3136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6937b534df4044a3a81555562162296
-      internalID: 1140294239
+      spriteID: 37ef4fa635676430fa325df45c47ee60
+      internalID: 2121324442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_150
+      name: RPG Nature Tileset_144
       rect:
         serializedVersion: 2
         x: 512
@@ -3199,14 +3157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d847d8adf7964d5298bc77f1b53ac3d
-      internalID: -362265933
+      spriteID: 8e2d5cbeb9bea44af91e8760dc47b0ed
+      internalID: 2138964421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_151
+      name: RPG Nature Tileset_145
       rect:
         serializedVersion: 2
         x: 544
@@ -3220,14 +3178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f51155e94d43047fca36b0cb66e131f6
-      internalID: -1336544403
+      spriteID: 27761d02d5f094b9895782ea278051e0
+      internalID: -1151947547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_152
+      name: RPG Nature Tileset_146
       rect:
         serializedVersion: 2
         x: 576
@@ -3241,14 +3199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a3b26d662544e139d414ec371df0af
-      internalID: 1813047293
+      spriteID: bb1e0fa9614a946b4af6e3cdd116d3cd
+      internalID: -1722554208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RPG Nature Tileset_153
+      name: RPG Nature Tileset_147
       rect:
         serializedVersion: 2
         x: 608
@@ -3262,50 +3220,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41eb9c99e97ef4f3aaadece2485d939c
-      internalID: -553299556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TreeWall
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 207
-        width: 32
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60aa774a9d1e142dcb6b7603f6ee94fe
-      internalID: 1920062752
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lily
-      rect:
-        serializedVersion: 2
-        x: 269
-        y: 207
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d483d23bbf85143e3a2addeafebcd227
-      internalID: 302764378
+      spriteID: 15d0c72c2f0f242ddbde1e5f646c9879
+      internalID: -1801587136
       vertices: []
       indices: 
       edges: []
@@ -3321,161 +3237,154 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RPG Nature Tileset_31: -1477992987
-      RPG Nature Tileset_63: 1156162603
-      RPG Nature Tileset_1: -570336067
-      Tree: 1672666456
-      RPG Nature Tileset_103: 568119436
-      RPG Nature Tileset_21: -1826353575
-      RPG Nature Tileset_12: -113467363
-      RPG Nature Tileset_33: 1846287465
-      Water: 55744825
-      RPG Nature Tileset_35: 1314220264
-      RPG Nature Tileset_77: -469851394
-      RPG Nature Tileset_82: 1855701033
-      RPG Nature Tileset_145: -849712951
-      RPG Nature Tileset_138: 1865682242
-      RPG Nature Tileset_149: 1140294239
-      RPG Nature Tileset_9: 488965653
-      RPG Nature Tileset_23: 187451609
-      RPG Nature Tileset_43: 2086390647
-      RPG Nature Tileset_106: 1987301983
-      RPG Nature Tileset_76: -2017416413
-      RPG Nature Tileset_54: -1332339827
-      RPG Nature Tileset_81: -1098393560
-      RPG Nature Tileset_69: -1924409602
-      RPG Nature Tileset_4: 971282557
-      RPG Nature Tileset_78: 1986084036
-      RPG Nature Tileset_13: 1916314222
-      RPG Nature Tileset_105: 1042905214
-      RPG Nature Tileset_113: -1458708308
-      RPG Nature Tileset_27: 1492193228
-      RPG Nature Tileset_127: 1246992040
-      RPG Nature Tileset_80: 1052074289
-      RPG Nature Tileset_86: -770421358
-      RPG Nature Tileset_101: -909865144
-      RPG Nature Tileset_128: 814000417
-      RPG Nature Tileset_6: 1039477420
-      RPG Nature Tileset_107: 1382082282
-      RPG Nature Tileset_152: 1813047293
-      vktj: 101163022
-      RPG Nature Tileset_141: 453561679
-      RPG Nature Tileset_70: 1282429068
-      RPG Nature Tileset_7: 711214004
-      RPG Nature Tileset_39: 244936357
-      Lily: 302764378
-      RPG Nature Tileset_74: 2125144828
-      RPG Nature Tileset_50: -327400268
-      ForestHoleClosed: -703557483
-      RPG Nature Tileset_89: -416664016
-      RPG Nature Tileset_148: 685331659
-      RPG Nature Tileset_118: 351772242
-      RPG Nature Tileset_133: -1604046788
-      ForestHole: 1613276355
-      RPG Nature Tileset_153: -553299556
-      RPG Nature Tileset_126: -1771283180
-      RPG Nature Tileset_20: -898030176
-      RPG Nature Tileset_58: 883938667
-      RPG Nature Tileset_32: 733837395
-      RPG Nature Tileset_85: -243266340
-      RPG Nature Tileset_37: -1303486206
-      RPG Nature Tileset_120: -1881505475
-      RPG Nature Tileset_61: 2069950187
-      RPG Nature Tileset_122: -1032336260
-      RPG Nature Tileset_36: -21496562
-      RPG Nature Tileset_55: -1415487139
-      Floor: -2074323082
-      RPG Nature Tileset_47: -356312708
-      RPG Nature Tileset_2: 684129072
-      RPG Nature Tileset_17: -1947555416
-      RPG Nature Tileset_28: -706945170
-      RPG Nature Tileset_110: 1418268030
-      TreeWall: 1920062752
-      RPG Nature Tileset_88: 1850665439
-      RPG Nature Tileset_137: 311806961
-      RPG Nature Tileset_75: -439820803
-      RPG Nature Tileset_104: 1373398380
-      RPG Nature Tileset_90: 938263543
-      RPG Nature Tileset_3: 837405759
-      RPG Nature Tileset_38: -1907819378
-      RPG Nature Tileset_146: 1187526574
-      RPG Nature Tileset_87: 1522036770
-      RPG Nature Tileset_121: 2013258028
-      Cliff: -1709604472
-      RPG Nature Tileset_95: -840247962
-      RPG Nature Tileset_8: -67566671
-      RPG Nature Tileset_48: -963290155
-      RPG Nature Tileset_117: 1839154499
-      RPG Nature Tileset_72: 563635613
-      RPG Nature Tileset_94: 2047440462
-      RPG Nature Tileset_108: -1423372293
-      RPG Nature Tileset_135: 970126525
-      RPG Nature Tileset_52: -887522446
-      RPG Nature Tileset_57: -115786740
-      RPG Nature Tileset_65: -847742191
-      RPG Nature Tileset_119: -1748406445
-      RPG Nature Tileset_26: -264604446
-      RPG Nature Tileset_53: 361388743
-      RPG Nature Tileset_14: 2111210680
-      RPG Nature Tileset_40: 229965646
-      RPG Nature Tileset_5: -948838892
-      RPG Nature Tileset_151: -1336544403
-      RPG Nature Tileset_144: 606110713
-      RPG Nature Tileset_45: 2030610916
-      RPG Nature Tileset_124: -503550044
-      RPG Nature Tileset_131: 388371005
-      RPG Nature Tileset_64: -2071204127
-      RPG Nature Tileset_59: 16748453
-      RPG Nature Tileset_102: 1717287275
-      RPG Nature Tileset_129: 1792347767
-      RPG Nature Tileset_91: -1370133961
-      RPG Nature Tileset_143: -466769531
-      RPG Nature Tileset_109: 278406757
-      RPG Nature Tileset_68: 1250144688
-      RPG Nature Tileset_18: 1029286673
-      RPG Nature Tileset_73: -1896475394
-      RPG Nature Tileset_46: -260270203
-      RPG Nature Tileset_19: -1003057251
-      RPG Nature Tileset_136: 1638566886
-      RPG Nature Tileset_93: -2015123419
-      RPG Nature Tileset_41: -197514899
-      RPG Nature Tileset_34: -946651775
-      RPG Nature Tileset_66: -1033069968
-      RPG Nature Tileset_84: -2026543130
-      RPG Nature Tileset_140: 598321353
-      RPG Nature Tileset_29: -1174067841
-      RPG Nature Tileset_51: -2066409969
-      RPG Nature Tileset_114: 1997426621
-      RPG Nature Tileset_112: 978686355
-      RPG Nature Tileset_30: -1693520910
-      RPG Nature Tileset_49: 785330808
-      RPG Nature Tileset_134: -1774202661
-      RPG Nature Tileset_139: -1854581080
-      RPG Nature Tileset_42: -1725319629
-      RPG Nature Tileset_60: 709501997
-      RPG Nature Tileset_99: -1694592712
-      RPG Nature Tileset_83: -1984007254
-      RPG Nature Tileset_62: 1434367905
-      RPG Nature Tileset_79: -1748381457
-      RPG Nature Tileset_22: -105532993
-      RPG Nature Tileset_97: -173719328
-      RPG Nature Tileset_100: -1618553659
-      RPG Nature Tileset_71: 1720487244
-      RPG Nature Tileset_123: 754049724
-      RPG Nature Tileset_150: -362265933
-      RPG Nature Tileset_132: 902623222
-      RPG Nature Tileset_142: 2086716791
-      RPG Nature Tileset_96: 192974898
-      Bush: -793933279
-      RPG Nature Tileset_56: -1812434435
-      RPG Nature Tileset_92: 2046299207
-      RPG Nature Tileset_111: -1768111535
-      RPG Nature Tileset_147: -2014847863
-      RPG Nature Tileset_24: -240075587
-      RPG Nature Tileset_67: 2027247792
-      RPG Nature Tileset_98: -2107647044
-      RPG Nature Tileset_130: 890766989
-      RPG Nature Tileset_116: -210461198
+      RPG Nature Tileset_31: -2039683850
+      RPG Nature Tileset_63: -401257242
+      RPG Nature Tileset_1: 652375012
+      Tree: 698195419
+      RPG Nature Tileset_103: 1661922445
+      RPG Nature Tileset_21: 1085943497
+      RPG Nature Tileset_12: -2147191891
+      RPG Nature Tileset_33: -48168519
+      Water: 412593780
+      RPG Nature Tileset_35: 590056606
+      RPG Nature Tileset_77: 617851990
+      RPG Nature Tileset_82: 15151090
+      RPG Nature Tileset_145: -1151947547
+      RPG Nature Tileset_138: 399553821
+      RPG Nature Tileset_9: 1167877863
+      RPG Nature Tileset_23: 1435901552
+      RPG Nature Tileset_43: 175974765
+      RPG Nature Tileset_106: -549498930
+      RPG Nature Tileset_76: 643029057
+      RPG Nature Tileset_54: 151630829
+      RPG Nature Tileset_81: 1451678538
+      RPG Nature Tileset_69: -295383026
+      RPG Nature Tileset_4: -1713305421
+      RPG Nature Tileset_78: 1684233131
+      RPG Nature Tileset_13: -1169570073
+      RPG Nature Tileset_105: 640221833
+      RPG Nature Tileset_113: -2079793533
+      RPG Nature Tileset_27: 65606557
+      RPG Nature Tileset_127: -1409508963
+      RPG Nature Tileset_80: 939087686
+      RPG Nature Tileset_86: -1154696292
+      RPG Nature Tileset_101: 1680297391
+      RPG Nature Tileset_128: -1023375772
+      RPG Nature Tileset_6: 821176040
+      RPG Nature Tileset_107: 538316071
+      RPG Nature Tileset_133: -175732222
+      RPG Nature Tileset_141: 1211607207
+      RPG Nature Tileset_70: 16480291
+      RPG Nature Tileset_7: -1761893539
+      RPG Nature Tileset_39: 1721912465
+      RPG Nature Tileset_74: 1581022077
+      RPG Nature Tileset_50: -340548950
+      RPG Nature Tileset_0: -179332877
+      RPG Nature Tileset_89: 1191973133
+      RPG Nature Tileset_118: 1087735391
+      RPG Nature Tileset_126: 1055619917
+      RPG Nature Tileset_44: -1881107323
+      RPG Nature Tileset_58: -1374300948
+      RPG Nature Tileset_32: 1729248328
+      RPG Nature Tileset_85: 1218576896
+      RPG Nature Tileset_37: -61344626
+      RPG Nature Tileset_120: 1621474130
+      RPG Nature Tileset_61: -325501621
+      RPG Nature Tileset_122: 65976170
+      RPG Nature Tileset_36: 1737824144
+      RPG Nature Tileset_55: -1368161546
+      RPG Nature Tileset_47: -218802808
+      RPG Nature Tileset_2: 1365631726
+      RPG Nature Tileset_17: -1278636842
+      RPG Nature Tileset_28: 1996482086
+      RPG Nature Tileset_110: 823062855
+      RPG Nature Tileset_88: 1844682575
+      RPG Nature Tileset_137: 770004669
+      RPG Nature Tileset_75: 1785298467
+      RPG Nature Tileset_104: 1907573684
+      RPG Nature Tileset_90: -1824430213
+      RPG Nature Tileset_3: 1736303135
+      RPG Nature Tileset_38: 967485353
+      RPG Nature Tileset_146: -1722554208
+      RPG Nature Tileset_87: 1346178114
+      RPG Nature Tileset_16: 1652012706
+      Water2: -1616962521
+      RPG Nature Tileset_121: -741914926
+      Cliff: 242972297
+      RPG Nature Tileset_95: 144291799
+      RPG Nature Tileset_8: -98657905
+      RPG Nature Tileset_48: -410061162
+      RPG Nature Tileset_117: 835427414
+      RPG Nature Tileset_72: -1754881354
+      RPG Nature Tileset_125: 859309936
+      RPG Nature Tileset_94: 1275392952
+      RPG Nature Tileset_108: -565257546
+      RPG Nature Tileset_135: 37810590
+      ForestFloor2: -2006778456
+      RPG Nature Tileset_52: -767652351
+      RPG Nature Tileset_57: 718914729
+      RPG Nature Tileset_65: -2085032982
+      RPG Nature Tileset_131: -166256070
+      RPG Nature Tileset_26: 1626113347
+      RPG Nature Tileset_53: -1347101255
+      RPG Nature Tileset_14: -960565372
+      RPG Nature Tileset_40: -1568765880
+      RPG Nature Tileset_5: 1809720090
+      RPG Nature Tileset_144: 2138964421
+      RPG Nature Tileset_45: 156173854
+      RPG Nature Tileset_124: 1077070878
+      ForestFloor: 1525520721
+      RPG Nature Tileset_64: -2103336292
+      RPG Nature Tileset_59: -584326852
+      RPG Nature Tileset_102: 1132536438
+      RPG Nature Tileset_129: -1583237680
+      RPG Nature Tileset_91: -41038532
+      RPG Nature Tileset_143: 2121324442
+      RPG Nature Tileset_109: 1872169948
+      RPG Nature Tileset_68: 1747025360
+      RPG Nature Tileset_18: -683629370
+      RPG Nature Tileset_73: 473402534
+      RPG Nature Tileset_15: -259526924
+      RPG Nature Tileset_46: 1350273518
+      RPG Nature Tileset_136: 976628343
+      RPG Nature Tileset_93: 1733408498
+      RPG Nature Tileset_41: -1798637748
+      RPG Nature Tileset_34: -1189159359
+      RPG Nature Tileset_66: -787447991
+      RPG Nature Tileset_84: 720060285
+      RPG Nature Tileset_140: 45145561
+      RPG Nature Tileset_29: -762755796
+      RPG Nature Tileset_51: 1817932083
+      RPG Nature Tileset_114: -252572747
+      RPG Nature Tileset_112: 529949565
+      RPG Nature Tileset_30: -547247309
+      RPG Nature Tileset_134: 349906457
+      RPG Nature Tileset_139: 219090557
+      RPG Nature Tileset_42: 13028129
+      RPG Nature Tileset_60: -1984957503
+      RPG Nature Tileset_99: -1621824399
+      RPG Nature Tileset_83: 90776889
+      RPG Nature Tileset_62: 2088973048
+      RPG Nature Tileset_79: -1985112094
+      RPG Nature Tileset_142: 1347802685
+      RPG Nature Tileset_97: 1983149890
+      RPG Nature Tileset_100: 291337863
+      RPG Nature Tileset_71: 309415901
+      RPG Nature Tileset_123: -537504836
+      RPG Nature Tileset_132: 189237522
+      RPG Nature Tileset_96: 1410331411
+      RPG Nature Tileset_115: 942987936
+      RPG Nature Tileset_56: 1747208605
+      RPG Nature Tileset_92: 671311364
+      RPG Nature Tileset_111: -175898374
+      RPG Nature Tileset_147: -1801587136
+      RPG Nature Tileset_24: 827281066
+      RPG Nature Tileset_67: 911649607
+      RPG Nature Tileset_98: 1227478416
+      RPG Nature Tileset_25: 2106425896
+      RPG Nature Tileset_130: -585374858
+      RPG Nature Tileset_116: 294527942
+      Bush: 1504461107
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -26,7 +25,6 @@ public class GameUIManager : MonoBehaviour
     public GameObject crosshair;
     public GameObject interactText;
     public GameObject objectiveText;
-    public GameObject holeUI;
 
     void Update()
     {
@@ -35,23 +33,17 @@ public class GameUIManager : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q)) {
             weaponWheel.SetActive(true);
-            crosshair.GetComponent<SpriteRenderer>().enabled = false;
+            crosshair.SetActive(false);
         } else {
             if (weaponWheel.activeSelf) {
                 weaponWheel.GetComponent<WeaponWheel>().currentButton.GetComponent<WeaponSelectButton>().EquipGun();
             }
             weaponWheel.SetActive(false);
-            crosshair.GetComponent<SpriteRenderer>().enabled = true;
+            crosshair.SetActive(true);
         }
     }
 
     public void SetWeaponIcon(Sprite _weapon) {
         weaponIcon.GetComponent<Image>().sprite = _weapon;
-    }
-
-    public void InstantiaitePlayerPointer(GameObject _player, GameObject _playerPointer, int _playerId) {
-        GameObject newPlayerPointer = Instantiate(_playerPointer, _player.transform.position, Quaternion.identity, transform);
-        newPlayerPointer.GetComponent<PlayerPointer>().target= _player;
-        newPlayerPointer.GetComponent<TextMeshProUGUI>().text = "P" + _playerId.ToString();
     }
 }

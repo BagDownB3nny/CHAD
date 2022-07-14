@@ -70,5 +70,9 @@ public class LobbyManager : MonoBehaviour
 
     public void ReceiveReadyStatus(string _playerRefId, bool _readyStatus) {
         ready[_playerRefId] = _readyStatus;
+        foreach (KeyValuePair<string, bool> ready in ready)
+        {
+            Debug.Log(ready.Key + " is " + ready.Value.ToString());
+        }
     }
 }
