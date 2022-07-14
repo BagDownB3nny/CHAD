@@ -28,9 +28,16 @@ public abstract class CharacterStatsManager : MonoBehaviour
 
     [Header("UI Elements")]
     public HealthBar healthBar;
+    public EnemyHealthBar enemyHealthBar;
 
     protected virtual void Awake() {
         deathScript = gameObject.GetComponent<Death>();
+    }
+
+    private void Start() {
+        if (enemyHealthBar != null) {
+            enemyHealthBar.SetHealth(hp, maxHp);
+        }
     }
 
     public void TakeDamage(float _damageDealt, float _armourPenetration) {
@@ -61,6 +68,11 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public void ReceiveTakeDamage(float _damageTaken)
     {
         hp -= _damageTaken;
+
+        if (enemyHealthBar != null) {
+            enemyHealthBar.SetHealth(hp, maxHp);
+        }
+
         if (healthBar != null) {
             healthBar.SetHealth(hp);
         }

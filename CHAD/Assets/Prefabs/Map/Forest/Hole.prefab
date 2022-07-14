@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4501956998347660708}
   m_Layer: 0
   m_Name: Hole
-  m_TagString: Floor
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1573939541
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -676271319, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
+  m_Sprite: {fileID: -703557483, guid: fafb8237aa33141c9aabaa87e5db6d67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae544ace264a415ca0b9911df282e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: {fileID: 1613276355, guid: fafb8237aa33141c9aabaa87e5db6d67, type: 3}
+  closed: {fileID: -703557483, guid: fafb8237aa33141c9aabaa87e5db6d67, type: 3}
 --- !u!61 &-1457443950710816631
 BoxCollider2D:
   m_ObjectHideFlags: 0

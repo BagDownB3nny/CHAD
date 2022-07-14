@@ -22,11 +22,6 @@ public class PlayerStatsManager : CharacterStatsManager
         proficiency = playerInfo.proficiency;
     }
 
-    public void InitializeHealthBar() {
-        healthBar = GameUIManager.instance.healthBar.GetComponent<HealthBar>();
-        healthBar.Initialize(hp);
-    }
-
     private void OnDestroy()
     {
         PlayerInfoManager.AllPlayerInfo[characterRefId].SetStats(this);

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6641037869976883611}
   - component: {fileID: 1755880627262065837}
   - component: {fileID: 759181163560038346}
+  - component: {fileID: -3014026979699736706}
   m_Layer: 0
   m_Name: MaskedGuyProjectile
   m_TagString: Untagged
@@ -75,9 +76,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 811253785
-  m_SortingLayer: 1
-  m_SortingOrder: 20
+  m_SortingLayerID: -1858767441
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -397423033, guid: 53c5bf0bdca214b2295692bf01c0ff5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,7 +124,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4348536902379984181}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -135,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6641037869976883611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +187,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d587b6042860c44248d411b32d9854d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3014026979699736706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348536902379984181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d19abe5d69cf4be785e03b5776fdf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingBase: 0
+  offset: 0
+  runOnce: 0
+  updateInterval: 0.1
