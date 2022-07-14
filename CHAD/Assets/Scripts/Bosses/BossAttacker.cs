@@ -44,11 +44,29 @@ public class BossAttacker : MonoBehaviour
         {
             isPrimaryAttacking = false;
             nextPrimaryAttack = primaryAttackCooldown;
-        }
-        if (attackType == "secondary")
+            Destroy(primaryAttack);
+        } else if (attackType == "secondary")
         {
             isSecondaryAttacking = false;
             nextSecondaryAttack = secondaryAttackCooldown;
+            Destroy(secondaryAttack);
+        }
+        ServerSend.EndBossAttack(attackType);
+    }
+
+    public void ReceiveEndAttack(string attackType)
+    {
+        if (attackType == "primary")
+        {
+            isPrimaryAttacking = false;
+            nextPrimaryAttack = primaryAttackCooldown;
+            Destroy(primaryAttack);
+        }
+        else if (attackType == "secondary")
+        {
+            isSecondaryAttacking = false;
+            nextSecondaryAttack = secondaryAttackCooldown;
+            Destroy(secondaryAttack);
         }
     }
 

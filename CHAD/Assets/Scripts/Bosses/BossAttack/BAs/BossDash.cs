@@ -83,10 +83,9 @@ public class BossDash : BossAttack
         }
         isDashing = false;
         numberOfDashes -= 1;
-        if (numberOfDashes == 0)
+        if (numberOfDashes == 0 && NetworkManager.gameType == GameType.Server)
         {
             BossManager.instance.bossAttacker.EndAttack("primary");
-            Destroy(gameObject);
         }
         else
         {

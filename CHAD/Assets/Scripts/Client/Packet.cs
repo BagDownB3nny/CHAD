@@ -39,6 +39,7 @@ public enum ServerPackets
     moveBossAttack = 30,
     moveBoss = 31,
     spawnBoss = 32,
+    endBossAttack = 33
 
 }
 

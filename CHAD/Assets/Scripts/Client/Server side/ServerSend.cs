@@ -377,4 +377,13 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void EndBossAttack(string attackType)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.endBossAttack))
+        {
+            _packet.Write(attackType);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

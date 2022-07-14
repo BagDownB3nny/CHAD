@@ -35,7 +35,6 @@ public class BossRangedWeapon : RangedWeapon
                 {
                     holder.GetComponent<BossAttacker>().EndAttack("secondary");
                 }
-                Destroy(gameObject);
             } else
             {
                 timeToWeaponExpiry -= Time.deltaTime;

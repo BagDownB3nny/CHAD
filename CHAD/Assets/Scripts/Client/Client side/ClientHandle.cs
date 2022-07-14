@@ -301,4 +301,10 @@ public class ClientHandle : MonoBehaviour
         int bossType = _packet.ReadInt();
         EnemySpawner.instance.ReceiveSpawnBoss(bossType);
     }
+
+    public static void EndBossAttack(Packet _packet)
+    {
+        string attackType = _packet.ReadString();
+        BossManager.instance.bossAttacker.ReceiveEndAttack(attackType);
+    }
 }
