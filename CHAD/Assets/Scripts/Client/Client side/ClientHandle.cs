@@ -8,6 +8,7 @@ public class ClientHandle : MonoBehaviour
 {
 
     public static bool IsPresent(Dictionary<string, GameObject> dict, string refId) {
+
         return dict.ContainsKey(refId) && dict[refId] != null;
     }
     public static void Welcome(Packet _packet)
@@ -17,6 +18,7 @@ public class ClientHandle : MonoBehaviour
 
         Debug.Log($"Message from server: {_msg}");
         PlayerClient.instance.myId = _id;
+        Debug.Log("I am player " + _id);
 
         PlayerClient.instance.udp.Connect(
             ((IPEndPoint)PlayerClient.instance.tcp.socket.Client.LocalEndPoint).Port);
@@ -28,13 +30,15 @@ public class ClientHandle : MonoBehaviour
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
         PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
+        Debug.Log("SPAWNING PLAYER");
     }
 
     public static void MovePlayer(Packet _packet)
     {
         int _affectedPlayerId = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.players, _affectedPlayerId.ToString())) {
+        if (GameManager.instance != null &&
+                IsPresent(GameManager.instance.players, _affectedPlayerId.ToString())) {
             GameManager.instance.players[_affectedPlayerId.ToString()].GetComponent<PlayerMovement>().ReceiveMovement(_position);
         }
     }
@@ -152,13 +156,14 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
+            if (GameManager.instance != null &&
+                    IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
                     GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
                 GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
         } else if (characterType == CharacterType.Enemy) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (IsPresent(GameManager.instance.enemies, affectedCharacterRefId)) {
                 GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
@@ -191,15 +196,16 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadLobby(Packet _packet)
     {
-        Debug.Log("loading lobby on client");
         SceneManager.LoadScene("WaitingRoom");
+        MusicManager.instance.PlayMusic(Music.lobby);
         ClientSend.LobbyLoaded();
     }
 
     public static void LoadEmptyMap(Packet _packet)
     {
+        MusicManager.instance.PlayMusic(Music.game);
         MapManager.instance.ReceiveLoadEmptyMap();
-        ClientSend.EmptyMapLoaded();
+        
     }
 
     public static void LoadMap(Packet _packet)
@@ -237,5 +243,28 @@ public class ClientHandle : MonoBehaviour
     {
         string dropId = _packet.ReadString();
         ItemManager.instance.ReceiveRemoveWeaponDrop(dropId);
+    }
+
+    public static void AddItem(Packet _packet)
+    {
+        string _playerRefId = _packet.ReadString();
+        PlayerItems _item = (PlayerItems)_packet.ReadInt();
+
+        GameObject player = GameManager.instance.players[_playerRefId];
+        player.GetComponent<PlayerItemsManager>().AddItem(_item);
+    }
+
+    public static void ItemDrop(Packet _packet)
+    {
+        string _dropId = _packet.ReadString();
+        PlayerItems _droppedItem = (PlayerItems) _packet.ReadInt();
+        Vector3 _position = _packet.ReadVector3();
+        ItemManager.instance.ReceiveItemDrop(_dropId, _droppedItem, _position);
+    }
+
+    public static void RemoveItemDrop(Packet _packet)
+    {
+        string _dropId = _packet.ReadString();
+        ItemManager.instance.ReceiveRemoveItemDrop(_dropId);
     }
 }

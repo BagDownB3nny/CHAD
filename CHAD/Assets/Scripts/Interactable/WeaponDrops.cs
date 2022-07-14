@@ -43,6 +43,6 @@ public class WeaponDrops : Interactable
 
     public override string GetText()
     {
-        return "PICK UP";
+        return "PRESS E TO PICK UP";
     }
 }

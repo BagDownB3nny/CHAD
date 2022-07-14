@@ -5,15 +5,29 @@ using TMPro;
 
 public class Exit : Interactable
 {
+    private bool isOpen = false;
+    public Sprite open;
+    public Sprite closed;
+
+    public void SetOpen() {
+        isOpen = true;
+        gameObject.GetComponent<SpriteRenderer>().sprite = open;
+    }
 
     public override void OnInteract(GameObject player)
     {
-        GameUIManager.instance.objectiveText.SetActive(false);
-        MapManager.instance.LoadMap();
+        if (isOpen) {
+            MapManager.instance.LoadMap();
+        }
+        
     }
 
     public override string GetText()
     {
-        return "ENTER";
+        if (isOpen) {
+            return "PRESS E TO ENTER";
+        } else {
+            return "HOLE IS BLOCKED";
+        }
     }
 }
