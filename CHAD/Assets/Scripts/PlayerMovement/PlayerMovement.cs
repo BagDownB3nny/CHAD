@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         if (_input[3]) { _movement.x += 1; }
         _movement.Normalize();
 
-        if (_input[4]) { _movement *= 2; }
+        if (_input[4]) { _movement *= 2; ServerSend.Broadcast("YOU ARE SPRINTING!"); }
 
         playerRb.MovePosition((Vector2) transform.position + _movement * playerStatsManager.speed * Time.deltaTime);
         return (Vector2) transform.position;

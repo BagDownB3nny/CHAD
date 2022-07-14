@@ -24,7 +24,7 @@ public class ServerHandle
 
     public static void MovePlayer(int _fromClient, Packet _packet)
     {
-        bool[] _input = new bool[4];
+        bool[] _input = new bool[5];
         for (int i = 0; i < _input.Length; i++)
         {
             _input[i] = _packet.ReadBool();

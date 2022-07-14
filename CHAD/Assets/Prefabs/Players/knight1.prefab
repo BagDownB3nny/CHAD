@@ -141,6 +141,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   damageEffect: {fileID: 0}
   healthBar: {fileID: 0}
+  enemyHealthBar: {fileID: 0}
   playerClass: 0
 --- !u!114 &2163838899051555564
 MonoBehaviour:
