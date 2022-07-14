@@ -18,14 +18,11 @@ public abstract class Interactable : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerItemsManager>().interact += OnInteract;
 
-            if (NetworkManager.gameType == GameType.Client) {
-                interactText.GetComponent<TextMeshProUGUI>().text = "PRESS E TO " + GetText();
+            if (NetworkManager.IsMine(collision.gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
+                interactText.GetComponent<TextMeshProUGUI>().text = GetText();
                 interactText.SetActive(true);
             }
         }
-        
-        
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -34,7 +31,7 @@ public abstract class Interactable : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerItemsManager>().interact -= OnInteract;
 
-            if (NetworkManager.gameType == GameType.Client) {
+            if (NetworkManager.IsMine(collision.gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
                 interactText.SetActive(false);
             }
         }

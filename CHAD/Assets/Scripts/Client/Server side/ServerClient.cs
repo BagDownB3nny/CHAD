@@ -73,7 +73,6 @@ public class ServerClient
         {
             try
             {
-                Debug.Log("Received some TCP data!");
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
@@ -96,7 +95,6 @@ public class ServerClient
 
         private bool HandleData(byte[] _data)
         {
-            Debug.Log("Handling data");
             int _packetLength = 0;
 
             receivedData.SetBytes(_data);
@@ -163,7 +161,6 @@ public class ServerClient
 
         public void Connect(IPEndPoint _endPoint)
         {
-            Debug.Log("Server UDP connected to client");
             endPoint = _endPoint;
         }
 
