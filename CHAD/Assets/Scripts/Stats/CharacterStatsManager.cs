@@ -32,6 +32,7 @@ public abstract class CharacterStatsManager : MonoBehaviour
 
     protected virtual void Awake() {
         deathScript = gameObject.GetComponent<Death>();
+        hp = maxHp;
     }
 
     private void Start() {
@@ -46,11 +47,17 @@ public abstract class CharacterStatsManager : MonoBehaviour
         hp -= damageTaken;
 
         if (gameObject.tag == "Player") {
-            ServerSend.TakeDamage((int) CharacterType.Player, characterRefId, damageTaken);
+            ServerSend.TakeDamage((int)CharacterType.Player, characterRefId, damageTaken);
         } else if (gameObject.tag == "Enemy") {
-            ServerSend.TakeDamage((int) CharacterType.Enemy, characterRefId, damageTaken);
+            if (characterType == CharacterType.Boss)
+            {
+                ServerSend.TakeDamage((int)CharacterType.Boss, characterRefId, damageTaken);
+            }
+            else if (characterType == CharacterType.Enemy)
+            {
+                ServerSend.TakeDamage((int)CharacterType.Enemy, characterRefId, damageTaken);
+            }
         }
-
         if (damageEffect != null) {
             Instantiate(damageEffect, transform.position, Quaternion.identity);
         }
@@ -59,7 +66,14 @@ public abstract class CharacterStatsManager : MonoBehaviour
             if (gameObject.tag == "Player") {
                 ServerSend.Die((int) CharacterType.Player, characterRefId);
             } else if (gameObject.tag == "Enemy") {
-                ServerSend.Die((int) CharacterType.Enemy, characterRefId);
+                if (characterType == CharacterType.Boss)
+                {
+                    ServerSend.Die((int)CharacterType.Boss, characterRefId);
+                }
+                else if (characterType == CharacterType.Enemy)
+                {
+                    ServerSend.Die((int)CharacterType.Enemy, characterRefId);
+                }
             }
             deathScript.Die();
         }

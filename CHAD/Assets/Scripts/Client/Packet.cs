@@ -34,7 +34,12 @@ public enum ServerPackets
     removeWeaponDrop = 25,
     addItem = 26,
     itemDrop = 27,
-    removeItemDrop = 28
+    removeItemDrop = 28,
+    setBossAttack = 29,
+    moveBossAttack = 30,
+    moveBoss = 31,
+    spawnBoss = 32,
+
 }
 
 /// <summary>Sent from client to server.</summary>

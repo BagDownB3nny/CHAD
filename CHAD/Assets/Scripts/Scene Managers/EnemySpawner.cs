@@ -79,6 +79,16 @@ public class EnemySpawner : MonoBehaviour
         UpdateEnemySpawnerStats();
     }
 
+    public void SpawnBoss() {
+        //find out which boss to spawn
+        ServerSend.SpawnBoss((int) Bosses.Forest);
+        Instantiate(GameManager.instance.bossPrefabs[(int) Bosses.Forest], Vector3.zero, Quaternion.identity);
+    }
+
+    public void ReceiveSpawnBoss(int bossType) {
+        Instantiate(GameManager.instance.bossPrefabs[(int) Bosses.Forest], Vector3.zero, Quaternion.identity);
+    }
+
     #region SpawnEnemy
     /* Instantiates an enemy
      * Creates an enemyId (based on the current enemies that have yet to be spawned)

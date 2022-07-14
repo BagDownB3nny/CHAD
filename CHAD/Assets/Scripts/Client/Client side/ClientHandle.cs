@@ -30,7 +30,6 @@ public class ClientHandle : MonoBehaviour
         int playerIdReceived = _packet.ReadInt();
         int characterType = _packet.ReadInt();
         PlayerSpawner.instance.SpawnPlayer(playerIdReceived, (PlayerClasses)characterType);
-        Debug.Log("SPAWNING PLAYER");
     }
 
     public static void MovePlayer(Packet _packet)
@@ -62,7 +61,11 @@ public class ClientHandle : MonoBehaviour
                     weaponScript.ReceiveAttack(projectileRefId, projectileDirectionRotation);
                 }
             }
-        }  
+        } else if (characterType == CharacterType.Boss)
+        {
+            BossManager.instance.bossAttacker.ReceiveAttack(affectedCharacterRefId,
+                    projectileRefId, projectileDirectionRotation);
+        }
     }
 
     public static void MeleeAttack(Packet _packet) {
@@ -128,6 +131,9 @@ public class ClientHandle : MonoBehaviour
             if (IsPresent(GameManager.instance.enemies, characterRefId)) {
                 GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveTakeDamage(damageTaken);
             }
+        } else if (characterType == (int) CharacterType.Boss)
+        {
+            BossManager.instance.stats.ReceiveTakeDamage(damageTaken);
         }
     }
 
@@ -142,6 +148,9 @@ public class ClientHandle : MonoBehaviour
             if (IsPresent(GameManager.instance.enemies, characterRefId)) {
                 GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveDie();
             }
+        } else if (characterType == (int) CharacterType.Boss)
+        {
+            BossManager.instance.stats.ReceiveDie();
         }
     }
 
@@ -266,5 +275,30 @@ public class ClientHandle : MonoBehaviour
     {
         string _dropId = _packet.ReadString();
         ItemManager.instance.ReceiveRemoveItemDrop(_dropId);
+    }
+
+    public static void SetBossAttack(Packet _packet)
+    {
+        string attackType = _packet.ReadString();
+        int _bossAttack = _packet.ReadInt();
+        BossManager.instance.bossAttacker.ReceiveSetBossAttack(attackType, _bossAttack);
+    }
+
+    public static void MoveBossAttack(Packet _packet)
+    {
+        BossWeaponType _attack = (BossWeaponType)_packet.ReadInt();
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossAttacker.ReceiveMoveAttack(_attack, _pos);
+    }
+
+    public static void MoveBoss(Packet _packet)
+    {
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossMover.ReceiveMove(_pos);
+    }
+
+    public static void SpawnBoss(Packet _packet) {
+        int bossType = _packet.ReadInt();
+        EnemySpawner.instance.ReceiveSpawnBoss(bossType);
     }
 }

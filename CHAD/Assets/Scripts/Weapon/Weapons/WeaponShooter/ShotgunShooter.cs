@@ -28,8 +28,16 @@ public class ShotgunShooter : WeaponShooter
                     gameObject, bulletDirectionVector, weapon.projectileRotationOffset);
             GameManager.instance.projectiles.Add(shotgunShotRefId, shot);
         }
-        ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId,
+        if (characterStats.characterType == CharacterType.Boss)
+        {
+            ServerSend.RangedAttack(characterStats.characterType,
+                    GetComponent<BossRangedWeapon>().bossWeaponType.ToString(),
                     projectileRefId, weapon.directionRotation);
+        } else
+        {
+            ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId,
+                                projectileRefId, weapon.directionRotation);
+        }
         weapon.timeToNextAttack = weapon.attackInterval;
     }
 

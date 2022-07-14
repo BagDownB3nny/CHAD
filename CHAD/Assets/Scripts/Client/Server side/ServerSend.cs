@@ -340,4 +340,41 @@ public class ServerSend
             SendTCPDataToAll(_packet);
         }
     }
+
+    public static void SetBossAttack(string _attackType, int _bossAttack)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.setBossAttack))
+        {
+            _packet.Write(_attackType);
+            _packet.Write(_bossAttack);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MoveBossAttack(BossWeaponType _attack, Vector3 _pos)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.moveBossAttack))
+        {
+            _packet.Write((int)_attack);
+            _packet.Write(_pos);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MoveBoss(Vector3 _pos)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.moveBoss))
+        {
+            _packet.Write(_pos);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void SpawnBoss(int _bossType) {
+        using (Packet _packet = new Packet((int)ServerPackets.spawnBoss))
+        {
+            _packet.Write(_bossType);
+            SendTCPDataToAll(_packet);
+        }
+    }
 }

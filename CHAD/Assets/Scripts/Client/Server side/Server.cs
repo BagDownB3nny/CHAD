@@ -128,7 +128,7 @@ public class Server
                 {(int)ClientPackets.lobbyLoaded, ServerHandle.LobbyLoaded},
                 {(int)ClientPackets.emptyMapLoaded, ServerHandle.EmptyMapLoaded},
                 {(int)ClientPackets.mapLoaded, ServerHandle.MapLoaded},
-                {(int)ClientPackets.interact, ServerHandle.Interact}
+                {(int)ClientPackets.interact, ServerHandle.Interact},
             };
     }
 }
