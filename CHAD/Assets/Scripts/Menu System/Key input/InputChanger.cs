@@ -24,7 +24,6 @@ public class InputChanger : MonoBehaviour
     public void OnFANCYClick()
     {
         keyListener.SetActive(true);
-        keyListener.GetComponent<KeyListener>().ListeningForKey(keyType);
-        Debug.Log("CLICKING");
+        keyListener.GetComponent<KeyListener>().ListeningForKey(gameObject, keyType);
     }
 }

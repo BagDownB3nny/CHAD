@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class KeyListener : MonoBehaviour
 {
     private bool isListening = false;
     private KeyInputs listeningForKey;
+    private GameObject currentButton;
 
     private void Update()
     {
@@ -13,12 +17,34 @@ public class KeyListener : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                string keybind = Input.inputString;
-                //InputManager.instance.ChangeKeybind(listeningForKey, keybind);
-                Debug.Log(keybind);
-                End();
+                KeyCode keyCode = GetKeyCode();
+                if (keyCode != KeyCode.None)
+                {
+                    ChangeKeybind(keyCode);
+                    End();
+                }
             }
         }
+    }
+
+    private KeyCode GetKeyCode()
+    {
+        foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(kcode))
+            {
+                Debug.Log("KeyCode down: " + kcode);
+                return kcode;
+            }
+        }
+        return KeyCode.None;
+    }
+
+    private void ChangeKeybind(KeyCode _keyCode)
+    {
+        //InputManager.instance.ChangeKeybind(listeningForKey, keybind);
+        GameObject text = currentButton.transform.GetChild(0).gameObject;
+        text.GetComponent<TMP_Text>().text = _keyCode.ToString();
     }
 
     private void End()
@@ -28,8 +54,9 @@ public class KeyListener : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ListeningForKey(KeyInputs _key)
+    public void ListeningForKey(GameObject _button, KeyInputs _key)
     {
+        currentButton = _button;
         isListening = true;
         listeningForKey = _key;
     }
