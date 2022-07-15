@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class KeyListener : MonoBehaviour
 {
     private bool isListening = false;
-    private KeyInputs listeningForKey;
+    private PlayerInputs listeningForKey;
     private GameObject currentButton;
 
     private void Update()
@@ -33,7 +33,6 @@ public class KeyListener : MonoBehaviour
         {
             if (Input.GetKey(kcode))
             {
-                Debug.Log("KeyCode down: " + kcode);
                 return kcode;
             }
         }
@@ -42,7 +41,7 @@ public class KeyListener : MonoBehaviour
 
     private void ChangeKeybind(KeyCode _keyCode)
     {
-        //InputManager.instance.ChangeKeybind(listeningForKey, keybind);
+        InputManager.instance.ChangeKeybind(listeningForKey, _keyCode);
         GameObject text = currentButton.transform.GetChild(0).gameObject;
         text.GetComponent<TMP_Text>().text = _keyCode.ToString();
     }
@@ -50,11 +49,11 @@ public class KeyListener : MonoBehaviour
     private void End()
     {
         isListening = false;
-        listeningForKey = KeyInputs.None;
+        listeningForKey = PlayerInputs.None;
         gameObject.SetActive(false);
     }
 
-    public void ListeningForKey(GameObject _button, KeyInputs _key)
+    public void ListeningForKey(GameObject _button, PlayerInputs _key)
     {
         currentButton = _button;
         isListening = true;
