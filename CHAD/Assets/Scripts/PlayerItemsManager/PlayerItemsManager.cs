@@ -12,7 +12,7 @@ public class PlayerItemsManager : MonoBehaviour
     private void Update()
     {
         if (NetworkManager.IsMine(gameObject.GetComponent<PlayerStatsManager>().characterRefId)) {
-            if (Input.GetKeyDown(KeyCode.E)) {
+            if (Input.GetKeyDown(InputManager.instance.keybinds[PlayerInputs.Interact])) {
                 ClientSend.Interact();
             }
         }

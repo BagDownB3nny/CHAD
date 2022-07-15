@@ -33,7 +33,7 @@ public class GameUIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
-        if (Input.GetKey(KeyCode.Q)) {
+        if (Input.GetKey(InputManager.instance.keybinds[PlayerInputs.ChangeWeapon])) {
             weaponWheel.SetActive(true);
             crosshair.GetComponent<SpriteRenderer>().enabled = false;
         } else {

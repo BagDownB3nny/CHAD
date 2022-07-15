@@ -48,6 +48,6 @@ public class ItemDrops : Interactable
 
     public override string GetText()
     {
-        return "PRESS E TO PICK UP";
+        return "PRESS " + InputManager.instance.keybinds[PlayerInputs.Interact] + " TO PICK UP";
     }
 }

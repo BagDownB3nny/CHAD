@@ -25,7 +25,7 @@ public class Exit : Interactable
     public override string GetText()
     {
         if (isOpen) {
-            return "PRESS E TO ENTER";
+            return "PRESS " + InputManager.instance.keybinds[PlayerInputs.Interact] + " TO ENTER";
         } else {
             return "HOLE IS BLOCKED";
         }
