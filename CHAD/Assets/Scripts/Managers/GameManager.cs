@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public enum PlayerItems
 {
@@ -89,18 +90,39 @@ public class GameManager : MonoBehaviour
         // spawners.Add("WDS0", GameObject.Find("WhiteDudeSpawner"));
     }
 
+    public void ResetToMainMenu()
+    {
+        Destroy(MapManager.instance.gameObject);
+        Destroy(GameUIManager.instance.gameObject);
+        Destroy(CameraManager.instance.gameObject);
+        SceneManager.LoadScene("StartMenu");
+        Destroy(GameManager.instance.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     public void RemovePlayer(int _playerRefId) {
         Destroy(GameManager.instance.players[_playerRefId.ToString()]);
         GameManager.instance.players.Remove(_playerRefId.ToString());
-        ServerSend.RemovePlayer(_playerRefId.ToString());
+        if (players.Count == 0)
+        {
+            ResetToMainMenu();
+        }
+        else
+        {
+            ServerSend.RemovePlayer(_playerRefId.ToString());
+        }
     }
 
-    public void ChangeClass(int _playerRefId, int _playerClass) {
-        Vector2 playerPosition = GameManager.instance.players[_playerRefId.ToString()].transform.position;
-        RemovePlayer(_playerRefId);
-        //SpawnPlayer(_playerRefId.ToString(), _playerClass, playerPosition);
-        ServerSend.ChangeClass(_playerRefId, _playerClass, playerPosition);
-    }
+    //public void ChangeClass(int _playerRefId, int _playerClass) {
+    //    Vector2 playerPosition = GameManager.instance.players[_playerRefId.ToString()].transform.position;
+    //    RemovePlayer(_playerRefId);
+    //    //SpawnPlayer(_playerRefId.ToString(), _playerClass, playerPosition);
+    //    ServerSend.ChangeClass(_playerRefId, _playerClass, playerPosition);
+    //}
 
     public void SendChangeClass(PlayerClasses _playerClass) {
         ClientSend.ChangeClass((int) _playerClass);

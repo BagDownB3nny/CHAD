@@ -33,6 +33,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     //TODO
     public MapType GetMapType() {
         if (GameManager.instance.IsBossLevel())
