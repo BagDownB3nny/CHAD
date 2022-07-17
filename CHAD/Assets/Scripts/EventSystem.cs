@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventSystem : MonoBehaviour
 {
-    private EventSystem instance;
+    private static EventSystem instance;
 
     private void Awake()
     {

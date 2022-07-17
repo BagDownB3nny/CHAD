@@ -7,6 +7,7 @@ public class SettingsManager : MonoBehaviour
 {
     public void Back()
     {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene("StartMenu");
     }
 }

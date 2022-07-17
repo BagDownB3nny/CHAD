@@ -12,12 +12,14 @@ public class JoinServerMenuController : MonoBehaviour
     public TMP_InputField serverIp;
 
     public void LoadJoinRoom() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         NetworkManager.SetGameType(GameType.Client);
         PlayerClient.instance.SetServerIp(serverIp.text);
         PlayerClient.instance.ConnectToServer();
     }
 
     public void Back() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(backScreen);
     }
 }
