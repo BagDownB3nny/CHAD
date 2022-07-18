@@ -11,17 +11,18 @@ public class Sound : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayOverlapSound(AudioClip audioClip)
+    public void PlayOverlapSound(AudioClip _audioClip, float _volume)
     {
-        audioSource.clip = audioClip;
+        audioSource.clip = _audioClip;
+        audioSource.volume = _volume;
         audioSource.Play();
 
         // Setting an ending time for audio clip
-        float clipLength = audioClip.length;
+        float clipLength = _audioClip.length;
         StartCoroutine(EndAudio(clipLength));
     }
 
-    public void PlayContinuousSound(AudioClip audioClip)
+    public void PlayContinuousSound(AudioClip _audioClip, float _volume)
     {
         if (audioSource.isPlaying)
         {
@@ -29,7 +30,8 @@ public class Sound : MonoBehaviour
         }
         else
         {
-            audioSource.clip = audioClip;
+            audioSource.clip = _audioClip;
+            audioSource.volume = _volume;
             audioSource.Play();
         }
     }

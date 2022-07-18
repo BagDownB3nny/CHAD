@@ -44,4 +44,9 @@ public class MusicManager : MonoBehaviour
             currentlyPlaying = music;
         }
     }
+
+    public void SetVolume(float _volume)
+    {
+        GetComponent<AudioSource>().volume = _volume;
+    }
 }
