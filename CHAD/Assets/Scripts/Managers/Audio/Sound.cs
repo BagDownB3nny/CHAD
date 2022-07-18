@@ -11,7 +11,7 @@ public class Sound : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(AudioClip audioClip)
+    public void PlayOverlapSound(AudioClip audioClip)
     {
         audioSource.clip = audioClip;
         audioSource.Play();
@@ -19,6 +19,19 @@ public class Sound : MonoBehaviour
         // Setting an ending time for audio clip
         float clipLength = audioClip.length;
         StartCoroutine(EndAudio(clipLength));
+    }
+
+    public void PlayContinuousSound(AudioClip audioClip)
+    {
+        if (audioSource.isPlaying)
+        {
+            return;
+        }
+        else
+        {
+            audioSource.clip = audioClip;
+            audioSource.Play();
+        }
     }
 
     private IEnumerator EndAudio(float clipLength)
