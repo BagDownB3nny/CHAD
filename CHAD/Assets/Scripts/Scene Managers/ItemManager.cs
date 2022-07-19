@@ -77,6 +77,7 @@ public class ItemManager : MonoBehaviour
         weaponDrops.Add(_dropId, weaponDrop);
 
         ServerSend.WeaponDrop(_dropId, droppedWeapon, _pos);
+        ServerSend.Broadcast("Server dropped " + droppedWeapon);
     }
 
     private void DropUpgrade(Vector3 _pos, string _dropId)
@@ -95,24 +96,27 @@ public class ItemManager : MonoBehaviour
 
     private void OnBossDeath(GameObject deadBoss)
     {
-        int numberOfBossWeaponDrops = 2;
-        int numberOfBossUpgradeDrops = 2;
-        float distanceBetweenDrops = 2f;
-        for (int i = 0; i < numberOfBossWeaponDrops; i++)
+        if (NetworkManager.gameType == GameType.Server)
         {
-            float middle = (float)numberOfBossWeaponDrops / 2f;
-            float xCoords = (i - middle) * distanceBetweenDrops;
-            float yCoords = (float)distanceBetweenDrops / 2f;
-            Vector3 position = new Vector3(xCoords, yCoords, 0);
-            DropWeapon(position, position.ToString());
-        }
-        for (int i = 0; i < numberOfBossUpgradeDrops; i++)
-        {
-            float middle = (float)numberOfBossUpgradeDrops / 2f;
-            float xCoords = (i - middle) * distanceBetweenDrops;
-            float yCoords = -(float)distanceBetweenDrops / 2f;
-            Vector3 position = new Vector3(xCoords, yCoords, 0);
-            DropUpgrade(position, position.ToString());
+            int numberOfBossWeaponDrops = 2;
+            int numberOfBossUpgradeDrops = 2;
+            float distanceBetweenDrops = 2f;
+            for (int i = 0; i < numberOfBossWeaponDrops; i++)
+            {
+                float middle = (float)numberOfBossWeaponDrops / 2f;
+                float xCoords = (i - middle) * distanceBetweenDrops;
+                float yCoords = (float)distanceBetweenDrops / 2f;
+                Vector3 position = new Vector3(xCoords, yCoords, 0);
+                DropWeapon(position, position.ToString());
+            }
+            for (int i = 0; i < numberOfBossUpgradeDrops; i++)
+            {
+                float middle = (float)numberOfBossUpgradeDrops / 2f;
+                float xCoords = (i - middle) * distanceBetweenDrops;
+                float yCoords = -(float)distanceBetweenDrops / 2f;
+                Vector3 position = new Vector3(xCoords, yCoords, 0);
+                DropUpgrade(position, position.ToString());
+            }
         }
     }
 
