@@ -14,6 +14,7 @@ public class MusicManager : MonoBehaviour
 {
     public List<AudioClip> musicPrefabs;
     public static MusicManager instance;
+    public float musicVolume = 1f;
 
     private Music currentlyPlaying;
 
@@ -47,6 +48,7 @@ public class MusicManager : MonoBehaviour
 
     public void SetVolume(float _volume)
     {
-        GetComponent<AudioSource>().volume = _volume;
+        musicVolume = _volume;
+        GetComponent<AudioSource>().volume = AudioManager.instance.masterVolume * musicVolume;
     }
 }

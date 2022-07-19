@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager instance;
     private Stack<GameObject> inactiveSounds;
-    private float volume;
+    public float soundEffectsVolume;
 
     [SerializeField]
     private List<AudioClip> audioClips;
@@ -55,7 +55,7 @@ public class SoundManager : MonoBehaviour
     private void InitializeSounds()
     {
         int soundCount = 100;
-        volume = 1f;
+        soundEffectsVolume = 1f;
         inactiveSounds = new Stack<GameObject>();
         continousSoundPlayers = new Dictionary<Sounds, GameObject>();
         for (int i = 0; i < soundCount; i++)
@@ -104,14 +104,14 @@ public class SoundManager : MonoBehaviour
         GameObject sound = inactiveSounds.Pop();
         sound.SetActive(true);
         AudioClip audioClip = audioClips[(int)_sound];
-        sound.GetComponent<Sound>().PlayOverlapSound(audioClip, volume);
+        sound.GetComponent<Sound>().PlayOverlapSound(audioClip, GetVolume());
     }
 
     private void PlayContinuousSound(Sounds _sound)
     {
         GameObject sound = continousSoundPlayers[_sound];
         AudioClip audioClip = audioClips[(int)_sound];
-        sound.GetComponent<Sound>().PlayContinuousSound(audioClip, volume);
+        sound.GetComponent<Sound>().PlayContinuousSound(audioClip, GetVolume());
     }
 
     public void EndAudio(GameObject _sound)
@@ -122,6 +122,11 @@ public class SoundManager : MonoBehaviour
 
     public void SetVolume(float _volume)
     {
-        volume = _volume;
+        soundEffectsVolume = _volume;
+    }
+
+    private float GetVolume()
+    {
+        return AudioManager.instance.masterVolume * soundEffectsVolume;
     }
 }

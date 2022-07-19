@@ -14,29 +14,28 @@ public class AudioMenu : MonoBehaviour
 
     private void Awake()
     {
-        
+        masterVolume.value = AudioManager.instance.masterVolume * masterVolume.maxValue;
+        musicVolume.value = MusicManager.instance.musicVolume * musicVolume.maxValue;
+        soundEffectsVolume.value = SoundManager.instance.soundEffectsVolume * soundEffectsVolume.maxValue;
     }
 
     public void MasterVolumeSlide()
     {
-        MusicManager.instance.SetVolume((masterVolume.value * musicVolume.value)
-                / (masterVolume.maxValue * musicVolume.maxValue));
-        SoundManager.instance.SetVolume((masterVolume.value * soundEffectsVolume.value)
-                / (masterVolume.maxValue * soundEffectsVolume.maxValue));
+        AudioManager.instance.SetVolume(masterVolume.value / masterVolume.maxValue);
+        MusicManager.instance.SetVolume(musicVolume.value / musicVolume.maxValue);
+        SoundManager.instance.SetVolume(soundEffectsVolume.value / soundEffectsVolume.maxValue);
         SoundManager.instance.PlaySound(Sounds.ButtonPress);
     }
 
     public void MusicVolumeSlide()
     {
-        MusicManager.instance.SetVolume((masterVolume.value * musicVolume.value)
-                / (masterVolume.maxValue * musicVolume.maxValue));
+        MusicManager.instance.SetVolume(musicVolume.value / musicVolume.maxValue);
         SoundManager.instance.PlaySound(Sounds.ButtonPress);
     }
 
     public void SoundEffectsVolumeSlide()
     {
-        SoundManager.instance.SetVolume((masterVolume.value * soundEffectsVolume.value)
-                / (masterVolume.maxValue * soundEffectsVolume.maxValue));
+        SoundManager.instance.SetVolume(soundEffectsVolume.value / soundEffectsVolume.maxValue);
         SoundManager.instance.PlaySound(Sounds.ButtonPress);
     }
 }

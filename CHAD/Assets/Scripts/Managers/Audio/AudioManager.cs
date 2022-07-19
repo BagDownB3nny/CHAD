@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public static AudioManager instance;
+    public float masterVolume = 1f;
 
     private void Awake()
     {
@@ -18,5 +19,10 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetVolume(float _volume)
+    {
+        masterVolume = _volume;
     }
 }
