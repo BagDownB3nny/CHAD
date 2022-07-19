@@ -76,7 +76,6 @@ public class BossDash : BossAttack
         distanceToDash = Vector3.Distance(BossManager.instance.transform.position, targetPosition);
         while (distanceToDash > 0)
         {
-            ServerSend.Broadcast("Distance to dash: " + distanceToDash);
             BossManager.instance.bossMover.Move(direction.normalized * speed * Time.deltaTime);
             distanceToDash -= speed * Time.deltaTime;
             yield return null;

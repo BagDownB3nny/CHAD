@@ -7,6 +7,7 @@ public abstract class BossAttack : MonoBehaviour
 
     protected void Awake()
     {
+        BossDeath.onBossDeath += OnBossDeath;
         SetMovement();
         SetAttack();
     }
@@ -14,4 +15,14 @@ public abstract class BossAttack : MonoBehaviour
     public abstract void SetMovement();
 
     public abstract void SetAttack();
+
+    public void OnDestroy()
+    {
+        BossDeath.onBossDeath -= OnBossDeath;
+    }
+
+    public void OnBossDeath(GameObject boss)
+    {
+        Destroy(gameObject);
+    }
 }

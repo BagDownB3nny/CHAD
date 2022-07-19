@@ -15,6 +15,7 @@ public class MiniDemon : BossAttack
         base.Awake();
     }
 
+   
     public override void SetAttack()
     {
         return;

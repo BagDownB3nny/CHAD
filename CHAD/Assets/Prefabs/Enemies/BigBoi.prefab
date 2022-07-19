@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 39960599634237694}
   - component: {fileID: 41040661759939840}
   - component: {fileID: 7313590629382035149}
+  - component: {fileID: 1072119691829606317}
   m_Layer: 0
   m_Name: BigBoi
   m_TagString: Enemy
@@ -216,6 +217,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1167212, y: 1.4981229}
   m_EdgeRadius: 0
+--- !u!114 &1072119691829606317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39960599634237693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e67b58ef8187458ab7c68dd8ce9300f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEffect: {fileID: 121682997419769905, guid: d56cf10ba7d7544a4841411a4e344dce, type: 3}
 --- !u!1 &1260624356688912569
 GameObject:
   m_ObjectHideFlags: 0
