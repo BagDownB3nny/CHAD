@@ -39,6 +39,12 @@ public class CameraMotor : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+        PlayerSpawner.onPlayerSpawn -= OnPlayerSpawn;
+    }
+
     private void Start() {
         if (isServerCam) {
             Camera.main.orthographicSize = 40;

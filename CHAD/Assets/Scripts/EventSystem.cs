@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class EventSystem : MonoBehaviour
 {
-    public static CameraManager instance;
+    private static EventSystem instance;
 
     private void Awake()
     {
@@ -12,14 +12,8 @@ public class CameraManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        } else if (instance != this)
-        {
+        } else if (instance != this) {
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        instance = null;
     }
 }

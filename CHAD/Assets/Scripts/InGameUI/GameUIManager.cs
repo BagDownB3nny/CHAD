@@ -19,6 +19,11 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     public GameObject healthBar;
     public GameObject weaponIcon;
     public GameObject pauseMenu;
@@ -32,8 +37,12 @@ public class GameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
+            if (!pauseMenu.activeSelf)
+            {
+                pauseMenu.GetComponent<PauseMenuManager>().settingsMenu.SetActive(false);
+            }
         }
-        if (Input.GetKey(KeyCode.Q)) {
+        if (Input.GetKey(InputManager.instance.keybinds[PlayerInputs.ChangeWeapon])) {
             weaponWheel.SetActive(true);
             crosshair.GetComponent<SpriteRenderer>().enabled = false;
         } else {
