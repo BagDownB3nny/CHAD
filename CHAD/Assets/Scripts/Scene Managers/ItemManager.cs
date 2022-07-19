@@ -22,6 +22,7 @@ public class ItemManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             EnemyDeath.onEnemyDeath += OnEnemyDeath;
+            BossDeath.onBossDeath += OnBossDeath;
             itemDrops = new Dictionary<string, GameObject>();
             weaponDrops = new Dictionary<string, GameObject>();
         } else if (instance != this)
@@ -52,35 +53,66 @@ public class ItemManager : MonoBehaviour
                 // Drop weapon
                 if (dropType == 0)
                 {
-                    GameObject weaponDrop = Instantiate(weaponDropPrefab,
-                            deadEnemy.transform.position, Quaternion.identity);
-                    PlayerWeapons droppedWeapon = (PlayerWeapons) Mathf.RoundToInt(
-                            UnityEngine.Random.Range(1,
-                            Enum.GetNames(typeof(PlayerWeapons)).Length));
-                    string dropId = itemsDropped.ToString();
-                    weaponDrop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
-                    weaponDrop.GetComponent<WeaponDrops>().dropId = dropId;
-                    weaponDrops.Add(dropId, weaponDrop);
-
-                    ServerSend.WeaponDrop(dropId, droppedWeapon, deadEnemy.transform.position);
+                    DropWeapon(deadEnemy.transform.position, itemsDropped.ToString());
                 }
                 // Drop item
                 if (dropType == 1)
                 {
-                    GameObject itemDrop = Instantiate(itemDropPrefab,
-                            deadEnemy.transform.position, Quaternion.identity);
-                    //PlayerItems droppedItem = (PlayerItems)Mathf.RoundToInt(
-                    //        UnityEngine.Random.Range(1,
-                    //        Enum.GetNames(typeof(PlayerItems)).Length));
-                    PlayerItems droppedItem = PlayerItems.Boot;
-                    string dropId = itemsDropped.ToString();
-                    itemDrop.GetComponent<ItemDrops>().SetItemType(droppedItem);
-                    itemDrop.GetComponent<ItemDrops>().dropId = dropId;
-                    itemDrops.Add(dropId, itemDrop);
-                    ServerSend.ItemDrop(dropId, droppedItem, deadEnemy.transform.position);
+                    DropUpgrade(deadEnemy.transform.position, itemsDropped.ToString());
                 }
                 itemsDropped += 1;
             }
+        }
+    }
+
+    private void DropWeapon(Vector3 _pos, string _dropId)
+    {
+        GameObject weaponDrop = Instantiate(weaponDropPrefab,
+                            _pos, Quaternion.identity);
+        PlayerWeapons droppedWeapon = (PlayerWeapons)Mathf.RoundToInt(
+                UnityEngine.Random.Range(1,
+                Enum.GetNames(typeof(PlayerWeapons)).Length));
+        weaponDrop.GetComponent<WeaponDrops>().playerWeapon = droppedWeapon;
+        weaponDrop.GetComponent<WeaponDrops>().dropId = _dropId;
+        weaponDrops.Add(_dropId, weaponDrop);
+
+        ServerSend.WeaponDrop(_dropId, droppedWeapon, _pos);
+    }
+
+    private void DropUpgrade(Vector3 _pos, string _dropId)
+    {
+        GameObject itemDrop = Instantiate(itemDropPrefab,
+                            _pos, Quaternion.identity);
+        //PlayerItems droppedItem = (PlayerItems)Mathf.RoundToInt(
+        //        UnityEngine.Random.Range(1,
+        //        Enum.GetNames(typeof(PlayerItems)).Length));
+        PlayerItems droppedItem = PlayerItems.Boot;
+        itemDrop.GetComponent<ItemDrops>().SetItemType(droppedItem);
+        itemDrop.GetComponent<ItemDrops>().dropId = _dropId;
+        itemDrops.Add(_dropId, itemDrop);
+        ServerSend.ItemDrop(_dropId, droppedItem, _pos);
+    }
+
+    private void OnBossDeath(GameObject deadBoss)
+    {
+        int numberOfBossWeaponDrops = 2;
+        int numberOfBossUpgradeDrops = 2;
+        float distanceBetweenDrops = 2f;
+        for (int i = 0; i < numberOfBossWeaponDrops; i++)
+        {
+            float middle = (float)numberOfBossWeaponDrops / 2f;
+            float xCoords = (i - middle) * distanceBetweenDrops;
+            float yCoords = (float)distanceBetweenDrops / 2f;
+            Vector3 position = new Vector3(xCoords, yCoords, 0);
+            DropWeapon(position, position.ToString());
+        }
+        for (int i = 0; i < numberOfBossUpgradeDrops; i++)
+        {
+            float middle = (float)numberOfBossUpgradeDrops / 2f;
+            float xCoords = (i - middle) * distanceBetweenDrops;
+            float yCoords = -(float)distanceBetweenDrops / 2f;
+            Vector3 position = new Vector3(xCoords, yCoords, 0);
+            DropUpgrade(position, position.ToString());
         }
     }
 
