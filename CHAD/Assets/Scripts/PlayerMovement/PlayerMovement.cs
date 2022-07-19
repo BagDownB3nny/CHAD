@@ -65,7 +65,11 @@ public class PlayerMovement : MonoBehaviour
 
     //client receives processed game state from server and sets it
     public void ReceiveMovement(Vector2 _position) {
-        transform.position = _position;
+        if (transform.position != (Vector3)_position)
+        {
+            SoundManager.instance.PlaySound(Sounds.Walk);
+            transform.position = _position;
+        }
         if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId) && onPlayerMove != null)
         {
             onPlayerMove(gameObject);

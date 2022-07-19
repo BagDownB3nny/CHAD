@@ -12,6 +12,7 @@ public class MultiplayerMenuController : MonoBehaviour
     public string backScreen;
 
     public void LoadHostRoom() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(hostRoomScreen);
         NetworkManager.SetGameType(GameType.Server);
         Server.Start(4, 26950);
@@ -19,10 +20,12 @@ public class MultiplayerMenuController : MonoBehaviour
     }
 
     public void LoadJoinRoom() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(joinRoomScreen);
     }
 
     public void Back() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(backScreen);
     }
 }

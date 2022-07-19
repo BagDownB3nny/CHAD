@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventSystem : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    private EventSystem instance;
+
+    public static AudioManager instance;
+    public float masterVolume = 1f;
 
     private void Awake()
     {
@@ -12,8 +14,15 @@ public class EventSystem : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        } else if (instance != this) {
+        }
+        else if (instance != this)
+        {
             Destroy(gameObject);
         }
+    }
+
+    public void SetVolume(float _volume)
+    {
+        masterVolume = _volume;
     }
 }

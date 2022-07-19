@@ -14,18 +14,22 @@ public class StartMenuController : MonoBehaviour
     public GameObject canvas;
 
     public void LoadSingleplayer() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(singleplayerScreen);
     }
 
     public void LoadMultiplayer() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(mulitplayerScreen);
     }
 
     public void LoadSettings() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         SceneManager.LoadScene(settingsScreen);
     }
 
     public void Exit() {
+        SoundManager.instance.PlaySound(Sounds.ButtonPress);
         Application.Quit();
     }
 }

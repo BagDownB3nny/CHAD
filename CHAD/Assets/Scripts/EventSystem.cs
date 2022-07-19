@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class EventSystem : MonoBehaviour
 {
-
-    public static AudioManager instance;
+    private static EventSystem instance;
 
     private void Awake()
     {
@@ -13,9 +12,7 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
+        } else if (instance != this) {
             Destroy(gameObject);
         }
     }

@@ -32,7 +32,6 @@ public class GameUIManager : MonoBehaviour
     public GameObject interactText;
     public GameObject objectiveText;
     public GameObject holeUI;
-    public GameObject settingsMenu;
 
     void Update()
     {
@@ -40,7 +39,7 @@ public class GameUIManager : MonoBehaviour
             pauseMenu.SetActive(!pauseMenu.activeSelf);
             if (!pauseMenu.activeSelf)
             {
-                settingsMenu.SetActive(false);
+                pauseMenu.GetComponent<PauseMenuManager>().settingsMenu.SetActive(false);
             }
         }
         if (Input.GetKey(InputManager.instance.keybinds[PlayerInputs.ChangeWeapon])) {
@@ -63,10 +62,5 @@ public class GameUIManager : MonoBehaviour
         GameObject newPlayerPointer = Instantiate(_playerPointer, _player.transform.position, Quaternion.identity, transform);
         newPlayerPointer.GetComponent<PlayerPointer>().target= _player;
         newPlayerPointer.GetComponent<TextMeshProUGUI>().text = "P" + _playerId.ToString();
-    }
-
-    public void SettingsBack()
-    {
-        settingsMenu.SetActive(false);
     }
 }
