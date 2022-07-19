@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ItemManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ItemManager : MonoBehaviour
     public Dictionary<string, GameObject> weaponDrops;
     public GameObject itemDropPrefab;
     public GameObject weaponDropPrefab;
+
 
     private int[] itemDropRange = new int[] { 30, 31 };
     public int itemsToDrop;
@@ -118,6 +120,10 @@ public class ItemManager : MonoBehaviour
                 DropUpgrade(position, position.ToString());
             }
         }
+        GameObject.FindGameObjectWithTag("Exit").GetComponent<Exit>().SetOpen();
+        GameUIManager.instance.holeUI.SetActive(true);
+        EnemySpawner.instance.objectiveText.SetActive(true);
+        EnemySpawner.instance.objectiveText.GetComponent<TextMeshProUGUI>().text = "FIND THE EXIT";
     }
 
     public void ReceiveWeaponDrop(string _dropId, PlayerWeapons _droppedWeapon, Vector2 _position)
