@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5694721153490496980}
   - component: {fileID: 4408660027886468870}
-  - component: {fileID: 243860184542288574}
+  - component: {fileID: -5713029191024491244}
   m_Layer: 0
-  m_Name: Boots
+  m_Name: Armour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 92c00a16705c349e2ba933626c53e291, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0100ed73e18c4b1890344b54c44bd88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &243860184542288574
+--- !u!114 &-5713029191024491244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4509076951316696128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe04cbedbe1aa46c2932e1376ce048e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 86fe0af55f3474b608c28bd6b296642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerItem: 0

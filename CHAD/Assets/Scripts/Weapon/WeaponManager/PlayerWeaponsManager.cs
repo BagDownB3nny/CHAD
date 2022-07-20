@@ -44,6 +44,7 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     //instantiate a selected gun
     public void EquipGun(int gunIndex) {
+        SoundManager.instance.PlaySound(Sounds.EquipGun);
         //if currently holding a gun, discard it first
         if (!weaponInventory.ContainsKey(gunIndex)) {
             return;
@@ -76,6 +77,7 @@ public class PlayerWeaponsManager : MonoBehaviour
             GameObject gun = GameManager.instance.gunPrefabs[(int) gunType];
             weaponInventory.Add(weaponInventory.Count, gunType);
             if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId)) {
+                SoundManager.instance.PlaySound(Sounds.Interact);
                 GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
                     .UpdateWeaponButton(weaponInventory.Count, gun);
             }

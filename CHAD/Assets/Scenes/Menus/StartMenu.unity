@@ -694,14 +694,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundPrefab: {fileID: 4459539783832716192, guid: bf32788338c2d4f258322cde3ebdbc4f, type: 3}
+  soundEffectsVolume: 0
   audioClips:
   - {fileID: 0}
   - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
+  - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
   - {fileID: 8300000, guid: 8b7da41c928474ef29bf85ebdd535b67, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
   - {fileID: 0}
 --- !u!1 &994274323
 GameObject:
@@ -1181,6 +1182,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 966d80c80bc5441799ed2c527bf24987, type: 3}
   - {fileID: 8300000, guid: 4f89bbafe8f744fbd99472d93f923128, type: 3}
   - {fileID: 8300000, guid: 8309bf59a3e9f49cbbcf8ca1e9d14f05, type: 3}
+  musicVolume: 1
 --- !u!82 &1389830292
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1789,6 +1791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9696fa96ef27544698792a7f6f11eaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 1
 --- !u!1 &2132702115
 GameObject:
   m_ObjectHideFlags: 0

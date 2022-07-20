@@ -18,6 +18,8 @@ public abstract class CharacterStatsManager : MonoBehaviour
     public float hp;
     public float attack;
     public float speed;
+    public float attackSpeed;
+    public float accuracy;
     public float armour;
     public float armourPenetration;
     public float armourEffectiveness;

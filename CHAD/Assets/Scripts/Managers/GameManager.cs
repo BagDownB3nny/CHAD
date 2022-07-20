@@ -7,7 +7,11 @@ using UnityEngine.SceneManagement;
 public enum PlayerItems
 {
     None = 0,
-    Boot = 1
+    Boot = 1,
+    Armour = 2,
+    BFSword = 3,
+    ElvenAccuracy = 4,
+    PiercingRounds = 5
 }
 
 public enum CharacterType {
@@ -65,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     // Level tracking data
     public int currentLevel = 0;
-    private HashSet<int> bossLevels = new HashSet<int>() {1, 2, 3, 8, 12};
+    private HashSet<int> bossLevels = new HashSet<int>() {3, 8, 12};
 
     private void Awake()
     {

@@ -37,6 +37,7 @@ public class GameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
+            Cursor.visible = pauseMenu.activeSelf;
             if (!pauseMenu.activeSelf)
             {
                 pauseMenu.GetComponent<PauseMenuManager>().settingsMenu.SetActive(false);

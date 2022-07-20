@@ -86,10 +86,9 @@ public class ItemManager : MonoBehaviour
     {
         GameObject itemDrop = Instantiate(itemDropPrefab,
                             _pos, Quaternion.identity);
-        //PlayerItems droppedItem = (PlayerItems)Mathf.RoundToInt(
-        //        UnityEngine.Random.Range(1,
-        //        Enum.GetNames(typeof(PlayerItems)).Length));
-        PlayerItems droppedItem = PlayerItems.Boot;
+        PlayerItems droppedItem = (PlayerItems)Mathf.RoundToInt(
+                UnityEngine.Random.Range(1,
+                Enum.GetNames(typeof(PlayerItems)).Length));
         itemDrop.GetComponent<ItemDrops>().SetItemType(droppedItem);
         itemDrop.GetComponent<ItemDrops>().dropId = _dropId;
         itemDrops.Add(_dropId, itemDrop);
