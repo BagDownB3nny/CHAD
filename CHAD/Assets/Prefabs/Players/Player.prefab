@@ -132,7 +132,9 @@ MonoBehaviour:
   maxHp: 1000000
   hp: 1000000
   attack: 5
-  speed: 8
+  speed: 25
+  attackSpeed: 0
+  accuracy: 0
   armour: 1
   armourPenetration: 0
   armourEffectiveness: 0.4
@@ -141,6 +143,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   damageEffect: {fileID: 0}
   healthBar: {fileID: 0}
+  enemyHealthBar: {fileID: 0}
   playerClass: 0
 --- !u!114 &8048562091491450984
 MonoBehaviour:
