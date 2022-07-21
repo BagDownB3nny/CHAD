@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NUnit.Framework;
 using System;
+using UnityEngine.TestTools;
 
 namespace Tests
 {
@@ -61,11 +62,80 @@ namespace Tests
         }
 
         [Test]
-        public void CharacterStats_GetEnemySpawnTime1()
+        public void EnemySpawner_GetEnemySpawnTime1()
+        {
+            var testSpawner = new GameObject().AddComponent<EnemySpawner>();
+            testSpawner.enemiesAlive = 10;
+            testSpawner.enemiesLeftToSpawn = 30;
+            testSpawner.totalEnemiesToSpawn = 100;
+
+            Server.NumberOfPlayers = 1;
+            Assert.AreEqual(testSpawner.generateNextSpawnTime(), 2.0f);
+        }
+
+        [Test]
+        public void EnemySpawner_GetEnemySpawnTime2()
         {
             var testSpawner = new GameObject().AddComponent<EnemySpawner>();
             testSpawner.enemiesAlive = 3;
             Assert.AreEqual(testSpawner.generateNextSpawnTime(), 0.2f);
+        }
+
+        [Test]
+        public void EnemySpawner_GetEnemySpawnTime3()
+        {
+            var testSpawner = new GameObject().AddComponent<EnemySpawner>();
+            testSpawner.enemiesAlive = 6;
+            testSpawner.enemiesLeftToSpawn = 44;
+            testSpawner.totalEnemiesToSpawn = 50;
+
+            Server.NumberOfPlayers = 2;
+            Assert.AreEqual(testSpawner.generateNextSpawnTime(), 4.0f);
+        }
+
+        [Test]
+        public void ItemManager_GetDropProbability1()
+        {
+            var testItemManager = new GameObject().AddComponent<ItemManager>();
+            testItemManager.itemsToDrop = 4;
+            testItemManager.itemsDropped = 4;
+
+            var testSpawner = new GameObject().AddComponent<EnemySpawner>();
+            EnemySpawner.instance = testSpawner;
+            testSpawner.totalEnemiesToSpawn = 100;
+            testSpawner.enemiesKilled = 50;
+
+            Assert.AreEqual(testItemManager.GetDropProbability(), 0);
+        }
+
+        [Test]
+        public void ItemManager_GetDropProbability2()
+        {
+            var testItemManager = new GameObject().AddComponent<ItemManager>();
+            testItemManager.itemsToDrop = 4;
+            testItemManager.itemsDropped = 2;
+
+            var testSpawner = new GameObject().AddComponent<EnemySpawner>();
+            EnemySpawner.instance = testSpawner;
+            testSpawner.totalEnemiesToSpawn = 100;
+            testSpawner.enemiesKilled = 30;
+
+            Assert.AreEqual(Mathf.RoundToInt(testItemManager.GetDropProbability() * 100000), 0.02857f * 100000);
+        }
+
+        [Test]
+        public void ItemManager_GetDropProbability3()
+        {
+            var testItemManager = new GameObject().AddComponent<ItemManager>();
+            testItemManager.itemsToDrop = 12;
+            testItemManager.itemsDropped = 5;
+
+            var testSpawner = new GameObject().AddComponent<EnemySpawner>();
+            EnemySpawner.instance = testSpawner;
+            testSpawner.totalEnemiesToSpawn = 100;
+            testSpawner.enemiesKilled = 75;
+
+            Assert.AreEqual(Mathf.RoundToInt(testItemManager.GetDropProbability() * 10000), 0.28f * 10000);
         }
     }
 }
