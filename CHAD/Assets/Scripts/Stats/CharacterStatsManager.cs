@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class CharacterStatsManager : MonoBehaviour
 {
@@ -43,9 +44,15 @@ public abstract class CharacterStatsManager : MonoBehaviour
         }
     }
 
+    public int CalcDamageTaken(float _damageDealt, float _armourPenetration)
+    {
+        float effectiveArmour = armour * (1 - _armourPenetration);
+        float damageTaken = _damageDealt * (1 - effectiveArmour / (effectiveArmour + (1 / armourEffectiveness)));
+        return Mathf.RoundToInt(damageTaken);
+    }
+
     public void TakeDamage(float _damageDealt, float _armourPenetration) {
-        float effectiveArmour = armour * (1 - armourPenetration);
-        float damageTaken = _damageDealt * (1 - effectiveArmour/(effectiveArmour + (1/armourEffectiveness)));
+        int damageTaken = CalcDamageTaken(_damageDealt, _armourPenetration);
         hp -= damageTaken;
 
         if (gameObject.tag == "Player") {

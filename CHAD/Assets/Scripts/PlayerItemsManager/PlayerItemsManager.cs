@@ -20,6 +20,7 @@ public class PlayerItemsManager : MonoBehaviour
 
     public void AddItem(PlayerItems playerItem)
     {
+        SoundManager.instance.PlaySound(Sounds.Interact);
         GameObject item = GameManager.instance.itemDrops[(int) playerItem];
 
         // Gets item to perform its pickup function
