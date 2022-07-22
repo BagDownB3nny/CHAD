@@ -24,6 +24,9 @@ public class PlayerStatsManager : CharacterStatsManager
 
     private void OnDestroy()
     {
-        PlayerInfoManager.AllPlayerInfo[characterRefId].SetStats(this);
+        if (PlayerInfoManager.AllPlayerInfo.ContainsKey(characterRefId))
+        {
+            PlayerInfoManager.AllPlayerInfo[characterRefId].SetStats(this);
+        }
     }
 }

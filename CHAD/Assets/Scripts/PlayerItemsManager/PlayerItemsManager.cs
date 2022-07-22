@@ -38,7 +38,10 @@ public class PlayerItemsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetItemInventory(this);
+        if (PlayerInfoManager.AllPlayerInfo.ContainsKey(GetComponent<PlayerStatsManager>().characterRefId))
+        {
+            PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetItemInventory(this);
+        }
     }
 
     public void SetItemInventory(PlayerInfo playerInfo)
