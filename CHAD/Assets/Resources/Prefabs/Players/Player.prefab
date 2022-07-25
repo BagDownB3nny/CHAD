@@ -129,10 +129,10 @@ MonoBehaviour:
   characterType: 0
   localProjectileRefId: 0
   localDamageDealerRefId: 0
-  maxHp: 1000000
-  hp: 1000000
+  maxHp: 700
+  hp: 700
   attack: 5
-  speed: 25
+  speed: 8
   attackSpeed: 0
   accuracy: 0
   armour: 1
