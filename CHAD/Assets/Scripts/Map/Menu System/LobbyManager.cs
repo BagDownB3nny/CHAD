@@ -22,6 +22,10 @@ public class LobbyManager : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
+        if (NetworkManager.gameType == GameType.Server)
+        {
+            ServerSend.Broadcast("Lobby has been destroyed");
+        }
     }
 
     private void Start()

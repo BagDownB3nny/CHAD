@@ -57,6 +57,7 @@ public class PlayerSpawner : MonoBehaviour
                     if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
                         GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
                     }
+                    playersSpawned += 1;
                 }
             } // If playerInfo is of different playerClass, that means we are trying to change playerClass of existing player
             else
@@ -99,12 +100,12 @@ public class PlayerSpawner : MonoBehaviour
             if (NetworkManager.gameType == GameType.Client && !NetworkManager.IsMine(_playerId.ToString())) {
                 GameUIManager.instance.InstantiaitePlayerPointer(player, playerPointer, _playerId);
             }
+            playersSpawned += 1;
         }
         if (onPlayerSpawn != null)
         {
             onPlayerSpawn(_playerId);
         }
-        playersSpawned += 1;
         if (LobbyManager.instance != null)
         {
             Server.NumberOfPlayers = playersSpawned;
