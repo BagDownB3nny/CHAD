@@ -20,6 +20,7 @@ public class PlayerItemsManager : MonoBehaviour
 
     public void AddItem(PlayerItems playerItem)
     {
+        SoundManager.instance.PlaySound(Sounds.Interact);
         GameObject item = GameManager.instance.itemDrops[(int) playerItem];
 
         // Gets item to perform its pickup function
@@ -37,7 +38,10 @@ public class PlayerItemsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetItemInventory(this);
+        if (PlayerInfoManager.AllPlayerInfo.ContainsKey(GetComponent<PlayerStatsManager>().characterRefId))
+        {
+            PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetItemInventory(this);
+        }
     }
 
     public void SetItemInventory(PlayerInfo playerInfo)

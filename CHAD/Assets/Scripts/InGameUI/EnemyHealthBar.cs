@@ -11,15 +11,21 @@ public class EnemyHealthBar : MonoBehaviour
     public Vector2 offset;
 
     public void SetHealth(float health, float maxHealth) {
-        slider.gameObject.SetActive(health < maxHealth);
-        slider.minValue = 0;
-        slider.value = health;
-        slider.maxValue = maxHealth;
+        if (slider != null)
+        {
+            slider.gameObject.SetActive(health < maxHealth);
+            slider.minValue = 0;
+            slider.value = health;
+            slider.maxValue = maxHealth;
 
-        slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
+            slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
+        }
     }
 
     private void Update() {
-        slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + (Vector3) offset);
+        if (slider != null )
+        {
+            slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + (Vector3)offset);
+        }
     }
 }

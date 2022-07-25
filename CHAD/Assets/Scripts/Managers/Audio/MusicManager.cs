@@ -14,7 +14,7 @@ public class MusicManager : MonoBehaviour
 {
     public List<AudioClip> musicPrefabs;
     public static MusicManager instance;
-    public float musicVolume = 1f;
+    public float musicVolume;
 
     private Music currentlyPlaying;
 
@@ -25,6 +25,7 @@ public class MusicManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             PlayMusic(Music.menu);
+            musicVolume = 1f;
 
         } else if (instance != this)
         {

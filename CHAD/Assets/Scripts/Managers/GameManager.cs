@@ -81,8 +81,7 @@ public class GameManager : MonoBehaviour
             playerClasses = new Dictionary<string, PlayerClasses>();
             projectiles = new Dictionary<string, GameObject>();
             enemies = new Dictionary<string, GameObject>();
-            damageDealers = new Dictionary<string, GameObject>();
-        }
+            damageDealers = new Dictionary<string, GameObject>();       }
         else if (instance != this)
         {
             Destroy(gameObject);
@@ -105,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        ResetGame();
         instance = null;
     }
 
@@ -155,26 +155,46 @@ public class GameManager : MonoBehaviour
     }
 
     public void ResetGame() {
-        foreach (KeyValuePair<string, GameObject> pair in players) {
-            Destroy(pair.Value);
+        if (players.Count != 0)
+        {
+            foreach (KeyValuePair<string, GameObject> pair in players)
+            {
+                Destroy(pair.Value);
+            }
+            players.Clear();
         }
-        players.Clear();
-        foreach (KeyValuePair<string, GameObject> pair in projectiles) {
-            Destroy(pair.Value);
+        if (projectiles.Count != 0)
+        {
+            foreach (KeyValuePair<string, GameObject> pair in projectiles)
+            {
+                Destroy(pair.Value);
+            }
+            projectiles.Clear();
         }
-        projectiles.Clear();
-        foreach (KeyValuePair<string, GameObject> pair in enemies) {
-            Destroy(pair.Value);
+        if (enemies.Count != 0)
+        {
+            foreach (KeyValuePair<string, GameObject> pair in enemies)
+            {
+                Destroy(pair.Value);
+            }
+            enemies.Clear();
         }
-        enemies.Clear();
-        foreach (KeyValuePair<string, GameObject> pair in damageDealers) {
-            Destroy(pair.Value);
+        if (damageDealers.Count != 0)
+        {
+            foreach (KeyValuePair<string, GameObject> pair in damageDealers)
+            {
+                Destroy(pair.Value);
+            }
+            damageDealers.Clear();
         }
-        damageDealers.Clear();
-        foreach (KeyValuePair<string, GameObject> pair in enemySpawners) {
-            Destroy(pair.Value);
+        if (enemySpawners.Count != 0)
+        {
+            foreach (KeyValuePair<string, GameObject> pair in enemySpawners)
+            {
+                Destroy(pair.Value);
+            }
+            enemySpawners.Clear();
         }
-        enemySpawners.Clear();
     }
 
     public void Broadcast(string _msg) {

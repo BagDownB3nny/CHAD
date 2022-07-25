@@ -48,6 +48,18 @@ public class ItemDrops : Interactable
 
     public override string GetText()
     {
-        return "PRESS " + InputManager.instance.keybinds[PlayerInputs.Interact] + " TO PICK UP";
+        string extraText = "";
+        if (playerItem == PlayerItems.BFSword) {
+            extraText = "BFSword: Attack +0.04";
+        } else if (playerItem == PlayerItems.Boot) {
+            extraText = "Boots: Speed +0.5";
+        } else if (playerItem == PlayerItems.Armour) {
+            extraText = "Armour: Armour +0.04";
+        } else if (playerItem == PlayerItems.ElvenAccuracy) {
+            extraText = "Elven Accuracy: Accuracy +2";
+        } else if (playerItem == PlayerItems.PiercingRounds) {
+            extraText = "Piercing: Armour Penetration +0.5";
+        }
+        return extraText + "\n" + "PRESS " + InputManager.instance.keybinds[PlayerInputs.Interact] + " TO PICK UP";
     }
 }

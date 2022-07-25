@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public static AudioManager instance;
-    public float masterVolume = 1f;
+    public float masterVolume;
 
     private void Awake()
     {
@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            masterVolume = 1f;
         }
         else if (instance != this)
         {

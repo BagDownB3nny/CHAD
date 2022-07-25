@@ -89,7 +89,6 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(Sounds _sound)
     {
-        Debug.Log("Playing " + _sound);
         if (soundType[_sound] == SoundTypes.Overlap)
         {
             PlayOverlapSound(_sound);

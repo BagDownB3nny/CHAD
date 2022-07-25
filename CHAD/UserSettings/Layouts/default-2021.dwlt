@@ -8,7 +8,7 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -19,12 +19,167 @@ MonoBehaviour:
     width: 1440
     height: 900
   m_ShowMode: 4
-  m_Title: Console
-  m_RootView: {fileID: 2}
+  m_Title: Game
+  m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: InspectorWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 559
+    width: 435.5
+    height: 291
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
+  m_Panes:
+  - {fileID: 16}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &3
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 5}
+  - {fileID: 2}
+  m_Position:
+    serializedVersion: 2
+    x: 1004.5
+    y: 0
+    width: 435.5
+    height: 850
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 12736
+--- !u!114 &4
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 11}
+  - {fileID: 3}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 30
+    width: 1440
+    height: 850
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
+  vertical: 0
+  controlID: 123
+--- !u!114 &5
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: TestRunnerWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 435.5
+    height: 559
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 14}
+  m_Panes:
+  - {fileID: 14}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &6
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 225
+    height: 552.5
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
+  m_Panes:
+  - {fileID: 17}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &7
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ProjectBrowser
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 552.5
+    width: 1004.5
+    height: 297.5
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 15}
+  m_Panes:
+  - {fileID: 15}
+  - {fileID: 20}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,9 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 3}
-  - {fileID: 5}
+  - {fileID: 9}
   - {fileID: 4}
+  - {fileID: 10}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -52,7 +207,7 @@ MonoBehaviour:
   m_TopViewHeight: 30
   m_UseBottomView: 1
   m_BottomViewHeight: 20
---- !u!114 &3
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,8 +228,8 @@ MonoBehaviour:
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: 
---- !u!114 &4
+  m_LastLoadedLayoutName: Default
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +250,32 @@ MonoBehaviour:
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
---- !u!114 &5
+--- !u!114 &11
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 12}
+  - {fileID: 7}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1004.5
+    height: 850
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 16192, y: 16192}
+  vertical: 1
+  controlID: 124
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,68 +289,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 6}
-  - {fileID: 11}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 30
-    width: 1440
-    height: 850
-  m_MinSize: {x: 300, y: 200}
-  m_MaxSize: {x: 24288, y: 16192}
-  vertical: 0
-  controlID: 6796
---- !u!114 &6
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 7}
-  - {fileID: 10}
+  - {fileID: 13}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1031.5
-    height: 850
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 16192, y: 16192}
-  vertical: 1
-  controlID: 6797
---- !u!114 &7
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 8}
-  - {fileID: 9}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1031.5
-    height: 512
+    width: 1004.5
+    height: 552.5
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 6798
---- !u!114 &8
+  controlID: 125
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,104 +310,1000 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 0
+    x: 225
     y: 0
-    width: 193.5
-    height: 512
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 13}
-  m_Panes:
-  - {fileID: 13}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &9
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 193.5
-    y: 0
-    width: 838
-    height: 512
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 12}
-  m_Panes:
-  - {fileID: 12}
-  - {fileID: 14}
-  - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 2
---- !u!114 &10
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 512
-    width: 1031.5
-    height: 338
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
-  m_Panes:
-  - {fileID: 16}
-  - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 0
---- !u!114 &11
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 1031.5
-    y: 0
-    width: 408.5
-    height: 850
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 18}
+    width: 779.5
+    height: 552.5
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
-  m_Selected: 0
+  - {fileID: 19}
+  m_Selected: 1
   m_LastSelected: 0
---- !u!114 &12
+--- !u!114 &14
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1004.5
+    y: 30
+    width: 434.5
+    height: 538
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_Spl:
+    ID: 12754
+    splitterInitialOffset: 395
+    currentActiveSplitter: -1
+    realSizes:
+    - 318.5
+    - 149.5
+    relativeSizes:
+    - 0.6806723
+    - 0.3193277
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 468
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 0
+  m_PlayModeTestListGUI:
+    m_Window: {fileID: 14}
+    m_NewResultList:
+    - id: 1008
+      uniqueId: '[CHAD][suite]'
+      name: CHAD
+      fullName: CHAD
+      resultStatus: 1
+      duration: 27.273836
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1004
+      uniqueId: '[PlayModeTests][/Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD/Library/ScriptAssemblies/PlayModeTests.dll][suite]'
+      name: PlayModeTests.dll
+      fullName: /Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD/Library/ScriptAssemblies/PlayModeTests.dll
+      resultStatus: 1
+      duration: 26.83109
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[CHAD][suite]'
+    - id: 1001
+      uniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+      name: PlayModeTests
+      fullName: PlayModeTests
+      resultStatus: 1
+      duration: 26.812216
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: '[PlayModeTests][/Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD/Library/ScriptAssemblies/PlayModeTests.dll][suite]'
+    - id: 1024
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.MeleeEnemies_MoveToPlayer1]
+      name: MeleeEnemies_MoveToPlayer1
+      fullName: PlayModeTests.MeleeEnemies_MoveToPlayer1
+      resultStatus: 1
+      duration: 2.3564265
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1020
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1006
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.MeleeEnemies_MoveToPlayer2]
+      name: MeleeEnemies_MoveToPlayer2
+      fullName: PlayModeTests.MeleeEnemies_MoveToPlayer2
+      resultStatus: 1
+      duration: 2.2257724
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1007
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.MeleeEnemies_MoveToPlayer3]
+      name: MeleeEnemies_MoveToPlayer3
+      fullName: PlayModeTests.MeleeEnemies_MoveToPlayer3
+      resultStatus: 1
+      duration: 2.2149084
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1002
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.Projectiles_TimeToDespawn1]
+      name: Projectiles_TimeToDespawn1
+      fullName: PlayModeTests.Projectiles_TimeToDespawn1
+      resultStatus: 1
+      duration: 6.2158656
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1003
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.Projectiles_TimeToDespawn2]
+      name: Projectiles_TimeToDespawn2
+      fullName: PlayModeTests.Projectiles_TimeToDespawn2
+      resultStatus: 1
+      duration: 4.3818064
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1004
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.Projectiles_TimeToDespawn3]
+      name: Projectiles_TimeToDespawn3
+      fullName: PlayModeTests.Projectiles_TimeToDespawn3
+      resultStatus: 1
+      duration: 4.2347875
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1008
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedEnemies_MoveToPlayer1]
+      name: RangedEnemies_MoveToPlayer1
+      fullName: PlayModeTests.RangedEnemies_MoveToPlayer1
+      resultStatus: 1
+      duration: 2.3342552
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1009
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedEnemies_MoveToPlayer2]
+      name: RangedEnemies_MoveToPlayer2
+      fullName: PlayModeTests.RangedEnemies_MoveToPlayer2
+      resultStatus: 1
+      duration: 2.2158308
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1010
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedEnemies_MoveToPlayer3]
+      name: RangedEnemies_MoveToPlayer3
+      fullName: PlayModeTests.RangedEnemies_MoveToPlayer3
+      resultStatus: 1
+      duration: 2.2287273
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1011
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedEnemies_RetreatFromPlayer1]
+      name: RangedEnemies_RetreatFromPlayer1
+      fullName: PlayModeTests.RangedEnemies_RetreatFromPlayer1
+      resultStatus: 1
+      duration: 2.2141688
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1012
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedEnemies_RetreatFromPlayer2]
+      name: RangedEnemies_RetreatFromPlayer2
+      fullName: PlayModeTests.RangedEnemies_RetreatFromPlayer2
+      resultStatus: 1
+      duration: 2.216156
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1013
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedEnemies_RetreatFromPlayer3]
+      name: RangedEnemies_RetreatFromPlayer3
+      fullName: PlayModeTests.RangedEnemies_RetreatFromPlayer3
+      resultStatus: 1
+      duration: 2.233974
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1014
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedProjectile_ShootsAtPlayer1]
+      name: RangedProjectile_ShootsAtPlayer1
+      fullName: PlayModeTests.RangedProjectile_ShootsAtPlayer1
+      resultStatus: 1
+      duration: 2.245572
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1015
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedProjectile_ShootsAtPlayer2]
+      name: RangedProjectile_ShootsAtPlayer2
+      fullName: PlayModeTests.RangedProjectile_ShootsAtPlayer2
+      resultStatus: 1
+      duration: 2.219607
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1016
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.RangedProjectile_ShootsAtPlayer3]
+      name: RangedProjectile_ShootsAtPlayer3
+      fullName: PlayModeTests.RangedProjectile_ShootsAtPlayer3
+      resultStatus: 1
+      duration: 2.246418
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1017
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.Stats_PlayerTakesDamage1]
+      name: Stats_PlayerTakesDamage1
+      fullName: PlayModeTests.Stats_PlayerTakesDamage1
+      resultStatus: 1
+      duration: 3.2174747
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    - id: 1018
+      uniqueId: PlayModeTests.dll/PlayModeTests/[PlayModeTests][PlayModeTests.Stats_PlayerTakesDamage2]
+      name: Stats_PlayerTakesDamage2
+      fullName: PlayModeTests.Stats_PlayerTakesDamage2
+      resultStatus: 1
+      duration: 3.212607
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][suite]
+    m_ResultText: RangedProjectile_ShootsAtPlayer2 (2.220s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: e93c63e5
+      m_LastClickedID: -446481175
+      m_ExpandedIDs: b7c30297e25ebcb60efdae02ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  m_EditModeTestListGUI:
+    m_Window: {fileID: 14}
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[CHAD][suite]'
+      name: CHAD
+      fullName: CHAD
+      resultStatus: 1
+      duration: 0.2533277
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1003
+      uniqueId: '[Tests.dll][suite]'
+      name: Tests.dll
+      fullName: /Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD/Library/ScriptAssemblies/Tests.dll
+      resultStatus: 1
+      duration: 0.181978
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[CHAD][suite]'
+    - id: 1004
+      uniqueId: Tests.dll/[Tests][suite]
+      name: Tests
+      fullName: Tests
+      resultStatus: 1
+      duration: 0.1768803
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1003
+      parentUniqueId: '[Tests.dll][suite]'
+    - id: 1001
+      uniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+      name: CharacterStatsTests
+      fullName: Tests.CharacterStatsTests
+      resultStatus: 1
+      duration: 0.169343
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][suite]
+    - id: 1003
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.CharacterStats_CalcDamageDealt1]
+      name: CharacterStats_CalcDamageDealt1
+      fullName: Tests.CharacterStatsTests.CharacterStats_CalcDamageDealt1
+      resultStatus: 1
+      duration: 0.0700049
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1006
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.CharacterStats_CalcDamageDealt2]
+      name: CharacterStats_CalcDamageDealt2
+      fullName: Tests.CharacterStatsTests.CharacterStats_CalcDamageDealt2
+      resultStatus: 1
+      duration: 0.0045998
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1007
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.CharacterStats_CalcDamageDealt3]
+      name: CharacterStats_CalcDamageDealt3
+      fullName: Tests.CharacterStatsTests.CharacterStats_CalcDamageDealt3
+      resultStatus: 1
+      duration: 0.000946
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1002
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.CharacterStats_CalcDamageTaken1]
+      name: CharacterStats_CalcDamageTaken1
+      fullName: Tests.CharacterStatsTests.CharacterStats_CalcDamageTaken1
+      resultStatus: 1
+      duration: 0.0009999
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1003
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.CharacterStats_CalcDamageTaken2]
+      name: CharacterStats_CalcDamageTaken2
+      fullName: Tests.CharacterStatsTests.CharacterStats_CalcDamageTaken2
+      resultStatus: 1
+      duration: 0.0005168
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1004
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.CharacterStats_CalcDamageTaken3]
+      name: CharacterStats_CalcDamageTaken3
+      fullName: Tests.CharacterStatsTests.CharacterStats_CalcDamageTaken3
+      resultStatus: 1
+      duration: 0.0005328
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1008
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.EnemySpawner_GetEnemySpawnTime1]
+      name: EnemySpawner_GetEnemySpawnTime1
+      fullName: Tests.CharacterStatsTests.EnemySpawner_GetEnemySpawnTime1
+      resultStatus: 1
+      duration: 0.0121502
+      messages: 
+      output: 'RATIO = 0.3
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1016
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.EnemySpawner_GetEnemySpawnTime2]
+      name: EnemySpawner_GetEnemySpawnTime2
+      fullName: Tests.CharacterStatsTests.EnemySpawner_GetEnemySpawnTime2
+      resultStatus: 1
+      duration: 0.0013513
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1008
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1010
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.EnemySpawner_GetEnemySpawnTime3]
+      name: EnemySpawner_GetEnemySpawnTime3
+      fullName: Tests.CharacterStatsTests.EnemySpawner_GetEnemySpawnTime3
+      resultStatus: 1
+      duration: 0.0019175
+      messages: 
+      output: 'RATIO = 0.88
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1009
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.ItemManager_GetDropProbability1]
+      name: ItemManager_GetDropProbability1
+      fullName: Tests.CharacterStatsTests.ItemManager_GetDropProbability1
+      resultStatus: 1
+      duration: 0.0017522
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1010
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.ItemManager_GetDropProbability2]
+      name: ItemManager_GetDropProbability2
+      fullName: Tests.CharacterStatsTests.ItemManager_GetDropProbability2
+      resultStatus: 1
+      duration: 0.0009766
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    - id: 1011
+      uniqueId: Tests.dll/Tests/CharacterStatsTests/[Tests][Tests.CharacterStatsTests.ItemManager_GetDropProbability3]
+      name: ItemManager_GetDropProbability3
+      fullName: Tests.CharacterStatsTests.ItemManager_GetDropProbability3
+      resultStatus: 1
+      duration: 0.0008296
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/Tests/[Tests][Tests.CharacterStatsTests][suite]
+    m_ResultText: 'EnemySpawner_GetEnemySpawnTime3 (0.002s)
+
+      ---
+
+      RATIO
+      = 0.88'
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 79e21c07
+      m_LastClickedID: 119333497
+      m_ExpandedIDs: e557abf70efdae02156698308359db41ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+--- !u!114 &15
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12014, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_TitleContent:
+    m_Text: Project
+    m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 0
+    y: 582.5
+    width: 1003.5
+    height: 276.5
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SearchFilter:
+    m_NameFilter: 
+    m_ClassNames: []
+    m_AssetLabels: []
+    m_AssetBundleNames: []
+    m_VersionControlStates: []
+    m_SoftLockControlStates: []
+    m_ReferencingInstanceIDs: 
+    m_SceneHandles: 
+    m_ShowAllHits: 0
+    m_SkipHidden: 0
+    m_SearchArea: 1
+    m_Folders:
+    - Assets/Scenes/Menus
+    m_Globs: []
+    m_OriginalText: 
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scenes/Menus
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: /Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 335.5}
+    m_SelectedIDs: 32720000
+    m_LastClickedID: 29234
+    m_ExpandedIDs: 00000000066300001463000016630000186300001a6300007a7100004a720000827200008672000000ca9a3b
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_AssetTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 000000000663000000ca9a3b
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_ListAreaState:
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 5}
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+    m_NewAssetIndexInList: -1
+    m_ScrollPosition: {x: 0, y: 0}
+    m_GridSize: 64
+  m_SkipHiddenPackages: 0
+  m_DirectoriesAreaWidth: 207
+--- !u!114 &16
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Inspector
+    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1004.5
+    y: 589
+    width: 434.5
+    height: 270
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_ObjectsLockedBeforeSerialization: []
+  m_InstanceIDsLockedBeforeSerialization: 
+  m_PreviewResizer:
+    m_CachedPref: 160
+    m_ControlHash: -371814159
+    m_PrefName: Preview_InspectorPreview
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
+  m_GlobalObjectId: 
+  m_InspectorMode: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_PreviewWindow: {fileID: 0}
+--- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Hierarchy
+    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 0
+    y: 30
+    width: 224
+    height: 531.5
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SceneHierarchy:
+    m_TreeViewState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: ea76fdff2077fdff4e7efdff187ffdff467ffdff5888fdff8288fdff8e88fdffee88fdff1c89fdff3a92fdff0293fdff3093fdff629cfdffc29efdfff09efdff90a0fdfff4a1fdff28a2fdffd0a3fdffdca5fdff0aa6fdffaaa7fdffeca7fdff20a8fdff4cabfdff9aabfdffdaabfdffb0adfdfffeadfdff3eaefdff14b0fdff10b1fdff50b1fdff12b3fdff44b6fdff82b6fdffecb6fdff30b7fdff5eb9fdff62b9fdff6eb9fdff96b9fdffaab9fdffb8b9fdfffeb9fdff14bafdff22bafdff4abafdff4ebafdffb2bafdff0abbfdff4abbfdff20bdfdff1cbefdff5cbefdff0cc0fdff5ac0fdff9ac0fdff4ac2fdff48c3fdff88c3fdffeac4fdff94c6fdffd4c6fdffb0c8fdff18c9fdff5ec9fdff96cefdffe8cefdff28cffdff02d1fdff18d2fdff58d2fdff32d5fdff80d5fdffc0d5fdff9ad8fdffe8d8fdff28d9fdffd2dafdffe6defdff26dffdffcee0fdfface2fdffece2fdffa8e4fdff60e7fdffa0e7fdff1ceefdffe2effdff22f0fdff02f2fdff18f3fdff58f3fdff22f5fdff76f5fdffb6f5fdffd0f6fdffd4f7fdff14f8fdff2efefdff8cfefdffccfefdff6603feffcc03feff0c04feffea05feff0607feff4607feff600dfeff600efeffa00efeffce14feff1c15feff5c15feff9c1bfeffa81cfeffe81cfeff8623feff8a24feffca24feff5029feffc029feff002afeffdc2bfeff562cfeff962cfeff742efeff702ffeffb02ffeff8e31feffe631feff2632feff8433feffd633feff1634feffe035feff3236feff7236feffc64cfeffc64dfeff064efeffc04ffeff1450feff5450feffcc51feff4652feff8652feffd053feff2454feff6454feff6070feffae70feffee70feff4c72feff4a73feff8a73feffd274feff4875feff8875feff4297fefff898feff3899feff829afeffde9afeff1e9bfeff8cb4feffe8b4feff28b5feff72b6feffccb6feff0cb7feff78bbfeffccbbfeff0cbcfeffb2bdfeff20befeff60befeffead4feff5ed7feff9ed7feff58d9feffbedafefffedafeffbaf2feff38f4feff78f4feff44f6feff4af7feff8af7feff2ef9feff7cf9feffbcf9feff74fbfeff72fcfeffb2fcfeff6afefeff6afffeffaafffeffda05ffff3806ffff7806ffff2a09ffff8409ffffc409ffff140cffffb00dffff180effff580effff5017ffffe61affff261bffffae26ffffc027ffff0028ffff322dfffff22effff322fffffb631ffff9233ffffd233ffff5836ffffda37ffff1a38ffffa63bfffffc43ffff3c44fffff445ffffa247ffffe247ffffea4affffec4dffff2c4effffd04fffffb451fffff451ffff8c53ffff8c54ffffcc54ffff7c56ffffe656ffff2657ffffd258ffffd259ffff125affffaa5bffff1a5cffff5a5cffff0a5effff0a5fffff4a5ffffffa60ffff7664ffff1266ffffae67ffff6069ffff026bffffbe6cffff346effffde6ffffffe71ffffce75ffff0e76ffffaa77ffffa278ffffe278ffff927affff3a7cffff7a7cffff167effff7e80ffffbe80ffff3082ffff0e84ffff4e84ffffc085ffffc486ffff0487ffff7888ffff1a8affff3e8bffff7e8bffffe88cffffd68dffff168effff808fffff7490ffffb490ffff2c92ffffa893ffffe893ffff5295ffff3c96ffff7c96ffffe697ffffd298ffff1299ffff909afffffe9bffff3e9cffffa89dffff929effffd29effff3ca0ffff50a1ffff96a1ffff50a3ffff46a4ffff86a4ffff1aa6ffffc4a7ffff04a8ffff54a9ffffdaaaffff1aabffff6aacffff5eadffff9eadffff02afffff1cb0ffff5cb0ffffaeb1ffffd8b7ffffe8b8ffffcebbffff86bdffff28bfffff42c1ffff00c3ffff94c4ffff0eccffff9acdffffccd0ffff98d1ffff18d3ffff22d5ffff1cdbffffc6dbffff08dfffff26e2ffff20e4ffff68e7ffffdae7ffff4ae8ffff80e9ffff8aeafffffaeaffff3eecffffaaedffff2cfbffff42fbfffff4ffffffd2610000
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: Main Camera
+        m_OriginalName: Main Camera
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: -154150
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 0
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 6}
+      m_SearchString: 
+    m_ExpandedScenes: []
+    m_CurrenRootInstanceID: 0
+    m_LockTracker:
+      m_IsLocked: 0
+    m_CurrentSortingName: TransformSorting
+  m_WindowGUID: 4c969a2b90040154d917609493e03593
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,10 +1323,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 193.5
+    x: 348
     y: 30
-    width: 836
-    height: 491
+    width: 671.5
+    height: 582.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -321,11 +1347,22 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: -141, y: -209.5}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 3
       id: unity-grid-and-snap-toolbar
       index: 1
+      layout: 1
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: unity-scene-view-toolbar
+      index: 0
       layout: 1
     - dockPosition: 1
       containerId: overlay-toolbar__top
@@ -336,7 +1373,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 1
       id: unity-search-toolbar
-      index: 0
+      index: 1
       layout: 1
     - dockPosition: 1
       containerId: overlay-toolbar__top
@@ -347,7 +1384,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Open Tile Palette
-      index: 1
+      index: 2
       layout: 4
     - dockPosition: 1
       containerId: overlay-toolbar__top
@@ -358,19 +1395,8 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Tilemap Focus
-      index: 2
-      layout: 4
-    - dockPosition: 1
-      containerId: overlay-toolbar__top
-      floating: 0
-      collapsed: 0
-      displayed: 1
-      snapOffset: {x: -327, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
-      id: unity-scene-view-toolbar
       index: 3
-      layout: 1
+      layout: 4
     - dockPosition: 0
       containerId: overlay-container--left
       floating: 0
@@ -408,7 +1434,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -524,9 +1550,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.119219, y: 2.7941673, z: -0.24910277}
+    m_Target: {x: 3.177126, y: -4.2057333, z: 4.4245625}
     speed: 2
-    m_Value: {x: -1.119219, y: 2.7941673, z: -0.24910277}
+    m_Value: {x: 3.177126, y: -4.2057333, z: 4.4245625}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -577,9 +1603,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 15.233853
+    m_Target: 15.407248
     speed: 2
-    m_Value: 15.233853
+    m_Value: 15.407248
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -604,64 +1630,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &13
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Hierarchy
-    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 0
-    y: 30
-    width: 192.5
-    height: 491
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_SceneHierarchy:
-    m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: a8c3fdffeec3fdff2ac6fdff32c6fdff42c6fdff6ec6fdff86c6fdff98c6fdffdac6fdfff4c6fdff06c7fdff14c7fdffe2c7fdffe620feff88d7ffffd0d7ffff00daffff04daffff10daffff38daffff4cdaffff5adaffff98daffffaedaffffbcdaffffc6daffffe2dfffff28e0ffff50e0ffff54e0ffff60e0ffff86e0ffff98e0ffffa4e0ffffbae0ffffc8e0ffffd4e0ffffdee0ffffc8e1ffff10e2ffff40e4ffff44e4ffff50e4ffff78e4ffff8ce4ffff9ae4ffffd8e4ffffeee4fffffce4ffff06e5ffff7ee7ffffc4e7ffffece7fffff0e7fffffce7ffff22e8ffff34e8ffff40e8ffff56e8ffff64e8ffff70e8ffff7ae8ffff64e9fffface9ffffdcebffffe0ebffffecebffff14ecffff28ecffff36ecffff74ecffff8aecffff98ecffffa2ecffff52f3ffff98f3ffffc0f3ffffc4f3ffffd0f3fffff6f3ffff08f4ffff14f4ffff2af4ffff38f4ffff44f4ffff4ef4ffff36f5ffff7cf5ffffacf7ffffb0f7ffffbcf7ffffe4f7fffff8f7ffff06f8ffff44f8ffff5af8ffff68f8ffff72f8ffff2cfbfffff4ffffff36a1000058d90000
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 8}
-      m_SearchString: 
-    m_ExpandedScenes: []
-    m_CurrenRootInstanceID: 0
-    m_LockTracker:
-      m_IsLocked: 0
-    m_CurrentSortingName: TransformSorting
-  m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &14
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -681,10 +1650,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 193.5
+    x: 225
     y: 30
-    width: 836
-    height: 491
+    width: 777.5
+    height: 531.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -695,7 +1664,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 836, y: 470}
+  m_TargetSize: {x: 777.5, y: 510.5}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -710,10 +1679,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -209
-    m_HBaseRangeMax: 209
-    m_VBaseRangeMin: -117.5
-    m_VBaseRangeMax: 117.5
+    m_HBaseRangeMin: -194.375
+    m_HBaseRangeMax: 194.375
+    m_VBaseRangeMin: -127.625
+    m_VBaseRangeMax: 127.625
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -722,7 +1691,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -731,267 +1700,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 836
-      height: 470
+      width: 777.5
+      height: 510.5
     m_Scale: {x: 2, y: 2}
-    m_Translation: {x: 418, y: 235}
+    m_Translation: {x: 388.75, y: 255.25}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -209
-      y: -117.5
-      width: 418
-      height: 235
+      x: -194.375
+      y: -127.625
+      width: 388.75
+      height: 255.25
     m_MinimalGUI: 1
   m_defaultScale: 2
-  m_LastWindowPixelSize: {x: 1672, y: 982}
+  m_LastWindowPixelSize: {x: 1555, y: 1063}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Animator
-    m_Image: {fileID: 1711060831702674872, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 221.5
-    y: 30
-    width: 921.5
-    height: 533
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_ViewTransforms:
-    m_KeySerializationHelper:
-    - {fileID: 1622182221169398742, guid: 7882967040ec44ba78a155f269e16ab6, type: 2}
-    - {fileID: 5304176654713146568, guid: 35e7de4e782934f88a9e552b1703112b, type: 2}
-    - {fileID: 1697101985733602385, guid: 1cd7bd00bb30e40329cfbfb6038834d3, type: 2}
-    m_ValueSerializationHelper:
-    - e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-  m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 1cd7bd00bb30e40329cfbfb6038834d3, type: 2}
-  m_BreadCrumbs:
-  - m_Target: {fileID: 1697101985733602385, guid: 1cd7bd00bb30e40329cfbfb6038834d3, type: 2}
-    m_ScrollPosition: {x: 0, y: 0}
-  stateMachineGraph: {fileID: 0}
-  stateMachineGraphGUI: {fileID: 0}
-  blendTreeGraph: {fileID: 0}
-  blendTreeGraphGUI: {fileID: 0}
-  m_AutoLiveLink: 1
-  m_MiniTool: 0
-  m_LockTracker:
-    m_IsLocked: 0
-  m_CurrentEditor: 0
-  m_LayerEditor:
-    m_SelectedLayerIndex: 0
---- !u!114 &16
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12014, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_TitleContent:
-    m_Text: Project
-    m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 0
-    y: 542
-    width: 1030.5
-    height: 317
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_SearchFilter:
-    m_NameFilter: 
-    m_ClassNames: []
-    m_AssetLabels: []
-    m_AssetBundleNames: []
-    m_VersionControlStates: []
-    m_SoftLockControlStates: []
-    m_ReferencingInstanceIDs: 
-    m_SceneHandles: 
-    m_ShowAllHits: 0
-    m_SkipHidden: 0
-    m_SearchArea: 1
-    m_Folders:
-    - Assets/Scenes/Menus
-    m_Globs: []
-    m_OriginalText: 
-  m_ViewMode: 1
-  m_StartGridSize: 64
-  m_LastFolders:
-  - Assets/Scenes/Menus
-  m_LastFoldersGridSize: -1
-  m_LastProjectPath: /Users/darrensim/Desktop/Projects/Unity projects/CHAD/CHAD
-  m_LockTracker:
-    m_IsLocked: 0
-  m_FolderTreeState:
-    scrollPos: {x: 0, y: 519}
-    m_SelectedIDs: 06780000
-    m_LastClickedID: 30726
-    m_ExpandedIDs: 00000000486300004a6300004c6300004e63000050630000526300005463000056630000586300005a6300005c6300005e63000060630000626300006463000066630000686300006a6300006c6300006e63000070630000726300005e6e0000c671000000ca9a3b
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
-    m_SearchString: 
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
-  m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 00000000486300004a6300004c6300004e63000050630000526300005463000056630000586300005a6300005c6300005e63000060630000626300006463000066630000686300006a6300006c6300006e630000706300007263000000ca9a3b
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
-    m_SearchString: 
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
-  m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000f06f0000a0650000be620000bae500007c860000e6e50000cae50000
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
-    m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
-  m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 207
---- !u!114 &17
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1012,51 +1743,10 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 542
-    width: 1030.5
-    height: 317
+    y: 725.5
+    width: 1003.5
+    height: 133.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &18
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Inspector
-    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 1031.5
-    y: 30
-    width: 407.5
-    height: 829
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_ObjectsLockedBeforeSerialization: []
-  m_InstanceIDsLockedBeforeSerialization: 
-  m_PreviewResizer:
-    m_CachedPref: 160
-    m_ControlHash: -371814159
-    m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
-  m_GlobalObjectId: 
-  m_InspectorMode: 0
-  m_LockTracker:
-    m_IsLocked: 0
-  m_PreviewWindow: {fileID: 0}

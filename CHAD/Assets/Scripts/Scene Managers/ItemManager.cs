@@ -42,12 +42,18 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public float GetDropProbability()
+    {
+        float probability = (float)(itemsToDrop - itemsDropped) /
+                    (float)(EnemySpawner.instance.totalEnemiesToSpawn - EnemySpawner.instance.enemiesKilled);
+        return probability;
+    }
+
     private void OnEnemyDeath(GameObject deadEnemy)
     {
         if (NetworkManager.gameType == GameType.Server && itemsDropped < itemsToDrop)
         {
-            float probability = (float)(itemsToDrop - itemsDropped) /
-                    (float)(EnemySpawner.instance.totalEnemiesToSpawn - EnemySpawner.instance.enemiesKilled);
+            float probability = GetDropProbability();
             if (probability > UnityEngine.Random.Range(0, 1.0f))
             {
                 int dropType = Mathf.RoundToInt(UnityEngine.Random.Range(0, 2));

@@ -38,7 +38,10 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetWeaponInventory(this);
+        if (PlayerInfoManager.AllPlayerInfo.ContainsKey(GetComponent<PlayerStatsManager>().characterRefId))
+        {
+            PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetWeaponInventory(this);
+        }
     }
 
 

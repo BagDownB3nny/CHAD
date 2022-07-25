@@ -221,9 +221,9 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // Spawn enemies more quickly as more enemies have spawned
-        float enemiesToSpawnRatio = enemiesLeftToSpawn / totalEnemiesToSpawn;
+        float enemiesToSpawnRatio = (float) enemiesLeftToSpawn / (float) totalEnemiesToSpawn;
         float[] spawnIntervals = new float[] { 0.4f, 0.7f, 1.0f };
-        float[] timeIntervals = new float[] { 2.0f, 5.0f, 7.0f };
+        float[] timeIntervals = new float[] { 2.0f, 4.0f, 8.0f };
         for (int i = 0; i < spawnIntervals.Length; i++)
         {
             if (enemiesToSpawnRatio <= spawnIntervals[i])

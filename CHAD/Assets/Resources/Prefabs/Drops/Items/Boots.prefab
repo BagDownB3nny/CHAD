@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5694721153490496980}
   - component: {fileID: 4408660027886468870}
-  - component: {fileID: 647372072197969647}
+  - component: {fileID: 243860184542288574}
   m_Layer: 0
-  m_Name: ElvenAccuracy
+  m_Name: Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fd6f71786431943819d97e3eec66630c, type: 3}
+  m_Sprite: {fileID: -56273034, guid: 7df2854ccaf0849f6bec7288051513bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &647372072197969647
+--- !u!114 &243860184542288574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4509076951316696128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58e1ce3a7e1048a4974894fff2fc229, type: 3}
+  m_Script: {fileID: 11500000, guid: fe04cbedbe1aa46c2932e1376ce048e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerItem: 0
