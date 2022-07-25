@@ -32,10 +32,6 @@ public class PlayerSpawner : MonoBehaviour
 
     public void SpawnPlayer(int _playerId, PlayerClasses _playerClass)
     {
-        if (LobbyManager.instance != null)
-        {
-            Server.NumberOfPlayers += 1;
-        }
         // If playerInfo exists
         if (PlayerInfoManager.AllPlayerInfo.ContainsKey(_playerId.ToString()))
         {
@@ -109,6 +105,10 @@ public class PlayerSpawner : MonoBehaviour
             onPlayerSpawn(_playerId);
         }
         playersSpawned += 1;
+        if (LobbyManager.instance != null)
+        {
+            Server.NumberOfPlayers = playersSpawned;
+        }
         if (NetworkManager.gameType == GameType.Server)
         {
             ServerSend.Broadcast("PLAYERS SPAWNED: " + playersSpawned.ToString());
