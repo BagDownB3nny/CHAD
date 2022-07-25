@@ -694,15 +694,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundPrefab: {fileID: 4459539783832716192, guid: bf32788338c2d4f258322cde3ebdbc4f, type: 3}
-  soundEffectsVolume: 0
+  soundEffectsVolume: 1
   audioClips:
   - {fileID: 0}
   - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
-  - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
-  - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
+  - {fileID: 8300000, guid: 7307353ca6e674f3995ff44870a2bfe8, type: 3}
+  - {fileID: 8300000, guid: 7338127affd3840eab6222ce53f408f5, type: 3}
   - {fileID: 8300000, guid: 8b7da41c928474ef29bf85ebdd535b67, type: 3}
   - {fileID: 0}
-  - {fileID: 8300000, guid: 1413431ae466442d4ad0423c9238cdc4, type: 3}
+  - {fileID: 8300000, guid: 991d2865bed0d441fb68dde764721fc9, type: 3}
   - {fileID: 0}
 --- !u!1 &994274323
 GameObject:
@@ -1180,8 +1180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicPrefabs:
   - {fileID: 8300000, guid: 966d80c80bc5441799ed2c527bf24987, type: 3}
-  - {fileID: 8300000, guid: 4f89bbafe8f744fbd99472d93f923128, type: 3}
-  - {fileID: 8300000, guid: 8309bf59a3e9f49cbbcf8ca1e9d14f05, type: 3}
+  - {fileID: 8300000, guid: a146608a0375245279402b0e05ada63b, type: 3}
+  - {fileID: 8300000, guid: a146608a0375245279402b0e05ada63b, type: 3}
   musicVolume: 1
 --- !u!82 &1389830292
 AudioSource:
