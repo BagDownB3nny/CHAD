@@ -23,8 +23,6 @@ public class PlayerPointer : MonoBehaviour {
         pointerTransform = gameObject.GetComponent<RectTransform>();
     }
     private void LateUpdate() {
-        Debug.Log(transform.position.x + " " + transform.position.y);
-        Debug.Log("screen size: " + Screen.width + ", " + Screen.height);
         
         if (target != null) {
             Vector3 toPosition = target.transform.position;
@@ -38,7 +36,6 @@ public class PlayerPointer : MonoBehaviour {
 
             Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(toPosition);
             bool isOffscreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize;
-            Debug.Log (isOffscreen + " " + targetPositionScreenPoint);
 
             if(isOffscreen) {
                 gameObject.GetComponent<TextMeshProUGUI>().color = new Color(1,1,1,1);

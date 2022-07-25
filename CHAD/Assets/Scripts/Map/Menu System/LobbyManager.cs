@@ -19,6 +19,11 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     private void Start()
     {
         if (NetworkManager.gameType == GameType.Server)

@@ -38,8 +38,6 @@ public class ServerClient
 
         public void Connect(TcpClient _socket)
         {
-            Server.NumberOfPlayers += 1;
-
             socket = _socket;
             socket.ReceiveBufferSize = dataBufferSize;
             socket.SendBufferSize = dataBufferSize;
