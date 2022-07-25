@@ -12,8 +12,11 @@ public abstract class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        targetSize = gameObject.GetComponent<EnemyStatsManager>().target.GetComponent<SpriteRenderer>().bounds.size;
-        enemyRb = gameObject.GetComponent<Rigidbody2D>();
+        if (gameObject.GetComponent<EnemyStatsManager>().target != null)
+        {
+            targetSize = gameObject.GetComponent<EnemyStatsManager>().target.GetComponent<SpriteRenderer>().bounds.size;
+            enemyRb = gameObject.GetComponent<Rigidbody2D>();
+        }
     }
 
     //movement behaviour will be defined by each enemy

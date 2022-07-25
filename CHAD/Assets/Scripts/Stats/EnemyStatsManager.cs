@@ -19,7 +19,7 @@ public class EnemyStatsManager : CharacterStatsManager
         }
     }
 
-    protected void FindTarget() {
+    public void FindTarget() {
         if (target == null) {
             GameObject[] gameObjects;
             gameObjects = GameObject.FindGameObjectsWithTag(targetType);

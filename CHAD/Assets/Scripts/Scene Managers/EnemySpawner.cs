@@ -153,7 +153,10 @@ public class EnemySpawner : MonoBehaviour
         playerCoords = new List<int[]>();
         foreach (GameObject player in GameManager.instance.players.Values)
         {
-            playerCoords.Add(mapGenerator.WorldPointToCoord(player.transform.position));
+            if (player != null)
+            {
+                playerCoords.Add(mapGenerator.WorldPointToCoord(player.transform.position));
+            }
         }
     }
 

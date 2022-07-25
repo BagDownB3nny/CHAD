@@ -18,9 +18,16 @@ public abstract class RangedWeapon : Weapon
     public float bulletDirectionRotation;
 
     public void CalculateDirectionVector() {
-        Vector3 targetPosition = holder.GetComponent<CharacterStatsManager>().target.transform.position;
-        directionVector = (targetPosition - transform.position).normalized;
-        directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
+        GameObject target = holder.GetComponent<CharacterStatsManager>().target;
+        if (target != null)
+        {
+            Vector3 targetPosition = target.transform.position;
+            directionVector = (targetPosition - transform.position).normalized;
+            directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
+        } else
+        {
+            holder.GetComponent<EnemyStatsManager>().FindTarget();
+        }
     }
 
     public override void Attack() {
