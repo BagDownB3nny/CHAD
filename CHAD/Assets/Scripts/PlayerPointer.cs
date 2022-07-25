@@ -40,8 +40,8 @@ public class PlayerPointer : MonoBehaviour {
             if(isOffscreen) {
                 gameObject.GetComponent<TextMeshProUGUI>().color = new Color(1,1,1,1);
                 Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
-                cappedTargetScreenPosition.x = Mathf.Clamp(cappedTargetScreenPosition.x, borderSize, Screen.width - borderSize);
-                cappedTargetScreenPosition.y = Mathf.Clamp(cappedTargetScreenPosition.y, borderSize, Screen.height - borderSize);
+                cappedTargetScreenPosition.x = Mathf.Clamp(cappedTargetScreenPosition.x, borderSize, Screen.width - borderSize) + 100;
+                cappedTargetScreenPosition.y = Mathf.Clamp(cappedTargetScreenPosition.y, borderSize, Screen.height - borderSize - 40);
                 cappedTargetScreenPosition.z = -10;
 
                 Vector3 pointerWorldPosition = Camera.main.ScreenToWorldPoint(cappedTargetScreenPosition);
