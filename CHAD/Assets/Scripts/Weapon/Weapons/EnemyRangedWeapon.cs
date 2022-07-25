@@ -6,6 +6,11 @@ public abstract class EnemyRangedWeapon : RangedWeapon
 {
     void Update()
     {
+        if (DistanceToTarget() > 30)
+        {
+            return;
+        }
+
         if (NetworkManager.gameType == GameType.Server) {
 
             CalculateDirectionVector();
@@ -18,6 +23,19 @@ public abstract class EnemyRangedWeapon : RangedWeapon
             } else {
                 timeToNextAttack -= Time.deltaTime;
             }
+        }
+    }
+
+    private float DistanceToTarget()
+    {
+        GameObject target = holder.GetComponent<CharacterStatsManager>().target;
+        if (target != null)
+        {
+            return Vector3.Distance(transform.position, target.transform.position);
+        }
+        else
+        {
+            return float.MaxValue;
         }
     }
 }
