@@ -105,6 +105,11 @@ public class PlayerSpawner : MonoBehaviour
             onPlayerSpawn(_playerId);
         }
         playersSpawned += 1;
+        if (NetworkManager.gameType == GameType.Server)
+        {
+            ServerSend.Broadcast(playersSpawned.ToString());
+            ServerSend.Broadcast(Server.NumberOfPlayers.ToString());
+        }
         if (NetworkManager.gameType == GameType.Server && playersSpawned == Server.NumberOfPlayers)
         {
             if (GameManager.instance.IsBossLevel()) {
