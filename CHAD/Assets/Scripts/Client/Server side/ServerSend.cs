@@ -287,6 +287,7 @@ public class ServerSend
             _packet.Write(enemiesLeftToSpawn);
             _packet.Write(enemiesAlive);
             _packet.Write(enemiesKilled);
+            SendTCPDataToAll(_packet);
         }
     }
 
@@ -306,6 +307,82 @@ public class ServerSend
         using (Packet _packet = new Packet((int)ServerPackets.removeWeaponDrop))
         {
             _packet.Write(_dropId);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void AddItem(string _playerRefId, PlayerItems _playerItem)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.addItem))
+        {
+            _packet.Write(_playerRefId);
+            _packet.Write((int)_playerItem);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void ItemDrop(string _dropId, PlayerItems _droppedItem, Vector3 _position)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.itemDrop))
+        {
+            _packet.Write(_dropId);
+            _packet.Write((int)_droppedItem);
+            _packet.Write(_position);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void RemoveItemDrop(string _dropId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.removeItemDrop))
+        {
+            _packet.Write(_dropId);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void SetBossAttack(string _attackType, int _bossAttack)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.setBossAttack))
+        {
+            _packet.Write(_attackType);
+            _packet.Write(_bossAttack);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MoveBossAttack(BossWeaponType _attack, Vector3 _pos)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.moveBossAttack))
+        {
+            _packet.Write((int)_attack);
+            _packet.Write(_pos);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void MoveBoss(Vector3 _pos)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.moveBoss))
+        {
+            _packet.Write(_pos);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void SpawnBoss(int _bossType) {
+        using (Packet _packet = new Packet((int)ServerPackets.spawnBoss))
+        {
+            _packet.Write(_bossType);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void EndBossAttack(string attackType)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.endBossAttack))
+        {
+            _packet.Write(attackType);
             SendTCPDataToAll(_packet);
         }
     }

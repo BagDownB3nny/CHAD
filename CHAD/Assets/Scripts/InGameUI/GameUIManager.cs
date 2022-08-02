@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     public GameObject healthBar;
     public GameObject weaponIcon;
     public GameObject pauseMenu;
@@ -25,25 +31,37 @@ public class GameUIManager : MonoBehaviour
     public GameObject crosshair;
     public GameObject interactText;
     public GameObject objectiveText;
+    public GameObject holeUI;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
+            Cursor.visible = pauseMenu.activeSelf;
+            if (!pauseMenu.activeSelf)
+            {
+                pauseMenu.GetComponent<PauseMenuManager>().settingsMenu.SetActive(false);
+            }
         }
-        if (Input.GetKey(KeyCode.Q)) {
+        if (Input.GetKey(InputManager.instance.keybinds[PlayerInputs.ChangeWeapon])) {
             weaponWheel.SetActive(true);
-            crosshair.SetActive(false);
+            crosshair.GetComponent<SpriteRenderer>().enabled = false;
         } else {
             if (weaponWheel.activeSelf) {
                 weaponWheel.GetComponent<WeaponWheel>().currentButton.GetComponent<WeaponSelectButton>().EquipGun();
             }
             weaponWheel.SetActive(false);
-            crosshair.SetActive(true);
+            crosshair.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
     public void SetWeaponIcon(Sprite _weapon) {
         weaponIcon.GetComponent<Image>().sprite = _weapon;
+    }
+
+    public void InstantiaitePlayerPointer(GameObject _player, GameObject _playerPointer, int _playerId) {
+        GameObject newPlayerPointer = Instantiate(_playerPointer, _player.transform.position, Quaternion.identity, transform);
+        newPlayerPointer.GetComponent<PlayerPointer>().target= _player;
+        newPlayerPointer.GetComponent<TextMeshProUGUI>().text = "P" + _playerId.ToString();
     }
 }

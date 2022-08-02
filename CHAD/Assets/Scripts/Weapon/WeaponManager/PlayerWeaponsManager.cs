@@ -26,7 +26,10 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     public void SetWeaponInventory(PlayerInfo playerInfo)
     {
-        GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+        if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId))
+        {
+            GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>().ResetWheel();
+        }
         foreach (PlayerWeapons gun in playerInfo.weaponInventory.Values)
         {
             AddGun(gun);
@@ -35,12 +38,16 @@ public class PlayerWeaponsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetWeaponInventory(this);
+        if (PlayerInfoManager.AllPlayerInfo.ContainsKey(GetComponent<PlayerStatsManager>().characterRefId))
+        {
+            PlayerInfoManager.AllPlayerInfo[GetComponent<PlayerStatsManager>().characterRefId].SetWeaponInventory(this);
+        }
     }
 
 
     //instantiate a selected gun
     public void EquipGun(int gunIndex) {
+        SoundManager.instance.PlaySound(Sounds.EquipGun);
         //if currently holding a gun, discard it first
         if (!weaponInventory.ContainsKey(gunIndex)) {
             return;
@@ -73,6 +80,7 @@ public class PlayerWeaponsManager : MonoBehaviour
             GameObject gun = GameManager.instance.gunPrefabs[(int) gunType];
             weaponInventory.Add(weaponInventory.Count, gunType);
             if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId)) {
+                SoundManager.instance.PlaySound(Sounds.Interact);
                 GameUIManager.instance.weaponWheel.GetComponent<WeaponWheel>()
                     .UpdateWeaponButton(weaponInventory.Count, gun);
             }

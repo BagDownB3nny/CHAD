@@ -10,6 +10,7 @@ public abstract class EnemyMeleeWeapon : MeleeWeapon
             if (CanAttack() && currentDamageDealer == null) {
                 Attack();
             }
+            timeToNextAttack -= Time.deltaTime;
         }
     }
 }

@@ -32,26 +32,32 @@ public class PlayerMovement : MonoBehaviour
     }
 #region MovePlayer
     //client sends the input to server
-    public void SendMovement() {
-        Vector2 movement;
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        bool[] _input = new bool[4];
-        if (movement.y > 0) {_input[0] = true;}
-        if (movement.x < 0) {_input[1] = true;}
-        if (movement.y < 0) {_input[2] = true;}
-        if (movement.x > 0) {_input[3] = true;}
+    private void SendMovement() {
+        bool isMovingUp = Input.GetKey(InputManager.instance.keybinds[PlayerInputs.MoveUp]);
+        bool isMovingDown = Input.GetKey(InputManager.instance.keybinds[PlayerInputs.MoveDown]);
+        bool isMovingLeft = Input.GetKey(InputManager.instance.keybinds[PlayerInputs.MoveLeft]);
+        bool isMovingRight = Input.GetKey(InputManager.instance.keybinds[PlayerInputs.MoveRight]);
+        bool isSprinting = Input.GetKey(InputManager.instance.keybinds[PlayerInputs.Sprint]);
+        bool[] _input = new bool[5];
+        if (isMovingUp) {_input[0] = true;}
+        if (isMovingDown) {_input[1] = true;}
+        if (isMovingLeft) {_input[2] = true;}
+        if (isMovingRight) {_input[3] = true;}
+        if (isSprinting) { _input[4] = true; }
         ClientSend.MovePlayer(_input);
     }
 
-    //server decodes the input received from client, changes its own game state and sends the game state back to client
+    //server decodes the input received from client,
+    //changes its own game state and sends the game state back to client
     public Vector2 MovePlayer(bool[] _input) {
         Vector2 _movement = new Vector3(0, 0, 0);
         if (_input[0]) { _movement.y += 1; }
-        if (_input[1]) { _movement.x -= 1; }
-        if (_input[2]) { _movement.y -= 1; }
+        if (_input[1]) { _movement.y -= 1; }
+        if (_input[2]) { _movement.x -= 1; }
         if (_input[3]) { _movement.x += 1; }
         _movement.Normalize();
+
+        if (_input[4]) { _movement *= 1.5f; }
 
         playerRb.MovePosition((Vector2) transform.position + _movement * playerStatsManager.speed * Time.deltaTime);
         return (Vector2) transform.position;
@@ -59,7 +65,11 @@ public class PlayerMovement : MonoBehaviour
 
     //client receives processed game state from server and sets it
     public void ReceiveMovement(Vector2 _position) {
-        transform.position = _position;
+        if (transform.position != (Vector3)_position)
+        {
+            SoundManager.instance.PlaySound(Sounds.Walk);
+            transform.position = _position;
+        }
         if (NetworkManager.IsMine(GetComponent<PlayerStatsManager>().characterRefId) && onPlayerMove != null)
         {
             onPlayerMove(gameObject);

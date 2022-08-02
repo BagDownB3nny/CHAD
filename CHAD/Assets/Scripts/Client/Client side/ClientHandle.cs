@@ -8,6 +8,7 @@ public class ClientHandle : MonoBehaviour
 {
 
     public static bool IsPresent(Dictionary<string, GameObject> dict, string refId) {
+
         return dict.ContainsKey(refId) && dict[refId] != null;
     }
     public static void Welcome(Packet _packet)
@@ -17,6 +18,7 @@ public class ClientHandle : MonoBehaviour
 
         Debug.Log($"Message from server: {_msg}");
         PlayerClient.instance.myId = _id;
+        Debug.Log("I am player " + _id);
 
         PlayerClient.instance.udp.Connect(
             ((IPEndPoint)PlayerClient.instance.tcp.socket.Client.LocalEndPoint).Port);
@@ -34,7 +36,8 @@ public class ClientHandle : MonoBehaviour
     {
         int _affectedPlayerId = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        if (IsPresent(GameManager.instance.players, _affectedPlayerId.ToString())) {
+        if (GameManager.instance != null &&
+                IsPresent(GameManager.instance.players, _affectedPlayerId.ToString())) {
             GameManager.instance.players[_affectedPlayerId.ToString()].GetComponent<PlayerMovement>().ReceiveMovement(_position);
         }
     }
@@ -58,7 +61,11 @@ public class ClientHandle : MonoBehaviour
                     weaponScript.ReceiveAttack(projectileRefId, projectileDirectionRotation);
                 }
             }
-        }  
+        } else if (characterType == CharacterType.Boss)
+        {
+            BossManager.instance.bossAttacker.ReceiveAttack(affectedCharacterRefId,
+                    projectileRefId, projectileDirectionRotation);
+        }
     }
 
     public static void MeleeAttack(Packet _packet) {
@@ -124,6 +131,9 @@ public class ClientHandle : MonoBehaviour
             if (IsPresent(GameManager.instance.enemies, characterRefId)) {
                 GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveTakeDamage(damageTaken);
             }
+        } else if (characterType == (int) CharacterType.Boss)
+        {
+            BossManager.instance.stats.ReceiveTakeDamage(damageTaken);
         }
     }
 
@@ -138,6 +148,9 @@ public class ClientHandle : MonoBehaviour
             if (IsPresent(GameManager.instance.enemies, characterRefId)) {
                 GameManager.instance.enemies[characterRefId].GetComponent<EnemyStatsManager>().ReceiveDie();
             }
+        } else if (characterType == (int) CharacterType.Boss)
+        {
+            BossManager.instance.stats.ReceiveDie();
         }
     }
 
@@ -152,13 +165,14 @@ public class ClientHandle : MonoBehaviour
         string affectedCharacterRefId = _packet.ReadString();
         float directionRotation = _packet.ReadFloat();
         if (characterType == CharacterType.Player) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
+            if (GameManager.instance != null &&
+                    IsPresent(GameManager.instance.players, affectedCharacterRefId) &&
                     GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript != null) {
                 GameManager.instance.players[affectedCharacterRefId].GetComponent<PlayerWeaponsManager>().weaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
         } else if (characterType == CharacterType.Enemy) {
-            if (IsPresent(GameManager.instance.players, affectedCharacterRefId)) {
+            if (IsPresent(GameManager.instance.enemies, affectedCharacterRefId)) {
                 GameManager.instance.enemies[affectedCharacterRefId].GetComponent<EnemyWeaponManager>().rangedWeaponScript
                         .ReceiveRotateRangedWeapon(directionRotation);
             }
@@ -191,15 +205,16 @@ public class ClientHandle : MonoBehaviour
 
     public static void LoadLobby(Packet _packet)
     {
-        Debug.Log("loading lobby on client");
         SceneManager.LoadScene("WaitingRoom");
+        MusicManager.instance.PlayMusic(Music.lobby);
         ClientSend.LobbyLoaded();
     }
 
     public static void LoadEmptyMap(Packet _packet)
     {
+        MusicManager.instance.PlayMusic(Music.game);
         MapManager.instance.ReceiveLoadEmptyMap();
-        ClientSend.EmptyMapLoaded();
+        
     }
 
     public static void LoadMap(Packet _packet)
@@ -237,5 +252,59 @@ public class ClientHandle : MonoBehaviour
     {
         string dropId = _packet.ReadString();
         ItemManager.instance.ReceiveRemoveWeaponDrop(dropId);
+    }
+
+    public static void AddItem(Packet _packet)
+    {
+        string _playerRefId = _packet.ReadString();
+        PlayerItems _item = (PlayerItems)_packet.ReadInt();
+
+        GameObject player = GameManager.instance.players[_playerRefId];
+        player.GetComponent<PlayerItemsManager>().AddItem(_item);
+    }
+
+    public static void ItemDrop(Packet _packet)
+    {
+        string _dropId = _packet.ReadString();
+        PlayerItems _droppedItem = (PlayerItems) _packet.ReadInt();
+        Vector3 _position = _packet.ReadVector3();
+        ItemManager.instance.ReceiveItemDrop(_dropId, _droppedItem, _position);
+    }
+
+    public static void RemoveItemDrop(Packet _packet)
+    {
+        string _dropId = _packet.ReadString();
+        ItemManager.instance.ReceiveRemoveItemDrop(_dropId);
+    }
+
+    public static void SetBossAttack(Packet _packet)
+    {
+        string attackType = _packet.ReadString();
+        int _bossAttack = _packet.ReadInt();
+        BossManager.instance.bossAttacker.ReceiveSetBossAttack(attackType, _bossAttack);
+    }
+
+    public static void MoveBossAttack(Packet _packet)
+    {
+        BossWeaponType _attack = (BossWeaponType)_packet.ReadInt();
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossAttacker.ReceiveMoveAttack(_attack, _pos);
+    }
+
+    public static void MoveBoss(Packet _packet)
+    {
+        Vector3 _pos = _packet.ReadVector3();
+        BossManager.instance.bossMover.ReceiveMove(_pos);
+    }
+
+    public static void SpawnBoss(Packet _packet) {
+        int bossType = _packet.ReadInt();
+        EnemySpawner.instance.ReceiveSpawnBoss(bossType);
+    }
+
+    public static void EndBossAttack(Packet _packet)
+    {
+        string attackType = _packet.ReadString();
+        BossManager.instance.bossAttacker.ReceiveEndAttack(attackType);
     }
 }

@@ -20,15 +20,15 @@ public class ProjectileStatsManager : MonoBehaviour
     public float rotationOffset;
 
     [Header("Auto despawn timer")]
-    float timeToDespawn = 3.0f;
+    public float timeToDespawn = 2.0f;
 
-    private void Awake() {
-
+    public void Awake() {
     }
-
+    
     private void Start() {
+        timeToDespawn += range / speed;
     }
-
+    
     void Update()
     {
         if (timeToDespawn <= 0) {

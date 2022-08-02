@@ -18,36 +18,33 @@ public abstract class RangedWeapon : Weapon
     public float bulletDirectionRotation;
 
     public void CalculateDirectionVector() {
-        Vector3 targetPosition = holder.GetComponent<CharacterStatsManager>().target.transform.position;
-        directionVector = (targetPosition - transform.position).normalized;
-        directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
+        GameObject target = holder.GetComponent<CharacterStatsManager>().target;
+        if (target != null)
+        {
+            Vector3 targetPosition = target.transform.position;
+            directionVector = (targetPosition - transform.position).normalized;
+            directionRotation = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
+        } else
+        {
+            holder.GetComponent<EnemyStatsManager>().FindTarget();
+        }
     }
 
     public override void Attack() {
         if (CanAttack()) {
             CharacterStatsManager characterStats = holder.GetComponent<CharacterStatsManager>();
             CalculateBulletDirection();
-            GameObject shot = Instantiate(projectile, transform.position, 
-                    Quaternion.Euler(0f, 0f, bulletDirectionRotation + projectileRotationOffset));
-            string projectileRefId = string.Format("{0}.{1}", characterStats.characterRefId, 
-                    characterStats.localProjectileRefId);
-            characterStats.localProjectileRefId++;
-            shot.GetComponent<ProjectileStatsManager>().SetStats(projectileRefId, holder, this, 
-                    gameObject, bulletDirectionVector, projectileRotationOffset);
-            GameManager.instance.projectiles.Add(projectileRefId, shot);
-            ServerSend.RangedAttack(characterStats.characterType, characterStats.characterRefId, 
-                    projectileRefId, bulletDirectionRotation);
-            timeToNextAttack = attackInterval;
+            GetComponent<WeaponShooter>().Shoot();
         }
     }
 
     public void ReceiveAttack(string _projectileRefId, float _projectileDirectionRotation) {
+        if (NetworkManager.IsMine(holder.GetComponent<CharacterStatsManager>().characterRefId))
+        {
+            SoundManager.instance.PlaySound(Sounds.TestRifleShot);
+        }
         bulletDirectionVector = Quaternion.AngleAxis(_projectileDirectionRotation, Vector3.forward) * Vector2.right;
-        GameObject shot = Instantiate(projectile, transform.position, Quaternion.Euler(0f, 0f, _projectileDirectionRotation + projectileRotationOffset));
-        shot.GetComponent<ProjectileStatsManager>().SetStats(_projectileRefId, 
-                holder, this, gameObject, bulletDirectionVector, projectileRotationOffset);
-        GameManager.instance.projectiles.Add(_projectileRefId, shot);
-        timeToNextAttack = attackInterval;
+        GetComponent<WeaponShooter>().ReceiveShoot(_projectileRefId, _projectileDirectionRotation);
     }
 
     public void PointToTarget() {
