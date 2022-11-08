@@ -1,6 +1,7 @@
 # CHAD
 
 Installation link: https://cfsy.itch.io/chad
+
 Demo of procedural map generation: https://cfsy.itch.io/chad-map-demo
 
 
