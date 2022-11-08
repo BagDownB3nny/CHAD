@@ -1,10 +1,18 @@
 # CHAD
 
+CHAD is a top-down rogue-like shooter game build in Unity. 
+Features include:
+- unique playable characters, equippable weapons, formidable foes and dangerous boss fights
+- procedurally generated maps for high levels of replayablity
+- an online P2P network for multiplayer
+
+
+----------------------------------------------------------------------------
+
 Installation link: https://cfsy.itch.io/chad
 
 Demo of procedural map generation: https://cfsy.itch.io/chad-map-demo
 
-----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
 
 Resources:
